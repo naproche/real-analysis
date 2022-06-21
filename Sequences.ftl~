@@ -20,17 +20,17 @@ Proposition. Let x be a real number. |-x| = |x|.
 
 Signature. dist(x,y) is a real number.
 Axiom. dist(x,y) = |x - y|.
-Proposition. Let x,y be real numbers. |x+y| <= |x| + |y|.
+Proposition. Let x,y be real numbers. |x+y| =< |x| + |y|.
 Proof.
-Case x+y is positive. Then |x+y| = x+y <= |x| + |y|. end.
+Case x+y is positive. Then |x+y| = x+y =< |x| + |y|. end.
 Case x+y is negative. 
-  |x+y| = -(x+y) = (-x) + (-y) <= |-x| + |-y| = |x| + |y|.
+  |x+y| = -(x+y) = (-x) + (-y) =< |-x| + |-y| = |x| + |y|.
 end. qed.
 
 Lemma Trinagle inequality. Let x,y,z be real numbers. Then
-dist(x,y) <= dist(x,z) + dist(z,y).
+dist(x,y) =< dist(x,z) + dist(z,y).
 Proof.
-dist(x,y) = |x - y| = |(x-z) + (z-y)| <= |x-z| + |z-y| =  dist(x,z) + dist(z,y).
+dist(x,y) = |x - y| = |(x-z) + (z-y)| =< |x-z| + |z-y| =  dist(x,z) + dist(z,y).
 qed.
 
 Lemma. Let x,y be real numbers. dist(x,y) = dist(y,x).
@@ -70,7 +70,7 @@ Definition Range.
     Let a be a sequence. ran(a) = {a(n) | n is a natural number}. 
 
 Definition RangeN.
-    Let a be a sequence. ranN(a,N) = {a(n) | n is a natural number such that n <= N}.
+    Let a be a sequence. ranN(a,N) = {a(n) | n is a natural number such that n =< N}.
 
 Definition FiniteRange.
     Let a be a sequence. a has finite range iff there exists an N such that ran(a) = ranN(a,N).
@@ -113,9 +113,9 @@ Proof.
         Then a(N + 1) is an element of ran(a).
 
         Let us show that a(N + 1) is not an element of ranN(a,N).
-            Let us show that for every n such that n <= N a(n) != a(N + 1).
+            Let us show that for every n such that n =< N a(n) != a(N + 1).
                 Assume the contrary.
-                Take n such that n <= N and a(n) = a(N + 1).
+                Take n such that n =< N and a(n) = a(N + 1).
                 Case n = 0.
                     We have 2 = 1/(N + 1).
 
@@ -177,9 +177,9 @@ Proof.
         end.
 
         a(N + 1) is a real number and a(N + 2) is a real number.
-        We have dist(a(N + 1),a(N + 2)) <= dist(a(N + 1),x) + dist(x,a(N + 2)).
+        We have dist(a(N + 1),a(N + 2)) =< dist(a(N + 1),x) + dist(x,a(N + 2)).
         We have dist(x,a(N + 2)) = dist(a(N + 2),x).
-        Hence dist(a(N + 1),a(N + 2)) <= dist(a(N + 1),x) + dist(a(N + 2),x).
+        Hence dist(a(N + 1),a(N + 2)) =< dist(a(N + 1),x) + dist(a(N + 2),x).
 
         We have dist(a(N + 1),x) < 1 and dist(a(N + 2),x) < 1.
         Hence dist(a(N + 1),x) + dist(a(N + 2),x) <  dist(a(N + 1),x) + 1 < 1 + 1.
@@ -192,7 +192,7 @@ Proof.
         Let us show that ran(a) = ranN(a,1).
             Let us show that every element of ranN(a,1) is an element of ran(a).
                 Let x be an element of ranN(a,1).
-                Take n such that n <= 1 and a(n) = x.
+                Take n such that n =< 1 and a(n) = x.
                 Hence x is an element of ran(a).
             end.
 
@@ -210,12 +210,12 @@ Proof.
 
                Case x = 1.
                     Then x = a(0).
-                    We have 0 <= 1.
+                    We have 0 =< 1.
                     Hence x is an element of ranN(a,1).
                 end.
                 Case x = -1.
                     Then x = a(1).
-                    We have 1 <= 1.
+                    We have 1 =< 1.
                     Hence x is an element of ranN(a,1).
                 end.
             end.
@@ -276,13 +276,13 @@ Proof.
         Take N1 such that for every n such that N1 < n dist(a(n),x) < halfeps.
         Take N2 such that for every n such that N2 < n dist(a(n),y) < halfeps.
 
-        For every n dist(x,y) <= dist(x,a(n)) + dist(a(n),y). 
+        For every n dist(x,y) =< dist(x,a(n)) + dist(a(n),y). 
         Take N3 such that N3 = max(N1,N2) + 1.
         Then N1 < N3 and N2 < N3.
 
         Hence dist(x,a(N3)) < halfeps and dist(a(N3),y) < halfeps.
         Hence dist(x,a(N3)) + dist(a(N3),y) <  dist(x,a(N3)) + halfeps < halfeps + halfeps.
-        Hence dist(x,y) <= dist(x,a(N3)) + dist(a(N3),y) < halfeps + halfeps = (1/2 + 1/2)*eps = eps.
+        Hence dist(x,y) =< dist(x,a(N3)) + dist(a(N3),y) < halfeps + halfeps = (1/2 + 1/2)*eps = eps.
     end.
     Therefore x = y.
 qed.
