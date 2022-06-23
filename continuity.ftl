@@ -1,5 +1,5 @@
+[read real-analysis/vocabulary.ftl]
 [read numbers.ftl]
-[synonym map/-s]
 
 # Use maps instead of functions to avoid redundant checking.
 

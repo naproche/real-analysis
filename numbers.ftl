@@ -1,6 +1,7 @@
 # Importing Set-Theoretic Preliminaries
 
 [timelimit 10]
+[read real-analysis/vocabulary.ftl]
 [read preliminaries.ftl]
 
 Let A,B stand for sets.
@@ -16,7 +17,6 @@ Let B \cup C stand for the union of B and C.
 Definition 1_3. A is nonempty iff A has an element.
 
 # The Real Field
-[synonym number/-s]
 
 Signature. A real number is a mathematical object.
 
@@ -210,7 +210,6 @@ Theorem. Real = {x in Real | there exists A \subseteq Rational such that
 A is bounded above and x is a least upper bound of A}.
 
 # Integers
-[synonym integer/-s]
 
 Signature. An integer is a rational number.
 Let a, b, i stand for integers.

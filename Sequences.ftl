@@ -1,7 +1,5 @@
+[read real-analysis/vocabulary.ftl]
 [read real-analysis/numbers.ftl]
-
-[synonym sequence/-s]
-[synonym converge/-s]
 
 ### Preliminaries
 
