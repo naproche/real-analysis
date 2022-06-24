@@ -1,5 +1,5 @@
+[read real-analysis/numbers.ftl]
 [read real-analysis/vocabulary.ftl]
-[read numbers.ftl]
 
 # Use maps instead of functions to avoid redundant checking.
 
@@ -8,11 +8,11 @@
 
 Definition Codomain. Let f be a map.
 Let S be a class. f is into S iff
-for any object x in Dom(f) we have f(x) \in S.
+for any x \in Dom(f) we have f(x) \in S.
 
 Definition Composition. Let f, g be maps.
 Suppose f is into Dom(g). g \circ f is a map h
-such that Dom(h) = Dom(f) and for any object x in Dom(f)
+such that Dom(h) = Dom(f) and for any x \in Dom(f)
 we have g(f(x)) = h(x).
 
 Definition Preimage. Let f be a map.
@@ -22,12 +22,12 @@ f^-1(S) = {x in Dom(f) | f(x) \in S}.
 Definition Addition. Let f, g be maps into Real.
 Suppose Dom(f) = Dom(g).
 f ++ g is a map h such that Dom(h) = Dom(f) and
-for any object x in Dom(h) we have h(x) = f(x) + g(x).
+for any x \in Dom(h) we have h(x) = f(x) + g(x).
 
 Definition Multiplication. Let f, g be maps into Real.
 Suppose Dom(f) = Dom(g).
 f ** g is a map h such that Dom(h) = Dom(f) and
-for any object x in Dom(h) we have h(x) = f(x) * g(x).
+for any x \in Dom(h) we have h(x) = f(x) * g(x).
 
 ################
 # Preliminaries
@@ -39,7 +39,7 @@ Let eps, del denote positive real numbers.
 Signature Distance. d(x,y) is a real number.
 
 Definition Open. Let E be a subset of Real.
-E is open iff for any x in E there exists eps
+E is open iff for any x \in E there exists eps
 such that for all y if d(x,y)<eps then y \in E.
 
 Definition Sequence. A sequence is a map a
@@ -67,7 +67,7 @@ Let f, g denote real maps.
 
 Definition 4_1. Suppose p is a limit point of Dom(f).
 lim(f,p)=q iff for any eps there exists del such that
-for any x in Dom(f) if d(x,p)<del then d(f(x),q)<eps.
+for any x \in Dom(f) if d(x,p)<del then d(f(x),q)<eps.
 
 #TODO
 Axiom 4_2. Suppose p is a limit point of Dom(f).
@@ -93,7 +93,7 @@ Then lim(f++g,p) = A+B and lim(f**g,p) = A*B.
 
 Definition 4_5. Suppose p \in Dom(f).
 f is continuous at p iff for any eps there exists del
-such that for any x in Dom(f)
+such that for any x \in Dom(f)
 if d(x,p)<del then d(f(x),f(p))<eps.
 
 Theorem 4_6. Suppose p \in Dom(f).
@@ -107,11 +107,11 @@ Suppose f is continuous at p and g is continuous at f(p).
 Then g \circ f is continuous at p.
 
 Definition. f is continuous iff
-for all p in Dom(f) f is continuous at p.
+for all p \in Dom(f) f is continuous at p.
 
 #TODO
-Axiom 4_8. f is continuous iff
-for any open subset E of Real f^-1(E) is open.
+Axiom 4_8. Suppose Dom(f) = Real. f is continuous
+iff for any open subset E of Real f^-1(E) is open.
 
 #TODO
 Axiom 4_9. Suppose Dom(f) = Dom(g).
