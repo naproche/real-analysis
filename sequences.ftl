@@ -284,3 +284,73 @@ Proof.
     end.
     Therefore x = y.
 qed.
+
+### Added by Karolina
+
+Definition BoundedBy.
+  Let a be a sequence. Let K be a real number. a is bounded by K iff for every n |a(n)|<=K.
+
+Definition BoundedSequence. 
+  Let a be a sequence. a is bounded iff there exists a real number K such
+  that a is bounded by K.
+
+Signature MaxN.
+  Let a be sequence. maxN(a,N) is a real number such that (there exists n such that n<=N and
+  maxN(a,N)=a(n)) and (for every n such that n<=N a(n)<=maxN(a,N)). 
+
+Axiom ConvergentImpBounded. 
+  Let a be a sequence. Assume that a converges. Then a is bounded.
+
+Definition LimitPointOfSet. 
+  Let E be a set. Assume every element of E is a real number. A limit point of E is a real number x
+  such that for every positive real number eps there exists an element y of E such that y is an 
+  element of Neighb(x,eps) and y !=x.
+
+Axiom ConvLimitPoint.
+   Let E be a set. Assume every element of E is a real number. Let x be a limit point of E. 
+   Then there exists a sequence a such that a converges to x and for every n a(n) is an element of E.
+
+Definition SequenceSum.
+  Let a,b be sequences. a ++ b is a sequence such that (a++b)(n)=a(n)+b(n) for every n.
+
+Definition SequenceProd.
+  Let a,b be sequences. a ** b is a sequence such that (a**b)(n)=a(n)+b(n) for every n.
+
+Definition SequenceConstSum.
+  Let a be a sequence. Let c be a real number.
+  c+'a is a sequence such that (c+'a)(n)=c+a(n) for every n.
+
+Definition SequenceConstProd.
+ Let a be a sequence. Let c be a real number.
+ c*'a is a sequence such that (c*'a)(n)=c*a(n) for every n.
+
+Definition SequenceDiv.
+  Let a be a sequence. Assume for every n a(n) != 0. div(a) is a sequence such that
+  (div(a))(n)=1/a(n) for every n. 
+
+Axiom SumConv.
+  Let a, b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
+  Then a+b converges to x+y.
+
+Lemma ConstConv.
+  Let c be a real number. Let cn be a sequence such that for every n cn(n)=c. Then cn converges to c.
+
+Axiom SumConstConv.
+  Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c+'a converges to c+x.
+ 
+Axiom ProdConstConv.
+  Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c*'a converges to c*x.
+
+
+Axiom ConstMultSum.
+  Let a,b be sequences. Let x,y be real numbers such that for every n b(n)=y*(a(n)+(-x)).
+  Assume a converges to x. Then b converges to 0.
+
+Axiom ProdConv.
+  Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
+  Then a**b converges to x*y.
+
+Axiom DivConv.
+  Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
+  Assume for every n a(n)!=0. Then div(a) converges to 1/x.
+
