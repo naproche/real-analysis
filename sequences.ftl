@@ -389,9 +389,71 @@ Axiom LimitSubSeq.
 Axiom BolzanoWeierstrass.
   Let a be a bounded sequence. Then a has some convergent subsequence.
 
+
+### Cauchy Sequences
+
 Definition Cauchy.
   A cauchy sequence is a sequence a such that for every positive real number eps there exists N such
   that for every n,m such that (N<n and N<m) dist(a(n),a(m))<eps.
 
 Axiom CauchyBounded.
   Let a be a cauchy sequence. Then a is bounded.
+
+Axiom CauchyConvSubSeq.
+  Let a be a cauchy sequence such that a has some convergent subsequence.
+  Then a converges.
+
+Axiom RComplete.
+  Let a be a sequence. a is cauchy sequence iff a converges.
+
+### Monotonic sequences
+
+Definition MonInc.
+  Let a be a sequence. a is monotonically increasing iff (for every n,m such that n<=m a(n)<=a(m)).
+
+Definition MonDec.
+  Let a be a sequence. a is monotonically decreasing iff (for every n,m such that n<=m a(n)>=a(m)).
+
+Definition Mon. 
+  Let a be a sequence. a is monotonic iff a is monotonically increasing
+  or a is monotonically decreasing.
+
+Definition UpperBoundSeq.
+  Let a be a bounded sequence. Let K be a real number. K is upper bound of a iff (for every n a(n)<=K).
+
+
+Definition LeastUpperBoundSeq.
+  Let a be a bounded sequence. LeastUpper(a) is a real number K such that (K is an upper bound of a)
+  and (for every real number L such that L is an upper bound of a K<=L).
+
+Definition LowerBoundSeq.
+  Let a be a bounded sequence. Let K be a real number. K is lower bound of a iff (for every n a(n)>=K).
+
+Definition GreatestLowerBoundSeq.
+  Let a be a bounded sequence. GreatestLower(a) is a real number K such that (K is a lower bound of a)
+  and (for every real number L such that L is a lower bound of a K>=L).
+
+Axiom MonIncCon. 
+  Let a be a monotonically increasing bounded sequence. Then a converges.
+
+Axiom MonCon.
+  Let a be a monotonic sequence. a converges iff a is bounded.
+
+Definition BoundedAboveBy.
+  Let S be a set. Assume every element of S is a real number. Let b be a real number.
+  S is bounded above by b iff for every real number x such that x is an element of S x<=b.
+
+Definition BoundedAbove.
+  Let S be a set. Assume every element of S is a real number.
+  S is bounded above iff there exists a real number b such that S is bounded above by b.
+
+Definition BoundedBelowBy.
+  Let S be a set. Assume every element of S is a real number. Let b be a real number.
+  S is bounded below by b iff for every real number x such that x is an element of S x>=b.
+
+Definition BoundedBelow.
+  Let S be a set. Assume every element of S is a real number.
+  S is bounded below iff there exists a real number b such that S is bounded below by b.
+
+
+
