@@ -354,3 +354,44 @@ Axiom DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
   Assume for every n a(n)!=0. Then div(a) converges to 1/x.
 
+
+
+### Subsequences
+
+Definition IndexSeq. 
+  An index sequence is a sequence i such that (for every n i(n) is a natural number) and 
+  (for every n i(n)<i(n+1)).
+
+Definition SubSeq.
+  Let a be a sequence and i be an index sequence.
+  Subseq(a,i) is a sequence such that for every n Subseq(a,i)(n)=a(i(n)).
+
+Definition ConvSubSeq.
+  Let a be a sequence. 
+  a has some convergent subsequence iff there exists an index sequence i such that Subseq(a,i) converges.
+
+Axiom IndSucc.
+  n<n+1.
+
+Axiom IndPrec.
+  Assume n !=0. Then there exists m such that n=m+1.
+
+Axiom IndPlusOne. 
+  Assume n<m. Then n+1 <=m.
+
+Axiom SubSeqLeq.
+  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
+
+Axiom LimitSubSeq. 
+  Let a be a sequence. Let x be a real number. 
+  a converges to x iff for every index sequence i Subseq(a,i) converges to x.
+
+Axiom BolzanoWeierstrass.
+  Let a be a bounded sequence. Then a has some convergent subsequence.
+
+Definition Cauchy.
+  A cauchy sequence is a sequence a such that for every positive real number eps there exists N such
+  that for every n,m such that (N<n and N<m) dist(a(n),a(m))<eps.
+
+Axiom CauchyBounded.
+  Let a be a cauchy sequence. Then a is bounded.
