@@ -37,6 +37,7 @@ Proof. dist(x,y) = |x - y| = |-(x - y)| = |y - x| = dist(y,x). qed.
 Signature. max(x,y) is a real number.
 Axiom. If x >= y then max(x,y) = x.  
 Axiom. If x < y then max(x,y) = y.
+Theorem. max(x,y) >= x and max(x,y) >= y.
 
 
 ### Sequences
@@ -280,12 +281,12 @@ Proof.
 
         Hence dist(x,a(N3)) < halfeps and dist(a(N3),y) < halfeps.
         Hence dist(x,a(N3)) + dist(a(N3),y) <  dist(x,a(N3)) + halfeps < halfeps + halfeps.
-        Hence dist(x,y) <= dist(x,a(N3)) + dist(a(N3),y) < halfeps + halfeps = (1/2 + 1/2)*eps = eps.
+        Hence dist(x,y) <= dist(x,a(N3)) + dist(a(N3),y) < halfeps + halfeps = eps.
     end.
     Therefore x = y.
 qed.
 
-### Added by Karolina
+### A convergent sequence is bounded
 
 Definition BoundedBy.
   Let a be a sequence. Let K be a real number. a is bounded by K iff for every n |a(n)|<=K.
@@ -298,17 +299,95 @@ Signature MaxN.
   Let a be sequence. maxN(a,N) is a real number such that (there exists n such that n<=N and
   maxN(a,N)=a(n)) and (for every n such that n<=N a(n)<=maxN(a,N)). 
 
-Axiom ConvergentImpBounded. 
+Theorem ConvergentImpBounded. 
   Let a be a sequence. Assume that a converges. Then a is bounded.
+Proof.
+    Take a real number x such that a converges to x.
+    Take N such that for every n such that N < n dist(a(n),x) < 1.
+
+    Define b(k) = |a(k)| for k in Natural. b is a sequence.
+    Take a real number K such that K = max(1 + |x|, maxN(b,N)).
+
+    Let us show that a is bounded by K.
+        Let us show that for every n |a(n)| <= K. 
+            Let n be a natural number.
+            We have n <= N or n > N.
+            Case n <= N.
+                We have |a(n)| = b(n) <= maxN(b,N).
+                We have maxN(b,N) <= K.
+                Therefore |a(n)| <= K.
+            end.
+            Case n > N.
+                We have dist(a(n),x) < 1.
+                We have 1 + |x| <= K.
+
+                |a(n)| = |a(n) + 0| = |a(n) + (x - x)| = |(a(n) - x) + x|.
+
+                Hence |a(n)| <= |a(n) - x| + |x|.
+                Hence |a(n)| <= dist(a(n),x) + |x|.
+
+                We have dist(a(n),x) + |x| < 1 + |x|.
+                Hence |a(n)| <= 1 + |x|.
+                Therefore |a(n)| <= K.
+            end.
+        end.
+        Hence a is bounded by K.
+    end.
+qed.
+
 
 Definition LimitPointOfSet. 
   Let E be a set. Assume every element of E is a real number. A limit point of E is a real number x
   such that for every positive real number eps there exists an element y of E such that y is an 
   element of Neighb(x,eps) and y !=x.
 
-Axiom ConvLimitPoint.
-   Let E be a set. Assume every element of E is a real number. Let x be a limit point of E. 
-   Then there exists a sequence a such that a converges to x and for every n a(n) is an element of E.
+Theorem ConvLimitPoint.
+    Let E be a set. Assume every element of E is a real number. Let x be a limit point of E.
+    Then there exists a sequence a such that a converges to x and for every n a(n) is an element of E.
+Proof.
+    Let us show that for every n such that n > 0 there exists an element y of E such that
+    y is an element of Neighb(x,1/n) and y != x.
+        Let n be a natural number such that n > 0.
+        Then 1/n is a positive real number.
+        Take an element y of E such that y is an element of Neighb(x,1/n)
+            and y != x.
+    end.
+
+    Define a(n) = Case n = 0 -> Choose an element y of E such that y is an element of
+                                Neighb(x,1) and y != x in y,
+                  Case n > 0 -> Choose an element y of E such that y is an element of
+                                Neighb(x,1/n) and y != x in y
+    for n in Natural.
+    a is a sequence.
+
+    Then for every n a(n) is an element of E.
+    Let us show that a converges to x.
+        Let eps be a positive real number.
+        Take N such that 1 < N * eps.
+
+        Let us show that for every n such that N < n dist(a(n),x) < eps.
+            Let n be a natural number such that n > N. Then n != 0.
+            Then a(n) is an element of E such that a(n) is an element of Neighb(x,1/n).
+            Hence dist(a(n),x) < 1/n.
+
+            Let us show that 1/n < eps.
+                We have N * eps < n * eps.
+                Hence 1 < n * eps.
+
+                1/n is positive.
+                Hence 1/n * 1 < 1/n * (n * eps).
+                We have 1/n * 1 = 1/n.
+                1/n * (n * eps) .= (1/n * n) * eps
+                                   .= 1 * eps
+                                   .= eps.
+            end.
+            Hence dist(a(n),x) < eps.
+        end.
+    end.
+qed.
+
+### Sum and Product of Sequences
+
 
 Definition SequenceSum.
   Let a,b be sequences. a ++ b is a sequence such that (a++b)(n)=a(n)+b(n) for every n.
@@ -328,15 +407,57 @@ Definition SequenceDiv.
   Let a be a sequence. Assume for every n a(n) != 0. div(a) is a sequence such that
   (div(a))(n)=1/a(n) for every n. 
 
-Axiom SumConv.
-  Let a, b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
-  Then a+b converges to x+y.
+Theorem SumConv.
+    Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
+    Then a ++ b converges to x + y.
+Proof.
+    Let eps be a positive real number.
+    Take a positive real number halfeps such that halfeps = 1/2 * eps.
+
+    Take N1 such that for every n such that N1 < n dist(a(n),x) < halfeps (by Convergence).
+    Take N2 such that for every n such that N2 < n dist(b(n),y) < halfeps (by Convergence).
+    Take N such that N = max(N1,N2).
+    Then N1 <= N and N2 <= N.
+
+    Let us show that for every n such that N < n dist((a ++ b)(n),(x+y)) < eps.
+        Let n be a natural number such that N < n.
+        We have dist(a(n),x) < halfeps.
+        We have dist(b(n),y) < halfeps.
+
+        |(a(n) + b(n)) - (x + y)| .= |(a(n) + b(n)) + ((-x) + (-y))|
+                                     .= |(-x) + ((a(n) + b(n)) - y)|
+                                     .= |(-x) + (a(n) + (b(n) - y))|
+                                     .= |((-x) + a(n)) + (b(n) - y)|
+                                     .= |(a(n) - x) + (b(n) - y)|.
+
+        We have |(a(n) - x) + (b(n) - y)| <= |a(n) - x| + |b(n) - y|.
+        Hence |(a(n) + b(n)) - (x + y)| <= dist(a(n),x) + dist(b(n),y).
+
+        Hence dist(a(n),x) + dist(b(n),y) < halfeps + halfeps = eps.
+        Hence |(a(n) + b(n)) - (x + y)| < eps.
+        Hence dist((a ++ b)(n),(x + y)) < eps.
+    end.
+qed.
 
 Lemma ConstConv.
   Let c be a real number. Let cn be a sequence such that for every n cn(n)=c. Then cn converges to c.
 
-Axiom SumConstConv.
+Theorem SumConstConv.
   Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c+'a converges to c+x.
+Proof.
+    Define cn(n) = c for n in Natural. cn is a sequence.
+    Let us show that c +' a = cn ++ a.
+        Let us show that (c +' a)(n) = (cn ++ a)(n) for every natural number n.
+            Let n be a natural number.
+            (c +' a)(n) .= c + a(n)
+                         .= cn(n) + a(n)
+                         .= (cn +' a)(n).
+        end.
+        Hence c +' a = cn ++ a.
+    end.
+    cn converges to c.
+    Then c +' a converges to c + x.
+qed.
  
 Axiom ProdConstConv.
   Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c*'a converges to c*x.
