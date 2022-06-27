@@ -439,21 +439,45 @@ Axiom MonIncCon.
 Axiom MonCon.
   Let a be a monotonic sequence. a converges iff a is bounded.
 
+
 Definition BoundedAboveBy.
   Let S be a set. Assume every element of S is a real number. Let b be a real number.
   S is bounded above by b iff for every real number x such that x is an element of S x<=b.
 
+### bounded above -> bounded from up.
+
 Definition BoundedAbove.
-  Let S be a set. Assume every element of S is a real number.
-  S is bounded above iff there exists a real number b such that S is bounded above by b.
+  Let S be a set. Assume  every element of S is a real number.
+  S is bounded from up iff there exists a real number b such that S is bounded above by b.
 
 Definition BoundedBelowBy.
   Let S be a set. Assume every element of S is a real number. Let b be a real number.
   S is bounded below by b iff for every real number x such that x is an element of S x>=b.
 
+### bounded below -> bounded from down.
+
 Definition BoundedBelow.
   Let S be a set. Assume every element of S is a real number.
-  S is bounded below iff there exists a real number b such that S is bounded below by b.
+  S is bounded from down iff there exists a real number b such that S is bounded below by b.
 
+Definition Sup.
+ Let S be a set. Assume that every element of S is a real number.
+ Assume that S is bounded from up. Let a be a real number such that
+ S is bounded above by a. sup(S) = a iff for every real number b such that
+ b < a S is not bounded above by b.
 
+Definition Inf.
+  Let S be a set. Assume every element of S is a real
+  number. Assume that S is bounded from down. Let a be a real number such that
+  S is bounded below by a. inf(S) = a iff for every real number b such that
+  b > a S is not bounded below by b.
 
+Definition LimSup.
+  Let a be a sequence. Let E be a set such that
+  E = {x | x is a real number and there exists an index sequence i such that
+  Subseq(a, i) converges to x}. limsup(a) = sup(E) iff E is bounded from up.
+
+Definition LimInf.
+   Let a be a sequence. Let E be a set such that
+   E = {x | x is a real number and there exists an index sequence i such that
+   Subseq(a, i) converges to x}. limsup(a) = inf(E) iff E is bounded from down.
