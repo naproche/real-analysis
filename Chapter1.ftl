@@ -55,7 +55,27 @@ Definition. Let E be a totally ordered set. Let F be a subset of E.
 F is bounded below on E iff (there exists an element s of E such that s is
 lower bound of F on E).
 
+Definition. Let E be a totally ordered set. Let F be a subset of E. 
+Let s be an element of E. s is supremum of F on E iff (s is upper bound of F 
+on E) and (for every element t of E such that (t is upper bound of F on E) 
+s <= t ).
 
+Definition. Let E be a totally ordered set. Let F be a subset of E. 
+Let s be an element of E. s is infimum of F on E iff (s is lower bound of F
+on E) and (for every element t of E such that 
+(t is lower bound of F on E) s >= t ).
+
+Definition. Let E be a totally ordered set. E has least upper bound
+property iff (for every subset F of E such that (F is bounded above on E) 
+there is an element s of E such that (s is supremum of F on E)).
+
+Axiom. Let E be a totally ordered set such that E has least upper bound
+property. Let B be a subset of E such that (B is nonempty) and (B is
+bounded below on E). Let L be the subset of B such that (every element in 
+in L is an element e of E such that e is lower bound of B on E) and
+(every element e of E such that e is lower bound of B on E is an element
+in L). Then there is an element e of E such that (e is supremum of L on E) and
+(e is infimum of B on E).
 
 
 
