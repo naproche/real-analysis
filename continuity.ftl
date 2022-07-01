@@ -1,5 +1,4 @@
-[read real-analysis/numbers.ftl]
-[read real-analysis/vocabulary.ftl]
+[read real-analysis/continuity_pre.ftl]
 
 # Use maps instead of functions to avoid redundant checking.
 
@@ -39,7 +38,7 @@ Axiom d1. d(x,y) = 0 iff x = y.
 Axiom d2. d(x,y) = d(y,x).
 Axiom d3. Let z be a real number. d(x,z)<=d(x,y)+d(y,z).
 
-Definition Open. Let E be a subset of Real.
+Definition Open. Let E be a subclass of Real.
   E is open iff for any x \in E there exists eps
   such that for all y if d(x,y)<eps then y \in E.
 
@@ -56,7 +55,7 @@ Definition UneqConv. Let a be a sequence.
   a unequally converges to x iff for any eps there exists
   a positive integer N such that for any n if N<n then 0<d(a(n),x)<eps.
 
-Definition LimitPoint. Let E be a subset of Real.
+Definition LimitPoint. Let E be a subclass of Real.
   A limit point of E is a real number p such that there exists
   a sequence a such that a is into E and a unequally converges to p.
 
@@ -68,7 +67,7 @@ Axiom d5. If x > 0 then d(x,0) = x.
 
 Axiom NbhdOpen. nbhd(p,eps) is open.
 
-Axiom IsoPt. Let E be a subset of Real. Suppose p is not a limit point of E.
+Axiom IsoPt. Let E be a subclass of Real. Suppose p is not a limit point of E.
   Then there exists eps such that for all x if 0<d(x,p)<eps then x \notin E.
 
 Axiom 3_1. There exists a sequence a such that
@@ -199,12 +198,12 @@ Definition. f is continuous iff
   for all p \in Dom(f) f is continuous at p.
 
 Theorem 4_8. Suppose Dom(f) = Real. f is continuous
-  iff for any open subset E of Real f^-1(E) is open.
+  iff for any open subclass E of Real f^-1(E) is open.
 Proof.
   Let us show that if f is continuous then
-  for any open subset E of Real f^-1(E) is open.
+  for any open subclass E of Real f^-1(E) is open.
     Suppose f is continuous.
-    Suppose E is an open subset of Real.
+    Suppose E is an open subclass of Real.
     Let us show that f^-1(E) is open.
       Suppose p \in f^-1(E).
       Take eps such that for all y if d(f(p),y)<eps then y \in E.
@@ -212,9 +211,9 @@ Proof.
       Take del such that for any x if d(x,p)<del then d(f(x),f(p))<eps.
     End.
   End.
-  Let us show that if for any open subset E of Real
+  Let us show that if for any open subclass E of Real
   f^-1(E) is open then f is continuous.
-    Suppose for any open subset E of Real f^-1(E) is open.
+    Suppose for any open subclass E of Real f^-1(E) is open.
     Suppose p \in Dom(f).
     Let us show that f is continuous at p.
       Suppose eps is a positive real number.

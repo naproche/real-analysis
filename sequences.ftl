@@ -5,9 +5,15 @@
 
 Definition. A natural number n is an integer such that n >= 0.
 
+Definition. NN is the collection of natural numbers.
+Theorem. NN is a set.
+
 Let n, m, k, N, N1, N2, N3 denote natural numbers.
 Let x, y, z denote real numbers.
-Let 2 denote 1+1.
+Let 2 denote (1+1).
+Proposition. Let x be a real number. (1/2*x) + (1/2*x) = x.
+Proof. 2*(1/2 + 1/2) = (2*(1/2)) + (2*(1/2)) = 2 = 2*1.
+qed.
 
 Signature. |x| is a real number.
 Axiom. If x is positive then |x| = x.
@@ -43,18 +49,22 @@ Theorem. max(x,y) >= x and max(x,y) >= y.
 ### Sequences
 
 Definition Seq.
-    A sequence f is a function such that every element of Dom(f) is a natural number and every
+    A sequence f is a map such that every element of Dom(f) is a natural number and every
     natural number is an element of Dom(f) and for every n f(n) is a real number.
+Theorem. Let f be a sequence. Dom(f) = NN.
+Proof. 
+    Let us show that Dom(f) is a subset of NN. Trivial.
+    Let us show that NN is a subset of Dom(f). Trivial.
+end.
 
 Axiom SequenceEq.
     Let a, b be sequences. a = b iff (for every n a(n) = b(n)).
-
 
 ### Convergence
 
 Definition Convergence.
     Let a be a sequence. Let x be a real number. a converges to x iff for every positive real
-    number eps there exists N such that for every n such that N < n |a(n) - x| < eps.
+    number eps there exists N such that for every n such that N < n dist(a(n),x) < eps.
 
 Definition Conv.
     Let a be a sequence. a converges iff there exists a real number x such that a converges to x.
@@ -135,7 +145,7 @@ Proof.
                 end.
             end.
             Hence a(N + 1) is not an element of ranN(a,N).
-        end.
+        end.                                   
 
         Contradiction.
     end.
@@ -305,7 +315,7 @@ Proof.
     Take a real number x such that a converges to x.
     Take N such that for every n such that N < n dist(a(n),x) < 1.
 
-    Define b(k) = |a(k)| for k in Natural. b is a sequence.
+    Define b(k) = |a(k)| for k in NN. b is a sequence.
     Take a real number K such that K = max(1 + |x|, maxN(b,N)).
 
     Let us show that a is bounded by K.
@@ -357,7 +367,7 @@ Proof.
                                 Neighb(x,1) and y != x in y,
                   Case n > 0 -> Choose an element y of E such that y is an element of
                                 Neighb(x,1/n) and y != x in y
-    for n in Natural.
+    for n in NN.
     a is a sequence.
 
     Then for every n a(n) is an element of E.
@@ -414,8 +424,8 @@ Proof.
     Let eps be a positive real number.
     Take a positive real number halfeps such that halfeps = 1/2 * eps.
 
-    Take N1 such that for every n such that N1 < n dist(a(n),x) < halfeps (by Convergence).
-    Take N2 such that for every n such that N2 < n dist(b(n),y) < halfeps (by Convergence).
+    Take N1 such that for every n such that N1 < n dist(a(n),x) < halfeps.
+    Take N2 such that for every n such that N2 < n dist(b(n),y) < halfeps.
     Take N such that N = max(N1,N2).
     Then N1 <= N and N2 <= N.
 
@@ -424,17 +434,19 @@ Proof.
         We have dist(a(n),x) < halfeps.
         We have dist(b(n),y) < halfeps.
 
-        |(a(n) + b(n)) - (x + y)| .= |(a(n) + b(n)) + ((-x) + (-y))|
-                                     .= |(-x) + ((a(n) + b(n)) - y)|
-                                     .= |(-x) + (a(n) + (b(n) - y))|
-                                     .= |((-x) + a(n)) + (b(n) - y)|
-                                     .= |(a(n) - x) + (b(n) - y)|.
+        |(a(n) + b(n)) - (x + y)| .= |(a(n) + b(n)) + ((-x) + (-y))| (by MinusDist)
+                                     .= |((a(n) + b(n)) + (-x)) + (-y)| (by  1_12_A3)
+                                     .= |(-x + (a(n) + b(n))) - y| (by 1_12_A2)
+                                     .= |((-x + a(n)) + b(n)) - y| (by  1_12_A3)
+                                     .= |((a(n) - x) + b(n)) - y| (by  1_12_A2)
+                                     .= |(a(n) - x) + (b(n) - y)|  (by  1_12_A3).
 
         We have |(a(n) - x) + (b(n) - y)| <= |a(n) - x| + |b(n) - y|.
         Hence |(a(n) + b(n)) - (x + y)| <= dist(a(n),x) + dist(b(n),y).
 
-        Hence dist(a(n),x) + dist(b(n),y) < halfeps + halfeps = eps.
-        Hence |(a(n) + b(n)) - (x + y)| < eps.
+        Hence dist(a(n),x) + dist(b(n),y) < halfeps +  dist(b(n),y) < halfeps + halfeps.
+        Hence |(a(n) + b(n)) - (x + y)| <= dist(a(n),x) + dist(b(n),y) <  halfeps + halfeps.
+        Hence |(a(n) + b(n)) - (x + y)| <  halfeps + halfeps = eps.
         Hence dist((a ++ b)(n),(x + y)) < eps.
     end.
 qed.
@@ -445,13 +457,13 @@ Lemma ConstConv.
 Theorem SumConstConv.
   Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c+'a converges to c+x.
 Proof.
-    Define cn(n) = c for n in Natural. cn is a sequence.
+    Define cn(n) = c for n in NN. cn is a sequence.
     Let us show that c +' a = cn ++ a.
         Let us show that (c +' a)(n) = (cn ++ a)(n) for every natural number n.
             Let n be a natural number.
             (c +' a)(n) .= c + a(n)
                          .= cn(n) + a(n)
-                         .= (cn +' a)(n).
+                         .= (cn ++ a)(n).
         end.
         Hence c +' a = cn ++ a.
     end.
@@ -466,6 +478,7 @@ Axiom ProdConstConv.
 Axiom ConstMultSum.
   Let a,b be sequences. Let x,y be real numbers such that for every n b(n)=y*(a(n)+(-x)).
   Assume a converges to x. Then b converges to 0.
+
 
 Axiom ProdConv.
   Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
