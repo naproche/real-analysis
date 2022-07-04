@@ -552,13 +552,16 @@ Definition Mon.
   Let a be a sequence. a is monotonic iff a is monotonically increasing
   or a is monotonically decreasing.
 
+###Changed from upper bound to ubber bound
+
 Definition UpperBoundSeq.
-  Let a be a bounded sequence. Let K be a real number. K is upper bound of a iff (for every n a(n)<=K).
+  Let a be a bounded sequence. Let K be a real number. K is ubber bound of a iff (for every n a(n)<=K).
 
 
 Definition LeastUpperBoundSeq.
-  Let a be a bounded sequence. LeastUpper(a) is a real number K such that (K is an upper bound of a)
-  and (for every real number L such that L is an upper bound of a K<=L).
+  Let a be a bounded sequence. LeastUpper(a) is a real number K such that (K is ubber bound of a)
+  and (we have K<=L for every real number L such that L is ubber bound of a).
+
 
 Definition LowerBoundSeq.
   Let a be a bounded sequence. Let K be a real number. K is lower bound of a iff (for every n a(n)>=K).
