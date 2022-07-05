@@ -129,4 +129,5 @@ Signature. An ordered field is a set.
 
 Axiom 1_17_0. Let F be an ordered field. Then F is totally ordered.
 Axiom 1_17_1. Let F be an ordered field. Then F is a field.
-Axiom 1_17_a. Let F be an ordered field. Let x,y,z be elements of F. Then 0 < 1.
+Axiom 1_17_a. Let F be an ordered field. Let x,y,z be elements of F. If y < z then x + y < x + z.
+Axiom 1_17_b. Let F be an ordered field. Let x,y,z be elements of F. If x > 0 and y > 0 then x*y > 0.
