@@ -96,11 +96,11 @@ Proposition 1_16_a.  Let F be a field.  Let x be a element of F. 0*x=0.
 Proposition 1_16_b.  Let F be a field. Let x,y be element of F. If x!=0 and y!=0 then x*y!=0.
 Proposition 1_16_c.  Let F be a field. Let x,y be elements of F. neg(x,F)*y=neg(x*y,F).
 Proof. (x*y)+(-x*y)= (x+ (-x))*y=0*y=0. Qed.
-Proposition. Let x be a  element of F. -x=-1* x.
-Proposition 1_16_d. Let x,y be elements of F. -x*(-y)= x*y.
-Proof. -x*(-y)=-(x*(-y))=-((-y)*x)=-(-(y*x))= y*x = x*y. Qed.
+Proposition.  Let F be a field. Let x be a  element of F. neg(x,F)= neg(1,F) * x.
+Proposition 1_16_d.  Let F be a field. Let x,y be elements of F. neg(x,F)*neg(y,F)= x*y.
+Proof. neg(x,F)*neg(y,F)=neg(x*neg(y,F),F)=neg(neg(y,F)*x,F)=neg(neg(y*x,F),F)= y*x = x*y. Qed.
 
-Let x-y stand for x+(-y).
+Let F be  field. Let x-y stand for x+neg(y,F).
 
 Let x//y stand for x * 1/y.
 
