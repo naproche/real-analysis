@@ -97,6 +97,5 @@ Proposition 1_16_b.  Let F be a field. Let x,y be element of F. If x!=0 and y!=0
 Proposition.  Let F be a field. Let x be an element of F. neg(x,F)*1 = neg(x*1,F).
 Proposition 1_16_c.  Let F be a field. Let x,y be elements of F. (neg(x,F) * y) = neg(x*y,F).
 Proof. (x*y)+(neg(x,F)*y) = (x+ (neg(x,F)))*y =0*y = 0. Qed.
-Proposition.  Let F be a field. Let x be a  element of F. neg(x,F)= neg(1,F) * x.
 Proposition 1_16_d.  Let F be a field. Let x,y be elements of F. neg(x,F)*neg(y,F)= x*y.
 Proof. neg(x,F)*neg(y,F)=neg(x*neg(y,F),F)=neg(neg(y,F)*x,F)=neg(neg(y*x,F),F)= y*x = x*y. Qed.
