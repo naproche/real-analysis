@@ -15,12 +15,22 @@ Definition Composition. Let f, g be maps. Suppose f is into Dom(g).
 Definition Preimage. Let f be a map. Let S be a class.
   f^-1(S) = {x in Dom(f) | f(x) \in S}.
 
-Definition Addition. Let f, g be maps into Real.
+Definition Injective. Let f be a map. f is injective iff
+  for all x,y \in Dom(f) if f(x)=f(y) then x=y.
+
+Definition Inverse. Let f be a injective map.
+  inv(f) is a map g such that f is into Dom(g) and
+  Dom(g)=f[Dom(f)] and for all x \in Dom(f) g(f(x))=x.
+
+Definition RealMap. A real map is a map f
+  such that Dom(f) \subseteq Real and f is into Real.
+
+Definition Addition. Let f, g be real maps.
   Suppose Dom(f) = Dom(g).
   f ++ g is a map h such that Dom(h) = Dom(f) and
   for any x \in Dom(h) we have h(x) = f(x) + g(x).
 
-Definition Multiplication. Let f, g be maps into Real.
+Definition Multiplication. Let f, g be real maps.
   Suppose Dom(f) = Dom(g).
   f ** g is a map h such that Dom(h) = Dom(f) and
   for any x \in Dom(h) we have h(x) = f(x) * g(x).
@@ -31,6 +41,8 @@ Definition Multiplication. Let f, g be maps into Real.
 Let x, y, p, q denote real numbers.
 Let n, m denote positive integers.
 Let eps, del denote positive real numbers.
+Let E denote a subclass of Real.
+Let f, g denote real maps.
 
 Signature Distance. d(x,y) is a real number.
 
@@ -38,9 +50,14 @@ Axiom d1. d(x,y) = 0 iff x = y.
 Axiom d2. d(x,y) = d(y,x).
 Axiom d3. Let z be a real number. d(x,z)<=d(x,y)+d(y,z).
 
-Definition Open. Let E be a subclass of Real.
-  E is open iff for any x \in E there exists eps
-  such that for all y if d(x,y)<eps then y \in E.
+Definition Open. Let U be a subclass of E.
+  U is open in E iff for any x \in U there exists eps
+  such that for all y \in E if d(x,y)<eps then y \in U.
+
+Definition Closed. Let V be a subclass of E.
+  V is closed in E iff E \setminus V is open in E.
+
+Definition Bounded. E is bounded iff E is bounded above and bounded below.
 
 Definition Neighborhood. nbhd(p,eps) = {x in Real | d(x,p) < eps}.
 
@@ -55,9 +72,19 @@ Definition UneqConv. Let a be a sequence.
   a unequally converges to x iff for any eps there exists
   a positive integer N such that for any n if N<n then 0<d(a(n),x)<eps.
 
-Definition LimitPoint. Let E be a subclass of Real.
-  A limit point of E is a real number p such that there exists
-  a sequence a such that a is into E and a unequally converges to p.
+Definition LimitPoint. A limit point of E is a real number p such that
+  there exists a sequence a such that a is into E and a unequally converges to p.
+
+Definition OpenCover. An open cover of E is a map c such that Dom(c)=E and
+  for all x \in E c(x) is a subclass of E and c(x) is open in E and x \in c(x).
+
+Definition FiniteSubcover. Let c be an open cover of E.
+  A finite subcover of c over E is a sequence a such that a is into E
+  and there exists a positive integer N such that for any x \in E
+  there exists n such that n<N and x \in c(a(n)).
+
+Definition Compact. E is compact iff
+  for any open cover c of E there exists a finite subcover of c over E.
 
 ################
 # Previous results
@@ -65,10 +92,24 @@ Definition LimitPoint. Let E be a subclass of Real.
 Axiom d4. d(x,y) >= 0.
 Axiom d5. If x > 0 then d(x,0) = x.
 
-Axiom NbhdOpen. nbhd(p,eps) is open.
-
-Axiom IsoPt. Let E be a subclass of Real. Suppose p is not a limit point of E.
+Axiom 2_18. Suppose p is not a limit point of E.
   Then there exists eps such that for all x if 0<d(x,p)<eps then x \notin E.
+
+Axiom 2_19. nbhd(p,eps) is open in Real.
+
+Axiom 2_28. Suppose E is nonempty and compact. There exist p, q \in E
+  such that p is a greatest lower bound of E and q is a least upper bound of E.
+
+Axiom 2_29a. Let F,V be subclass of E.
+  If V is open in E then V \cap F is open in F.
+
+Axiom 2_29b. Let F,V be subclass of E.
+  If V is closed in E then V \cap F is closed in F.
+
+Axiom 2_35. Suppose E is compact. Suppose V is a subclass of E.
+  If V is closed in E then V is compact.
+
+Axiom 2_41. E is compact iff E is bounded and closed in Real.
 
 Axiom 3_1. There exists a sequence a such that
   a converges to 0 and for all n a(n)>0.
@@ -82,11 +123,6 @@ Axiom 3_3. Let a, b be sequences.
 
 ################
 # Limits of maps
-
-Definition RealMap. A real map is a map f
-  such that Dom(f) \subseteq Real and f is into Real.
-
-Let f, g denote real maps.
 
 Definition 4_1. Suppose p is a limit point of Dom(f).
   lim(f,p)=q iff for any eps there exists del such that
@@ -135,8 +171,8 @@ Proof.
 QED.
 
 Theorem Uniqueness. Let q1, q2 be real numbers.
-  Suppose p is a limit point of Dom(f). Suppose lim(f,p)=q1 and lim(f,p)=q2.
-  Then q1 = q2.
+  Suppose p is a limit point of Dom(f).
+  Suppose lim(f,p)=q1 and lim(f,p)=q2. Then q1 = q2.
 Proof.
   Take a sequence a such that a is into Dom(f) and a unequally converges to p.
   f \circ a is a sequence.
@@ -150,10 +186,10 @@ Theorem 4_4. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
   Then lim(f++g,p)=A+B and lim(f**g,p)=A*B.
 Proof.
   Take a class S such that Dom(f) = S.
-  Take fsg = f++g. Take fmg = f**g.
+  Take fsg = f++g. Take fmg = f**g. Take AsB=A+B. Take AmB=A*B.
   S = Dom(fsg) = Dom(fmg).
   Let us show that for any sequence a into S if a unequally converges to p
-  then fsg \circ a converges to A+B and fmg \circ a converges to A*B.
+  then fsg \circ a converges to AsB and fmg \circ a converges to AmB.
     Suppose a is a sequence such that a is into S and a unequally converges to p.
     (f \circ a) and (g \circ a) are sequences.
     f \circ a converges to A (by 4_2).
@@ -163,8 +199,14 @@ Proof.
     (f \circ a) ** (g \circ a) = fmg \circ a.
     fmg \circ a converges to A*B (by 3_3).
   End.
-  lim(fsg,p)=A+B (by 4_2).
-  lim(fmg,p)=A*B (by 4_2).
+  Let us show that lim(fsg,p)=AsB (by 4_2).
+    For any sequence a into S if a unequally converges to p
+    then fsg \circ a converges to AsB.
+  End.
+  Let us show that lim(fmg,p)=AmB (by 4_2).
+    For any sequence a into S if a unequally converges to p
+    then fmg \circ a converges to AmB.
+  End.
 QED.
 
 ################
@@ -177,7 +219,7 @@ Definition 4_5. Suppose p \in Dom(f). f is continuous at p
 Lemma 4_5a. Suppose p \in Dom(f).
   Suppose p is not a limit point of Dom(f). Then f is continuous at p.
 Proof.
-  Take del such that for all x if 0<d(x,p)<del then x \notin Dom(f).
+  Take del such that for all x if 0<d(x,p)<del then x \notin Dom(f) (by 2_18).
 End.
 
 Theorem 4_6. Suppose p \in Dom(f). Suppose p is a limit point of Dom(f).
@@ -194,32 +236,34 @@ Proof.
   for any x \in Dom(f) if d(x,p)<eta then d(f(x),f(p))<del.
 QED.
 
-Definition. f is continuous iff
-  for all p \in Dom(f) f is continuous at p.
+Definition. f is continuous iff for all p \in Dom(f) f is continuous at p.
 
-Theorem 4_8. Suppose Dom(f) = Real. f is continuous
-  iff for any open subclass E of Real f^-1(E) is open.
+Theorem 4_8. Suppose f is into E.
+  f is continuous iff for any subclass U of E
+  if U is open in E then f^-1(U) is open in Dom(f).
 Proof.
   Let us show that if f is continuous then
-  for any open subclass E of Real f^-1(E) is open.
+  for any subclass U of E if U is open in E then f^-1(U) is open in Dom(f).
     Suppose f is continuous.
-    Suppose E is an open subclass of Real.
-    Let us show that f^-1(E) is open.
-      Suppose p \in f^-1(E).
-      Take eps such that for all y if d(f(p),y)<eps then y \in E.
+    Suppose U is a subclass of E such that U is open in E.
+    Let us show that f^-1(U) is open in Dom(f).
+      Suppose p \in f^-1(U).
+      Take eps such that for all y \in E if d(f(p),y)<eps then y \in U.
       f is continuous at p.
-      Take del such that for any x if d(x,p)<del then d(f(x),f(p))<eps.
+      Take del such that for any x \in Dom(f) if d(x,p)<del then d(f(x),f(p))<eps.
+      For any x \in Dom(f) if d(x,p)<del then x \in f^-1(U).
     End.
   End.
-  Let us show that if for any open subclass E of Real
-  f^-1(E) is open then f is continuous.
-    Suppose for any open subclass E of Real f^-1(E) is open.
+  Let us show that if (for any subclass U of E if U is open in E
+  then f^-1(U) is open in Dom(f)) then f is continuous.
+    Suppose for any subclass U of E
+    if U is open in E then f^-1(U) is open in Dom(f).
     Suppose p \in Dom(f).
     Let us show that f is continuous at p.
       Suppose eps is a positive real number.
-      Take V = nbhd(f(p),eps).
-      f^-1(V) is open (by NbhdOpen).
-      Take del such that for all x if d(p,x)<del then x \in f^-1(V).
+      Take V = nbhd(f(p),eps) \cap E.
+      V is open in E (by 2_19, 2_29a).
+      Take del such that for all x \in Dom(f) if d(p,x)<del then x \in f^-1(V).
     End.
   End.
 QED.
@@ -237,3 +281,87 @@ Proof.
     f++g is continuous at p and f**g is continuous at p (by 4_5a).
   End.
 QED.
+
+################
+# Continuity and Compactness
+
+Theorem 4_14. Suppose f is continuous.
+  If Dom(f) is compact then f[Dom(f)] is compact.
+Proof.
+  Suppose Dom(f) is compact.
+  Take a subclass R of Real such that R = f[Dom(f)].
+  f is into R.
+  Let us show that R is compact.
+    Suppose c is an open cover of R.
+    Define b(x)=f^-1(c(f(x))) for x in Dom(f).
+    For all x \in Dom(f) b(x) is open in Dom(f) (by 4_8).
+    b is an open cover of Dom(f).
+    Take a finite subcover a of b over Dom(f).
+    Take a positive integer N such that for any x \in Dom(f)
+    there exists n such that n<N and x \in b(a(n)).
+    Take a sequence foa such that foa = f \circ a.
+    Let us show that foa is a finite subcover of c over R.
+      Let us show that for any y \in R
+      there exists n such that n<N and y \in c(foa(n)).
+        Suppose y \in R.
+        Take x \in Dom(f) such that f(x)=y.
+        Take n such that n<N and x \in b(a(n)).
+        y \in c(f(a(n))).
+      End.
+    End.
+  End.
+QED.
+
+Lemma 4_14a. Suppose f is continuous. Suppose E \subseteq Dom(f).
+  If E is compact then f[E] is compact.
+Proof.
+  Suppose E is compact.
+  Define g(x)=f(x) for x in E.
+  g is continuous.
+  g[E] is compact (by 4_14).
+  f[E]=g[E].
+QED.
+
+Theorem 4_16. Suppose f is continuous and Dom(f) is nonempty and compact.
+  Then there exist p,q \in Dom(f) such that
+  f(p) is a greatest lower bound of f[Dom(f)]
+  and f(q) is a least upper bound of f[Dom(f)].
+Proof.
+  Take a class R such that R=f[Dom(f)].
+  R is nonempty and compact (by 4_14).
+  Take x,y \in R such that x is a greatest lower bound of R
+  and y is a least upper bound of R (by 2_28).
+  Take p,q \in Dom(f) such that f(p)=x and f(q)=y.
+  f(p) is a greatest lower bound of f[Dom(f)]
+  and f(q) is a least upper bound of f[Dom(f)].
+QED.
+
+Theorem 4_17. Suppose f is continuous and Dom(f) is compact.
+  Suppose f is injective. Then inv(f) is continuous.
+Proof.
+  Take a map g such that g=inv(f).
+  Take a subclass S of Real such that S=Dom(g)=f[Dom(f)].
+  g is into Dom(f).
+  Let us show that for any subclass U of Dom(f)
+  if U is open in Dom(f) then g^-1(U) is open in S.
+    Suppose U is a subclass of Dom(f) such that U is open in Dom(f).
+    g^-1(U)=f[U].
+    Take a class V such that V = (Dom(f)) \setminus U.
+    V is closed in Dom(f).
+    f[V] is compact (by 2_35, 4_14a).
+    f[V] is closed in Real (by 2_41).
+    f[V] \cap S is closed in S (by 2_29b).
+    f[V] = f[V] \cap S.
+    f[U] = S \setminus f[V].
+    g^-1(U) is open in S.
+  End.
+  g is continuous (by 4_8).
+QED.
+
+Definition 4_18. f is uniformly continuous iff for any eps there exists del
+  such that for all x,y \in Dom(f) if d(x,y)<del then d(f(x),f(y))<eps.
+
+Corollary. If f is uniformly continuous then f is continuous.
+
+Axiom 4_19. Suppose f is continuous and Dom(f) is compact.
+  Then f is uniformly continuous.

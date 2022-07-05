@@ -2,12 +2,14 @@
 [read vocabulary.ftl]
 [read macros.ftl]
 
-### Classes
+# Classes
 
 Let S,T denote classes.
 Let j denote an object.
 
 Axiom. Every set is a class.
+
+Axiom. Every set is an object.
 
 Axiom. Every element of every class is an object.
 
@@ -15,25 +17,27 @@ Let j \in S stand for j is an element of S.
 Let j \notin S stand for j is not an element of S.
 
 Definition DefSub.
-A subclass of S is a class T such that every x \in T belongs to S.
+  A subclass of S is a class T such that every x \in T belongs to S.
 
 Let T \subseteq S stand for T is a subclass of S.
 
-Axiom Extensionality. If S is a subclass of T and
-T is a subclass of S then S = T.
+Axiom Extensionality. If S is a subclass of T and T is a subclass of S then S = T.
 
-### Maps
+Axiom Subset. Suppose S is a set. If T is a subclass of S then T is a set.
+
+Definition. S \cup T = {x | x \in S or x \in T}.
+
+Definition. S \cap T = {x | x \in S and x \in T}.
+
+Definition. T \setminus S = {x | x \in T and x \notin S}.
+
+Definition 1_3. S is nonempty iff S has an element.
+
+# Maps
 
 Let f denote a map.
 
-Definition.
-Assume M is a subclass of the domain of f. f[M] = { f(x) | x \in M }.
-
-Definition.
-The union of S and T is {x | x \in S or x \in T}.
-Let S \cup T stand for the union of S and T.
-
-Definition 1_3. S is nonempty iff S has an element.
+Definition. Assume M is a subclass of the domain of f. f[M] = { f(x) | x \in M }.
 
 # The Real Field
 
@@ -78,8 +82,6 @@ Axiom 1_14_a. If x+y = x+z then y = z.
 
 Axiom 1_15_a. If x!=0 and x*y=x*z then y=z.
 
-Axiom 1_16_c. -x*y=-(x*y)=x*(-y).
-
 Let x-y stand for x+(-y).
 
 Let x//y stand for x * 1/y.
@@ -93,35 +95,21 @@ Definition. x is negative iff x<0.
 
 Axiom 1_18_b. If z>0 and x<y then x*z < y*z.
 
-Axiom. x<y iff -x>-y.
-
-Axiom 1_18_c. If z<0 and x<y then x*z > y*z.
-
-Axiom 1_18_ee. Assume 0 < x < y. Then 1/y < 1/x.
-
 # Upper and lower bounds
 
 Let E denote a subclass of Real.
 
 Definition 1_7. An upper bound of E is a real number b such that
-for all elements x of E x<=b.
+  for all elements x of E x<=b.
 Definition 1_7a. E is bounded above iff E has an upper bound.
 Definition 1_7b. A lower bound of E is a real number b such that for
-all elements x of E x>=b.
+  all elements x of E x>=b.
 Definition 1_7c. E is bounded below iff E has a lower bound.
 
 Definition 1_8. A least upper bound of E is a real number a such that
-a is an upper bound of E and for all x if x<a then x is not an upper bound of E.
+  a is an upper bound of E and for all x if x<a then x is not an upper bound of E.
 Definition 1_8a. A greatest lower bound of E is a real number a such that
-a is a lower bound of E and for all x if x>a then x is not a lower bound of E.
-
-Axiom 1_19. Assume that E is nonempty and bounded above.
-Then E has a least upper bound.
-
-Definition. E^- = {-x in Real | x \in E}.
-
-Axiom 1_11. Assume that E is nonempty and bounded below.
-Then E has a greatest lower bound.
+  a is a lower bound of E and for all x if x>a then x is not a lower bound of E.
 
 # Integers
 
@@ -144,11 +132,6 @@ Definition. Natural is the collection of positive integers.
 
 Let m, n stand for positive integers.
 
-Axiom Induction_Theorem.
-Assume A \subseteq Natural and 1 \in A and for all n \in A n+1 \in A.
-Then A = Natural.
-
 # Archimedian properties.
 
-Axiom 1_20_a. Let x > 0. 
-Then there is a positive integer n such that n * x > y.
+Axiom 1_20_a. Let x > 0. Then there is a positive integer n such that n * x > y.
