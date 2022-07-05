@@ -81,27 +81,22 @@ Signature 1_12_M5. Let F be a field. Let x be a element of F. Assume x != 0. inv
 Axiom 1_12_D.  Let F be a field.  Let x,y and z be elements of F. x*(y+z)= (x*y)+(x*z).
 Proposition Dist1.  Let F be a field.  Let x,y and z be elements of F. (y*x)+(z*x)=(y+z)*x.
 Proposition 1_14_a.  Let F be a field. Let x,y and z be elements of F. If x+y = x+z then y = z.
-Proof. Assume x+y=x+z. Then y = (-x+x)+y=-x+(x+y)=-x+(x+z)=(-x+x)+z=z. Qed.
+Proof. Assume x+y=x+z. Then y = (neg(x,F)+x)+y=neg(x,F)+(x+y)=neg(x,F)+(x+z)=(neg(x,F)+x)+z=z. Qed.
 
 Proposition 1_14_b.  Let F be a field. Let x,y be elements of F. If x+y=x then y=0.
 Proposition 1_14_c. Let F be a field. Let x,y be elements of F. If x+y=0 then y=neg(x,F).
 Proposition 1_14_d. Let F be a field. Let x be a element of F. neg(neg(x,F),F)=x.
 Proposition 1_15_a. Let F be a field.  Let x,y,z be elements of F. If x!=0 and x*y=x*z then y=z.
-Proof. Let x!=0 and x*y=x*z. y=1*y=(1/x * x)* y = 1/x*(x*y)=1/x*(x*z)=(1/x*x)*z= 1* z=z. Qed.
+Proof. Let x!=0 and x*y=x*z. y=1*y=(inv(x,F) * x)* y = inv(x,F)*(x*y)=inv(x,F)*(x*z)=(inv(x,F)*x)*z= 1* z=z. Qed.
 Proposition 1_15_b.  Let F be a field. Let x,y be elements of F. If x!=0 and x*y=x then y=1.
 Proposition 1_15_c.  Let F be a field. Let x,y be elements of F. If x!=0 and x*y=1 then y=inv(x,F).
-Proposition 1_15_d.  Let F be a field. Let x be a element of F. If x!=0 then (inv(x,F),F)= x.
+Proposition 1_15_d.  Let F be a field. Let x be a element of F. If x!=0 then inv(inv(x,F),F)= x.
 
 Proposition 1_16_a.  Let F be a field.  Let x be a element of F. 0*x=0.
 Proposition 1_16_b.  Let F be a field. Let x,y be element of F. If x!=0 and y!=0 then x*y!=0.
-Proposition 1_16_c.  Let F be a field. Let x,y be elements of F. neg(x,F)*y=neg(x*y,F).
-Proof. (x*y)+(-x*y)= (x+ (-x))*y=0*y=0. Qed.
+Proposition.  Let F be a field. Let x be an element of F. neg(x,F)*1 = neg(x*1,F).
+Proposition 1_16_c.  Let F be a field. Let x,y be elements of F. (neg(x,F) * y) = neg(x*y,F).
+Proof. (x*y)+(neg(x,F)*y) = (x+ (neg(x,F)))*y =0*y = 0. Qed.
 Proposition.  Let F be a field. Let x be a  element of F. neg(x,F)= neg(1,F) * x.
 Proposition 1_16_d.  Let F be a field. Let x,y be elements of F. neg(x,F)*neg(y,F)= x*y.
 Proof. neg(x,F)*neg(y,F)=neg(x*neg(y,F),F)=neg(neg(y,F)*x,F)=neg(neg(y*x,F),F)= y*x = x*y. Qed.
-
-Let F be  field. Let x-y stand for x+neg(y,F).
-
-Let x//y stand for x * 1/y.
-
-
