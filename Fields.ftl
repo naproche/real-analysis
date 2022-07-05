@@ -67,8 +67,8 @@ Axiom 1_12_A2. Let F be a field. Let x and y be elements of F. x+y = y+x.
 Axiom 1_12_A3. Let F be a field. Let x,y and z be elements of F. (x+y)+z=x+(y+z).
 Signature 1_12_A4_1. 0 is a element.
 Axiom 1_12_A4_2. Let F be a field. 0 is in F.
-Axiom 1_12_A4_3. Let F be a field. For every element of F x x + 0 = x.
-Signature 1_12_A5.  Let x be a element of F. -x is a element of F such that x + (-x)= 0.
+Axiom 1_12_A4_3. Let F be a field. x + 0  = x for every element x of F.
+Signature 1_12_A5. Let F be a field. Let x be a element of F. -x is a element of F such that x + (-x)= 0.
 
 Axiom 1_12_M1. Let x and y be elements of F. If x is in F and y is in F then x*y is in F.
 Axiom 1_12_M2. Let x and y be elements of F. x*y=y*x.
