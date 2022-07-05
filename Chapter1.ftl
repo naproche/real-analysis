@@ -38,7 +38,7 @@ Lemma. Let E be a totally ordered set. Let F be a subset of E. Then
 F is totally ordered.
 
 Let x <= y stand for x < y or x = y.
-Let x < y stand for y < x.
+Let x > y stand for y < x.
 Let x >= y stand for y <= x.
 
 Definition 1_7a. Let E be a totally ordered set. Let F be a subset of E.
@@ -125,8 +125,8 @@ Proposition.  Let F be a field. Let x be a  element of F. neg(x,F)= neg(1,F) * x
 #Proposition 1_16_d.  Let F be a field. Let x,y be elements of F. neg(x,F)*neg(y,F)= x*y.
 #Proof. neg(x,F)*neg(y,F)=neg(x*neg(y,F),F)=neg(neg(y,F)*x,F)=neg(neg(y*x,F),F)= y*x = x*y. Qed.
 
+Signature. An ordered field is a set.
 
-
-
-
-
+Axiom 1_17_0. Let F be an ordered field. Then F is totally ordered.
+Axiom 1_17_1. Let F be an ordered field. Then F is a field.
+Axiom 1_17_a. Let F be an ordered field. Let x,y,z be elements of F. Then 0 < 1.
