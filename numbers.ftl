@@ -45,6 +45,9 @@ Axiom 1_5_ii. If x < y and y < z then x < z.
 
 Proposition. x <= y iff not x > y.
 
+Proposition. If x <= y < z then x < z.
+Proposition. If x < y <= z then x < z.
+
 Axiom 1_12_A2. x+y=y+x.
 Axiom 1_12_A3. (x+y)+z=x+(y+z).
 Signature 1_12_A4. 0 is a real number such that for every real number x x+0=x.
@@ -63,6 +66,10 @@ Proof. Assume x+y=x+z. Then y = (-x+x)+y=-x+(x+y)=-x+(x+z)=(-x+x)+z=z. Qed.
 
 Proposition 1_14_b. If x+y=x then y=0.
 Proposition 1_14_c. If x+y=0 then y=-x.
+Proposition MinusDist. -(x+y) = (-x) + (-y).
+Proof. (x + y) + ((-x) + (-y)) = (x + (-x)) + (y + (-y)).
+Then  -(x+y) = (-x) + (-y) (by  1_14_c). qed.
+
 Proposition 1_14_d. -(-x)=x.
 Proposition 1_15_a. If x!=0 and x*y=x*z then y=z.
 Proof. Let x!=0 and x*y=x*z. y=1*y=(1/x * x)* y = 1/x*(x*y)=1/x*(x*z)=(1/x*x)*z= 1* z=z. Qed.
