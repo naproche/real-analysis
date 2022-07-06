@@ -75,16 +75,16 @@ Definition UneqConv. Let a be a sequence.
 Definition LimitPoint. A limit point of E is a real number p such that
   there exists a sequence a such that a is into E and a unequally converges to p.
 
-Definition OpenCover. An open cover of E is a map c such that Dom(c)=E and
-  for all x \in E c(x) is a subclass of E and c(x) is open in E and x \in c(x).
+Definition OpenCover. An open cover of E is a map C such that Dom(C)=E and
+  for all x \in E C(x) \subseteq E and C(x) is open in E and x \in C(x).
 
-Definition FiniteSubcover. Let c be an open cover of E.
-  A finite subcover of c over E is a sequence a such that a is into E
+Definition FiniteSubcover. Let C be an open cover of E.
+  A finite subcover of C over E is a sequence a such that a is into E
   and there exists a positive integer N such that for any x \in E
-  there exists n such that n<N and x \in c(a(n)).
+  there exists n such that n<N and x \in C(a(n)).
 
 Definition Compact. E is compact iff
-  for any open cover c of E there exists a finite subcover of c over E.
+  for any open cover C of E there exists a finite subcover of C over E.
 
 ################
 # Previous results
@@ -120,6 +120,9 @@ Axiom 3_2. Let a be a sequence.
 Axiom 3_3. Let a, b be sequences.
   If a converges to x and b converges to y then
   a++b converges to x+y and a**b converges to x*y.
+
+Axiom Minimum. Let a be a sequence. Let N be a positive integer.
+  There exist m such that m<N and for all n if n<N then a(m)<=a(n).
 
 ################
 # Limits of maps
@@ -194,10 +197,10 @@ Proof.
     (f \circ a) and (g \circ a) are sequences.
     f \circ a converges to A (by 4_2).
     g \circ a converges to B (by 4_2).
+    (f \circ a) ++ (g \circ a) converges to A+B (by 3_3).
+    (f \circ a) ** (g \circ a) converges to A*B (by 3_3).
     (f \circ a) ++ (g \circ a) = fsg \circ a.
-    fsg \circ a converges to A+B (by 3_3).
     (f \circ a) ** (g \circ a) = fmg \circ a.
-    fmg \circ a converges to A*B (by 3_3).
   End.
   Let us show that lim(fsg,p)=AsB (by 4_2).
     For any sequence a into S if a unequally converges to p
@@ -292,21 +295,21 @@ Proof.
   Take a subclass R of Real such that R = f[Dom(f)].
   f is into R.
   Let us show that R is compact.
-    Suppose c is an open cover of R.
-    Define b(x)=f^-1(c(f(x))) for x in Dom(f).
-    For all x \in Dom(f) b(x) is open in Dom(f) (by 4_8).
-    b is an open cover of Dom(f).
-    Take a finite subcover a of b over Dom(f).
+    Suppose D is an open cover of R.
+    Define C(x)=f^-1(D(f(x))) for x in Dom(f).
+    For all x \in Dom(f) C(x) is open in Dom(f) (by 4_8).
+    C is an open cover of Dom(f).
+    Take a finite subcover a of C over Dom(f).
     Take a positive integer N such that for any x \in Dom(f)
-    there exists n such that n<N and x \in b(a(n)).
+    there exists n such that n<N and x \in C(a(n)).
     Take a sequence foa such that foa = f \circ a.
-    Let us show that foa is a finite subcover of c over R.
+    Let us show that foa is a finite subcover of D over R.
       Let us show that for any y \in R
-      there exists n such that n<N and y \in c(foa(n)).
+      there exists n such that n<N and y \in D(foa(n)).
         Suppose y \in R.
         Take x \in Dom(f) such that f(x)=y.
-        Take n such that n<N and x \in b(a(n)).
-        y \in c(f(a(n))).
+        Take n such that n<N and x \in C(a(n)).
+        y \in D(f(a(n))).
       End.
     End.
   End.
@@ -363,5 +366,26 @@ Definition 4_18. f is uniformly continuous iff for any eps there exists del
 
 Corollary. If f is uniformly continuous then f is continuous.
 
-Axiom 4_19. Suppose f is continuous and Dom(f) is compact.
+Theorem 4_19. Suppose f is continuous and Dom(f) is compact.
   Then f is uniformly continuous.
+Proof.
+  Take E=Dom(f).
+  Suppose eps is a positive real number.
+  Take a positive real number ep2 such that ep2+ep2=eps.
+  Define phi(y) = Choose del such that for all x \in E
+  if d(x,y)<del then d(f(x),f(y))<ep2 in del for y in E.
+  Define ph2(y) = Choose del such that del+del=phi(y) in del for y in E.
+  Define C(y) = nbhd(y,ph2(y)) \cap E for p in E.
+  Let us show that for all y \in E C(y) \subseteq E
+  and C(y) is open in E and y \in C(y).
+    Suppose y \in E.
+    nbhd(y,ph2(y)) \cap E is open in E (by 2_19, 2_29a).
+    y \in nbhd(y,ph2(y)) \cap E.
+    nbhd(y,ph2(y)) \cap E = C(y).
+  End.
+  Take a finite subcover a of C over E.
+  Take a positive integer N such that for any x \in E
+  there exists n such that n<N and x \in C(a(n)).
+  Take a positive real number del such that for all n if n<N then del<=ph2(a(n)).
+  For all x,y \in E if d(x,y)<del then d(f(x),f(y))<eps.
+QED.

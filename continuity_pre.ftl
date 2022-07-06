@@ -8,9 +8,7 @@ Let S,T denote classes.
 Let j denote an object.
 
 Axiom. Every set is a class.
-
 Axiom. Every set is an object.
-
 Axiom. Every element of every class is an object.
 
 Let j \in S stand for j is an element of S.
@@ -26,9 +24,7 @@ Axiom Extensionality. If S is a subclass of T and T is a subclass of S then S = 
 Axiom Subset. Suppose S is a set. If T is a subclass of S then T is a set.
 
 Definition. S \cup T = {x | x \in S or x \in T}.
-
 Definition. S \cap T = {x | x \in S and x \in T}.
-
 Definition. T \setminus S = {x | x \in T and x \notin S}.
 
 Definition 1_3. S is nonempty iff S has an element.
@@ -60,16 +56,13 @@ Let x > y stand for y < x.
 Let x<=y stand for x < y or x = y.
 Let x>=y stand for y<=x.
 
-Axiom 1_5_i. not x < x.
-
-Axiom 1_5_ii. If x < y and y < z then x < z.
-
-Axiom 1_5_iii. If x != y then x < y or y < x.
+Axiom 1_5_a. not x < x.
+Axiom 1_5_b. If x < y and y < z then x < z.
+Axiom 1_5_c. If x != y then x < y or y < x.
 
 Axiom 1_12_A2. x+y=y+x.
 Axiom 1_12_A3. (x+y)+z=x+(y+z).
 Signature 1_12_A4. 0 is a real number such that for every real number x x+0=x.
-
 Signature 1_12_A5. -x is a real number such that x + (-x)=0.
 
 Axiom 1_12_M2. x*y=y*x.
@@ -79,7 +72,6 @@ Signature 1_12_M5. Assume x!=0. 1/x is a real number such that x * 1/x = 1.
 
 Axiom 1_12_D. x*(y+z)= (x*y)+(x*z).
 Axiom 1_14_a. If x+y = x+z then y = z.
-
 Axiom 1_15_a. If x!=0 and x*y=x*z then y=z.
 
 Let x-y stand for x+(-y).
@@ -89,11 +81,11 @@ Let x//y stand for x * 1/y.
 # The Real Ordered Field
 
 Axiom 1_17_i. If x<y then x+z<y+z.
-Axiom 1_17_ii. If x>0 and y>0 then x*y>0.
 Definition. x is positive iff x>0.
 Definition. x is negative iff x<0.
-
 Axiom 1_18_b. If z>0 and x<y then x*z < y*z.
+
+Axiom 1_20_b. If y>0 then there exists x such that x>0 and x+x=y.
 
 # Upper and lower bounds
 
@@ -120,7 +112,7 @@ Definition. Integer is the collection of integers.
 
 # Integer is a discrete subring of Real.
 
-Axiom. a+b, a*b are integers.
+Axiom. a+b is an integer.
 Axiom. 0, -1, 1 are integers.
 Axiom. There is no integer a such that 0<a<1.
 
@@ -129,9 +121,3 @@ Axiom Archimedes. There is an integer m such that m <= x < m+1.
 # The Natural numbers.
 
 Definition. Natural is the collection of positive integers.
-
-Let m, n stand for positive integers.
-
-# Archimedian properties.
-
-Axiom 1_20_a. Let x > 0. Then there is a positive integer n such that n * x > y.
