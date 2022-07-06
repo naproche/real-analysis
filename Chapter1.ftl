@@ -129,5 +129,86 @@ Signature. An ordered field is a set.
 
 Axiom 1_17_0. Let F be an ordered field. Then F is totally ordered.
 Axiom 1_17_1. Let F be an ordered field. Then F is a field.
-Axiom 1_17_a. Let F be an ordered field. Let x,y,z be elements of F. If y < z then x + y < x + z.
-Axiom 1_17_b. Let F be an ordered field. Let x,y,z be elements of F. If x > 0 and y > 0 then x*y > 0.
+Axiom 1_17_i. Let F be an ordered field. Let x,y,z be elements of F. If y < z then x + y < x + z.
+Axiom 1_17_ii. Let F be an ordered field. Let x,y,z be elements of F. If x > 0 and y > 0 then x*y > 0.
+
+Definition. Let F be an ordered field. Let x be an element of F. x is positive in F iff x > 0.
+Definition. Let F be an ordered field. Let x be an element of F. x is negative in F iff x < 0.
+Definition. Let F be an ordered field. Let x be an element of F. x is nonzero in F iff x != 0.
+Proposition.  Let F be an ordered field. Let x be an element of F. If x is nonzero then x is positive in F or x is negative in F.
+Proposition. Let F be an ordered field. Let x be an element of F. x is positive in F or x is negative in F or x=0.
+
+#Axiom. Let F be an ordered field. Let x be an element of F. Then (x is positive in F) or (x is negative in F) or (x = 0).
+#Proposition 1_18_a. Let F be an ordered field. Let x be an element of F. x>0 iff neg(x,F)<0.
+#Proof. Let us prove that (if x > 0 then neg(x,F) < 0).
+# Proof. Suppose x > 0. Then 0 = neg(x,F) + x > neg(x,F) + 0 = neg(x,F). Qed.
+#Let us prove that (if neg(x,F) <  0 then x > 0). 
+#Proof. Suppose neg(x,F) < 0. Then 0 = neg(x,F) + x < 0 + x = x. Qed. 
+#Qed.
+
+Proposition 1_18_a_1. Let F be an ordered field. Let x be an element of F. If x > 0 then neg(x,F)<0.
+Proof. Suppose x > 0. Then 0 = neg(x,F) + x > neg(x,F) + 0 = neg(x,F). Qed. 
+
+
+Proposition 1_18_a_2. Let F be an ordered field. Let x be an element of F. If neg(x,F)<0 then x > 0.
+Proof. Suppose neg(x,F) < 0. Then 0 = neg(x,F) + x < 0 + x = x. Qed.
+
+Proposition 1_18_a. Let F be an ordered field. Let x be an element of F. x>0 iff neg(x,F)<0.
+ 
+Axiom 1_18_b. Let F be an ordered field. Let x,y,z be elements of F. If x > 0 and y < z then x*y< x*z.
+#Proof. Suppose x>0 and y<z.
+#z+neg(y,F) > y + neg(y,F)=0.
+#x*(z+neg(y,F)) > 0.
+#x*z=(x*(z+neg(y,F)))+ (x*y). 
+#(x * (z + neg(y,F))) + (x * y)  > 0 + (x * y) (by 1_17_i).
+#0+(x*y)= x*y.
+#Qed.
+
+Proposition 1_18_bb.  Let F be an ordered field. Let x,y,z be elements of F. If x>0 and y<z then y*x<z*x.
+#Axiom 1_18_d.  Let F be an ordered field. Let x be an element of F. If x !=0 then x*x>0.
+#Proof. Let x!=0.
+#Case x>0. Then thesis. End.
+#Case x<0. Then neg(x,F) >0. End.
+#Qed.
+
+Proposition 1_18_d. Let F be an ordered field. Let x be an element of F. If x is nonzero in F then x*x > 0.
+Proof. Case x > 0. x*x > x*0 = 0. End.
+Case x < 0. x*x < 0*x. End.
+Qed.
+ 
+
+Proposition 1_18_dd. 1>0.
+
+#Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff neg(x,F)>neg(y,F).
+#Proof.
+#x<y iff x+neg(y,F)<0.
+#x+neg(y,F)<0 iff (neg(y,F))+x<0.
+#(neg(y,F))+x<0 iff (neg(y,F))+(neg(neg(x,F),F)) <0.
+#(neg(y,F))+(neg(neg(x,F),F))<0 iff (neg(y,F))+neg(neg(x,F),F)<0.
+#(neg(y,F))+neg(neg(x,F),F)<0 iff neg(y,F)<neg(x,F).
+#Qed.
+
+#Proposition 1_18_c. Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then x*y>x*z.
+#Proof. Let x<0 and y<z.
+#neg(x,F) > 0.
+#(neg(x,F))*y < (neg(x,F))*z (by 1_18_b).
+#neg(x*y,F) < neg(x*z,F).
+#Qed.
+
+#Proposition 1_18_cc.  Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then y*x>z*x.
+
+#Proposition. Let F be an ordered field. Let x be an element of F. x+1>x.
+#Proposition. Let F be an ordered field. Let x be an element of F. x + neg(1,F) < x.
+
+#Proposition 1_18_e. Let F be an ordered field. Let y be an element of F. If 0<y then 0< inv(y,F).
+
+#Proposition 1_18_ee. Let F be an ordered field. Let x,y be elements of F. Assume 0 < x < y. Then inv(y,F) < inv(x,F).
+#Proof.
+#Case inv(x,F) < inv(y,F). 
+#Then 1 = x*(inv(x,F))=(inv(x,F))*x < (inv(x,F))*y = y*(inv(x,F)) < y * (inv(y,F))=1.
+#Contradiction. End.
+#Case inv(x,F)=inv(y,F).
+#Then 1 = x*(inv(x,F)) < y*(inv(y,F))=1.
+#Contradiction. End.
+#Hence inv(y,F) < inv(x,F) (by 1_5_i).
+#Qed.
