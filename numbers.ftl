@@ -1,7 +1,7 @@
 # Importing Set-Theoretic Preliminaries
 
 [timelimit 10]
-[read real-analysis/vocabulary.ftl]
+[read vocabulary.ftl]
 [read preliminaries.ftl]
 
 Let A,B stand for sets.
