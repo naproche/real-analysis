@@ -182,13 +182,15 @@ Proposition 1_18_dd. Let F be an ordered field. 1>0.
 Proof. 1 = 1*1 > 0. Qed.
 
 Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff x+neg(y,F)<0.
-#Proof. Let us show that if x + neg(y,F) < 0 then x < y.
-#Proof. Assume x + neg(y,F) < 0. 
-#y + (x + neg(y,F)) < y + 0 (by 1_17_i).
-#x < y. Qed. 
-#Let us show that if x < y then x + neg(y,F) < 0.
-#Proof. Assume x < y. Then neg(y,F) + x < neg(y,F) + y = 0.
-#Qed.
+Proof. Let us show that if x + neg(y,F) < 0 then x < y.
+Proof. Assume x + neg(y,F) < 0. Take a = x + neg(y,F).
+a < 0. 
+a + y < 0 + y.
+a + y = x.
+x < y. Qed. 
+Let us show that if x < y then x + neg(y,F) < 0.
+Proof. Assume x < y. Then neg(y,F) + x < neg(y,F) + y = 0. Qed.
+Qed.
 
 
 
