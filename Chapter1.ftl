@@ -27,9 +27,9 @@ Signature. Let x, w be elements. x < w is an relation.
 Definition 1_6. Let E be a set. E is totally
 ordered iff (for every element x of E  not x < x) and 
 (for all element x,y of E x < y or y < x or x=y) and 
-(for every elements x, y, z of E if x < y and y < z then x < z).
+(for all elements x, y, z of E if (x < y and y < z) then x < z).
 
-Lemma. Let E be a totally ordered set. Let a,b,c,d be elements of E.
+Lemma InequalityStack. Let E be a totally ordered set. Let a,b,c,d be elements of E.
 Suppose a < b and b < c and c < d. a < d.
 
 Proof. a < b, b < c. Then a < c. a < c and c < d. Then a < d. qed.
@@ -181,6 +181,16 @@ Qed.
 Proposition 1_18_dd. Let F be an ordered field. 1>0.
 Proof. 1 = 1*1 > 0. Qed.
 
+Axiom.  Let F be an ordered field. Let x,y be elements of F. x<y iff x+neg(y,F)<0.
+#Proof. Let us show that if x + neg(y,F) < 0 then x < y.
+#Proof. Assume x + neg(y,F) < 0. 
+#y + (x + neg(y,F)) < y + 0 (by 1_17_i).
+#x < y. Qed. 
+#Let us show that if x < y then x + neg(y,F) < 0.
+#Qed.
+
+
+
 Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff neg(x,F)>neg(y,F).
 Proof.
 x<y iff x+neg(y,F)<0.
@@ -190,27 +200,35 @@ x+neg(y,F)<0 iff (neg(y,F))+x<0.
 (neg(y,F))+neg(neg(x,F),F)<0 iff neg(y,F)<neg(x,F).
 Qed.
 
-#Proposition 1_18_c. Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then x*y>x*z.
-#Proof. Let x<0 and y<z.
-#neg(x,F) > 0.
-#(neg(x,F))*y < (neg(x,F))*z (by 1_18_b).
-#neg(x*y,F) < neg(x*z,F).
-#Qed.
+Proposition 1_18_c. Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then x*y>x*z.
+Proof. Let x<0 and y<z.
+neg(x,F) > 0.
+(neg(x,F))*y < (neg(x,F))*z (by 1_18_b).
+(neg(1,F)*x)*y < (neg(1,F)*x)*z.
+neg(1,F)*(x*y) < (neg(1,F)*x)*z.
+neg(1,F)*(x*y) < neg(1,F)*(x*z). 
+neg(x*y,F) < neg(x*z,F).
+Qed.
 
-#Proposition 1_18_cc.  Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then y*x>z*x.
+Proposition 1_18_cc.  Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then y*x>z*x.
 
-#Proposition. Let F be an ordered field. Let x be an element of F. x+1>x.
-#Proposition. Let F be an ordered field. Let x be an element of F. x + neg(1,F) < x.
+Proposition. Let F be an ordered field. Let x be an element of F. x+1>x.
+Proposition. Let F be an ordered field. Let x be an element of F. x + neg(1,F) < x.
 
-#Proposition 1_18_e. Let F be an ordered field. Let y be an element of F. If 0<y then 0< inv(y,F).
+Proposition 1_18_e. Let F be an ordered field. Let y be an element of F. If 0<y then 0 < inv(y,F).
+Proof. Assume y > 0. y*inv(y,F) > 0. Qed.
 
-#Proposition 1_18_ee. Let F be an ordered field. Let x,y be elements of F. Assume 0 < x < y. Then inv(y,F) < inv(x,F).
-#Proof.
-#Case inv(x,F) < inv(y,F). 
-#Then 1 = x*(inv(x,F))=(inv(x,F))*x < (inv(x,F))*y = y*(inv(x,F)) < y * (inv(y,F))=1.
-#Contradiction. End.
-#Case inv(x,F)=inv(y,F).
-#Then 1 = x*(inv(x,F)) < y*(inv(y,F))=1.
-#Contradiction. End.
-#Hence inv(y,F) < inv(x,F) (by 1_5_i).
-#Qed.
+Proposition TransContr.  Let F be an ordered field. Let x,y be elements of F. If x < y < x then contradiction.
+
+Proposition 1_18_ee. Let F be an ordered field. Let x,y be elements of F. Assume 0 < x < y. Then inv(y,F) < inv(x,F).
+Proof. 
+Case inv(x,F) < inv(y,F). 
+Then 1 = x*(inv(x,F))=(inv(x,F))*x < (inv(x,F))*y = y*(inv(x,F)) < y * (inv(y,F))=1.
+Then 1 < inv(x,F)*y < 1.
+Contradiction. End.
+Case inv(x,F)=inv(y,F).
+Then 1 = x*(inv(x,F)) < y*(inv(y,F))=1.
+Contradiction. End.
+Take a = inv(x,F). Take b = inv(y,F).
+a > b.
+Qed.
