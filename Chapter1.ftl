@@ -84,7 +84,9 @@ Signature. A field is a nonempty set.
 Signature. Let x and y be elements. x + y is an element.
 Signature. Let x and y be elements. x*y is an element.
 
-Axiom 1_12_A1. Let F be a field. Let x, y be elements of F. Then x + y is an element of F.
+Proposition. Let F be a field. Let x be an element of F. Then x is an element.
+
+Axiom 1_12_A1. Let F be a field. Let x, y be elements of F. x + y is an element of F.
 Axiom 1_12_A2. Let F be a field. Let x and y be elements of F. x+y = y+x.
 Axiom 1_12_A3. Let F be a field. Let x,y and z be elements of F. (x+y)+z=x+(y+z).
 Signature 1_12_A4_1. 0 is a element.
@@ -92,7 +94,7 @@ Axiom 1_12_A4_2. Let F be a field. 0 is in F.
 Axiom 1_12_A4_3. Let F be a field. x + 0  = x for every element x of F.
 Signature 1_12_A5. Let F be a field. Let x be a element of F. neg(x,F) is a element of F such that x + neg(x,F)= 0.
 
-Axiom 1_12_M1.  Let F be a field. Let x and y be elements of F. If x is in F and y is in F then x*y is in F.
+Axiom 1_12_M1.  Let F be a field. Let x and y be elements of F. x*y is in F.
 Axiom 1_12_M2.  Let F be a field. Let x and y be elements of F. x*y=y*x.
 Axiom 1_12_M3.  Let F be a field. Let x,y and z be elements of F. (x*y)*z=x*(y*z).
 Signature 1_12_A4_1.  1 is a element.
@@ -115,13 +117,13 @@ Proposition 1_15_c.  Let F be a field. Let x,y be elements of F. If x!=0 and x*y
 Proposition 1_15_d.  Let F be a field. Let x be a element of F. If x!=0 then inv(inv(x,F),F)= x.
 
 Proposition 1_16_a.  Let F be a field.  Let x be a element of F. 0*x=0.
-Proposition 1_16_b.  Let F be a field. Let x,y be element of F. If x!=0 and y!=0 then x*y!=0.
+Proposition 1_16_b.  Let F be a field. Let x,y be elements of F. If x!=0 and y!=0 then x*y!=0.
 Proposition 1_16_c.  Let F be a field. Let x,y be elements of F. (x*y) + (neg(x,F)*y) = 0.
 Proof. (x*y)+(neg(x,F)*y) = (x+ (neg(x,F)))*y =0*y = 0. Qed.
 #Axiom. Let F be a field. Let x,y be elements of F. (neg(x,F)*y) = neg(x*y,F).
 #Proof.  (x*y) + (neg(x,F)*y) = 0 (by 1_16_c). Let z =  (neg(x,F)*y). Let w = x*y. 
 #w + z = 0. Thus z = neg(w,F). Thus neg(x,F)*y = neg(x*y,F). Qed.
-Proposition.  Let F be a field. Let x be a  element of F. neg(x,F)= neg(1,F) * x.
+Proposition.  Let F be a field. Let x be an element of F. neg(x,F)= neg(1,F) * x.
 #Proposition 1_16_d.  Let F be a field. Let x,y be elements of F. neg(x,F)*neg(y,F)= x*y.
 #Proof. neg(x,F)*neg(y,F)=neg(x*neg(y,F),F)=neg(neg(y,F)*x,F)=neg(neg(y*x,F),F)= y*x = x*y. Qed.
 
@@ -135,7 +137,7 @@ Axiom 1_17_ii. Let F be an ordered field. Let x,y,z be elements of F. If x > 0 a
 Definition. Let F be an ordered field. Let x be an element of F. x is positive in F iff x > 0.
 Definition. Let F be an ordered field. Let x be an element of F. x is negative in F iff x < 0.
 Definition. Let F be an ordered field. Let x be an element of F. x is nonzero in F iff x != 0.
-Proposition.  Let F be an ordered field. Let x be an element of F. If x is nonzero then x is positive in F or x is negative in F.
+#Proposition.  Let F be an ordered field. Let x be an element of F. If x is nonzero then x is positive in F or x is negative in F.
 Proposition. Let F be an ordered field. Let x be an element of F. x is positive in F or x is negative in F or x=0.
 
 #Axiom. Let F be an ordered field. Let x be an element of F. Then (x is positive in F) or (x is negative in F) or (x = 0).
@@ -173,7 +175,7 @@ Proposition 1_18_bb.  Let F be an ordered field. Let x,y,z be elements of F. If 
 
 Proposition 1_18_d. Let F be an ordered field. Let x be an element of F. If x is nonzero in F then x*x > 0.
 Proof. Case x > 0. x*x > x*0 = 0. End.
-Case x < 0. x*x < 0*x. End.
+Case x < 0. Then neg(x,F) > 0. neg(x,F) End.
 Qed.
  
 
