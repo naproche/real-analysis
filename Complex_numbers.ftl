@@ -1,4 +1,5 @@
-[read numbers.ftl] [proof off]
+[prove off ][read real-analysis/numbers.ftl][prove on]
+
 
 
 
