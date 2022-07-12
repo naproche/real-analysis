@@ -471,8 +471,40 @@ Proof.
     Then c +' a converges to c + x.
 qed.
  
-Axiom ProdConstConv.
+Theorem ProdConstConv.
   Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c*'a converges to c*x.
+Proof.
+    Case c=0.
+        We have c*x=0.
+        Let us show that for every n (c*'a)(n)=0.
+            (c*'a)(n) .=c*a(n)
+                       .=0*a(n)
+                       .=0.
+        Hence c*'a converges to c*x.
+ 
+    end.
+    Case c!=0.
+      Let eps be a positive real number.
+      Take a positive real number oneovereps such that oneovereps=1/(|c|)*eps.
+      Take N such that for every n such that N<n dist(a(n),x)<oneovereps.
+      Let us show that for every n such that N<n dist(c*(a(n)), c*x)< eps.
+        Assume N<n.
+        |(c*a(n))-(c*x)|  .=|(c*a(n))+(-1)*(c*x)|
+                          .=|(c*a(n))+(((-1)*c)*x)|
+                          .=|(c*a(n))+((c*(-1))*x)|
+                          .=|(c*a(n))+(c*((-1)*x))|
+                          .=|(c*a(n))+(c*(-x))|
+                          .=|c*(a(n)-x)|
+                          .=|c|*|(a(n)-x)|.
+        |c|*dist(a(n),x)<|c|*oneovereps.
+        Hence |(c*a(n))-(c*x)|<|c|*oneovereps.
+        |c|*oneovereps=|c|*(1/(|c|)*eps) .= (|c|*(1/(|c|))*eps
+                                         .= 1*eps
+                                         .=eps.
+        Therefore dist(c*(a(n)),c*x)<eps.
+       end.
+    end.
+qed.
 
 
 Axiom ConstMultSum.
@@ -552,13 +584,16 @@ Definition Mon.
   Let a be a sequence. a is monotonic iff a is monotonically increasing
   or a is monotonically decreasing.
 
+###Changed from upper bound to ubber bound
+
 Definition UpperBoundSeq.
-  Let a be a bounded sequence. Let K be a real number. K is upper bound of a iff (for every n a(n)<=K).
+  Let a be a bounded sequence. Let K be a real number. K is ubber bound of a iff (for every n a(n)<=K).
 
 
 Definition LeastUpperBoundSeq.
-  Let a be a bounded sequence. LeastUpper(a) is a real number K such that (K is an upper bound of a)
-  and (for every real number L such that L is an upper bound of a K<=L).
+  Let a be a bounded sequence. LeastUpper(a) is a real number K such that (K is ubber bound of a)
+  and (we have K<=L for every real number L such that L is ubber bound of a).
+
 
 Definition LowerBoundSeq.
   Let a be a bounded sequence. Let K be a real number. K is lower bound of a iff (for every n a(n)>=K).
