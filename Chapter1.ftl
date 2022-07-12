@@ -167,19 +167,15 @@ Axiom 1_18_b. Let F be an ordered field. Let x,y,z be elements of F. If x > 0 an
 #Qed.
 
 Proposition 1_18_bb.  Let F be an ordered field. Let x,y,z be elements of F. If x>0 and y<z then y*x<z*x.
-#Axiom 1_18_d.  Let F be an ordered field. Let x be an element of F. If x !=0 then x*x>0.
-#Proof. Let x!=0.
-#Case x>0. Then thesis. End.
-#Case x<0. Then neg(x,F) >0. End.
-#Qed.
+
 
 Proposition 1_18_d. Let F be an ordered field. Let x be an element of F. If x is nonzero in F then x*x > 0.
 Proof. Case x > 0. x*x > x*0 = 0. End.
-Case x < 0. Then neg(x,F) > 0. neg(x,F) End.
+Case x < 0. Then neg(x,F) > 0. End.
 Qed.
  
 
-Proposition 1_18_dd. 1>0.
+#Proposition 1_18_dd. 1>0.
 
 #Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff neg(x,F)>neg(y,F).
 #Proof.
