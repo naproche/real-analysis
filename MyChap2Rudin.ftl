@@ -72,6 +72,36 @@ Definition AtMostCount. Let A be a set. A is at most countable iff (A is finite 
 Definition Sequence. A sequence is a function a such that Dom(a) = NAT.
 
 Axiom SubOfCount. Let A be a countable set. Let E be a subset of A. If E is infinite then
-E is countable.  #These should be a theorem.
+E is countable.  #This should be a theorem.
 
-Definition ColOfSets. Let I be a set. For every i element of I let Ei be a set. 
+#Definition ColecOfSubsets. Let I be a set. A colection indexed by I is a set C such that every
+#element of C is a set and C and I are equipotent.
+
+#Definition ArbitraryUnion. Let I be a set. Let C be a colection indexed by I. 
+#U(C,I) = {x| x is contained in some element of C}. #For some reason contained works but exist
+#an E in C such that x is in E doesn't.
+
+#Definition ArbitraryIntersection. Let I be a set. Let C be a colection indexed by I.
+#IN(C,I) = {x| x is contained in all element of C}.
+
+Definition Disjoint. Let A and B be sets. A is disjoint from B iff there is no 
+element of A that is an element of B.
+
+#Since we are actually going to work with the reals, there is a cleaner way to work with this 
+# that frees us to check things like the union being a set.
+
+Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
+of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
+
+Definition IntWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
+of X. Int(C,X) is a subset of X such that Int(C,X) = {x| x is contained in all element of C}.
+
+Axiom. Let X be a set. Let C be a set such that all elements of C are subsets
+of X and C is countable. If every element of C is countable then U(C,X) is countable.
+#This is a theorem that will require proof and that I honestly doubt can be proven in Naproche.
+
+Proposition. Let X be a set. Let C be a set such that all elements of C are subsets
+of X and C is at most countable. If every element of C is at most countable then U(C,X) is 
+at most countable. #oleeee.
+
+ 
