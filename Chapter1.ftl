@@ -97,9 +97,10 @@ Signature 1_12_A5. Let F be a field. Let x be a element of F. neg(x,F) is a elem
 Axiom 1_12_M1.  Let F be a field. Let x and y be elements of F. x*y is in F.
 Axiom 1_12_M2.  Let F be a field. Let x and y be elements of F. x*y=y*x.
 Axiom 1_12_M3.  Let F be a field. Let x,y and z be elements of F. (x*y)*z=x*(y*z).
-Signature 1_12_A4_1.  1 is a element.
-Axiom 1_12_A4_2.  Let F be a field. 1 is in F.
-Axiom 1_12_A4_3.  Let F be a field. x * 1 = x for every element x of F.
+Signature 1_12_M4_1.  1 is an element.
+Axiom 1_12_M4_2. 1 != 0.
+Axiom 1_12_M4_3.  Let F be a field. 1 is in F.
+Axiom 1_12_M4_4.  Let F be a field. x * 1 = x for every element x of F.
 Signature 1_12_M5. Let F be a field. Let x be a element of F. Assume x != 0. inv(x,F) is a element of F such that x * inv(x,F) = 1.
 
 Axiom 1_12_D.  Let F be a field.  Let x,y and z be elements of F. x*(y+z)= (x*y)+(x*z).
@@ -124,6 +125,8 @@ Proof. (x*y)+(neg(x,F)*y) = (x+ (neg(x,F)))*y =0*y = 0. Qed.
 #Proof.  (x*y) + (neg(x,F)*y) = 0 (by 1_16_c). Let z =  (neg(x,F)*y). Let w = x*y. 
 #w + z = 0. Thus z = neg(w,F). Thus neg(x,F)*y = neg(x*y,F). Qed.
 Proposition.  Let F be a field. Let x be an element of F. neg(x,F)= neg(1,F) * x.
+Proposition. Let F be a field. Let x be an element of F. neg(x,F)*neg(x,F)= x*x.
+Proof. neg(x,F)*neg(x,F)=  (neg(1,F) * x)*(neg(1,F) *x) = (neg(1,F)*neg(1,F))*(x*x) = 1*(x*x) = x*x. Qed.
 #Proposition 1_16_d.  Let F be a field. Let x,y be elements of F. neg(x,F)*neg(y,F)= x*y.
 #Proof. neg(x,F)*neg(y,F)=neg(x*neg(y,F),F)=neg(neg(y,F)*x,F)=neg(neg(y*x,F),F)= y*x = x*y. Qed.
 
@@ -171,20 +174,21 @@ Proposition 1_18_bb.  Let F be an ordered field. Let x,y,z be elements of F. If 
 
 Proposition 1_18_d. Let F be an ordered field. Let x be an element of F. If x is nonzero in F then x*x > 0.
 Proof. Case x > 0. x*x > x*0 = 0. End.
-Case x < 0. Then neg(x,F) > 0. End.
+Case x < 0. Then neg(x,F) > 0. x*x = neg(x,F)*neg(x,F) > x*0 = 0.End.
 Qed.
  
 
-#Proposition 1_18_dd. 1>0.
+Proposition 1_18_dd. Let F be an ordered field. 1>0.
+Proof. 1 = 1*1 > 0. Qed.
 
-#Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff neg(x,F)>neg(y,F).
-#Proof.
-#x<y iff x+neg(y,F)<0.
-#x+neg(y,F)<0 iff (neg(y,F))+x<0.
-#(neg(y,F))+x<0 iff (neg(y,F))+(neg(neg(x,F),F)) <0.
-#(neg(y,F))+(neg(neg(x,F),F))<0 iff (neg(y,F))+neg(neg(x,F),F)<0.
-#(neg(y,F))+neg(neg(x,F),F)<0 iff neg(y,F)<neg(x,F).
-#Qed.
+Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff neg(x,F)>neg(y,F).
+Proof.
+x<y iff x+neg(y,F)<0.
+x+neg(y,F)<0 iff (neg(y,F))+x<0.
+(neg(y,F))+x<0 iff (neg(y,F))+(neg(neg(x,F),F)) <0.
+(neg(y,F))+(neg(neg(x,F),F))<0 iff (neg(y,F))+neg(neg(x,F),F)<0.
+(neg(y,F))+neg(neg(x,F),F)<0 iff neg(y,F)<neg(x,F).
+Qed.
 
 #Proposition 1_18_c. Let F be an ordered field. Let x,y,z be elements of F. If x<0 and y<z then x*y>x*z.
 #Proof. Let x<0 and y<z.
