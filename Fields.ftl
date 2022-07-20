@@ -1,4 +1,5 @@
 [synonym field/-s]
+[read vocabulary.ftl]
 
 Definition. The empty set is the set that has no elements.
 
