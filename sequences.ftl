@@ -1,3 +1,6 @@
+[prove off]
+[check off]
+
 [read real-analysis/vocabulary.ftl]
 [read real-analysis/numbers.ftl]
 
@@ -21,6 +24,26 @@ Axiom. If x is negative then |x| = -x.
 Axiom. x is 0 iff |x| = 0.
 Proposition. Let x be a real number. |x| >= 0.
 Proposition. Let x be a real number. |-x| = |x|.
+Proposition MultAbs. Let x,y be real numbers. |x*y| = |x|*|y|.
+Proof.
+  Case x is positive.
+    Case y is positive. Then x*y is positive.
+      |x*y| = x*y = |x|*|y|.
+    end.
+    Case y is negative. Then x*y is negative.
+      |x*y| = -(x*y) = x*(-y) = |x|*|y|.
+    end.
+  end.
+  Case x is negative.
+    Case y is negative. Then x*y is positive.
+      |x*y| = x*y = (-x)*(-y) = |x|*|y|.
+    end.
+    Case y is positive. Then x*y is negative.
+      |x*y| = -(x*y) = (-x)*y = |x|*|y|.
+    end.
+  end.
+qed.
+
 
 Signature. dist(x,y) is a real number.
 Axiom. dist(x,y) = |x - y|.
@@ -44,6 +67,9 @@ Signature. max(x,y) is a real number.
 Axiom. If x >= y then max(x,y) = x.  
 Axiom. If x < y then max(x,y) = y.
 Theorem. max(x,y) >= x and max(x,y) >= y.
+
+Signature. sqrt(x) is a real number.
+Axiom. sqrt(x)*sqrt(x) = x.
 
 
 ### Sequences
@@ -470,51 +496,128 @@ Proof.
     cn converges to c.
     Then c +' a converges to c + x.
 qed.
+
  
 Theorem ProdConstConv.
   Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c*'a converges to c*x.
 Proof.
     Case c=0.
         We have c*x=0.
-        Let us show that for every n (c*'a)(n)=0.
+        Let us show that for every natural number n (c*'a)(n)=0.
+          Let n be a natural number.
             (c*'a)(n) .=c*a(n)
                        .=0*a(n)
                        .=0.
         Hence c*'a converges to c*x.
- 
+        end.
     end.
     Case c!=0.
       Let eps be a positive real number.
-      Take a positive real number oneovereps such that oneovereps=1/(|c|)*eps.
+      Take a positive real number oneovereps such that oneovereps = 1/(|c|)*eps.
       Take N such that for every n such that N<n dist(a(n),x)<oneovereps.
       Let us show that for every n such that N<n dist(c*(a(n)), c*x)< eps.
-        Assume N<n.
-        |(c*a(n))-(c*x)|  .=|(c*a(n))+(-1)*(c*x)|
-                          .=|(c*a(n))+(((-1)*c)*x)|
-                          .=|(c*a(n))+((c*(-1))*x)|
-                          .=|(c*a(n))+(c*((-1)*x))|
-                          .=|(c*a(n))+(c*(-x))|
-                          .=|c*(a(n)-x)|
-                          .=|c|*|(a(n)-x)|.
+        Let n be natural number. Assume N<n.
+        |(c*a(n))-(c*x)|  .=|c*(a(n)-x)| (by Dist2)
+                          .=|c|*|(a(n)-x)| (by MultAbs).
         |c|*dist(a(n),x)<|c|*oneovereps.
         Hence |(c*a(n))-(c*x)|<|c|*oneovereps.
-        |c|*oneovereps=|c|*(1/(|c|)*eps) .= (|c|*(1/(|c|))*eps
-                                         .= 1*eps
-                                         .=eps.
+        |c|*oneovereps  = |c|*(1/(|c|)*eps) = (|c|*1/(|c|))*eps = 1*eps = eps.
         Therefore dist(c*(a(n)),c*x)<eps.
        end.
     end.
 qed.
 
 
-Axiom ConstMultSum.
+Lemma ConstMultSum.
   Let a,b be sequences. Let x,y be real numbers such that for every n b(n)=y*(a(n)+(-x)).
   Assume a converges to x. Then b converges to 0.
+Proof.
+    Define sum(k) = (-x) + a(k) for k in NN.
+    sum is a sequence.
+    Let us show that sum converges to 0.
+    Proof.
+        We have sum = (-x) +' a.
+        Hence sum converges to (-x) + x.
+        (-x) + x = 0.
+    qed.
+    Let us show that for every n b(n) = y * sum(n).
+    Proof. Let n be a natural number.
+        b(n) = y * (a(n) + (-x)) = y * ((-x) + a(n)) = y * sum(n).
+    qed.
+    Hence b = y *' sum.
+    Hence b converges to 0.
+qed.
 
+[prove on]
+[check on]
 
-Axiom ProdConv.
+Theorem ProdConv.
   Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
   Then a**b converges to x*y.
+Proof.
+    (1) Define s1(k) = (a(k) - x) * (b(k) - y) for k in NN.
+    Let us show that s1 converges to 0.
+    Proof.
+        Let eps be a positive real number.
+        Take a positive real number rooteps such that rooteps = sqrt(eps).
+        Take N1 such that for every n such that N1 < n dist(a(n),x) < rooteps.
+        Take N2 such that for every n such that N2 < n dist(b(n),y) < rooteps.
+        Take N such that N = max(N1,N2).
+        Let us show that for every n such that N < n dist(s1(n),0) < eps.
+        Proof.
+            Let n be a natural number such that N < n.
+            dist(a(n),x) < rooteps and dist(b(n),y) < rooteps.
+            dist(a(n),x), dist(b(n),y) and rooteps are not negative.
+            Then dist(a(n),x) * dist(b(n),y) < eps.
+            Hence |a(n) - x| * |b(n) - y| < eps.
+            Hence |(a(n) - x) * (b(n) - y)| < eps.
+            Hence |((a(n) - x) * (b(n) - y)) - 0| < eps.
+       qed.
+    qed.
+    (2) Define s2(k) = (x * (b(k) + (-y))) + (y * (a(k) + (-x))) for k in NN.
+    Let us show that s2 converges to 0.
+    Proof.
+        (3) Define s2a(k) = y * (a(k) + (-x)) for k in NN.
+        (4) Define s2b(k) = x * (b(k) + (-y)) for k in NN.
+        s2a, s2b are sequences.
+        Define sum1(k) = a(k) + (-x) for k in NN.
+        Define sum2(k) = b(k) + (-y) for k in NN.
+        sum1, sum2 are sequences.
+        sum1 = (-x) +' a and sum2 = (-y) +' b.
+        sum1, sum2 converge to 0.
+        We have s2a = y *' sum1 and s2b = x *' sum2.
+        s2a, s2b converge to 0. 
+        Let us show that for every n s2(n) = s2b(n) + s2a(n).
+        Proof. Let n be a natural number.
+            s2(n) .= (x * (b(n) + (-y))) + (y * (a(n) + (-x))) (by 2)
+                  .= s2b(n) + s2a(n) (by 3, 4).
+        qed.
+        Hence s2 converges to 0.
+    qed.
+    (5) Define s3(k) = (a(k) * b(k)) - (x * y) for k in NN.
+    Let us show that s3 converges to 0.
+    proof.
+        Let us show that for every n s3(n) = s1(n) + s2(n).
+        Proof. Let n be a natural number.
+            s3(n) .= (a(n) * b(n)) - (x * y) (by 5)
+                  .= ((a(n) - x) * (b(n) - y)) + ((x * (b(n) - y)) + (y * (a(n) - x))) (by Identity1)
+                  .= s1(n) + s2(n) (by 1, 2).
+        qed.
+        Hence s3 = s1 +' s2.
+        Therefore the thesis.
+    qed. 
+    Let eps be a positive real number.
+    Take N such that for every n such that N < n dist(s3(n),0) < eps.
+    Let us show that for every n such that N < n dist(a(n) * b(n),x * y) < eps.
+    Proof.
+        Let n be a natural number such that N < n.
+        dist(s3(n),0) .= dist((a(n) * b(n)) - (x * y),0) (by 5)
+                      .= |((a(n) * b(n)) - (x * y)) - 0|
+                      .= |(a(n) * b(n)) - (x * y)|
+                      .= dist(a(n) * b(n),x * y).
+    qed.
+qed.
+
 
 Axiom DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
