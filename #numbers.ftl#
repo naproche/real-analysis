@@ -93,7 +93,8 @@ Proposition Dist2. (x*y)-(x*z) = x*(y-z).
 
 Proposition Identity1. (x*y) - (z*w) = ((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z))).
 Proof.
-  (((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + (z*w) .= 
+  (((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + (z*w) .= ((x-z)*(y-w)) + ((z*(y-w)) + ((w*(x-z)) + (z*w)))
+                                                    .= ((x-z)*(y-w)) + ((z*(y-w)) + (w*x)).
 qed.
 
 # The Real Ordered Field
