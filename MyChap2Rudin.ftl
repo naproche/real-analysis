@@ -7,6 +7,8 @@ Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let m, n, l, r, N denote natural numbers.
 Definition. NAT is a set such that every element of NAT is a natural number and every
 natural number is an element of NAT.
+Definition. Q is a set such that every element of Q is a rational number and every
+rational number is an element of Q.
 
 Signature.Let x be a real number. abs(x) is a real number.
 Axiom. Let x be a positive real number. abs(x) = x.
@@ -102,6 +104,25 @@ of X and C is countable. If every element of C is countable then U(C,X) is count
 
 Proposition. Let X be a set. Let C be a set such that all elements of C are subsets
 of X and C is at most countable. If every element of C is at most countable then U(C,X) is 
-at most countable. #oleeee.
+at most countable. #oleeee. This is proven given the above theorem.
+
+#I need to talk about tuples of elements now, how do I do this?
+#I can't find anything in the examples about how to work with tuples, maybe it is
+#easier I just do it with pairs, the theorem is easily generalized by induction
+
+Signature. A pair is an object x such that x =(u,v) for some objects u,v.
+
+Axiom. Let A be a countable set. Let B = {(a,b)| a and b are elements of A}. B is
+countable. #This is a theorem, and must be proven as such. 
+
+#We had to add a definition for the rational numbers similar to the one we aded 
+#for the naturals for the following Corollary, which for now we announce as axiom.
+
+Axiom. Q is countable. #is a corollary of the above theorem.
+
+#The following theorem is about the countability of a certain type of sequences
+
+Axiom. Let A = {f| f is a sequence and for every element x of NAT f(x)=0 or f(x)=1}.
+A is uncountable.
 
  
