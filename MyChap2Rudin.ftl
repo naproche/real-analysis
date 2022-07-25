@@ -10,12 +10,15 @@ natural number is an element of NAT.
 Definition. Q is a set such that every element of Q is a rational number and every
 rational number is an element of Q.
 
+#This is just a definition for the distance in R, not strictly necessary for
+# the rest of this document.
 Signature.Let x be a real number. abs(x) is a real number.
 Axiom. Let x be a positive real number. abs(x) = x.
 Axiom. abs(0)=0.
 Axiom. Let x be a negative real number. abs(x)=-x.
 Lemma. For every real number x 0=<abs(x).
-
+#Axiom GoodOrder. For every subset E of NAT there exists an element x of E such that for every 
+#element y of E x=<y. This introduces a contradiction but I don't know why??
 Axiom. Let x,y be real numbers.abs(x+y)=< abs(x)+abs(y).
 
 Definition Dist. Let x and y be real numbers. dist(x,y)=abs(x-y).
@@ -55,7 +58,8 @@ f is bijective onto B iff (f is injective and f is surjective onto B).
 Definition Equipotency. Let A and B be sets. A and B are equipotent iff there exists a function
 f such that (Dom(f)=A and f is bijective onto B).
 
-Definition Countable. Let A be a set. A is countable iff A and NAT are equipotent. 
+Definition Countable. Let A be a set. A is countable iff NAT and A are equipotent.  #the order here
+#is important, Naproche does not inmediately recognize this is a reflexive relation.
 
 Definition FinNAT. Fin(n) = {x | x is a natural number and x=<n}.
 
@@ -72,9 +76,21 @@ Definition AtMostCount. Let A be a set. A is at most countable iff (A is finite 
 #Now we introduce sequences, which might be redundant with chapter 3. 
 
 Definition Sequence. A sequence is a function a such that Dom(a) = NAT.
+Definition. Let f be a sequence. (f<<n)= {f(m) | m<n}. #the order relation for naturals does not 
+#seem to work Im going to copy in this document what I had in the natural numbers one. That didnt
+#work either...
 
-Axiom SubOfCount. Let A be a countable set. Let E be a subset of A. If E is infinite then
-E is countable.  #This should be a theorem.
+
+Theorem SubOfCount. Let A be a countable set. Let E be a subset of A. If E is infinite then
+E is countable. #Indeed, after purging the computer does not know how to prove this.
+Proof.
+Take a function f such that Dom(f)=NAT and f is bijective onto A.
+f is a sequence.
+
+End.
+#first idea: try to define subsequences and work from that. Difficulty: define restrictions of 
+#functions. 
+
 
 #Definition ColecOfSubsets. Let I be a set. A colection indexed by I is a set C such that every
 #element of C is a set and C and I are equipotent.
