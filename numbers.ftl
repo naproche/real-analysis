@@ -1,6 +1,7 @@
 # Importing Set-Theoretic Preliminaries
 
 [timelimit 10]
+[read vocabulary.ftl]
 [read preliminaries.ftl]
 
 Let A,B stand for sets.
@@ -92,7 +93,14 @@ Proposition Dist2. (x*y)-(x*z) = x*(y-z).
 
 Proposition Identity1. (x*y) - (z*w) = ((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z))).
 Proof.
-  (((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + (z*w) .= 
+  (((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + (z*w) = ((x-z)*(y-w)) + ((z*(y-w)) + ((w*(x-z)) + (z*w))) (by  1_12_A3).
+  ((x-z)*(y-w)) + ((z*(y-w)) + ((w*(x-z)) + (z*w))) = ((x-z)*(y-w)) + ((z*(y-w)) + (w*x)).
+  ((x-z)*(y-w)) + ((z*(y-w)) + (w*x)) =  (((x-z)*(y-w)) + (z*(y-w))) + (w*x).
+  (((x-z)*(y-w)) + (z*(y-w))) + (w*x) =  (x*(y-w)) + (w*x).
+  (x*(y-w)) + (w*x) = x*y.
+  Then x*y = (((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + (z*w).
+  (x*y) - (z*w) = ((((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + (z*w)) - (z*w).
+  (x*y) - (z*w) = (((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z)))) + ((z*w) - (z*w)) (by  1_12_A3).
 qed.
 
 # The Real Ordered Field
