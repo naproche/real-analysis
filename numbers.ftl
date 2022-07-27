@@ -335,9 +335,9 @@ Let us show that x+1 is an upper bound of Integer.
 Let us show that for every integer j we have j <= x+1.
 Let j be an integer. 
 Case j <= n. Trivial.
-Then j>n. Take a positive integer i such that j=n+i.
-i\in A.
-Hence n+(i-1) <= x and j=n+i <= x+1.
+Then j>n. Take i = j - n. i is a positive integer.
+i \in A.
+Hence n+(i-1) <= x. (n+i) - 1 <= x. ((n+i)-1)+1 <= x+1. n+i <= x+1.
 End.
 End.
 Contradiction.
