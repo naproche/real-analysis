@@ -90,6 +90,7 @@ Let x-y stand for x+(-y).
 Let x//y stand for x * 1/y.
 
 Proposition Dist2. (x*y)-(x*z) = x*(y-z).
+Proposition Dist3. (y*x)-(z*x) = (y-z)*x.
 
 Proposition Identity1. (x*y) - (z*w) = ((x-z)*(y-w)) + ((z*(y-w)) + (w*(x-z))).
 Proof.
