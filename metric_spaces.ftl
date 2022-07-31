@@ -15,9 +15,12 @@ Axiom 2_16. Let X be a metric space. Let Y be a subset of X. Y is a metric space
 #This holds as the axioms are still satisfied. I do not know if we can ask Naproche to prove this as 
 #we have not specified what a metric space actually is, just stated what properties should it have.
 
-Definition 2_17_a. Let a and b be real numbers. Seg(a,b)= {x | (x is a real number) and (x>a) 
+Definition 2_17_a. Let a and b be real numbers such that a < b. Seg(a,b)= {x | (x is a real number) and (x>a) 
 and (x< b)}.
 
-Definition 2_17_b. Let a and b be real numbers. Int(a,b)= {x | (x is a real number) and (x>=a) 
+Definition 2_17_b. Let a and b be real numbers such that a < b. Int(a,b)= {x | (x is a real number) and (x>=a) 
 and (x<=b)}.
+
+Definition 2_18. Let X be a metric space. Let p be an element of X. Let r be a real number.
+The neighborhood of p of radius r is the collection of elements q of X such that d(p,q) < r.
 
