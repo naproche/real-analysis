@@ -76,18 +76,16 @@ Definition AtMostCount. Let A be a set. A is at most countable iff (A is finite 
 #Now we introduce sequences, which might be redundant with chapter 3. 
 
 Definition Sequence. A sequence is a function a such that Dom(a) = NAT.
-Definition. Let f be a sequence. (f<<n)= {f(m) | m<n}. #the order relation for naturals does not 
+#Definition. Let f be a sequence. (f<<n)= {f(m) | m<n}. 
+#the order relation for naturals does not 
 #seem to work Im going to copy in this document what I had in the natural numbers one. That didnt
 #work either...
 
 
-Theorem SubOfCount. Let A be a countable set. Let E be a subset of A. If E is infinite then
-E is countable. #Indeed, after purging the computer does not know how to prove this.
-Proof.
-Take a function f such that Dom(f)=NAT and f is bijective onto A.
-f is a sequence.
+Axiom SubOfCount. Let A be a countable set. Let E be a subset of A. If E is infinite then
+E is countable.
 
-End.
+#Indeed, after purging the computer does not know how to prove this..
 #first idea: try to define subsequences and work from that. Difficulty: define restrictions of 
 #functions. 
 
