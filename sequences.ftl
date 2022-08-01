@@ -1,6 +1,8 @@
+[prove off]
+[check off]
+
 [read real-analysis/vocabulary.ftl]
 [read real-analysis/numbers.ftl]
-
 
 ### Preliminaries
 
@@ -68,7 +70,6 @@ Theorem. max(x,y) >= x and max(x,y) >= y.
 
 Signature. sqrt(x) is a real number.
 Axiom. sqrt(x)*sqrt(x) = x.
-
 
 
 ### Sequences
@@ -547,6 +548,8 @@ Proof.
     Hence b converges to 0.
 qed.
 
+
+
 Theorem ProdConv.
   Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
   Then a**b converges to x*y.
@@ -703,18 +706,62 @@ Definition ConvSubSeq.
 Axiom IndSucc.
   n<n+1.
 
+[prove on]
+[check on]
+
+
 Axiom IndPrec.
   Assume n !=0. Then there exists m such that n=m+1.
 
 Axiom IndPlusOne. 
   Assume n<m. Then n+1 <=m.
 
-Axiom SubSeqLeq.
-  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
 
-Axiom LimitSubSeq. 
+###Problem
+
+
+Lemma SubSeqLeq.
+  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
+Proof.
+    We can show by induction that n <= i(n) for every n.
+    proof.
+        Let n be a natural number.
+        Case n=0.
+            Let us show that 0<= i(0).
+            i(0) is a natural number.
+            Therefore i(0)>= 0. 
+        end.
+        Case n !=0.
+            Take m such that n=m+1.
+            Hence m<n.
+            Therefore  m<=i(m).
+            Hence m+1 <= i(m)+1.
+            Then i(m)<i(m+1). 
+            Hence i(m)+1<= i(m+1).
+            Then m+1 <= i(m+1).
+            Hence n <= i(n). qed.
+        end.
+    qed.
+qed.
+
+
+
+Axiom LimitSubSeq.
   Let a be a sequence. Let x be a real number. 
-  a converges to x iff for every index sequence i Subseq(a,i) converges to x.
+  If a converges to x then for every index sequence i Subseq(a,i) converges to x.
+#Proof.
+#    Assume a  converges to x. Let i be an index sequence. Let eps be a 
+#    positive real number. Take N such that for every n such that N<n dist(a(n),x)<eps.
+#    Let us show that for every n such that N<n dist(Subseq(a,i)(n),x)<eps.
+#    Proof.
+#        Let n be a natural number such that N<n.
+#        Then n<=i(n).
+#        Hence N< i(n).
+#        Hence dist(Subseq(a,i)(n),x)=dist(a(i(n)),x)<eps.
+#    qed.
+#qed.
+        
+
 
 Axiom BolzanoWeierstrass.
   Let a be a bounded sequence. Then a has some convergent subsequence.
