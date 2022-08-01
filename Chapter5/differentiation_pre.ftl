@@ -32,6 +32,10 @@ Let eps, del denote positive real numbers.
 
 Signature Distance. d(x,y) is a real number.
 
+Axiom d1. d(x,y) = 0 iff x = y.
+Axiom d2. d(x,y) = d(y,x).
+Axiom d3. Let z be a real number. d(x,z)<=d(x,y)+d(y,z).
+
 Definition Sequence. A sequence is a map a
   such that Dom(a) = Natural and a is into Real.
 
@@ -46,8 +50,21 @@ Definition LimitPoint. Let E be a subclass of Real.
 Definition RealMap. A real map is a map f
   such that Dom(f) \subseteq Real and f is into Real.
 
-Let f, g denote real maps.
+Let f, g denote real map.
 
 Definition 4_1. Suppose p is a limit point of Dom(f).
-  lim(f,p)=q iff for any eps there exists del such that
+  lim(f,p)=q iff for any positive real number eps there exists positive real number del such that
   for any x \in Dom(f) if 0<d(x,p)<del then d(f(x),q)<eps.
+
+Definition 4_5. Suppose p \in Dom(f). f is continuous at p
+  iff for any eps there exists del such that
+  for any x \in Dom(f) if d(x,p)<del then d(f(x),f(p))<eps.
+
+[prove off]
+Theorem 4_6. Suppose p \in Dom(f). Suppose p is a limit point of Dom(f).
+  f is continuous at p iff lim(f,p)=f(p).
+
+Theorem 4_4. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
+  Let A, B be real numbers. Suppose lim(f,p)=A and lim(g,p)=B.
+  Then lim(f++g,p)=A+B and lim(f**g,p)=A*B.
+[prove on]
