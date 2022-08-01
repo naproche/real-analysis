@@ -617,13 +617,18 @@ Proof.
     qed.
 qed.
 
+
+
+
 Theorem DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
   Assume for every n a(n)!=0. Then div(a) converges to 1/x.
 Proof.
     Let eps be a positive real number.
     |x| != 0.
-                                                                                   
+    
+    #could jus write take m such that. Then no yellow error.
+                                                       
     Let m be a natural number such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
     Let us show that for every n such that m < n 1/2 * |x| < |a(n)|.
     Proof. 
@@ -706,9 +711,6 @@ Definition ConvSubSeq.
 Axiom IndSucc.
   n<n+1.
 
-[prove on]
-[check on]
-
 
 Axiom IndPrec.
   Assume n !=0. Then there exists m such that n=m+1.
@@ -745,22 +747,40 @@ Proof.
 qed.
 
 
+[prove on]
+[check on]
 
-Axiom LimitSubSeq.
+
+Lemma LimitSubSeq.
   Let a be a sequence. Let x be a real number. 
-  If a converges to x then for every index sequence i Subseq(a,i) converges to x.
-#Proof.
-#    Assume a  converges to x. Let i be an index sequence. Let eps be a 
-#    positive real number. Take N such that for every n such that N<n dist(a(n),x)<eps.
-#    Let us show that for every n such that N<n dist(Subseq(a,i)(n),x)<eps.
-#    Proof.
-#        Let n be a natural number such that N<n.
-#        Then n<=i(n).
-#        Hence N< i(n).
-#        Hence dist(Subseq(a,i)(n),x)=dist(a(i(n)),x)<eps.
-#    qed.
-#qed.
-        
+  a converges to x if and only if for every index sequence i Subseq(a,i) converges to x.
+Proof. 
+     Let us show that if a converges to x then for every index sequence i
+     Subseq(a, i) converges to x.
+     Proof.
+          Assume a  converges to x. Let i be an index sequence. Let eps be a 
+          positive real number. Take N such that for every n such that N<n dist(a(n),x)<eps.
+          Let us show that for every n such that N<n dist(Subseq(a,i)(n),x)<eps.
+          Proof.
+              Let n be a natural number such that N<n.
+              Then n<=i(n).
+              Hence N< i(n).
+              Hence dist(Subseq(a,i)(n),x)=dist(a(i(n)),x)<eps.
+          qed.
+      qed.
+
+      Let us show that if for every index sequence i Subseq(a, i) converges to x
+      then a converges to x.
+      Proof. 
+            Assume for every index sequence i Subseq(a, i) converges to x.
+            Define i(n) = n for n in NN.
+            i is an index sequence.
+            Subseq(a, i) converges to x.
+            For every n a(n) = Subseq(a, i)(n).
+            Hence a = Subseq(a, i).
+            Hence a converges to x.
+      qed.
+qed.
 
 
 Axiom BolzanoWeierstrass.
