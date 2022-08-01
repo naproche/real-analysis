@@ -614,75 +614,11 @@ Proof.
     qed.
 qed.
 
-Theorem DivConv.
+
+Axiom DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
   Assume for every n a(n)!=0. Then div(a) converges to 1/x.
-Proof.
-    Let eps be a positive real number.
-    |x| != 0.
-                                                                                   
-    Let m be a natural number such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
-    Let us show that for every n such that m < n 1/2 * |x| < |a(n)|.
-    Proof. 
-        Let n be a natural number such that m < n.
-        a(n), |a(n)|, -|a(n)|, |x| - |a(n)|, x - a(n), |x - a(n)|, a(n) - x, |a(n) - x|, |x| + (-|a(n)|), (|x| + (-|a(n)|)) + (-|x|) are real numbers.
-        Let us show that |x| - |a(n)| < 1/2 * |x|.
-        Proof.
-            |x| - |a(n)| <= |x - a(n)|.
-            |x - a(n)| = |-(x - a(n))| = |a(n) - x|.
-            |a(n) - x| < 1/2 * |x|.
-            Hence the thesis.
-        qed.
 
-        Let us show that -|a(n)| < (-1/2) * |x|.
-            (|x| - |a(n)|) + (-|x|) < (1/2 * |x|) + (-|x|). 
-            (|x| - |a(n)|) + (-|x|) = -|a(n)|.
-
-            -|a(n)| < (1/2 * |x|) + (-|x|).
-            (1/2 * |x|) + (-|x|) = (1/2 * |x|) + ((1/2*(-|x|)) + (1/2*(-|x|))) = (-1/2) * |x|.
-        qed.
-
-        Therefore |a(n)| > |x| * 1/2.
-    qed.
-   
-    Take N1 such that for every n such that N1 < n dist(a(n),x) < (1/2 * eps) * (|x| * |x|). 
-    Take N2 such that N2 = max(N1,m).
-    Let us show that for every n such that N2 < n dist(1/a(n),1/x) < eps.
-    Proof.
-        Let n be a natural number such that N2 < n.
-        Then we have N1 < n and m < n.
-        Let us show that dist(1/a(n),1/x) < ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)).
-        Proof.
-            dist(1/a(n),1/x) .= |1/a(n) - 1/x|
-                              .= |(1*1/a(n)) - (1*1/x)| (by 1_12_M4)
-                              .= |((x*1/x) * 1/a(n)) - ((a(n)*1/a(n)) * 1/x)| (by 1_12_M5)
-                              .= |(x*(1/x * 1/a(n))) - (a(n)*(1/a(n) * 1/x))| (by 1_12_M3)
-                              .= |(x*(1/x * 1/a(n))) - (a(n)*(1/x * 1/a(n)))| (by 1_12_M2)
-                              .= |(x-a(n))*(1/x * 1/a(n))| (by Dist3)
-                              .= |x-a(n)|*|1/x * 1/a(n)| (by MultAbs).
-            |1/x * 1/a(n)| is positive.
-            |x - a(n)| = dist(a(n),x).
-            |x-a(n)|*|1/x * 1/a(n)|  < ((1/2 * eps) * (|x| * |x|)) * |1/x * 1/a(n)|.
-        qed.
-
-        (eps * (|x| * |x|)) * (1/2 * |1/x|), 1 * (1/|a(n)|), 2 * (1/|x|), dist(1/a(n),1/x),
-        ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)), ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)) are real numbers.
-
-        Let us show that ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)) < eps.
-        Proof. 
-            Let us show that 1 * (1/|a(n)|) < 2 * (1/|x|).
-            Proof.
-                We have |a(n)| > |x| * 1/2.
-                Hence |a(n)| * 1 > |x| * 1/2.
-                (|a(n)| != 0 and 1 != 0) and (|x| != 0 and 2 != 0).
-                Then 1 * (1/|a(n)|) < 2 * (1/|x|).
-            qed.
-
-            ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)) < ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)).
-        qed.
-        Hence the thesis.
-    qed.
-qed.
 
 
 
