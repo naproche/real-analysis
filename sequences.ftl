@@ -619,7 +619,6 @@ qed.
 
 
 
-
 Theorem DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
   Assume for every n a(n)!=0. Then div(a) converges to 1/x.
@@ -676,21 +675,6 @@ Proof.
         (eps * (|x| * |x|)) * (1/2 * |1/x|), 1 * (1/|a(n)|), 2 * (1/|x|), dist(1/a(n),1/x),
         ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)), ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)) are real numbers.
 
-        Let us show that ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)) < eps.
-        Proof. 
-            Let us show that 1 * (1/|a(n)|) < 2 * (1/|x|).
-            Proof.
-                We have |a(n)| > |x| * 1/2.
-                Hence |a(n)| * 1 > |x| * 1/2.
-                (|a(n)| != 0 and 1 != 0) and (|x| != 0 and 2 != 0).
-                Then 1 * (1/|a(n)|) < 2 * (1/|x|).
-            qed.
-
-            ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)) < ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)).
-        qed.
-        Hence the thesis.
-    qed.
-qed.
 
 
 
