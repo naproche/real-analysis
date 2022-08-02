@@ -23,6 +23,12 @@ Definition Multiplication. Let f, g be maps into Real.
   f ** g is a map h such that Dom(h) = Dom(f) and
   for any x \in Dom(h) we have h(x) = f(x) * g(x).
 
+Definition Division. Let f, g be maps into Real.
+  Suppose Dom(f) = Dom(g). 
+  Suppose g(x) != 0 for every x \in Dom(g).
+  f|//|g is a map h such that Dom(h) = Dom(f) and
+  for any x \in Dom(h) we have h(x) = f(x)//g(x).
+
 ################
 # Preliminaries
 

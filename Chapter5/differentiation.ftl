@@ -165,9 +165,9 @@ Proof.
   End.
 End.
 
-
 # The below lemma seems to follow directly from the definition
-# of lim but Freddy was not able to prove it using his laptop.
+# of lim but Freddy was not able to prove it using his laptop 
+# (but it works well on Esteban's Laptop)
 # Maybe we have to help Naproche a little bit but Freddy is not
 # sure how to do this?
 [prove off]
@@ -180,8 +180,7 @@ Lemma 5_x.
   if 0<d(t,p)<del then d(f(t),q)<eps.
 [prove on]
 
-
-Theorem.
+Theorem 5_2.
   Let f be a real map such that f is defined on [x|y].
   Let z be an element of (x|y).
   If f is differentiable at z in x and y
@@ -299,3 +298,71 @@ Proof.
 
   Then f is continuous at z (by 4_6). Indeed z is a limit point of Dom(f) and lim(f,z)=f(z).
 QED.
+
+#Lemma. Contradiction. #TEST 
+
+Theorem 5_3a.
+  Let f be a real map such that f is defined on [x|y].
+  Let g be a real map such that g is defined on [x|y].
+  Let z be an element of (x|y).
+  Assume that f is differentiable at z in x and y.
+  Assume that g is differentiable at z in x and y.
+  Then f++g is differentiable at z in x and y and
+  D(f++g,z)=D(f,z)+D(g,z).
+Proof.  
+  Let A, B be real numbers.  
+  DQ(f,z) is a map into Real. DQ(g,z) is a map into Real.
+  Dom(DQ(f,z)) = Dom(DQ(g,z)). #necessary for the ontology of the next line.
+  
+  If DQ(f++g,z) = DQ(f,z)++DQ(g,z) and lim(DQ(f,z),z) = A and lim(DQ(g,z),z) = B 
+  then lim(DQ(f++g,z),z) = A + B.
+  
+  Let us show that DQ(f++g,z) = DQ(f,z)++DQ(g,z).
+    Dom(DQ(f++g,z)) = Dom(DQ(f,z)++DQ(g,z)).
+    Proof.
+      Dom(DQ(f++g,z)) = [x|y] \\ {z}. 
+      Indeed f++g is a real map and is defined on [x|y].
+      Dom(DQ(f,z)++DQ(g,z)) = [x|y] \\ {z}.
+      Proof.
+        Dom(DQ(f,z)) = (Dom(f)) \\ {z} and Dom(DQ(g,z)) = (Dom(g)) \\ {z}. 
+        Dom(f) = Dom(g) = [x|y].
+        Then Dom(DQ(f,z)) = Dom(DQ(g,z)) = [x|y] \\ {z}. 
+      end.
+    end.
+    Let us show that for every t \in Dom(DQ(f++g,z)) 
+    DQ(f++g,z)(t) = (DQ(f,z)++DQ(g,z))(t).
+      Let t belong to Dom(DQ(f++g,z)). Then t != z. 
+      Indeed z does not belong to Dom(DQ(f++g,z)).
+      t belongs to Dom(f++g).
+      DQ(f++g,z)(t) = ((f++g)(t)-((f++g)(z)))//(t-z). 
+      ((f++g)(t)-((f++g)(z)))//(t-z) = ((f(t)+g(t))-(f(z)+g(z)))//(t-z).
+      ((f(t)+g(t))-(f(z)+g(z)))//(t-z) = (((f(t)+g(t))-f(z))-g(z))//(t-z).
+      (((f(t)+g(t))-f(z))-g(z))//(t-z) = ((f(t)+(g(t)-f(z)))-g(z))//(t-z).
+      ((f(t)+(g(t)-f(z)))-g(z))//(t-z) = ((f(t)+(-f(z) + g(t)))-g(z))//(t-z).
+      ((f(t)+(-f(z) + g(t)))-g(z))//(t-z) = (((f(t)-f(z))+g(t))-g(z))//(t-z).
+      (((f(t)-f(z))+g(t))-g(z))//(t-z) = ((f(t)-f(z))+(g(t)-g(z)))//(t-z).
+      #Ontology
+      f(t) is a real number and f(z) is a real number. Indeed f is a real map.
+      Take real number tempf such that tempf = f(t)+(-f(z)).
+      g(t) is a real number and g(z) is a real number. Indeed g is a real map.
+      Take real number tempg such that tempg = g(t)-g(z).
+      ((f(t)-f(z))+(g(t)-g(z)))//(t-z) = ((f(t)-f(z))//(t-z)) + ((g(t)-g(z))//(t-z)).
+      ((f(t)-f(z))//(t-z)) + ((g(t)-g(z))//(t-z)) = DQ(f,z)(t) + DQ(g,z)(t).
+      Proof.
+        DQ(f,z)(t) = (f(t)-f(z))//(t-z).
+        DQ(g,z)(t) = (g(t)-g(z))//(t-z).
+        Indeed g is a real map and is defined on [x|y].
+      end.
+    end.
+  end. 
+  
+  D(f++g,z)=D(f,z)+D(g,z).
+  Proof.
+    Take real number t such that lim(DQ(f++g,z),z) = t.
+    D(f++g,z) = t.
+    lim(DQ(f,z),z) = D(f,z) and lim(DQ(g,z),z) = D(g,z).
+    lim(DQ(f++g,z),z) = D(f,z) + D(g,z) = t = D(f++g,z).
+    Therefore the thesis.
+  end.
+end.
+
