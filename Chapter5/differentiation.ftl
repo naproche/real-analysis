@@ -170,7 +170,6 @@ End.
 # (but it works well on Esteban's Laptop)
 # Maybe we have to help Naproche a little bit but Freddy is not
 # sure how to do this?
-[prove off]
 Lemma 5_x.
   Let f be a real map.
   Let p be a real number such that p is a limit point of Dom(f).
@@ -178,7 +177,6 @@ Lemma 5_x.
   Assume that eps is a positive real number.
   Then there exists positive real number del such that for any t \in Dom(f)
   if 0<d(t,p)<del then d(f(t),q)<eps.
-[prove on]
 
 Theorem 5_2.
   Let f be a real map such that f is defined on [x|y].
@@ -336,16 +334,15 @@ Proof.
       t belongs to Dom(f++g).
       DQ(f++g,z)(t) = ((f++g)(t)-((f++g)(z)))//(t-z). 
       ((f++g)(t)-((f++g)(z)))//(t-z) = ((f(t)+g(t))-(f(z)+g(z)))//(t-z).
+      ((f(t)+g(t))-(f(z)+g(z))) = (((f(t)+g(t))-f(z))-g(z)).
       ((f(t)+g(t))-(f(z)+g(z)))//(t-z) = (((f(t)+g(t))-f(z))-g(z))//(t-z).
       (((f(t)+g(t))-f(z))-g(z))//(t-z) = ((f(t)+(g(t)-f(z)))-g(z))//(t-z).
+      #Ontology
+      f(t) is a real number and f(z) is a real number. Indeed f is a real map.
+      g(t) is a real number and g(z) is a real number. Indeed g is a real map.
       ((f(t)+(g(t)-f(z)))-g(z))//(t-z) = ((f(t)+(-f(z) + g(t)))-g(z))//(t-z).
       ((f(t)+(-f(z) + g(t)))-g(z))//(t-z) = (((f(t)-f(z))+g(t))-g(z))//(t-z).
       (((f(t)-f(z))+g(t))-g(z))//(t-z) = ((f(t)-f(z))+(g(t)-g(z)))//(t-z).
-      #Ontology
-      f(t) is a real number and f(z) is a real number. Indeed f is a real map.
-      Take real number tempf such that tempf = f(t)+(-f(z)).
-      g(t) is a real number and g(z) is a real number. Indeed g is a real map.
-      Take real number tempg such that tempg = g(t)-g(z).
       ((f(t)-f(z))+(g(t)-g(z)))//(t-z) = ((f(t)-f(z))//(t-z)) + ((g(t)-g(z))//(t-z)).
       ((f(t)-f(z))//(t-z)) + ((g(t)-g(z))//(t-z)) = DQ(f,z)(t) + DQ(g,z)(t).
       Proof.
@@ -366,3 +363,24 @@ Proof.
   end.
 end.
 
+Theorem 5_3b.
+  Let f be a real map such that f is defined on [x|y].
+  Let g be a real map such that g is defined on [x|y].
+  Let z be an element of (x|y).
+  Assume that f is differentiable at z in x and y.
+  Assume that g is differentiable at z in x and y.
+  Then f**g is differentiable at z in x and y
+  and D(f**g,z) = ((D(f,z))*g(z)) + (f(z)*(D(g,z))).
+Proof.
+  
+end.
+
+Theorem 5_3b.
+  Let f be a real map such that f is defined on [x|y].
+  Let g be a real map such that g is defined on [x|y].
+  Let z be an element of (x|y).
+  Assume that f is differentiable at z in x and y.
+  Assume that g is differentiable at z in x and y.
+  Assume that for every element e if e belongs to Dom(g) then g(e) != 0.
+  Then f|//|g is differentiable at z in x and y
+  and D(f|//|g,z) = (((g(z))*(D(f,z)))-((D(g,z))*(f(z))))//(g(x)*g(x)).
