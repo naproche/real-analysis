@@ -1,6 +1,8 @@
+[prove off]
+[check off]
+
 [read real-analysis/vocabulary.ftl]
 [read real-analysis/numbers.ftl]
-
 
 ### Preliminaries
 
@@ -68,7 +70,6 @@ Theorem. max(x,y) >= x and max(x,y) >= y.
 
 Signature. sqrt(x) is a real number.
 Axiom. sqrt(x)*sqrt(x) = x.
-
 
 
 ### Sequences
@@ -547,6 +548,8 @@ Proof.
     Hence b converges to 0.
 qed.
 
+
+
 Theorem ProdConv.
   Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
   Then a**b converges to x*y.
@@ -615,9 +618,62 @@ Proof.
 qed.
 
 
-Axiom DivConv.
+
+Theorem DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
   Assume for every n a(n)!=0. Then div(a) converges to 1/x.
+Proof.
+    Let eps be a positive real number.
+    |x| != 0.
+    
+    #could jus write take m such that. Then no yellow error.
+                                                       
+    Let m be a natural number such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
+    Let us show that for every n such that m < n 1/2 * |x| < |a(n)|.
+    Proof. 
+        Let n be a natural number such that m < n.
+        a(n), |a(n)|, -|a(n)|, |x| - |a(n)|, x - a(n), |x - a(n)|, a(n) - x, |a(n) - x|, |x| + (-|a(n)|), (|x| + (-|a(n)|)) + (-|x|) are real numbers.
+        Let us show that |x| - |a(n)| < 1/2 * |x|.
+        Proof.
+            |x| - |a(n)| <= |x - a(n)|.
+            |x - a(n)| = |-(x - a(n))| = |a(n) - x|.
+            |a(n) - x| < 1/2 * |x|.
+            Hence the thesis.
+        qed.
+
+        Let us show that -|a(n)| < (-1/2) * |x|.
+            (|x| - |a(n)|) + (-|x|) < (1/2 * |x|) + (-|x|). 
+            (|x| - |a(n)|) + (-|x|) = -|a(n)|.
+
+            -|a(n)| < (1/2 * |x|) + (-|x|).
+            (1/2 * |x|) + (-|x|) = (1/2 * |x|) + ((1/2*(-|x|)) + (1/2*(-|x|))) = (-1/2) * |x|.
+        qed.
+
+        Therefore |a(n)| > |x| * 1/2.
+    qed.
+   
+    Take N1 such that for every n such that N1 < n dist(a(n),x) < (1/2 * eps) * (|x| * |x|). 
+    Take N2 such that N2 = max(N1,m).
+    Let us show that for every n such that N2 < n dist(1/a(n),1/x) < eps.
+    Proof.
+        Let n be a natural number such that N2 < n.
+        Then we have N1 < n and m < n.
+        Let us show that dist(1/a(n),1/x) < ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)).
+        Proof.
+            dist(1/a(n),1/x) .= |1/a(n) - 1/x|
+                              .= |(1*1/a(n)) - (1*1/x)| (by 1_12_M4)
+                              .= |((x*1/x) * 1/a(n)) - ((a(n)*1/a(n)) * 1/x)| (by 1_12_M5)
+                              .= |(x*(1/x * 1/a(n))) - (a(n)*(1/a(n) * 1/x))| (by 1_12_M3)
+                              .= |(x*(1/x * 1/a(n))) - (a(n)*(1/x * 1/a(n)))| (by 1_12_M2)
+                              .= |(x-a(n))*(1/x * 1/a(n))| (by Dist3)
+                              .= |x-a(n)|*|1/x * 1/a(n)| (by MultAbs).
+            |1/x * 1/a(n)| is positive.
+            |x - a(n)| = dist(a(n),x).
+            |x-a(n)|*|1/x * 1/a(n)|  < ((1/2 * eps) * (|x| * |x|)) * |1/x * 1/a(n)|.
+        qed.
+
+        (eps * (|x| * |x|)) * (1/2 * |1/x|), 1 * (1/|a(n)|), 2 * (1/|x|), dist(1/a(n),1/x),
+        ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)), ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)) are real numbers.
 
 
 
@@ -639,18 +695,77 @@ Definition ConvSubSeq.
 Axiom IndSucc.
   n<n+1.
 
+
 Axiom IndPrec.
   Assume n !=0. Then there exists m such that n=m+1.
 
 Axiom IndPlusOne. 
   Assume n<m. Then n+1 <=m.
 
-Axiom SubSeqLeq.
-  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
 
-Axiom LimitSubSeq. 
+###Problem
+
+
+Lemma SubSeqLeq.
+  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
+Proof.
+    We can show by induction that n <= i(n) for every n.
+    proof.
+        Let n be a natural number.
+        Case n=0.
+            Let us show that 0<= i(0).
+            i(0) is a natural number.
+            Therefore i(0)>= 0. 
+        end.
+        Case n !=0.
+            Take m such that n=m+1.
+            Hence m<n.
+            Therefore  m<=i(m).
+            Hence m+1 <= i(m)+1.
+            Then i(m)<i(m+1). 
+            Hence i(m)+1<= i(m+1).
+            Then m+1 <= i(m+1).
+            Hence n <= i(n). qed.
+        end.
+    qed.
+qed.
+
+
+[prove on]
+[check on]
+
+
+Lemma LimitSubSeq.
   Let a be a sequence. Let x be a real number. 
-  a converges to x iff for every index sequence i Subseq(a,i) converges to x.
+  a converges to x if and only if for every index sequence i Subseq(a,i) converges to x.
+Proof. 
+     Let us show that if a converges to x then for every index sequence i
+     Subseq(a, i) converges to x.
+     Proof.
+          Assume a  converges to x. Let i be an index sequence. Let eps be a 
+          positive real number. Take N such that for every n such that N<n dist(a(n),x)<eps.
+          Let us show that for every n such that N<n dist(Subseq(a,i)(n),x)<eps.
+          Proof.
+              Let n be a natural number such that N<n.
+              Then n<=i(n).
+              Hence N< i(n).
+              Hence dist(Subseq(a,i)(n),x)=dist(a(i(n)),x)<eps.
+          qed.
+      qed.
+
+      Let us show that if for every index sequence i Subseq(a, i) converges to x
+      then a converges to x.
+      Proof. 
+            Assume for every index sequence i Subseq(a, i) converges to x.
+            Define i(n) = n for n in NN.
+            i is an index sequence.
+            Subseq(a, i) converges to x.
+            For every n a(n) = Subseq(a, i)(n).
+            Hence a = Subseq(a, i).
+            Hence a converges to x.
+      qed.
+qed.
+
 
 Axiom BolzanoWeierstrass.
   Let a be a bounded sequence. Then a has some convergent subsequence.
