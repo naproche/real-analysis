@@ -10,6 +10,13 @@ natural number is an element of NAT.
 Definition. Q is a set such that every element of Q is a rational number and every
 rational number is an element of Q.
 
+Axiom WellOrder. Let E be a subset of NAT such that E is nonempty. There exist an element x of E such that
+for every element y of E x=<y.
+#It is very important to say E nonempty, if not it gives a contradiction.
+
+Definition DifOfSets. Let A and B be sets. (A-B) = {x| x is an element of A such that x is not an
+element of B }. #Need it for the theorem on subsets of countable sets.
+
 #This is just a definition for the distance in R, not strictly necessary for
 # the rest of this document.
 Signature.Let x be a real number. abs(x) is a real number.
@@ -27,16 +34,18 @@ Definition Dist. Let x and y be real numbers. dist(x,y)=abs(x-y).
 #on defining it again. So is the notion of domain.
 
 Lemma. Let f be a function. Ran(f) is a set. #Range of f is also defined.
-
+Axiom. Let f be a function. Dom(f) is a set. #this is axiliaty for the moment, but it does not
+#yield a contradiction.
 #I can't write "a map", weird.
 
-
-
 Definition ImOfSubset.  Let f be function. Let E be a subset of Dom(f). 
- Im(E,f) = { f(x)  | x is an element of E}.
+Im(E,f) is a set such that Im(E,f) = { f(x)  | x is an element of E}.
+ #with this def, the image is not a set I added, Im(E,f) is a set but it doesn't seem to fix the 
+#problem with the next definition. If instead of the image we write Ran(f) it does work
+
 
 Definition SurjectiveToB.Let B be a set. Let f be a function.
-f is surjective onto B iff Ran(f) = B.
+f is surjective onto B iff Im(Dom(f),f) = B.
 
 Definition Preimage. Let f be a function. Let E be a set such that for every element 
 y of E there exists an element x of Dom(f) such that f(x) = y. Then 
@@ -58,13 +67,18 @@ f is bijective onto B iff (f is injective and f is surjective onto B).
 Definition Equipotency. Let A and B be sets. A and B are equipotent iff there exists a function
 f such that (Dom(f)=A and f is bijective onto B).
 
+Definition BiggerSet. Let A and B be sets. A is bigger than B iff there exists a function f such that
+(Dom(f)=A and f is surjective onto B). #I tried to incorporate this into the definition of surjective
+#but the parser was not allowing me to write "there exist n and a function f..." I don't know why.
+
 Definition Countable. Let A be a set. A is countable iff NAT and A are equipotent.  #the order here
 #is important, Naproche does not inmediately recognize this is a reflexive relation.
 
-Definition FinNAT. Fin(n) = {x | x is a natural number and x=<n}.
+Definition FinNAT.Fin(n) is a set such that Fin(n) = {x | x is a natural number and x=<n}.
 
-Definition Finite. Let A be a set. A is finite iff (A is empty set or there exists n such that A 
-and Fin(n) are equipotent). 
+Definition Finite. Let A be a set. A is finite iff ( there exists n such that Fin(n)
+is bigger than A). #this makes future proofs easier, since sequences need not to be injective
+#and dealing with bijective functions with these definitions can be a pain.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
 
@@ -76,16 +90,26 @@ Definition AtMostCount. Let A be a set. A is at most countable iff (A is finite 
 #Now we introduce sequences, which might be redundant with chapter 3. 
 
 Definition Sequence. A sequence is a function a such that Dom(a) = NAT.
-Definition. Let f be a sequence. (f<<n)= {f(m) | m<n}. #the order relation for naturals does not 
+Definition. Let f be a sequence.(f<<n) is a subset of Ran(f) such that
+ (f<<n)= {f(m) | m is an element of NAT and m =< n}. #the order relation for naturals does not 
 #seem to work Im going to copy in this document what I had in the natural numbers one. That didnt
-#work either...
+#work either... Okay, specifying that m is an elemen of NAT the def works.
+#Further note one must specify all this things are sets if not, the notions we have defined for sets 
+#i.e. (bigger than, equipotent, etc) yield "unrecognized" type errors.
+
+Lemma. Let f be a sequence. (f<<n) is finite.
+Proof.
+Let g be a function  such that Dom(g) = Fin(n) and for all element m of Fin(n) g(m)=f(m).
+g is surjective onto (f<<n).
+Fin(n) is bigger than (f<<n). #this is the definition of finitedness as in line 79 
+#Q:why does it not prove finitedness.
+End.
 
 
 Theorem SubOfCount. Let A be a countable set. Let E be a subset of A. If E is infinite then
 E is countable. #Indeed, after purging the computer does not know how to prove this.
 Proof.
 Take a function f such that Dom(f)=NAT and f is bijective onto A.
-f is a sequence.
 
 End.
 #first idea: try to define subsequences and work from that. Difficulty: define restrictions of 
