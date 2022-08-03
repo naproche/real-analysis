@@ -5,10 +5,11 @@ Signature. Let p,q be elements. d(p,q) is a real number.
 
 Signature. A metric space is a set.
 
-Axiom 2_15_a1. Let X be a metric space. Let p be an element of X. d(p,p)=0.
-Axiom 2_15_a2. Let X be a metric space. Let p and q be elements of X. d(p,q) >= 0.
-Axiom 2_15_b. Let X be a metric space. Let p and q be elements of X. d(p,q)=d(q,p).
-Axiom 2_15_c.  Let X be a metric space. Let p, q and r be elements of X. d(p,q) <= d(p,r) + d(r,q).
+Axiom 2_15. Let X be a metric space. Then for all element  p, q, r of X
+  ((if p != q then d(p,q) > 0)  and
+  d(p,p) = 0 and
+  d(p,q) = d(q,p) and
+  d(p,q) <= d(p,r) + d(r,q)).
 
 Axiom 2_16. Let X be a metric space. Let Y be a subset of X. Y is a metric space.
 
