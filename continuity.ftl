@@ -75,16 +75,27 @@ Definition UneqConv. Let a be a sequence.
 Definition LimitPoint. A limit point of E is a real number p such that
   there exists a sequence a such that a is into E and a unequally converges to p.
 
+Definition ClosurePoint. A closure point of E is a real number p such that
+  there exists a sequence a such that a is into E and a converges to p.
+
 Definition OpenCover. An open cover of E is a map C such that Dom(C)=E and
   for all x \in E C(x) \subseteq E and C(x) is open in E and x \in C(x).
 
 Definition FiniteSubcover. Let C be an open cover of E.
   A finite subcover of C over E is a sequence a such that a is into E
   and there exists a positive integer N such that for any x \in E
-  there exists n such that n<N and x \in C(a(n)).
+  there exists n such that n<=N and x \in C(a(n)).
 
 Definition Compact. E is compact iff
   for any open cover C of E there exists a finite subcover of C over E.
+
+Definition Separated. Let A, B be subclass of Real. A and B are separated
+  iff for any closure point x of A x is not in B
+  and for any closure point y of B y is not in A.
+
+Definition Connected. E is connected iff
+  for any nonempty A, B \subseteq Real
+  if E = A \cup B then A and B are not separated.
 
 ################
 # Previous results
@@ -111,6 +122,9 @@ Axiom 2_35. Suppose E is compact. Suppose V is a subclass of E.
 
 Axiom 2_41. E is compact iff E is bounded and closed in Real.
 
+Axiom 2_47. E is connected iff for any x,y \in E
+  for any z \in Real if x<z<y then z \in E.
+
 Axiom 3_1. There exists a sequence a such that
   a converges to 0 and for all n a(n)>0.
 
@@ -121,8 +135,11 @@ Axiom 3_3. Let a, b be sequences.
   If a converges to x and b converges to y then
   a++b converges to x+y and a**b converges to x*y.
 
-Axiom Minimum. Let a be a sequence. Let N be a positive integer.
-  There exist m such that m<N and for all n if n<N then a(m)<=a(n).
+Axiom Min. Let a be a sequence. Let N be a positive integer.
+  There exist n such that n<=N and for all m if m<=N then a(n)<=a(m).
+
+# Consistency check
+# [prove on] Lemma. Contradiction.
 
 ################
 # Limits of maps
@@ -237,6 +254,7 @@ Proof.
   if d(y,f(p))<del then d(g(y),g(f(p)))<eps.
   Take a positive real number eta such that
   for any x \in Dom(f) if d(x,p)<eta then d(f(x),f(p))<del.
+  For any x \in Dom(f) if d(x,p)<eta then d(g(f(x)),g(f(p)))<eps.
 QED.
 
 Definition. f is continuous iff for all p \in Dom(f) f is continuous at p.
@@ -251,7 +269,7 @@ Proof.
     Suppose U is a subclass of E such that U is open in E.
     Let us show that f^-1(U) is open in Dom(f).
       Suppose p \in f^-1(U).
-      Take eps such that for all y \in E if d(f(p),y)<eps then y \in U.
+      Take eps such that for all y \in E if d(y,f(p))<eps then y \in U.
       f is continuous at p.
       Take del such that for any x \in Dom(f) if d(x,p)<del then d(f(x),f(p))<eps.
       For any x \in Dom(f) if d(x,p)<del then x \in f^-1(U).
@@ -301,14 +319,14 @@ Proof.
     C is an open cover of Dom(f).
     Take a finite subcover a of C over Dom(f).
     Take a positive integer N such that for any x \in Dom(f)
-    there exists n such that n<N and x \in C(a(n)).
+    there exists n such that n<=N and x \in C(a(n)).
     Take a sequence foa such that foa = f \circ a.
     Let us show that foa is a finite subcover of D over R.
       Let us show that for any y \in R
-      there exists n such that n<N and y \in D(foa(n)).
+      there exists n such that n<=N and y \in D(foa(n)).
         Suppose y \in R.
         Take x \in Dom(f) such that f(x)=y.
-        Take n such that n<N and x \in C(a(n)).
+        Take n such that n<=N and x \in C(a(n)).
         y \in D(f(a(n))).
       End.
     End.
@@ -365,7 +383,7 @@ Definition 4_18. f is uniformly continuous iff for any eps there exists del
   such that for all x,y \in Dom(f) if d(x,y)<del then d(f(x),f(y))<eps.
 
 Corollary. If f is uniformly continuous then f is continuous.
-
+[prove on]
 Theorem 4_19. Suppose f is continuous and Dom(f) is compact.
   Then f is uniformly continuous.
 Proof.
@@ -385,7 +403,122 @@ Proof.
   End.
   Take a finite subcover a of C over E.
   Take a positive integer N such that for any x \in E
-  there exists n such that n<N and x \in C(a(n)).
-  Take a positive real number del such that for all n if n<N then del<=ph2(a(n)).
-  For all x,y \in E if d(x,y)<del then d(f(x),f(y))<eps.
+  there exists n such that n<=N and x \in C(a(n)).
+  Let us show that there exists del such that
+  for all m if m <= N then del <= ph2(a(m)).
+    ph2 \circ a is a sequence.
+    Take n such that n<=N and for all m if m<=N
+    then (ph2 \circ a)(n)<=(ph2 \circ a)(m) (by Min).
+    Take del = (ph2 \circ a)(n).
+    For all m if m<=N then del<=ph2(a(m)).
+  End.
+  Take del such that for all m if m <= N then del <= ph2(a(m)).
+  Let us show that for all x,y \in E if d(x,y)<del then d(f(x),f(y))<eps.
+    Suppose x,y \in E and d(x,y)<del.
+    Take m such that m<=N and x \in C(a(m)).
+    Take am=a(m).
+    x \in nbhd(am,ph2(am)).
+    (1) d(x,am)<ph2(am).
+    Let us show that (2) for all real numbers x1,x2,y1,y2
+    if x1<x2 and y1<y2 then x1+y1<x2+y2.
+      Suppose x1,x2,y1,y2 are real numbers such that x1<x2 and y1<y2.
+      x1+y1<x2+y1=y1+x2<y2+x2=x2+y2.
+    End.
+    For all real numbers x1,x2,x3 if x1<=x2 and x2<x3 then x1<x3.
+    Let us show that (3) d(y,am)<phi(am).
+      (4) d(y,x)<ph2(am).
+      d(y,x)+d(x,am)<ph2(am)+ph2(am) (by 1,2,4).
+      d(y,am)<=d(y,x)+d(x,am) (by d3).
+      ph2(am)+ph2(am)=phi(am).
+    End.
+    (5) For all z \in E if d(z,am)<phi(am) then d(f(z),f(am))<ep2.
+    ph2(am)<phi(am).
+    (6) d(x,am)<phi(am).
+    (7) d(f(y),f(am))<ep2 (by 3,5).
+    (8) d(f(x),f(am))<ep2 (by 1,5,6).
+    d(f(x),f(am))+d(f(y),f(am))<ep2+ep2 (by 2,7,8).
+    d(f(x),f(y))<=d(f(x),f(am))+d(f(y),f(am)) (by d2,d3).
+    d(f(x),f(y))<ep2+ep2.
+  End.
 QED.
+
+################
+# Continuity and Connectedness
+
+Lemma 4_22a. p is a closure point of E
+  iff p \in E or p is a limit point of E.
+Proof.
+  Let us show that if p is a closure point of E
+  then p \in E or p is a limit point of E.
+    Suppose p is a closure point of E and p \notin E.
+    Take a sequence a such that a is into E and a converges to p.
+    a unequally converges to p.
+  End.
+  If p is a limit point of E then p is a closure point of E.
+  Let us show that if p \in E then p is a closure point of E.
+    Suppose p \in E.
+    Define a(n) = p for n in Natural.
+    a is into E and a converges to p.
+  End.
+QED.
+
+Theorem 4_22. Suppose f is continuous and Dom(f) is connected.
+  Then f[Dom(f)] is connected.
+Proof.
+  Suppose the contrary.
+  Take E = Dom(f).
+  Take nonempty A,B \subseteq Real such that
+  f[E] = A \cup B and A and B are separated.
+  Take G = E \cap f^-1(A). Take H = E \cap f^-1(B).
+  Let us show that for any closure point x of G x is not in H.
+    Suppose the contrary.
+    Take a closure point x of G such that x \in H.
+    f(x) \in B.
+    x \notin G (by 4_22a).
+    x is a limit point of G (by 4_22a).
+    Take a sequence a such that a is into G and a unequally converges to x.
+    lim(f,x)=f(x) (by 4_6).
+    f \circ a converges to f(x) (by 4_2).
+    f \circ a is into A.
+    f(x) is a closure point of A.
+    Contradiction.
+  End.
+  Let us show that for any closure point x of H x is not in G.
+    Suppose the contrary.
+    Take a closure point x of H such that x \in G.
+    f(x) \in A.
+    x \notin H (by 4_22a).
+    x is a limit point of H (by 4_22a).
+    Take a sequence a such that a is into H and a unequally converges to x.
+    lim(f,x)=f(x) (by 4_6).
+    f \circ a converges to f(x) (by 4_2).
+    f \circ a is into B.
+    f(x) is a closure point of B.
+    Contradiction.
+  End.
+  G and H are nonempty.
+  E = G \cup H.
+  G and H are separated.
+QED.
+
+Theorem 4_23. Suppose p<q and f is continuous and Dom(f)={s in Real|p<=s<=q}.
+  Suppose f(p)<y<f(q). Then there exists x such that p<x<q and f(x)=y.
+Proof.
+  For any a,b \in Dom(f) for any c \in Real if a<c<b then c \in Dom(f).
+  Dom(f) is connected (by 2_47).
+  f[Dom(f)] is connected (by 4_22).
+  y \in f[Dom(f)] (by 2_47).
+QED.
+
+################
+# Discontinuities
+
+Definition 4_25a. Suppose there exists y such that p<y
+  and for all x if p<=x<y then x \in Dom(f). lim+(f,p)=q
+  iff for any sequence a into Dom(f) if for all n a(n)>p
+  and a converges to p then f \circ a converges to q.
+
+Definition 4_25b. Suppose there exists y such that y<p
+  and for all x if y<x<=p then x \in Dom(f). lim-(f,p)=q
+  iff for any sequence a into Dom(f) if for all n a(n)<p
+  and a converges to p then f \circ a converges to q.

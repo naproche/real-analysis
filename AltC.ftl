@@ -1,4 +1,4 @@
-[prove off ][read real-analysis/numbers.ftl] [prove on ]
+[prove off ][read numbers.ftl] [prove on ]
 
 Signature. A complex number is a mathematical object.
 
@@ -63,8 +63,32 @@ Signature 1_25_M5. Let x be a complex number. \x is a complex number such that x
 Axiom 1_25_D1. Let x,y,z be complex numbers. x**(y++z) = (x**y)++(x**z).
 Axiom 1_25_D2. Let x,y,z be complex numbers. (x++y)**z = (x**z)++(y**z).
 
+Theorem 1_26_a. Let a and b be real numbers. Let x and y be complex numbers such that
+x == (a,0) and y ==(b,0). Then x++y == (a+b,0).
+
+Proof. x++y == (a + b, 0 + 0). qed.
+
+Theorem 1_26_b. Let a and b be real numbers. Let x and y be complex numbers such that
+x == (a,0) and y ==(b,0). Then x**y == (a*b,0).
+
 Theorem 1_28. i**i = _One.
 
 Theorem 1_29. Let a,b be real numbers. Let x,y be complex numbers such that x == (a,0) and y == (b,0). x ++ (y**i) == (a,b).
 
-Signature 1_30. Let x be a complex number. conj(x) is a complex number such that conj(x) == (a,-b).
+Signature. Let x be a complex number. conj(x) is a complex number.
+
+Definition 1_30. Let x be a complex number. conj(x) == (Re(x),-Im(x)).
+
+Signature. Let x be a complex number. neg(x) is a complex number.
+
+Definition. Let x be a complex number. neg(x) == (-Re(x),-Im(x)).
+
+Definition. Let x be a complex number. x is complexreal iff Im(x) = 0.
+
+Axiom 1_31_a. Let z,w be complex numbers. conj(z++w) = conj(z) ++ conj(w).
+Axiom 1_31_b. Let z,w be complex numbers. conj(z**w) = conj(z) ** conj(w).
+Axiom 1_31_c1. Let z be a complex number. z ++ (conj(z)) == (Re(z)+Re(z),0).
+Axiom 1_31_c2. Let z be a complex number. z ++ (neg(conj(z))) == (0,Im(z)+Im(z)).
+Axiom 1_31_d1. Let z be a complex number. z ** (conj(z)) is complexreal.
+Axiom 1_31_d2. Let z be a complex number such that Re(z) is not 0. Re(z ** (conj(z))) 
+is positive.

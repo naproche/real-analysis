@@ -111,7 +111,7 @@ E is countable. #Indeed, after purging the computer does not know how to prove t
 Proof.
 Take a function f such that Dom(f)=NAT and f is bijective onto A.
 
-End.
+#Indeed, after purging the computer does not know how to prove this..
 #first idea: try to define subsequences and work from that. Difficulty: define restrictions of 
 #functions. 
 

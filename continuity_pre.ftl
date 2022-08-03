@@ -53,7 +53,7 @@ Let the product of x and y denote x * y.
 
 Signature 1_5. x < y is an atom.
 Let x > y stand for y < x.
-Let x<=y stand for x < y or x = y.
+Definition. x<=y iff x<y or x=y.
 Let x>=y stand for y<=x.
 
 Axiom 1_5_a. not x < x.
