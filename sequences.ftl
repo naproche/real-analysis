@@ -1,3 +1,6 @@
+[prove off]
+[check off]
+
 [read real-analysis/vocabulary.ftl]
 [read real-analysis/numbers.ftl]
 
@@ -21,6 +24,26 @@ Axiom. If x is negative then |x| = -x.
 Axiom. x is 0 iff |x| = 0.
 Proposition. Let x be a real number. |x| >= 0.
 Proposition. Let x be a real number. |-x| = |x|.
+Proposition MultAbs. Let x,y be real numbers. |x*y| = |x|*|y|.
+Proof.
+  Case x is positive.
+    Case y is positive. Then x*y is positive.
+      |x*y| = x*y = |x|*|y|.
+    end.
+    Case y is negative. Then x*y is negative.
+      |x*y| = -(x*y) = x*(-y) = |x|*|y|.
+    end.
+  end.
+  Case x is negative.
+    Case y is negative. Then x*y is positive.
+      |x*y| = x*y = (-x)*(-y) = |x|*|y|.
+    end.
+    Case y is positive. Then x*y is negative.
+      |x*y| = -(x*y) = (-x)*y = |x|*|y|.
+    end.
+  end.
+qed.
+
 
 Signature. dist(x,y) is a real number.
 Axiom. dist(x,y) = |x - y|.
@@ -44,6 +67,9 @@ Signature. max(x,y) is a real number.
 Axiom. If x >= y then max(x,y) = x.  
 Axiom. If x < y then max(x,y) = y.
 Theorem. max(x,y) >= x and max(x,y) >= y.
+
+Signature. sqrt(x) is a real number.
+Axiom. sqrt(x)*sqrt(x) = x.
 
 
 ### Sequences
@@ -470,55 +496,185 @@ Proof.
     cn converges to c.
     Then c +' a converges to c + x.
 qed.
+
  
 Theorem ProdConstConv.
   Let a be a sequence. Let x,c be real numbers. Assume a converges to x. Then c*'a converges to c*x.
 Proof.
     Case c=0.
         We have c*x=0.
-        Let us show that for every n (c*'a)(n)=0.
+        Let us show that for every natural number n (c*'a)(n)=0.
+          Let n be a natural number.
             (c*'a)(n) .=c*a(n)
                        .=0*a(n)
                        .=0.
         Hence c*'a converges to c*x.
- 
+        end.
     end.
     Case c!=0.
       Let eps be a positive real number.
-      Take a positive real number oneovereps such that oneovereps=1/(|c|)*eps.
+      Take a positive real number oneovereps such that oneovereps = 1/(|c|)*eps.
       Take N such that for every n such that N<n dist(a(n),x)<oneovereps.
       Let us show that for every n such that N<n dist(c*(a(n)), c*x)< eps.
-        Assume N<n.
-        |(c*a(n))-(c*x)|  .=|(c*a(n))+(-1)*(c*x)|
-                          .=|(c*a(n))+(((-1)*c)*x)|
-                          .=|(c*a(n))+((c*(-1))*x)|
-                          .=|(c*a(n))+(c*((-1)*x))|
-                          .=|(c*a(n))+(c*(-x))|
-                          .=|c*(a(n)-x)|
-                          .=|c|*|(a(n)-x)|.
+        Let n be natural number. Assume N<n.
+        |(c*a(n))-(c*x)|  .=|c*(a(n)-x)| (by Dist2)
+                          .=|c|*|(a(n)-x)| (by MultAbs).
         |c|*dist(a(n),x)<|c|*oneovereps.
         Hence |(c*a(n))-(c*x)|<|c|*oneovereps.
-        |c|*oneovereps=|c|*(1/(|c|)*eps) .= (|c|*(1/(|c|))*eps
-                                         .= 1*eps
-                                         .=eps.
+        |c|*oneovereps  = |c|*(1/(|c|)*eps) = (|c|*1/(|c|))*eps = 1*eps = eps.
         Therefore dist(c*(a(n)),c*x)<eps.
        end.
     end.
 qed.
 
 
-Axiom ConstMultSum.
+Lemma ConstMultSum.
   Let a,b be sequences. Let x,y be real numbers such that for every n b(n)=y*(a(n)+(-x)).
   Assume a converges to x. Then b converges to 0.
+Proof.
+    Define sum(k) = (-x) + a(k) for k in NN.
+    sum is a sequence.
+    Let us show that sum converges to 0.
+    Proof.
+        We have sum = (-x) +' a.
+        Hence sum converges to (-x) + x.
+        (-x) + x = 0.
+    qed.
+    Let us show that for every n b(n) = y * sum(n).
+    Proof. Let n be a natural number.
+        b(n) = y * (a(n) + (-x)) = y * ((-x) + a(n)) = y * sum(n).
+    qed.
+    Hence b = y *' sum.
+    Hence b converges to 0.
+qed.
 
 
-Axiom ProdConv.
+
+Theorem ProdConv.
   Let a,b be sequences. Let x,y be real numbers. Assume a converges to x and b converges to y.
   Then a**b converges to x*y.
+Proof.
+    (1) Define s1(k) = (a(k) - x) * (b(k) - y) for k in NN.
+    Let us show that s1 converges to 0.
+    Proof.
+        Let eps be a positive real number.
+        Take a positive real number rooteps such that rooteps = sqrt(eps).
+        Take N1 such that for every n such that N1 < n dist(a(n),x) < rooteps.
+        Take N2 such that for every n such that N2 < n dist(b(n),y) < rooteps.
+        Take N such that N = max(N1,N2).
+        Let us show that for every n such that N < n dist(s1(n),0) < eps.
+        Proof.
+            Let n be a natural number such that N < n.
+            dist(a(n),x) < rooteps and dist(b(n),y) < rooteps.
+            dist(a(n),x), dist(b(n),y) and rooteps are not negative.
+            Then dist(a(n),x) * dist(b(n),y) < eps.
+            Hence |a(n) - x| * |b(n) - y| < eps.
+            Hence |(a(n) - x) * (b(n) - y)| < eps.
+            Hence |((a(n) - x) * (b(n) - y)) - 0| < eps.
+       qed.
+    qed.
+    (2) Define s2(k) = (x * (b(k) + (-y))) + (y * (a(k) + (-x))) for k in NN.
+    Let us show that s2 converges to 0.
+    Proof.
+        (3) Define s2a(k) = y * (a(k) + (-x)) for k in NN.
+        (4) Define s2b(k) = x * (b(k) + (-y)) for k in NN.
+        s2a, s2b are sequences.
+        Define sum1(k) = a(k) + (-x) for k in NN.
+        Define sum2(k) = b(k) + (-y) for k in NN.
+        sum1, sum2 are sequences.
+        sum1 = (-x) +' a and sum2 = (-y) +' b.
+        sum1, sum2 converge to 0.
+        We have s2a = y *' sum1 and s2b = x *' sum2.
+        s2a, s2b converge to 0. 
+        Let us show that for every n s2(n) = s2b(n) + s2a(n).
+        Proof. Let n be a natural number.
+            s2(n) .= (x * (b(n) + (-y))) + (y * (a(n) + (-x))) (by 2)
+                  .= s2b(n) + s2a(n) (by 3, 4).
+        qed.
+        Hence s2 converges to 0.
+    qed.
+    (5) Define s3(k) = (a(k) * b(k)) - (x * y) for k in NN.
+    Let us show that s3 converges to 0.
+    proof.
+        Let us show that for every n s3(n) = s1(n) + s2(n).
+        Proof. Let n be a natural number.
+            s3(n) .= (a(n) * b(n)) - (x * y) (by 5)
+                  .= ((a(n) - x) * (b(n) - y)) + ((x * (b(n) - y)) + (y * (a(n) - x))) (by Identity1)
+                  .= s1(n) + s2(n) (by 1, 2).
+        qed.
+        Hence s3 = s1 +' s2.
+        Therefore the thesis.
+    qed. 
+    Let eps be a positive real number.
+    Take N such that for every n such that N < n dist(s3(n),0) < eps.
+    Let us show that for every n such that N < n dist(a(n) * b(n),x * y) < eps.
+    Proof.
+        Let n be a natural number such that N < n.
+        dist(s3(n),0) .= dist((a(n) * b(n)) - (x * y),0) (by 5)
+                      .= |((a(n) * b(n)) - (x * y)) - 0|
+                      .= |(a(n) * b(n)) - (x * y)|
+                      .= dist(a(n) * b(n),x * y).
+    qed.
+qed.
 
-Axiom DivConv.
+
+
+Theorem DivConv.
   Let a be a sequence. Let x be a real number such that x !=0. Assume a converges to x.
   Assume for every n a(n)!=0. Then div(a) converges to 1/x.
+Proof.
+    Let eps be a positive real number.
+    |x| != 0.
+    
+    #could jus write take m such that. Then no yellow error.
+                                                       
+    Let m be a natural number such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
+    Let us show that for every n such that m < n 1/2 * |x| < |a(n)|.
+    Proof. 
+        Let n be a natural number such that m < n.
+        a(n), |a(n)|, -|a(n)|, |x| - |a(n)|, x - a(n), |x - a(n)|, a(n) - x, |a(n) - x|, |x| + (-|a(n)|), (|x| + (-|a(n)|)) + (-|x|) are real numbers.
+        Let us show that |x| - |a(n)| < 1/2 * |x|.
+        Proof.
+            |x| - |a(n)| <= |x - a(n)|.
+            |x - a(n)| = |-(x - a(n))| = |a(n) - x|.
+            |a(n) - x| < 1/2 * |x|.
+            Hence the thesis.
+        qed.
+
+        Let us show that -|a(n)| < (-1/2) * |x|.
+            (|x| - |a(n)|) + (-|x|) < (1/2 * |x|) + (-|x|). 
+            (|x| - |a(n)|) + (-|x|) = -|a(n)|.
+
+            -|a(n)| < (1/2 * |x|) + (-|x|).
+            (1/2 * |x|) + (-|x|) = (1/2 * |x|) + ((1/2*(-|x|)) + (1/2*(-|x|))) = (-1/2) * |x|.
+        qed.
+
+        Therefore |a(n)| > |x| * 1/2.
+    qed.
+   
+    Take N1 such that for every n such that N1 < n dist(a(n),x) < (1/2 * eps) * (|x| * |x|). 
+    Take N2 such that N2 = max(N1,m).
+    Let us show that for every n such that N2 < n dist(1/a(n),1/x) < eps.
+    Proof.
+        Let n be a natural number such that N2 < n.
+        Then we have N1 < n and m < n.
+        Let us show that dist(1/a(n),1/x) < ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)).
+        Proof.
+            dist(1/a(n),1/x) .= |1/a(n) - 1/x|
+                              .= |(1*1/a(n)) - (1*1/x)| (by 1_12_M4)
+                              .= |((x*1/x) * 1/a(n)) - ((a(n)*1/a(n)) * 1/x)| (by 1_12_M5)
+                              .= |(x*(1/x * 1/a(n))) - (a(n)*(1/a(n) * 1/x))| (by 1_12_M3)
+                              .= |(x*(1/x * 1/a(n))) - (a(n)*(1/x * 1/a(n)))| (by 1_12_M2)
+                              .= |(x-a(n))*(1/x * 1/a(n))| (by Dist3)
+                              .= |x-a(n)|*|1/x * 1/a(n)| (by MultAbs).
+            |1/x * 1/a(n)| is positive.
+            |x - a(n)| = dist(a(n),x).
+            |x-a(n)|*|1/x * 1/a(n)|  < ((1/2 * eps) * (|x| * |x|)) * |1/x * 1/a(n)|.
+        qed.
+
+        (eps * (|x| * |x|)) * (1/2 * |1/x|), 1 * (1/|a(n)|), 2 * (1/|x|), dist(1/a(n),1/x),
+        ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)), ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)) are real numbers.
+
 
 
 
@@ -539,18 +695,77 @@ Definition ConvSubSeq.
 Axiom IndSucc.
   n<n+1.
 
+
 Axiom IndPrec.
   Assume n !=0. Then there exists m such that n=m+1.
 
 Axiom IndPlusOne. 
   Assume n<m. Then n+1 <=m.
 
-Axiom SubSeqLeq.
-  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
 
-Axiom LimitSubSeq. 
+###Problem
+
+
+Lemma SubSeqLeq.
+  Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
+Proof.
+    We can show by induction that n <= i(n) for every n.
+    proof.
+        Let n be a natural number.
+        Case n=0.
+            Let us show that 0<= i(0).
+            i(0) is a natural number.
+            Therefore i(0)>= 0. 
+        end.
+        Case n !=0.
+            Take m such that n=m+1.
+            Hence m<n.
+            Therefore  m<=i(m).
+            Hence m+1 <= i(m)+1.
+            Then i(m)<i(m+1). 
+            Hence i(m)+1<= i(m+1).
+            Then m+1 <= i(m+1).
+            Hence n <= i(n). qed.
+        end.
+    qed.
+qed.
+
+
+[prove on]
+[check on]
+
+
+Lemma LimitSubSeq.
   Let a be a sequence. Let x be a real number. 
-  a converges to x iff for every index sequence i Subseq(a,i) converges to x.
+  a converges to x if and only if for every index sequence i Subseq(a,i) converges to x.
+Proof. 
+     Let us show that if a converges to x then for every index sequence i
+     Subseq(a, i) converges to x.
+     Proof.
+          Assume a  converges to x. Let i be an index sequence. Let eps be a 
+          positive real number. Take N such that for every n such that N<n dist(a(n),x)<eps.
+          Let us show that for every n such that N<n dist(Subseq(a,i)(n),x)<eps.
+          Proof.
+              Let n be a natural number such that N<n.
+              Then n<=i(n).
+              Hence N< i(n).
+              Hence dist(Subseq(a,i)(n),x)=dist(a(i(n)),x)<eps.
+          qed.
+      qed.
+
+      Let us show that if for every index sequence i Subseq(a, i) converges to x
+      then a converges to x.
+      Proof. 
+            Assume for every index sequence i Subseq(a, i) converges to x.
+            Define i(n) = n for n in NN.
+            i is an index sequence.
+            Subseq(a, i) converges to x.
+            For every n a(n) = Subseq(a, i)(n).
+            Hence a = Subseq(a, i).
+            Hence a converges to x.
+      qed.
+qed.
+
 
 Axiom BolzanoWeierstrass.
   Let a be a bounded sequence. Then a has some convergent subsequence.
