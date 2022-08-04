@@ -430,9 +430,9 @@ Lemma 5_8_2a.
   Let f be a real map.
   Let p be a real number such that p is a limit point of Dom(f).
   Let q be a real number such that lim(f,p)=q.
-  Therefore if for every t \in Dom(f) f(t)<=0 then q<=0.
+  Suppose for every t \in Dom(f) f(t)<=0. Then q<=0.
 Proof.
-  Assume q > 0.
+  Suppose the contrary.
   Then q is a positive real number.
   Take del such that for any t \in Dom(f)
     if 0<d(t,p)<del then d(f(t),q)<q (by 5_x).
@@ -441,6 +441,7 @@ Proof.
   Then d(f(t),q)<q.
   Then q-q < f(t) (by d4).
   Then 0 < f(t).
+  Contradiction.
 QED.
 
 Lemma 5_8_2b.
@@ -448,9 +449,9 @@ Lemma 5_8_2b.
   Let p be a real number such that p is a limit point of Dom(f).
   Let q be a real number such that lim(f,p)=q.
   Let c be a real number.
-  If for any t \in Dom(f) f(t)>=0 then q>=0.
+  Suppose for any t \in Dom(f) f(t)>=0. Then q>=0.
 Proof.
-  Assume q < 0.
+  Suppose the contrary.
   Then -q is a positive real number.
   Take del such that for any t \in Dom(f)
     if 0<d(t,p)<del then d(f(t),q)<-q (by 5_x).
@@ -459,8 +460,8 @@ Proof.
   Then d(f(t),q)<-q.
   Then f(t) < q+(-q) (by d4).
   Then f(t) < 0.
+  Contradiction.
 QED.
-
 
 Lemma LimitOfRestrictedFunction.
   Let f,g be real map such that Dom(g) is a subset of Dom(f).
@@ -475,9 +476,11 @@ Proof.
     Let us show that for any t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
       Take t \in Dom(g).  
       Then t \in Dom(f). Indeed Dom(g) is a subset of Dom(f).
-      Assume 0<d(t,p)<del.
-      Then d(f(t),q)<eps.
-      THen d(g(t),q)<eps. Indeed g(t) = f(t).
+      Let us show that if 0<d(t,p)<del then d(g(t),q)<eps.
+        Assume 0<d(t,p)<del.
+        Then d(f(t),q)<eps.
+        THen d(g(t),q)<eps. Indeed g(t) = f(t).
+      End.
     End.
   End.
 QED.
