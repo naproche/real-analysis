@@ -11,6 +11,7 @@
 
 
 Let x,y,z denote real numbers.
+Let z denote a real number.
 Let eps, del denote positive real numbers.
 Let o denote an object.
 Let f denote a map.
@@ -320,12 +321,13 @@ Proof.
       t belongs to Dom(f++g).
       DQ(f++g,z)(t) = ((f++g)(t)-((f++g)(z)))//(t-z). 
       ((f++g)(t)-((f++g)(z)))//(t-z) = ((f(t)+g(t))-(f(z)+g(z)))//(t-z).
-      ((f(t)+g(t))-(f(z)+g(z))) = (((f(t)+g(t))-f(z))-g(z)).
+      ((f(t)+g(t))-(f(z)+g(z))) = ((f(t)+g(t))+(-f(z)-g(z))).
+      ((f(t)+g(t))+(-f(z)-g(z))) = (((f(t)+g(t))-f(z))-g(z)).
       ((f(t)+g(t))-(f(z)+g(z)))//(t-z) = (((f(t)+g(t))-f(z))-g(z))//(t-z).
       (((f(t)+g(t))-f(z))-g(z))//(t-z) = ((f(t)+(g(t)-f(z)))-g(z))//(t-z).
       #Ontology
-      f(t) is a real number and f(z) is a real number. Indeed f is a real map.
-      g(t) is a real number and g(z) is a real number. Indeed g is a real map.
+      f(t) is a real number and f(z) is a real number. Indeed f is a real map and t,z \in Dom(f).
+      g(t) is a real number and g(z) is a real number. Indeed g is a real map and t,z \in Dom(g).
       ((f(t)+(g(t)-f(z)))-g(z))//(t-z) = ((f(t)+(-f(z) + g(t)))-g(z))//(t-z).
       ((f(t)+(-f(z) + g(t)))-g(z))//(t-z) = (((f(t)-f(z))+g(t))-g(z))//(t-z).
       (((f(t)-f(z))+g(t))-g(z))//(t-z) = ((f(t)-f(z))+(g(t)-g(z)))//(t-z).
@@ -341,10 +343,8 @@ Proof.
   
   D(f++g,z)=D(f,z)+D(g,z).
   Proof.
-    Take real number t such that lim(DQ(f++g,z),z) = t.
-    D(f++g,z) = t.
     lim(DQ(f,z),z) = D(f,z) and lim(DQ(g,z),z) = D(g,z).
-    lim(DQ(f++g,z),z) = D(f,z) + D(g,z) = t = D(f++g,z).
+    lim(DQ(f++g,z),z) = D(f,z) + D(g,z).
     Therefore the thesis.
   end.
 end.
@@ -382,9 +382,11 @@ Proof.
       Let t belong to Dom(DQ(f**g,z)). Then t != z.
       Indeed z does not belong to Dom(DQ(f**g,z)).
       (f**g)(t) is a real number and (f**g)(z) is a real number.
-      Indeed f**g is a real map.
-      DQ(f**g,z)(t) = ((f**g)(t)-(f**g)(z))//(t-z).
-      t belong to Dom(f**g).
+      Indeed f**g is a real map and t,z \in Dom(f**g).
+      t and z are real numbers such that t != z.
+      Then t-z is a real number and t-z != 0.
+      DQ(f**g,z)(t) = ((f**g)(t)-(f**g)(z))//(t-z) (by DifferenceQuotient).
+      f(t) and g(t) are real numbers and f**g is a real map and t,z \in Dom(f**g).
       ((f**g)(t)-(f**g)(z))//(t-z) = (((f(t))*(g(t)))-((f(z))*(g(z))))//(t-z).
       ((f(t)*g(t))-(f(z)*g(z)))//(t-z) = ((((f(t)*g(t))-(f(z)*g(z)))-(f(t)*g(z)))+(f(t)*g(z)))//(t-z).
       Indeed -(f(t)*g(z))+(f(t)*g(z)) = 0.
@@ -425,7 +427,8 @@ Proof.
     end.
 
     lim((restf**(DQ(g,z))),z) = f(z) * D(g,z).
-    D(f,z) * g(z) is a real number. DQ(f,z)**constg is a real map. #Ontology
+    D(f,z) * g(z) is a real number.
+    DQ(f,z)**constg is a real map. #Ontology
     lim(DQ(f,z)**constg,z) = D(f,z) * g(z).
     restf is a real map and DQ(g,z) is a real map. #Ontology
     Dom(DQ(g,z)) = Dom(restf). Then restf**DQ(g,z) is a real map. #Ontology
@@ -435,6 +438,7 @@ Proof.
   end.  
 end.
 
+[prove off]
 Theorem 5_3c.
   Let f be a real map such that f is defined on [x|y].
   Let g be a real map such that g is defined on [x|y].
@@ -444,7 +448,7 @@ Theorem 5_3c.
   Assume that for every element e if e belongs to Dom(g) then g(e) != 0.
   Then f|//|g is differentiable at z
   and D(f|//|g,z) = (((g(z))*(D(f,z)))-((D(g,z))*(f(z))))//(g(x)*g(x)).
-
+[prove on]
 
 
 
@@ -547,10 +551,19 @@ Lemma 5_8_4.
   Let a,b,c be positive real numbers.
   Then there exists a positive real number d such that
   d<a and d<b and d<c.
+Proof.
+  Case a <= b and a <= c.
+    There exists positive real number d such that d < a.
+  End.
+  Case b <= a and b <= c.
+    There exists positive real number d such that d < b.
+  End.
+  Case c <= b and c <= a.
+    There exists positive real number d such that d < c.
+  End.
+QED.
 
-
-
-Theorem 5_8.
+Theorem 5_8a.
   Let f be a real map that is defined on [x|y].
   Let p be an element of (x|y).
   If f is differentiable at p and f has local minima at p
@@ -648,4 +661,155 @@ Proof.
       Therefore the thesis (by 5_8_2b).
     End.
   End.
+QED.
+
+
+Theorem 5_8b.
+  Let f be a real map that is defined on [x|y].
+  Let p be an element of (x|y).
+  If f is differentiable at p and f has local maxima at p
+  then D(f,p)=0.
+Proof.
+  Assume f is differentiable at p and f has local maxima at p.
+  Let us show that there exists del such that x<p-del and p+del<y
+      and for any t \in [x|y] if d(t,p)<del then f(t)<=f(p).
+    Take positive real number del' such that for any t \in [x|y] if d(t,p)<del' then f(t)<=f(p) (by 5_7a).
+    Indeed f has local maxima at p.
+    Then p-x, y-p and del' are positive real numbers. Indeed p>x and y>p.
+    Take del such that del<p-x and del<y-p and del<del' (by 5_8_4).
+    del+x<p. Indeed (p-x)+x = p+(-x+x) = p.
+    Then x<p-del. Indeed (del+x)-del = (x+del)-del = x+(del-del) = x.
+    p+del<y. Indeed del+p = p+del.
+    Let us show that for any t \in [x|y] if d(t,p)<del then f(t)<=f(p).
+      Assume t \in [x|y] and d(t,p)<del.
+      Then d(t,p)<del'. Indeed del<del'.
+      Then f(t)<=f(p).
+    End.
+  End.
+  Take del such that x<p-del and p+del<y and for any t \in [x|y] if d(t,p)<del then f(t)<=f(p).
+  
+  Take real number d such that D(f,p)=d.
+  DQ(f,p) is a real map that is defined on [x|y]\\{p}.
+
+  Let us show that d>=0.
+    Let us show that (p-del|p) is a subset of Dom(DQ(f,p)).
+      Assume t \in (p-del|p).
+      Then p-del < t < p (by OpenInterval).
+      Then x < t and t < y and t != p. Indeed x < p-del and p < y.
+      Then t \in Dom(DQ(f,p)). Indeed Dom(DQ(f,p)) = [x|y]\\{p}.
+    End.
+    Define res1(t) = DQ(f,p)(t) for t in (p-del|p).
+    Then res1 is a real map. Indeed DQ(f,p) is a real map.
+    Then p is a limit point of Dom(res1). Indeed Dom(res1) = (p-del|p) and p \in [p-del|p].
+    Let us show that lim(res1,p)=d.
+      DQ(f,p), res1 are real map such that Dom(res1) is a subset of Dom(DQ(f,p)).
+      p is a limit point of Dom(res1).
+      For any t \in Dom(res1) res1(t) = DQ(f,p)(t).
+      lim(DQ(f,p),p)=d.
+      Then the thesis (by LimitOfRestrictedFunction).
+    End.
+    Let us show that for any t \in (p-del|p) res1(t)>=0.
+      Assume t \in (p-del|p).
+      Then p-del < t < p+del.
+      Then d(t,p)<del.
+      f(t)-f(p) <= 0. Indeed f(t)<=f(p).
+      1/(t-p) < 0 (by 5_8_3a). Indeed t-p<0.
+      Then (f(t)-f(p))*(1/(t-p)) >= 0*0 = 0.
+      res1(t) = (f(t)-f(p))*(1/(t-p)) (by DifferenceQuotient). Indeed res1(t) = DQ(f,p)(t).
+      Then res1(t) >= 0.
+    End.
+    Let us show that if for every t \in Dom(res1) res1(t)>=0 then d>=0.
+      res1 is a real map.
+      p is a real number such that p is a limit point of Dom(res1).
+      d is a real number such that lim(res1,p)=d.
+      Therefore the thesis (by 5_8_2b).
+    End.
+  End.
+  Let us show that d<=0.
+    Let us show that (p|p+del) is a subset of Dom(DQ(f,p)).
+      Assume t \in (p|p+del).
+      Then p < t < p+del (by OpenInterval).
+      Then x < t and t < y and t != p. Indeed x < p and p+del < y.
+      Then t \in Dom(DQ(f,p)). Indeed Dom(DQ(f,p)) = [x|y]\\{p}.
+    End.
+    Take a real map res2 such that res2 is defined on (p|p+del) and
+      for every t \in (p|p+del) res2(t) = DQ(f,p)(t) (by RestrictedFunction).
+    Then p is a limit point of Dom(res2). Indeed Dom(res2) = (p|p+del) and p \in [p|p+del].
+    Let us show that lim(res2,p)=d.
+      DQ(f,p), res2 are real map such that Dom(res2) is a subset of Dom(DQ(f,p)).
+      p is a limit point of Dom(res2).
+      For any t \in Dom(res2) res2(t) = DQ(f,p)(t).
+      lim(DQ(f,p),p)=d.
+      Then the thesis (by LimitOfRestrictedFunction).
+    End.
+    Let us show that for any t \in (p|p+del) res2(t)<=0.
+      Assume t \in (p|p+del).
+      Then p-del < t < p+del.
+      Then d(t,p)<del.
+      f(t)-f(p) <= 0. Indeed f(t)<=f(p).
+      1/(t-p) > 0 (by 5_8_3b). Indeed t-p>0.
+      Then (f(t)-f(p))*(1/(t-p)) <= 0*0 = 0.
+      res2(t) = (f(t)-f(p))*(1/(t-p)) (by DifferenceQuotient). Indeed res2(t) = DQ(f,p)(t).
+      Then res2(t) <= 0.
+    End.
+    Let us show that if for any t \in Dom(res2) res2(t)<=0 then d<=0.
+      res2 is a real map.
+      p is a real number such that p is a limit point of Dom(res2).
+      d is a real number such that lim(res2,p)=d.
+      0 is a real number.
+      Therefore the thesis (by 5_8_2a).
+    End.
+  End.
+QED.
+
+[prove off]
+Theorem 5_9.
+  Let f,g be real map that are defined on [x|y].
+  Let f be continuous and for any t \in (x|y) f is differentiable at t.
+  Let g be continuous and for any t \in (x|y) g is differentiable at t.
+  Then there exists p \in (x|y) such that
+    (f(y)-f(x))*D(g,p) = (g(y)-g(x))*D(f,p).
+Proof.
+  # [x|y] could be empty :( We have to fix this.
+  Assume that x<y.
+  
+  # function h
+  Define h(t) = ((f(y)-f(x))*g(t))-((g(y)-g(x))*f(t)) for t in [x|y].
+  Then h is a real map that is defined on [x|y].
+  h is continuous.
+  For any t \in (x|y) h is differentiable at t.
+  #[prove on]
+
+  x \in [x|y] and y \in [x|y].
+  Let us show that h(x) = h(y).
+    Let us show that h(x) = (f(y)*g(x))-(g(y)*f(x)).
+      h(x) = ((f(y)-f(x))*g(x))-((g(y)-g(x))*f(x)).
+      ((f(y)-f(x))*g(x)) = (f(y)*g(x))-(f(x)*g(x)).
+      ((g(y)-g(x))*f(x)) = (g(y)*f(x))-(g(x)*f(x)).
+      (g(y)*f(x))-(g(x)*f(x)) = -(g(x)*f(x))+(g(y)*f(x)).
+      Then -(-(g(x)*f(x))+(g(y)*f(x))) = (g(x)*f(x))-(g(y)*f(x)).
+      Then ((f(y)-f(x))*g(x))-((g(y)-g(x))*f(x)) = ((f(y)*g(x))-(f(x)*g(x)))+((g(x)*f(x))-(g(y)*f(x))).
+      ((f(y)*g(x))-(f(x)*g(x)))+((g(x)*f(x))-(g(y)*f(x))) = ((f(y)*g(x))+(-(f(x)*g(x))+(g(x)*f(x))))-(g(y)*f(x)).
+      ((f(y)*g(x))+(-(f(x)*g(x))+(g(x)*f(x))))-(g(y)*f(x)) = (f(y)*g(x))-(g(y)*f(x)).
+    End.  
+
+    Let us show that h(y) = -(f(x)*g(y))+(g(x)*f(y)).
+      h(y) = ((f(y)-f(x))*g(y))-((g(y)-g(x))*f(y)).
+      ((f(y)-f(x))*g(y)) = (f(y)*g(y))-(f(x)*g(y)).
+      ((g(y)-g(x))*f(y)) = (g(y)*f(y))-(g(x)*f(y)).
+      (f(y)*g(y))-(f(x)*g(y)) = -(f(x)*g(y))+(f(y)*g(y)).
+      Then -((g(y)*f(y))-(g(x)*f(y))) = -(g(y)*f(y))+(g(x)*f(y)).
+      Then ((f(y)-f(x))*g(y))-((g(y)-g(x))*f(y)) = (-(f(x)*g(y))+(f(y)*g(y)))+(-(g(y)*f(y))+(g(x)*f(y))).
+      (-(f(x)*g(y))+(f(y)*g(y)))+(-(g(y)*f(y))+(g(x)*f(y))) = (-(f(x)*g(y))+((f(y)*g(y))-(g(y)*f(y))))+(g(x)*f(y)).
+      (-(f(x)*g(y))+((f(y)*g(y))-(g(y)*f(y))))+(g(x)*f(y)) = -(f(x)*g(y))+(g(x)*f(y)).
+    End.
+    Then h(y) = -(f(x)*g(y))+(g(x)*f(y)).
+    -(f(x)*g(y))+(g(x)*f(y)) = (g(x)*f(y))-(f(x)*g(y)).
+    (g(x)*f(y))-(f(x)*g(y)) = (f(y)*g(x))-(g(y)*f(x)).
+  End.
+  # 3 cases
+  
+
+
+
 QED.

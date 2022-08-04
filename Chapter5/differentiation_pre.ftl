@@ -67,6 +67,9 @@ Definition 4_5. Suppose p \in Dom(f). f is continuous at p
   iff for any eps there exists del such that
   for any x \in Dom(f) if d(x,p)<del then d(f(x),f(p))<eps.
 
+Definition 4_1b. f is continuous iff for all p \in Dom(f) f is continuous at p.
+
+
 [prove off]
 Theorem 4_6. Suppose p \in Dom(f). Suppose p is a limit point of Dom(f).
   f is continuous at p iff lim(f,p)=f(p).
