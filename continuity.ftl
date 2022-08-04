@@ -15,8 +15,8 @@ Let E denote a subclass of Real.
 # Limits of maps
 
 Definition 4_1. Suppose p is a limit point of Dom(f).
-  lim(f,p) is a real number q such that for any eps there exists del
-  such that for any x \in Dom(f) if 0 < d(x,p) < del then d(f(x),q) < eps.
+  lim(f,p) = q iff for any eps there exists del such that
+  for any x \in Dom(f) if 0 < d(x,p) < del then d(f(x),q) < eps.
 
 Theorem 4_2. Suppose p is a limit point of Dom(f). lim(f,p) = q iff
   for any sequence a into Dom(f) if a unequally converges to p then f \circ a converges to q.
@@ -58,8 +58,9 @@ Proof.
   End.
 QED.
 
-Theorem Uniqueness. Let q1, q2 be real numbers. Suppose p is a limit point of Dom(f).
-  Suppose lim(f,p) = q1. Suppose lim(f,p) = q2. Then q1 = q2.
+Theorem Uniqueness. Let q1, q2 be real numbers.
+  Suppose p is a limit point of Dom(f).
+  Suppose lim(f,p) = q1 and lim(f,p) = q2. Then q1 = q2.
 Proof.
   Take a sequence a such that a is into Dom(f) and a unequally converges to p.
   f \circ a is a sequence.
@@ -68,10 +69,10 @@ Proof.
   q1 = q2 (by 3_2).
 QED.
 
-Theorem 4_4a. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
-  Then lim(f++g,p) = lim(f,p) + lim(g,p).
+Theorem 4_4a. Suppose Dom(f) = Dom(g) and p is a limit point of Dom(f).
+  Suppose lim(f,p) = x and lim(g,p) = y. Then lim(f++g,p) = x + y.
 Proof.
-  Take fsg = f ++ g. Take x = lim(f,p). Take y = lim(g,p).
+  Take fsg = f ++ g.
   Dom(f) = Dom(fsg).
   Let us show that for any sequence a into Dom(f)
   if a unequally converges to p then fsg \circ a converges to x + y.
@@ -85,10 +86,10 @@ Proof.
   lim(fsg,p) = x + y (by 4_2).
 QED.
 
-Theorem 4_4b. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
-  Then lim(f**g,p) = lim(f,p) * lim(g,p).
+Theorem 4_4b. Suppose Dom(f) = Dom(g) and p is a limit point of Dom(f).
+  Suppose lim(f,p) = x and lim(g,p) = y. Then lim(f**g,p) = x * y.
 Proof.
-  Take fmg = f ** g. Take x = lim(f,p). Take y = lim(g,p).
+  Take fmg = f ** g.
   Dom(f) = Dom(fmg).
   Let us show that for any sequence a into Dom(f)
   if a unequally converges to p then fmg \circ a converges to x * y.
@@ -102,19 +103,19 @@ Proof.
   lim(fmg,p) = x * y (by 4_2).
 QED.
 
-Theorem 4_4c. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(g).
-  Suppose for all z \in Dom(g) g(z) != 0. Suppose lim(g,p) != 0.
-  Then lim({f}/{g},p) = lim(f,p) // lim(g,p).
+Theorem 4_4c. Suppose Dom(f) = Dom(g) and p is a limit point of Dom(g).
+  Suppose lim(f,p) = x and lim(g,p) = y and y != 0.
+  Suppose for all z \in Dom(g) g(z) != 0.
+  Then lim({f}/{g},p) = x // y.
 Proof.
-  Take x = lim(f,p). Take y = lim(g,p).
   Let us show that for any sequence a into Dom(g)
   if a unequally converges to p then 1/{g} \circ a converges to 1/y.
     Suppose a is a sequence such that a is into Dom(g) and a unequally converges to p.
     1/{g} \circ a is a sequence.
+    1/{g} \circ a = 1/{g \circ a}.
     g \circ a converges to y (by 4_2).
     For any n we have (g \circ a)(n) != 0.
     1/{g \circ a} converges to 1/y (by 3_3c).
-    1/{g} \circ a = 1/{g \circ a}.
   End.
   lim(1/{g},p) = 1/y (by 4_2).
   lim({f}/{g},p) = x // y (by 4_4b).
@@ -132,11 +133,11 @@ Proof.
   Take del such that for all x if 0 < d(x,p) < del then x \notin Dom(f) (by 2_18).
 QED.
 
-Theorem 4_6. Suppose p \in Dom(f). Suppose p is a limit point of Dom(f).
+Theorem 4_6. Suppose p \in Dom(f) and p is a limit point of Dom(f).
   f is continuous at p iff lim(f,p) = f(p).
 
-Theorem 4_7. Suppose p \in Dom(f). Suppose f is into Dom(g).
-  Suppose f is continuous at p. Suppose g is continuous at f(p).
+Theorem 4_7. Suppose p \in Dom(f) and f is into Dom(g).
+  Suppose f is continuous at p and g is continuous at f(p).
   Then g \circ f is continuous at p.
 Proof.
   Suppose eps is a positive real number.
@@ -175,7 +176,7 @@ Proof.
 QED.
 
 Theorem 4_9. Suppose Dom(f) = Dom(g). Suppose p \in Dom(f).
-  Suppose f is continuous at p. Suppose g is continuous at p.
+  Suppose f is continuous at p and g is continuous at p.
   Then f ++ g is continuous at p and f ** g is continuous at p.
 Proof.
   Case p is a limit point of Dom(f).
@@ -215,9 +216,10 @@ Proof.
   End.
 QED.
 
-Lemma 4_14a. Suppose f is continuous. Suppose E \subseteq Dom(f).
-  Suppose E is compact. Then f[E] is compact.
+Lemma 4_14a. Suppose f is continuous and E \subseteq Dom(f).
+  If E is compact then f[E] is compact.
 Proof.
+  Suppose E is compact.
   Define g(x) = f(x) for x in E.
   Let us show that for any x \in E g is continuous at x.
     Suppose x \in E.
@@ -228,7 +230,7 @@ Proof.
   f[E] = g[E].
 QED.
 
-Theorem 4_16. Suppose f is continuous. Suppose Dom(f) is nonempty and compact.
+Theorem 4_16. Suppose f is continuous and Dom(f) is nonempty and compact.
   Then there exist p, q \in Dom(f) such that
   f(p) is the supremum of f[Dom(f)] and f(q) is the infimum of f[Dom(f)].
 Proof.
@@ -239,7 +241,7 @@ Proof.
   f(p) is the supremum of R and f(q) is the infimum of R.
 QED.
 
-Theorem 4_17. Suppose f is continuous. Suppose Dom(f) is compact.
+Theorem 4_17. Suppose f is continuous and Dom(f) is compact.
   Suppose f is injective. Then inv(f) is continuous.
 Proof.
   Take a map g such that g = inv(f).
@@ -266,7 +268,7 @@ Definition 4_18. f is uniformly continuous iff for any eps there exists del
 
 Corollary. If f is uniformly continuous then f is continuous.
 
-Theorem 4_19. Suppose f is continuous. Suppose Dom(f) is compact.
+Theorem 4_19. Suppose f is continuous and Dom(f) is compact.
   Then f is uniformly continuous.
 Proof.
   Take E = Dom(f).
@@ -344,8 +346,8 @@ Proof.
     a is into E and a converges to p.
   End.
 QED.
-
-Theorem 4_22. Suppose f is continuous. Suppose Dom(f) is connected.
+[prove on]
+Theorem 4_22. Suppose f is continuous and Dom(f) is connected.
   Then f[Dom(f)] is connected.
 Proof.
   Suppose the contrary.
@@ -385,9 +387,8 @@ Proof.
   Contradiction.
 QED.
 
-Theorem 4_23. Suppose p < q. Suppose Dom(f) = { s in Real | p <= s <= q }.
-  Suppose f is continuous. Suppose f(p) < y < f(q).
-  Then there exists x such that p < x < q and f(x) = y.
+Theorem 4_23. Suppose p < q and f is continuous and Dom(f) = { s in Real | p <= s <= q }.
+  Suppose f(p) < y < f(q). Then there exists x such that p < x < q and f(x) = y.
 Proof.
   For any a, b \in Dom(f) for any c \in Real if a < c < b then c \in Dom(f).
   Dom(f) is connected (by 2_47).
