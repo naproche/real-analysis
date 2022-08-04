@@ -41,6 +41,7 @@ Signature Distance. d(x,y) is a real number.
 Axiom d1. d(x,y) = 0 iff x = y.
 Axiom d2. d(x,y) = d(y,x).
 Axiom d3. Let z be a real number. d(x,z)<=d(x,y)+d(y,z).
+Axiom d4. Let c be a positive real number. d(x,y) < c iff y-c < x < y+c.
 
 Definition Sequence. A sequence is a map a
   such that Dom(a) = Natural and a is into Real.

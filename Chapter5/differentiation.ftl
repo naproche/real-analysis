@@ -1,9 +1,11 @@
 [prove off]
+[check off]
 [read preliminaries.ftl]
 [read real-analysis/numbers.ftl]
 [read real-analysis/Chapter5/differentiation_pre.ftl]
-[prove on]
 [timelimit 15]
+[prove off]
+[check off]
 
 Let x,y,z denote real numbers.
 Let eps, del denote positive real numbers.
@@ -384,3 +386,213 @@ Theorem 5_3b.
   Assume that for every element e if e belongs to Dom(g) then g(e) != 0.
   Then f|//|g is differentiable at z in x and y
   and D(f|//|g,z) = (((g(z))*(D(f,z)))-((D(g,z))*(f(z))))//(g(x)*g(x)).
+
+
+
+
+
+
+
+
+
+
+# Mean Value Theorems
+
+
+[prove on]
+[check on]
+
+Definition 5_7a.
+  Let f be a real map.
+  Let p be an element of Dom(f).
+  f has local minima at p iff there exists del such that
+    for any t \in Dom(f) if d(t,p)<del then f(t)>=f(p).
+
+Definition 5_7b.
+  Let f be a real map.
+  Let p be an element of Dom(f).
+  f has local maxima at p iff there exists del such that
+    for any t \in Dom(f) if d(t,p)<del then f(t)<=f(p).
+
+Lemma 5_8_1.
+  Let S be a subset of Real.
+  Let p be a real number.
+  If p is a limit point of S then for any eps there exists t \in S such that 0<d(t,p)<eps.
+Proof.
+  Assume that p is a limit point of S.
+  Take sequence f such that f is into S and f unequally converges to p (by LimitPoint).
+  Let eps be a positive real number.
+  Take a positive integer N such that for any positive integer n
+    if N<n then 0<d(f(n),p)<eps (by UneqConv).
+QED.
+
+Lemma 5_8_2a.
+  Let f be a real map.
+  Let p be a real number such that p is a limit point of Dom(f).
+  Let q be a real number such that lim(f,p)=q.
+  Therefore if for every t \in Dom(f) f(t)<=0 then q<=0.
+Proof.
+  Assume q > 0.
+  Then q is a positive real number.
+  Take del such that for any t \in Dom(f)
+    if 0<d(t,p)<del then d(f(t),q)<q (by 5_x).
+  Take t \in Dom(f) such that 0<d(t,p)<del (by 5_8_1).
+  Indeed Dom(f) is a subset of Real and p is a limit point of Dom(f) and del is a positive real number.
+  Then d(f(t),q)<q.
+  Then q-q < f(t) (by d4).
+  Then 0 < f(t).
+QED.
+
+Lemma 5_8_2b.
+  Let f be a real map.
+  Let p be a real number such that p is a limit point of Dom(f).
+  Let q be a real number such that lim(f,p)=q.
+  Let c be a real number.
+  If for any t \in Dom(f) f(t)>=0 then q>=0.
+Proof.
+  Assume q < 0.
+  Then -q is a positive real number.
+  Take del such that for any t \in Dom(f)
+    if 0<d(t,p)<del then d(f(t),q)<-q (by 5_x).
+  Take t \in Dom(f) such that 0<d(t,p)<del (by 5_8_1).
+  Indeed Dom(f) is a subset of Real and p is a limit point of Dom(f) and del is a positive real number.
+  Then d(f(t),q)<-q.
+  Then f(t) < q+(-q) (by d4).
+  Then f(t) < 0.
+QED.
+
+
+Lemma LimitOfRestrictedFunction.
+  Let f,g be real map such that Dom(g) is a subset of Dom(f).
+  Let p be a limit point of Dom(g).
+  Let q be a real number.
+  If for any t \in Dom(g) g(t) = f(t) and lim(f,p)=q then lim(g,p)=q.
+Proof.
+  Assume for any t \in Dom(g) g(t) = f(t) and lim(f,p)=q.
+  Let us show that lim(g,p)=q.
+    Assume that eps is a positive real number.
+    Take del such that for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps (by 5_x).
+    Let us show that for any t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
+      Take t \in Dom(g).  
+      Then t \in Dom(f). Indeed Dom(g) is a subset of Dom(f).
+      Assume 0<d(t,p)<del.
+      Then d(f(t),q)<eps.
+      THen d(g(t),q)<eps. Indeed g(t) = f(t).
+    End.
+  End.
+QED.
+
+Lemma 5_8_3a.
+  Let c be a real number such that c<0.
+  Then 1/c < 0.
+
+Lemma 5_8_3b.
+  Let c be a real number such that c>0.
+  Then 1/c > 0.
+
+Lemma 5_8_4.
+  Let a,b,c be positive real numbers.
+  Then there exists a positive real number d such that
+  d<a and d<b and d<c.
+
+
+
+Theorem 5_8.
+  Let f be a real map that is defined on [x|y].
+  Let p be an element of (x|y).
+  If f is differentiable at p in x and y and f has local minima at p
+  then D(f,p)=0.
+Proof.
+  Assume f is differentiable at p in x and y and f has local minima at p.
+  Let us show that there exists del such that x<p-del and p+del<y
+      and for any t \in [x|y] if d(t,p)<del then f(t)>=f(p).
+    Take positive real number del' such that for any t \in [x|y] if d(t,p)<del' then f(t)>=f(p) (by 5_7a).
+    Indeed f has local minima at p.
+    Then p-x, y-p and del' are positive real numbers. Indeed p>x and y>p.
+    Take del such that del<p-x and del<y-p and del<del' (by 5_8_4).
+    del+x<p. Indeed (p-x)+x = p+(-x+x) = p.
+    Then x<p-del. Indeed (del+x)-del = (x+del)-del = x+(del-del) = x.
+    p+del<y. Indeed del+p = p+del.
+    Let us show that for any t \in [x|y] if d(t,p)<del then f(t)>=f(p).
+      Assume t \in [x|y] and d(t,p)<del.
+      Then d(t,p)<del'. Indeed del<del'.
+      Then f(t)>=f(p).
+    End.
+  End.
+  Take del such that x<p-del and p+del<y and for any t \in [x|y] if d(t,p)<del then f(t)>=f(p).
+  
+  
+  Take real number d such that D(f,p)=d.
+  DQ(f,p) is a real map that is defined on [x|y]\\{p}.
+
+
+  Let us show that d<=0.
+    Let us show that (p-del|p) is a subset of Dom(DQ(f,p)).
+      Assume t \in (p-del|p).
+      Then p-del < t < p (by OpenInterval).
+      Then x < t and t < y and t != p. Indeed x < p-del and p < y.
+      Then t \in Dom(DQ(f,p)). Indeed Dom(DQ(f,p)) = [x|y]\\{p}.
+    End.
+    Take a real map res1 such that res1 is defined on (p-del|p) and
+      for every t \in (p-del|p) res1(t) = DQ(f,p)(t) (by RestrictedFunction).
+    Then p is a limit point of Dom(res1). Indeed Dom(res1) = (p-del|p) and p \in [p-del|p].
+    Let us show that lim(res1,p)=d.
+      DQ(f,p), res1 are real map such that Dom(res1) is a subset of Dom(DQ(f,p)).
+      p is a limit point of Dom(res1).
+      For any t \in Dom(res1) res1(t) = DQ(f,p)(t).
+      lim(DQ(f,p),p)=d.
+      Then the thesis (by LimitOfRestrictedFunction).
+    End.
+    Let us show that for any t \in (p-del|p) res1(t)<=0.
+      Assume t \in (p-del|p).
+      Then p-del < t < p+del.
+      Then d(t,p)<del.
+      f(t)-f(p) >= 0. Indeed f(t)>=f(p).
+      1/(t-p) < 0 (by 5_8_3a). Indeed t-p<0.
+      Then (f(t)-f(p))*(1/(t-p)) <= 0*0 = 0.
+      res1(t) = (f(t)-f(p))*(1/(t-p)) (by DifferenceQuotient). Indeed res1(t) = DQ(f,p)(t).
+      Then res1(t) <= 0.
+    End.
+    Let us show that if for every t \in Dom(res1) res1(t)<=0 then d<=0.
+      res1 is a real map.
+      p is a real number such that p is a limit point of Dom(res1).
+      d is a real number such that lim(res1,p)=d.
+      Therefore the thesis (by 5_8_2a).
+    End.
+  End.
+  Let us show that d>=0.
+    Let us show that (p|p+del) is a subset of Dom(DQ(f,p)).
+      Assume t \in (p|p+del).
+      Then p < t < p+del (by OpenInterval).
+      Then x < t and t < y and t != p. Indeed x < p and p+del < y.
+      Then t \in Dom(DQ(f,p)). Indeed Dom(DQ(f,p)) = [x|y]\\{p}.
+    End.
+    Take a real map res2 such that res2 is defined on (p|p+del) and
+      for every t \in (p|p+del) res2(t) = DQ(f,p)(t) (by RestrictedFunction).
+    Then p is a limit point of Dom(res2). Indeed Dom(res2) = (p|p+del) and p \in [p|p+del].
+    Let us show that lim(res2,p)=d.
+      DQ(f,p), res2 are real map such that Dom(res2) is a subset of Dom(DQ(f,p)).
+      p is a limit point of Dom(res2).
+      For any t \in Dom(res2) res2(t) = DQ(f,p)(t).
+      lim(DQ(f,p),p)=d.
+      Then the thesis (by LimitOfRestrictedFunction).
+    End.
+    Let us show that for any t \in (p|p+del) res2(t)>=0.
+      Assume t \in (p|p+del).
+      Then p-del < t < p+del.
+      Then d(t,p)<del.
+      f(t)-f(p) >= 0. Indeed f(t)>=f(p).
+      1/(t-p) > 0 (by 5_8_3b). Indeed t-p>0.
+      Then (f(t)-f(p))*(1/(t-p)) >= 0*0 = 0.
+      res2(t) = (f(t)-f(p))*(1/(t-p)) (by DifferenceQuotient). Indeed res2(t) = DQ(f,p)(t).
+      Then res2(t) >= 0.
+    End.
+    Let us show that if for any t \in Dom(res2) res2(t)>=0 then d>=0.
+      res2 is a real map.
+      p is a real number such that p is a limit point of Dom(res2).
+      d is a real number such that lim(res2,p)=d.
+      0 is a real number.
+      Therefore the thesis (by 5_8_2b).
+    End.
+  End.
+QED.
