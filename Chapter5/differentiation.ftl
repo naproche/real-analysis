@@ -4,8 +4,11 @@
 [read real-analysis/numbers.ftl]
 [read real-analysis/Chapter5/differentiation_pre.ftl]
 [timelimit 15]
-[prove off]
-[check off]
+
+
+[prove on]
+[check on]
+
 
 Let x,y,z denote real numbers.
 Let eps, del denote positive real numbers.
@@ -13,12 +16,6 @@ Let o denote an object.
 Let f denote a map.
 
 # SETS
-
-Definition ProperSubset.
-  A proper subset of S is a set S' such that
-    S' is subset of S and
-    there exists o \in S such that
-      o does not belong to S'.
 
 Definition SetMinus.
   Let S be a set.
@@ -29,33 +26,25 @@ Definition SetUnion.
   S \union T = {x | x \in S or x \in T}.
 
 
+
 # INTERVALS
 
 Definition OpenInterval.
-  (x | y) is a subset of Real such that
+  (x|y) is a subset of Real such that
   for every real number i
-  i belongs to (x | y) iff x < i < y.
+  i belongs to (x|y) iff x < i < y.
 
-Let S is open interval stand for S = (x | y)
+Let S is open interval stand for S = (x|y)
   for some real numbers x,y such that x < y.
 
-Lemma.
-  Let S be open interval.
-  S is subset of Real.
-
 Definition ClosedInterval.
-  [x | y] is a subset of Real such that
+  [x|y] is a subset of Real such that
   for every real number i
-  i belongs to [x | y] iff x <= i <= y.
+  i belongs to [x|y] iff x <= i <= y.
 
 Let S is closed interval stand for S = [x|y]
-  for some nonequal real numbers x,y such that x < y.
+  for some real numbers x,y such that x < y.
 
-Lemma.
-  Let S be closed interval. 
-  S is nonempty subset of Real and
-  S is bounded above and
-  S is bounded below.
 
 
 # DIFFERENCE QUOTIENT
@@ -66,12 +55,12 @@ Axiom DifferenceQuotient.
   Let z be an element of (x|y).
   DQ(f,z) is a real map g such that
     Dom(g) = [x|y] \\ {z} and
-    for every t \in Dom(g) g(t) = (f(t) - f(z))*(1/(t-z)).
+    for every t \in Dom(g) g(t) = (f(t)-f(z))*(1/(t-z)).
 
 Lemma.
-  Let f be a real map that is defined on [x | y].
-  Then for every z \in (x|y)
-  there exists DQ(f,z) and
+  Let f be a real map that is defined on [x|y].
+  Let z be an element of (x|y).
+  Then there exists DQ(f,z) and
   DQ(f,z) is a real map.
 
 
@@ -96,16 +85,14 @@ Signature. D(f,z) is an object.
 Axiom.
   Let f be a real map such that f is defined on [x|y].
   Let z be an element of (x|y).
-  Let g be DQ(f,z).
   Let t be a real number.
-  D(f,z)=t iff lim(g,z)=t.
+  D(f,z)=t iff lim(DQ(f,z),z)=t.
 
 Definition Differentiable.
-  Let f be a real map such that f is defined on [x|y].
-  Let z be an element of (x|y).
-  f is differentiable at z in x and y iff
+  Let f be a real map.
+  Let z be a limit point of Dom(f).
+  f is differentiable at z iff
     there exists a real number t such that D(f,z)=t.
-# Can we somehow remove "in x and y"?
 
 Lemma ConstantFunction.
   Let c be a real numbers. Let S be a subset of Real.
@@ -165,6 +152,7 @@ Proof.
       Then d(const(t),c)<eps.
     End.
   End.
+  Therefore the thesis (by 4_4).
 End.
 
 # The below lemma seems to follow directly from the definition
@@ -183,24 +171,21 @@ Lemma 5_x.
 Theorem 5_2.
   Let f be a real map such that f is defined on [x|y].
   Let z be an element of (x|y).
-  If f is differentiable at z in x and y
+  If f is differentiable at z
   then f is continuous at z.
 Proof.
   # constant function with value -f(z)
-  Take a real map const1 such that const1 is defined on [x|y]\\{z}
-  and for every t \in [x|y]\\{z} const1(t) = -f(z) (by ConstantFunction).
-  Indeed [x|y]\\{z} is a subset of Real.
+  Define const1(t) = -f(z) for t in [x|y]\\{z}.
+  Then const1 is a real map.
   # restriction of f
-  Take a real map Resf such that Resf is defined on [x|y]\\{z}
-  and for every t \in [x|y]\\{z} Resf(t) = f(t) (by RestrictedFunction).
-  Indeed [x|y]\\{z} is a subset of [x|y].
+  Define Resf(t) = f(t) for t in [x|y]\\{z}.
+  Then Resf is a real map.
   # identity map
-  Take a real map id such that id is defined on [x|y]\\{z}
-  and for every t \in [x|y]\\{z} id(t) = t.
+  Define id(t) = t for t in [x|y]\\{z}.
+  Then id is a real map.
   # constant function with value -z
-  Take a real map const2 such that const2 is defined on [x|y]\\{z}
-  and for every t \in [x|y]\\{z} const2(t) = -z (by ConstantFunction).
-  Indeed [x|y]\\{z} is a subset of Real.
+  Define const2(t) = -z for t in [x|y]\\{z}.
+  Then const2 is a real map.
   # difference quotient
   DQ(f,z) is a real map that is defined on [x|y]\\{z}.
   
@@ -226,7 +211,7 @@ Proof.
     End.
   End.
 
-  Assume that f is differentiable at z in x and y.
+  Assume that f is differentiable at z.
 
   #Show: f(t) - f(z) -> 0 for t->z.
   Let us show that lim(h1,z)=0.
@@ -249,9 +234,8 @@ Proof.
   End.
 
   # Show: f(t) = f(t) - f(z) + f(z)
-  Take a real map const3 such that const3 is defined on [x|y]\\{z}
-  and for every t \in [x|y]\\{z} const3(t) = f(z) (by ConstantFunction).
-  Indeed [x|y]\\{z} is a subset of Real.
+  Define const3(t) = f(z) for t in [x|y]\\{z}.
+  Then const3 is a real map.
   Let us show that Resf = h1++const3.
     Dom(Resf) = [x|y]\\{z} = Dom(h1++const3).
     Let us show that for every t \in [x|y]\\{z} Resf(t) = (h1++const3)(t).
@@ -305,9 +289,9 @@ Theorem 5_3a.
   Let f be a real map such that f is defined on [x|y].
   Let g be a real map such that g is defined on [x|y].
   Let z be an element of (x|y).
-  Assume that f is differentiable at z in x and y.
-  Assume that g is differentiable at z in x and y.
-  Then f++g is differentiable at z in x and y and
+  Assume that f is differentiable at z.
+  Assume that g is differentiable at z.
+  Then f++g is differentiable at z and
   D(f++g,z)=D(f,z)+D(g,z).
 Proof.  
   Let A, B be real numbers.  
@@ -365,26 +349,100 @@ Proof.
   end.
 end.
 
-Theorem 5_3b.
-  Let f be a real map such that f is defined on [x|y].
-  Let g be a real map such that g is defined on [x|y].
-  Let z be an element of (x|y).
-  Assume that f is differentiable at z in x and y.
-  Assume that g is differentiable at z in x and y.
-  Then f**g is differentiable at z in x and y
-  and D(f**g,z) = ((D(f,z))*g(z)) + (f(z)*(D(g,z))).
-Proof.
-  
-end.
+[prove off]
 
 Theorem 5_3b.
   Let f be a real map such that f is defined on [x|y].
   Let g be a real map such that g is defined on [x|y].
   Let z be an element of (x|y).
-  Assume that f is differentiable at z in x and y.
-  Assume that g is differentiable at z in x and y.
+  Assume that f is differentiable at z.
+  Assume that g is differentiable at z.
+  Then f**g is differentiable at z
+  and D(f**g,z) = ((D(f,z))*g(z)) + (f(z)*(D(g,z))).
+Proof.
+ 
+  g(z) is a real number. [x|y]\\{z} is a subset of Real.
+  Take real map constg such that constg is defined on [x|y]\\{z}
+  and for every x' \in [x|y]\\{z} constg(x') = g(z) (by ConstantFunction).
+  Take real map restf such that restf is defined on [x|y]\\{z}
+  and for every x' \in [x|y]\\{z} restf(x') = f(x').
+ 
+  Let us show that DQ(f**g,z) = ((DQ(f,z))**constg) ++ (restf**(DQ(g,z))).
+    Dom(DQ(f**g,z)) =  Dom(((DQ(f,z))**constg) ++ (restf**(DQ(g,z)))).
+    Proof.
+      Dom(DQ(f**g,z)) = [x|y] \\ {z}. Indeed Dom(f) = Dom(g).
+      Dom(((DQ(f,z))**constg) ++ (restf**(DQ(g,z)))) = [x|y] \\ {z}.
+      Proof.
+        Dom((DQ(f,z))**constg) = [x|y] \\ {z}.
+        Dom((restf**(DQ(g,z)))) = [x|y] \\ {z}.
+      end.
+    end.
+    Let us show that for every t \in Dom(DQ(f**g,z))
+    DQ(f**g,z)(t) = (((DQ(f,z))**constg)++(restf**(DQ(g,z))))(t).
+      Let t belong to Dom(DQ(f**g,z)). Then t != z.
+      Indeed z does not belong to Dom(DQ(f**g,z)).
+      (f**g)(t) is a real number and (f**g)(z) is a real number.
+      Indeed f**g is a real map.
+      DQ(f**g,z)(t) = ((f**g)(t)-(f**g)(z))//(t-z).
+      t belong to Dom(f**g).
+      ((f**g)(t)-(f**g)(z))//(t-z) = (((f(t))*(g(t)))-((f(z))*(g(z))))//(t-z).
+      ((f(t)*g(t))-(f(z)*g(z)))//(t-z) = ((((f(t)*g(t))-(f(z)*g(z)))-(f(t)*g(z)))+(f(t)*g(z)))//(t-z).
+      Indeed -(f(t)*g(z))+(f(t)*g(z)) = 0.
+      ((((f(t)*g(t))-(f(z)*g(z)))-(f(t)*g(z)))+(f(t)*g(z)))//(t-z) = ((((f(t)*g(t))-(f(t)*g(z)))-(f(z)*g(z)))+(f(t)*g(z)))//(t-z).
+      ((((f(t)*g(t))-(f(t)*g(z)))-(f(z)*g(z)))+(f(t)*g(z)))//(t-z) = (((f(t)*g(t))-(f(t)*g(z)))+(-(f(z)*g(z))+(f(t)*g(z))))//(t-z).
+      ((f(t)*g(t))-(f(t)*g(z))) = ((f(t))*(g(t)-g(z))). (-(f(z)*g(z))+(f(t)*g(z))) = ((g(z))*(f(t)-f(z))).
+      (((f(t)*g(t))-(f(t)*g(z)))+(-(f(z)*g(z))+(f(t)*g(z))))//(t-z) = (((f(t))*(g(t)-g(z)))+((g(z))*(f(t)-f(z))))//(t-z).
+      (((f(t))*(g(t)-g(z)))+((g(z))*(f(t)-f(z))))//(t-z) = (((f(t))*(g(t)-g(z)))//(t-z)) + (((g(z))*(f(t)-f(z)))//(t-z)).
+      #Technicalities
+      DQ(g,z) is a real map. Dom(DQ(g,z)) = [x|y] \\ {z}. Then t belongs to Dom(DQ(g,z)).
+      For every t' \in Dom(DQ(g,z)) DQ(g,z)(t') = (g(t')-g(z))*(1/(t'-z)) (by DifferenceQuotient).
+      (g(t)-g(z))//(t-z) = DQ(g,z)(t).
+
+      (f(t)-f(z))//(t-z) = DQ(f,z)(t).
+      (((f(t))*(g(t)-g(z)))//(t-z)) + (((g(z))*(f(t)-f(z)))//(t-z)) = (((f(t))*(DQ(g,z)(t)))) + ((g(z))*(DQ(f,z)(t))).
+     
+      (((DQ(f,z))**constg)++(restf**(DQ(g,z))))(t) = (((f(t))*(DQ(g,z)(t)))) + ((g(z))*(DQ(f,z)(t))).
+      Proof.
+        (((DQ(f,z))**constg)++(restf**(DQ(g,z))))(t) = ((DQ(f,z))**constg)(t) + (restf**(DQ(g,z)))(t).
+        ((DQ(f,z))**constg)(t) + (restf**(DQ(g,z)))(t) = ((DQ(f,z)(t))*(constg(t))) + ((restf(t))*(DQ(g,z)(t))).
+        constg(t) = g(z) and restf(t) = f(t).
+        ((DQ(f,z)(t))*(constg(t))) + ((restf(t))*(DQ(g,z)(t))) = ((DQ(f,z)(t))*(g(z))) + ((f(t))*(DQ(g,z)(t))).
+        ((DQ(f,z)(t))*(g(z))) + ((f(t))*(DQ(g,z)(t))) = ((f(t))*(DQ(g,z)(t))) + ((DQ(f,z)(t))*(g(z))).
+        ((f(t))*(DQ(g,z)(t))) + ((DQ(f,z)(t))*(g(z))) = ((f(t))*(DQ(g,z)(t))) + ((g(z))*(DQ(f,z)(t))).
+      end.
+    end.
+  end.
+ 
+  D(f**g,z) = ((D(f,z))*g(z)) + (f(z)*(D(g,z))).
+  Proof.
+   
+    lim(DQ(f,z),z) = D(f,z). lim(DQ(g,z),z) = D(g,z).
+    lim(constg,z) = g(z).
+    lim(restf,z) = f(z).
+    Proof. #Interesting... the following suffices.
+      For any eps there exists del such that
+      for any t \in Dom(restf) if 0<d(t,z)<del then d(restf(t),f(z))<eps.
+    end.
+
+    lim((restf**(DQ(g,z))),z) = f(z) * D(g,z).
+    D(f,z) * g(z) is a real number. DQ(f,z)**constg is a real map. #Ontology
+    lim(DQ(f,z)**constg,z) = D(f,z) * g(z).
+    restf is a real map and DQ(g,z) is a real map. #Ontology
+    Dom(DQ(g,z)) = Dom(restf). Then restf**DQ(g,z) is a real map. #Ontology
+    Dom(DQ(f,z)) = Dom(constg). DQ(f,z)**constg is a real map.  #Ontology
+   
+    lim((((DQ(f,z))**constg) ++ (restf**(DQ(g,z)))),z) = (D(f,z) * g(z)) + (f(z) * D(g,z)).
+  end.  
+end.
+
+Theorem 5_3c.
+  Let f be a real map such that f is defined on [x|y].
+  Let g be a real map such that g is defined on [x|y].
+  Let z be an element of (x|y).
+  Assume that f is differentiable at z.
+  Assume that g is differentiable at z.
   Assume that for every element e if e belongs to Dom(g) then g(e) != 0.
-  Then f|//|g is differentiable at z in x and y
+  Then f|//|g is differentiable at z
   and D(f|//|g,z) = (((g(z))*(D(f,z)))-((D(g,z))*(f(z))))//(g(x)*g(x)).
 
 
@@ -392,15 +450,7 @@ Theorem 5_3b.
 
 
 
-
-
-
-
 # Mean Value Theorems
-
-
-[prove on]
-[check on]
 
 Definition 5_7a.
   Let f be a real map.
@@ -503,10 +553,10 @@ Lemma 5_8_4.
 Theorem 5_8.
   Let f be a real map that is defined on [x|y].
   Let p be an element of (x|y).
-  If f is differentiable at p in x and y and f has local minima at p
+  If f is differentiable at p and f has local minima at p
   then D(f,p)=0.
 Proof.
-  Assume f is differentiable at p in x and y and f has local minima at p.
+  Assume f is differentiable at p and f has local minima at p.
   Let us show that there exists del such that x<p-del and p+del<y
       and for any t \in [x|y] if d(t,p)<del then f(t)>=f(p).
     Take positive real number del' such that for any t \in [x|y] if d(t,p)<del' then f(t)>=f(p) (by 5_7a).
