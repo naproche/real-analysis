@@ -122,6 +122,11 @@ Definition Addition. Suppose f, g are real maps such that Dom(f) = Dom(g).
 Definition Multiplication. Suppose f, g are real maps such that Dom(f) = Dom(g).
   f ** g is a map h such that Dom(h) = Dom(f) and for any x \in Dom(h) we have h(x) = f(x) * g(x).
 
+Definition Division. Suppose f is a real map and for any x \in Dom(f) f(x) != 0.
+  1/{f} is a map g such that Dom(g) = Dom(f) and for any x \in Dom(g) we have g(x) = 1/f(x).
+
+Let {f} / {g} denote f ** 1/{g}.
+
 # Metric
 
 Signature Distance. d(x,y) is a real number.
@@ -153,8 +158,9 @@ Axiom 3_1. There exists a sequence a such that a converges to 0 and for all n a(
 
 Axiom 3_2. If a converges to x and a converges to y then x = y.
 
-Axiom 3_3. If a converges to x and b converges to y
-  then a ++ b converges to x + y and a ** b converges to x * y.
+Axiom 3_3a. If a converges to x and b converges to y then a ++ b converges to x + y.
+Axiom 3_3b. If a converges to x and b converges to y then a ** b converges to x * y.
+Axiom 3_3c. If a converges to x and for any n a(n) != 0 and x != 0 then 1/{a} converges to 1/x.
 
 # Basic Topology
 

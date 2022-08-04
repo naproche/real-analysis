@@ -28,13 +28,13 @@ Proof.
     Let us show that f \circ a converges to q.
       Suppose eps is a positive real number.
       Take del such that for any x \in Dom(f) if 0 < d(x,p) < del then d(f(x),q) < eps (by 4_1).
-      Take a natural number N such that for any n if N < n then 0 < d(a(n),p) < del (by UneqConv).
+      Take a natural number N such that for any n if N < n then 0 < d(a(n),p) < del.
       For any n if N < n then d(f(a(n)),q) < eps.
     End.
   End.
   Let us show that if (for any sequence a if a is into Dom(f) and
   a unequally converges to p then f \circ a converges to q) then lim(f,p) = q.
-    (1) Suppose for any sequence a if a is into Dom(f) and
+    Suppose for any sequence a if a is into Dom(f) and
     a unequally converges to p then f \circ a converges to q.
     Let us show that lim(f,p) = q.
       Suppose the contrary.
@@ -46,13 +46,12 @@ Proof.
       and not d(f(x),q) < eps in x for n in Natural.
       Let us show that a unequally converges to p.
         Suppose r is a positive real number.
-        Take a natural number N such that for any n if N < n then d(b(n),0) < r (by Convergence).
+        Take a natural number N such that for any n if N < n then d(b(n),0) < r.
         For any n if N < n then 0 < d(a(n),p) < r.
       End.
-      f \circ a is a sequence (by Composition).
-      f \circ a converges to q (by 1).
-      Take a natural number N such that
-      for any n if N < n then d((f \circ a)(n),q) < eps (by Convergence).
+      f \circ a is a sequence.
+      f \circ a converges to q.
+      Take a natural number N such that for any n if N < n then d((f \circ a)(n),q) < eps.
       Take n such that N < n and not d(f(a(n)),q) < eps.
       Contradiction.
     End.
@@ -64,37 +63,62 @@ Theorem Uniqueness. Let q1, q2 be real numbers.
   Suppose lim(f,p) = q1 and lim(f,p) = q2. Then q1 = q2.
 Proof.
   Take a sequence a such that a is into Dom(f) and a unequally converges to p.
-  f \circ a is a sequence (by Composition).
+  f \circ a is a sequence.
   f \circ a converges to q1 (by 4_2).
   f \circ a converges to q2 (by 4_2).
   q1 = q2 (by 3_2).
 QED.
 
-Theorem 4_4. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
-  Let A, B be real numbers. Suppose lim(f,p) = A and lim(g,p) = B.
-  Then lim(f++g,p) = A + B and lim(f**g,p) = A * B.
+Theorem 4_4a. Suppose Dom(f) = Dom(g) and p is a limit point of Dom(f).
+  Suppose lim(f,p) = x and lim(g,p) = y. Then lim(f++g,p) = x + y.
 Proof.
-  Take fsg = f ++ g. Take fmg = f ** g.
-  Dom(f) = Dom(fsg) = Dom(fmg).
-  Let us show that for any sequence a into Dom(f) if a unequally converges to p
-  then fsg \circ a converges to A + B and fmg \circ a converges to A * B.
+  Take fsg = f ++ g.
+  Dom(f) = Dom(fsg).
+  Let us show that for any sequence a into Dom(f)
+  if a unequally converges to p then fsg \circ a converges to x + y.
     Suppose a is a sequence such that a is into Dom(f) and a unequally converges to p.
-    (f \circ a) and (g \circ a) are sequences (by Composition).
-    f \circ a converges to A (by 4_2).
-    g \circ a converges to B (by 4_2).
-    (f \circ a) ++ (g \circ a) converges to A + B (by 3_3).
-    (f \circ a) ** (g \circ a) converges to A * B (by 3_3).
+    (f \circ a) and (g \circ a) are sequences.
+    f \circ a converges to x (by 4_2).
+    g \circ a converges to y (by 4_2).
+    (f \circ a) ++ (g \circ a) converges to x + y (by 3_3a).
     (f \circ a) ++ (g \circ a) = fsg \circ a.
+  End.
+  lim(fsg,p) = x + y (by 4_2).
+QED.
+
+Theorem 4_4b. Suppose Dom(f) = Dom(g) and p is a limit point of Dom(f).
+  Suppose lim(f,p) = x and lim(g,p) = y. Then lim(f**g,p) = x * y.
+Proof.
+  Take fmg = f ** g.
+  Dom(f) = Dom(fmg).
+  Let us show that for any sequence a into Dom(f)
+  if a unequally converges to p then fmg \circ a converges to x * y.
+    Suppose a is a sequence such that a is into Dom(f) and a unequally converges to p.
+    (f \circ a) and (g \circ a) are sequences.
+    f \circ a converges to x (by 4_2).
+    g \circ a converges to y (by 4_2).
+    (f \circ a) ** (g \circ a) converges to x * y (by 3_3b).
     (f \circ a) ** (g \circ a) = fmg \circ a.
   End.
-  Let us show that lim(fsg,p) = A + B (by 4_2).
-    For any sequence a into Dom(f) if a unequally converges to p
-    then fsg \circ a converges to A + B.
+  lim(fmg,p) = x * y (by 4_2).
+QED.
+
+Theorem 4_4c. Suppose Dom(f) = Dom(g) and p is a limit point of Dom(g).
+  Suppose lim(f,p) = x and lim(g,p) = y and y != 0.
+  Suppose for all z \in Dom(g) g(z) != 0.
+  Then lim({f}/{g},p) = x // y.
+Proof.
+  Let us show that for any sequence a into Dom(g)
+  if a unequally converges to p then 1/{g} \circ a converges to 1/y.
+    Suppose a is a sequence such that a is into Dom(g) and a unequally converges to p.
+    1/{g} \circ a is a sequence.
+    1/{g} \circ a = 1/{g \circ a}.
+    g \circ a converges to y (by 4_2).
+    For any n we have (g \circ a)(n) != 0.
+    1/{g \circ a} converges to 1/y (by 3_3c).
   End.
-  Let us show that lim(fmg,p)=A * B (by 4_2).
-    For any sequence a into Dom(f) if a unequally converges to p
-    then fmg \circ a converges to A * B.
-  End.
+  lim(1/{g},p) = 1/y (by 4_2).
+  lim({f}/{g},p) = x // y (by 4_4b).
 QED.
 
 ################
@@ -157,7 +181,7 @@ Theorem 4_9. Suppose Dom(f) = Dom(g). Suppose p \in Dom(f).
 Proof.
   Case p is a limit point of Dom(f).
     lim(f,p) = f(p) and lim(g,p) = g(p) (by 4_6).
-    lim(f++g,p) = (f ++ g)(p) and lim(f**g,p) = (f ** g)(p) (by 4_4).
+    lim(f++g,p) = (f ++ g)(p) and lim(f**g,p) = (f ** g)(p) (by 4_4a, 4_4b).
     f ++ g is continuous at p and f ** g is continuous at p (by 4_6).
   End.
   Case p is not a limit point of Dom(f).
@@ -174,13 +198,13 @@ Proof.
   Take T \subseteq Real such that T = f[Dom(f)].
   Let us show that T is compact.
     Suppose D is an open cover of T.
-    For any x \in Dom(f) f^-1(D(f(x))) is a set (by Subset).
+    For any x \in Dom(f) f^-1(D(f(x))) is a set.
     Define C(x) = f^-1(D(f(x))) for x in Dom(f).
     For all x \in Dom(f) C(x) is open in Dom(f) (by 4_8).
-    C is an open cover of Dom(f) (by OpenCover).
+    C is an open cover of Dom(f).
     Take a finite subcover a of C on Dom(f).
     Take a natural number N such that N > 1 and for any x \in Dom(f)
-    there exists n such that n < N and x \in C(a(n)) (by FiniteSubcover).
+    there exists n such that n < N and x \in C(a(n)).
     Let us show that f \circ a is a finite subcover of D on T.
       Let us show that for any y \in T there exists n such that n < N and y \in D(f(a(n))).
         Suppose y \in T.
@@ -207,13 +231,13 @@ Proof.
 QED.
 
 Theorem 4_16. Suppose f is continuous and Dom(f) is nonempty and compact.
-  Then there exist p,q \in Dom(f) such that
+  Then there exist p, q \in Dom(f) such that
   f(p) is the supremum of f[Dom(f)] and f(q) is the infimum of f[Dom(f)].
 Proof.
   Take a class R such that R = f[Dom(f)].
   R is nonempty and compact (by 4_14).
-  Take x,y \in R such that x is the supremum of R and y is the infimum of R (by 2_28).
-  Take p,q \in Dom(f) such that f(p) = x and f(q) = y.
+  Take x, y \in R such that x is the supremum of R and y is the infimum of R (by 2_28).
+  Take p, q \in Dom(f) such that f(p) = x and f(q) = y.
   f(p) is the supremum of R and f(q) is the infimum of R.
 QED.
 
@@ -228,13 +252,13 @@ Proof.
     Suppose U is a subclass of Dom(f) such that U is open in Dom(f).
     g^-1(U) = f[U].
     Take a class V such that V = (Dom(f)) \setminus U.
-    V is closed in Dom(f) (by Closed).
+    V is closed in Dom(f).
     f[V] is compact (by 2_35, 4_14a).
     f[V] is closed in Real (by 2_41).
     f[V] \cap Dom(g) is closed in Dom(g) (by 2_29b).
     f[V] = f[V] \cap Dom(g).
     f[U] = (Dom(g)) \setminus f[V].
-    g^-1(U) is open in Dom(g) (by Closed).
+    g^-1(U) is open in Dom(g).
   End.
   g is continuous (by 4_8).
 QED.
@@ -253,7 +277,7 @@ Proof.
   Define phi(y) = Choose del such that
   for all x \in E if d(x,y) < del then d(f(x),f(y)) < ep2 in del for y in E.
   Define ph2(y) = Choose del such that del + del = phi(y) in del for y in E.
-  For any y \in E nbhd(y,ph2(y)) \cap E is a set (by Subset).
+  For any y \in E nbhd(y,ph2(y)) \cap E is a set.
   Define C(y) = nbhd(y,ph2(y)) \cap E for y in E.
   Let us show that C is an open cover of E.
     Let us show that for all y \in E C(y) \subseteq E and C(y) is open in E and y \in C(y).
