@@ -1,7 +1,8 @@
 [synonym number/-s] [synonym sequence/-s] [synonym converge/-s] [synonym function/-s]
 [synonym map/-s]
 [prove off ][read numbers.ftl] [prove on] #el prove off prove on hace que leas el
-# archivo pero no lo pruebes
+#archivo pero no lo pruebes
+
 Definition.A natural number is an integer k such that k=0 or 0<k .
 Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let m, n, l, r, N denote natural numbers.
@@ -103,6 +104,7 @@ Let g be a function  such that Dom(g) = Fin(n) and for all element m of Fin(n) g
 g is surjective onto (f<<n).
 Fin(n) is bigger than (f<<n). #this is the definition of finitedness as in line 79 
 #Q:why does it not prove finitedness.
+
 End.
 
 
@@ -110,7 +112,7 @@ Theorem SubOfCount. Let A be a countable set. Let E be a subset of A. If E is in
 E is countable. #Indeed, after purging the computer does not know how to prove this.
 Proof.
 Take a function f such that Dom(f)=NAT and f is bijective onto A.
-
+End.
 #Indeed, after purging the computer does not know how to prove this..
 #first idea: try to define subsequences and work from that. Difficulty: define restrictions of 
 #functions. 
