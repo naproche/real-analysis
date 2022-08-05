@@ -122,10 +122,10 @@ Definition Addition. Suppose f, g are real maps such that Dom(f) = Dom(g).
 Definition Multiplication. Suppose f, g are real maps such that Dom(f) = Dom(g).
   f ** g is a map h such that Dom(h) = Dom(f) and for any x \in Dom(h) we have h(x) = f(x) * g(x).
 
-Definition Division. Suppose f is a real map and for any x \in Dom(f) f(x) != 0.
-  1/{f} is a map g such that Dom(g) = Dom(f) and for any x \in Dom(g) we have g(x) = 1/f(x).
+Definition Division. Suppose f is a real map. Suppose for any x \in Dom(f) f(x) != 0.
+  1|/|f is a map g such that Dom(g) = Dom(f) and for any x \in Dom(g) we have g(x) = 1/f(x).
 
-Let {f} / {g} denote f ** 1/{g}.
+Let f |//| g denote f ** 1|/|g.
 
 # Metric
 
@@ -156,22 +156,23 @@ Definition UneqConv. a unequally converges to x iff for any eps
 
 Axiom 3_1. There exists a sequence a such that a converges to 0 and for all n a(n) > 0.
 
-Axiom 3_2. If a converges to x and a converges to y then x = y.
+Axiom 3_2. Suppose a converges to x and a converges to y. Then x = y.
 
-Axiom 3_3a. If a converges to x and b converges to y then a ++ b converges to x + y.
-Axiom 3_3b. If a converges to x and b converges to y then a ** b converges to x * y.
-Axiom 3_3c. If a converges to x and for any n a(n) != 0 and x != 0 then 1/{a} converges to 1/x.
+Axiom 3_3a. Suppose a converges to x and b converges to y. Then a ++ b converges to x + y.
+Axiom 3_3b. Suppose a converges to x and b converges to y. Then a ** b converges to x * y.
+Axiom 3_3c. Suppose for any n a(n) != 0.
+  Suppose a converges to x and x != 0. Then 1|/|a converges to 1/x.
 
 # Basic Topology
 
-Definition Open. Let U be a subclass of E. U is open in E iff
+Definition Open. Let U \subseteq E. U is open in E iff
   for any x \in U there exists eps such that for any y \in E if d(x,y) < eps then y \in U.
 
-Definition Closed. Let V be a subclass of E. V is closed in E iff E \setminus V is open in E.
+Definition Closed. Let V \subseteq E. V is closed in E iff E \setminus V is open in E.
 
-Axiom 2_29a. Let F, V be subclass of E. If V is open in E then V \cap F is open in F.
+Axiom 2_29a. Let F, V \subseteq E. Suppose V is open in E. Then V \cap F is open in F.
 
-Axiom 2_29b. Let F, V be subclass of E. If V is closed in E then V \cap F is closed in F.
+Axiom 2_29b. Let F, V \subseteq E. Suppose V is closed in E. Then V \cap F is closed in F.
 
 Definition LimitPoint. A limit point of E is a real number p such that
   there exists a sequence a such that a is into E and a unequally converges to p.
@@ -201,8 +202,7 @@ Definition Compact. E is compact iff
 Axiom 2_28. Suppose E is nonempty and compact.
   There exist p, q \in E such that p is the supremum of E and q is the infimum of E.
 
-Axiom 2_35. Suppose E is compact. Suppose V \subseteq E.
-  If V is closed in E then V is compact.
+Axiom 2_35. Suppose E is compact. Suppose V \subseteq E and V is closed in E. Then V is compact.
 
 Axiom 2_41. E is compact iff E is bounded and closed in Real.
 
