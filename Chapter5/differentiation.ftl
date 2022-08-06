@@ -823,9 +823,9 @@ Proof.
 
 
   # function h
-  Let c be (f(y)-f(x)).
-  Let d be (g(x)-g(y)).
-  Let h be (c~g)++(d~f).
+  Take c = (f(y)-f(x)).
+  Take d = (g(x)-g(y)).
+  Take h = (c~g)++(d~f).
   Then h is a real map that is defined on [x|y].
 
   Let us show that for any t \in (x|y) D(h,t) = ((f(y)-f(x))*D(g,t)) + ((g(x)-g(y))*D(f,t)).
