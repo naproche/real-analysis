@@ -41,6 +41,7 @@ Signature Distance. d(x,y) is a real number.
 Axiom d1. d(x,y) = 0 iff x = y.
 Axiom d2. d(x,y) = d(y,x).
 Axiom d3. Let z be a real number. d(x,z)<=d(x,y)+d(y,z).
+Axiom d4. Let c be a positive real number. d(x,y) < c iff y-c < x < y+c.
 
 Definition Sequence. A sequence is a map a
   such that Dom(a) = Natural and a is into Real.
@@ -65,6 +66,9 @@ Definition 4_1. Suppose p is a limit point of Dom(f).
 Definition 4_5. Suppose p \in Dom(f). f is continuous at p
   iff for any eps there exists del such that
   for any x \in Dom(f) if d(x,p)<del then d(f(x),f(p))<eps.
+
+Definition 4_1b. f is continuous iff for all p \in Dom(f) f is continuous at p.
+
 
 [prove off]
 Theorem 4_6. Suppose p \in Dom(f). Suppose p is a limit point of Dom(f).
