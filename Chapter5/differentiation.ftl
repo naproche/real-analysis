@@ -3,11 +3,11 @@
 [read preliminaries.ftl]
 [read real-analysis/numbers.ftl]
 [read real-analysis/Chapter5/differentiation_pre.ftl]
-[timelimit 15]
+[timelimit 30]
 
 
-[prove on]
-[check on]
+[prove off]
+[check off]
 
 
 Let x,y,z denote real numbers.
@@ -26,6 +26,14 @@ Definition SetUnion.
   Let S,T be sets.
   S \union T = {x | x \in S or x \in T}.
 
+
+# MAP OPERATION
+
+Definition Scaling.
+  Let f be a real map.
+  Let c be a real number.
+  c~f is a map h such that Dom(h) = Dom(f) and
+  for any t \in Dom(h) h(t) = c*f(t).
 
 
 # INTERVALS
@@ -83,17 +91,26 @@ Lemma.
   Then z is a limit point of Dom(DQ(f,z)).
 
 Signature. D(f,z) is an object.
-Axiom.
+Axiom Derivative.
   Let f be a real map such that f is defined on [x|y].
   Let z be an element of (x|y).
   Let t be a real number.
   D(f,z)=t iff lim(DQ(f,z),z)=t.
 
-Definition Differentiable.
+Definition DifferentiableAtAPoint.
   Let f be a real map.
   Let z be a limit point of Dom(f).
   f is differentiable at z iff
     there exists a real number t such that D(f,z)=t.
+
+Definition Differentiable.
+  Let f be a real map.
+  Let S be a subset of Dom(f) such that for any t \in S t is a limit point of Dom(f).
+  f is differentiable on S iff
+    for any t \in S f is differentiable at t.
+
+
+# some useful functions
 
 Lemma ConstantFunction.
   Let c be a real numbers. Let S be a subset of Real.
@@ -168,7 +185,6 @@ Lemma 5_x.
   Assume that eps is a positive real number.
   Then there exists positive real number del such that for any t \in Dom(f)
   if 0<d(t,p)<del then d(f(t),q)<eps.
-
 Theorem 5_2.
   Let f be a real map such that f is defined on [x|y].
   Let z be an element of (x|y).
@@ -194,7 +210,6 @@ Proof.
   Let h1 be Resf++const1.
   # temp2
   Let h2 be DQ(f,z)**(id++const2).
-
   # Show: f(t) - f(z) = DQ(f,z) * (t - z)
   Let us show that h1 = h2.
     Dom(Resf ++ const1) = [x|y]\\{z} = Dom(DQ(f,z)**(id++const2)).
@@ -211,9 +226,7 @@ Proof.
       Then h1(t) = h2(t).
     End.
   End.
-
   Assume that f is differentiable at z.
-
   #Show: f(t) - f(z) -> 0 for t->z.
   Let us show that lim(h1,z)=0.
     lim(id,z)=z (by LimitOfIdentity).
@@ -233,7 +246,6 @@ Proof.
     Then lim(h2,z)=0.
     Then lim(h1,z)=0. Indeed h1 = h2.
   End.
-
   # Show: f(t) = f(t) - f(z) + f(z)
   Define const3(t) = f(z) for t in [x|y]\\{z}.
   Then const3 is a real map.
@@ -250,7 +262,6 @@ Proof.
       Then Resf(t) = f(t) = (h1++const3)(t).
     End.
   End.
-
   Let us show that lim(Resf,z)=f(z).
     lim(h1,z)=0.
     lim(const3,z)=f(z) (by LimitOfConstantFunction).
@@ -261,7 +272,6 @@ Proof.
       and 0, f(z) are real numbers such that lim(h1,z)=0 and lim(const3,z)=f(z).
     Then lim(Resf,z)=f(z).
   End.
-
   z is a limit point of Dom(f).
   Let us show that lim(f,z)=f(z).
     Let us show that for any eps there exists del such that for any t \in Dom(f) if 0<d(t,z)<del then d(f(t),f(z))<eps.
@@ -280,12 +290,9 @@ Proof.
       End.
     End.
   End.
-
   Then f is continuous at z (by 4_6). Indeed z is a limit point of Dom(f) and lim(f,z)=f(z).
 QED.
-
 #Lemma. Contradiction. #TEST 
-
 Theorem 5_3a.
   Let f be a real map such that f is defined on [x|y].
   Let g be a real map such that g is defined on [x|y].
@@ -349,7 +356,6 @@ Proof.
   end.
 end.
 
-[prove off]
 
 Theorem 5_3b.
   Let f be a real map such that f is defined on [x|y].
@@ -381,8 +387,8 @@ Proof.
     DQ(f**g,z)(t) = (((DQ(f,z))**constg)++(restf**(DQ(g,z))))(t).
       Let t belong to Dom(DQ(f**g,z)). Then t != z.
       Indeed z does not belong to Dom(DQ(f**g,z)).
+      f**g is a real map and t,z \in Dom(f**g).
       (f**g)(t) is a real number and (f**g)(z) is a real number.
-      Indeed f**g is a real map and t,z \in Dom(f**g).
       t and z are real numbers such that t != z.
       Then t-z is a real number and t-z != 0.
       DQ(f**g,z)(t) = ((f**g)(t)-(f**g)(z))//(t-z) (by DifferenceQuotient).
@@ -438,7 +444,8 @@ Proof.
   end.  
 end.
 
-[prove off]
+
+
 Theorem 5_3c.
   Let f be a real map such that f is defined on [x|y].
   Let g be a real map such that g is defined on [x|y].
@@ -448,7 +455,7 @@ Theorem 5_3c.
   Assume that for every element e if e belongs to Dom(g) then g(e) != 0.
   Then f|//|g is differentiable at z
   and D(f|//|g,z) = (((g(z))*(D(f,z)))-((D(g,z))*(f(z))))//(g(x)*g(x)).
-[prove on]
+
 
 
 
@@ -762,54 +769,273 @@ Proof.
   End.
 QED.
 
+# Compactness
+# Maybe there is a better definition but this works for now.
+Axiom Compactness.
+  [x|y] is compact.
+
+
+Lemma DerivativeOfConstantFunction.
+  Let f be a real map that is defined on [x|y].
+  Let c be a real number such that for any t \in [x|y] f(t) = c.
+  Let p be an element of (x|y).
+  Then f is differentiable at p
+    and D(f,p) = 0.
+Proof.
+  DQ(f,p) is a real map that is defined on [x|y]\\{p} (by DifferenceQuotient).
+  Let us show that for any t \in [x|y]\\{p} DQ(f,p)(t) = 0.
+    Suppose t \in [x|y]\\{p}.
+    Then f(t) = c = f(p).
+    Then f(t)-f(p) = 0.
+    Then (f(t)-f(p)) * (1/(t-p)) = 0.
+    Therefore DQ(f,p)(t) = 0 (by DifferenceQuotient).
+  End.
+  Then lim(DQ(f,p),p)=0 (by LimitOfConstantFunction).
+  D(f,p)=0 iff lim(DQ(f,p),p)=0 (by Derivative).
+  Therefore D(f,p)=0.
+QED.
+
 [prove off]
+Lemma ContinuityOfScaledFunction.
+  Let f be a real map.
+  Let c be a real number.
+  Let p be an element of Dom(f) that is an limit point of Dom(f).
+  Let f be continuous at p.
+  Then c~f is continuous at p.
+
+Lemma DerivativeOfScaledFunction.
+  Let f be a real map.
+  Let c be a real number.
+  Let p be a limit point of Dom(f).
+  Let f be differentiable at p.
+  Then D(c~f,p) = c * D(f,p).
+[prove on]
+[check on]
+
 Theorem 5_9.
+  Let x < y.
   Let f,g be real map that are defined on [x|y].
-  Let f be continuous and for any t \in (x|y) f is differentiable at t.
-  Let g be continuous and for any t \in (x|y) g is differentiable at t.
+  Let f be continuous and differentiable on (x|y).
+  Let g be continuous and differentiable on (x|y).
   Then there exists p \in (x|y) such that
     (f(y)-f(x))*D(g,p) = (g(y)-g(x))*D(f,p).
 Proof.
-  # [x|y] could be empty :( We have to fix this.
-  Assume that x<y.
-  
-  # function h
-  Define h(t) = ((f(y)-f(x))*g(t))-((g(y)-g(x))*f(t)) for t in [x|y].
-  Then h is a real map that is defined on [x|y].
-  h is continuous.
-  For any t \in (x|y) h is differentiable at t.
-  #[prove on]
 
+
+  # function h
+  Let c be (f(y)-f(x)).
+  Let d be (g(x)-g(y)).
+  Let h be (c~g)++(d~f).
+  Then h is a real map that is defined on [x|y].
+
+  Let us show that for any t \in (x|y) D(h,t) = ((f(y)-f(x))*D(g,t)) + ((g(x)-g(y))*D(f,t)).
+    Suppose t \in (x|y).
+    Let us show that D(c~g,t) = c*D(g,t).
+      t is a limit point of Dom(g).
+      g is a real map that is defined on [x|y].
+      c is a real number.
+      t is an element of (x|y).
+      g is differentiable at t. Indeed g is differentiable on (x|y).
+      Then the thesis (by DerivativeOfScaledFunction).
+    End.
+    Let us show that D(d~f,t) = d*D(f,t).
+      t is a limit point of Dom(f).
+      f is a real map that is defined on [x|y].
+      d is a real number.
+      t is an element of (x|y).
+      f is differentiable at t. Indeed f is differentiable on (x|y).
+      Then the thesis (by DerivativeOfScaledFunction).
+    End.
+    Let us show that D(h,t) = D(c~g,t) + D(d~f,t).
+      c~g is a real map that is defined on [x|y].
+      d~f is a real map that is defined on [x|y].
+      t is an element of (x|y).
+      c~g is differentiable at t (by DerivativeOfScaledFunction).
+      d~f is differentiable at t (by DerivativeOfScaledFunction).
+      Then the thesis (by 5_3a).
+    End.
+  End.
+
+  # h is continuous.
+  Let us show that h is continuous.
+    Suppose t \in Dom(h).
+    Dom(c~g) = Dom(d~f).
+    c~g is continuous at t (by ContinuityOfScaledFunction).
+    Indeed g is continuous at t and t is a limit point of Dom(g).
+    d~f is continuous at t (by ContinuityOfScaledFunction).
+    Indeed f is continuous at t and t is a limit point of Dom(f).
+    t is a limit point of Dom(c~g).
+    h is continuous at t (by 4_9). Indeed h = (c~g)++(d~f).
+  End.
+
+  # h is differentiable.
+  Let us show that h is differentiable on (x|y).
+    Suppose t \in (x|y).
+    Then D(h,t) = ((f(y)-f(x))*D(g,t)) + ((g(x)-g(y))*D(f,t)).
+    Then h is differentiable at t.
+  End.
+
+  # it's enough to show D(h,p) = 0.
+  Let us show that if there exists p \in (x|y) such that D(h,p)=0 then the thesis.
+    Assume that there exists p \in (x|y) such that D(h,p) = 0.
+    Take p \in (x|y) such that D(h,p) = 0.
+    Then D(h,p) = ((f(y)-f(x))*D(g,p)) + ((g(x)-g(y))*D(f,p)).
+    Then ((f(y)-f(x))*D(g,p)) + ((g(x)-g(y))*D(f,p)) = 0.
+    ((f(y)-f(x))*D(g,p)) = -((g(x)-g(y))*D(f,p)).
+    -((g(x)-g(y))*D(f,p)) = -(g(x)-g(y))*D(f,p).
+    -(g(x)-g(y))*D(f,p) = (-g(x)+g(y))*D(f,p).
+    (-g(x)+g(y))*D(f,p) = (g(y)-g(x))*D(f,p).
+    Then (f(y)-f(x))*D(g,p) = (g(y)-g(x))*D(f,p).
+  End.
+
+  # h(x) = h(y).
   x \in [x|y] and y \in [x|y].
   Let us show that h(x) = h(y).
+    Let us show that for any t \in [x|y] h(t) = ((f(y)*g(t))-(f(x)*g(t))) + ((g(x)*f(t))-(g(y)*f(t))).
+      Suppose t \in [x|y].
+      h(t) = (c~g)(t) + (d~f)(t) (by Addition).
+      (c~g)(t) = c * g(t) (by Scaling).
+      (d~f)(t) = d * f(t) (by Scaling).
+      Then h(t) = (c*g(t)) + (d*f(t)).
+      c = f(y)-f(x).
+      d = g(x)-g(y).
+      Then c * g(t) = ((f(y)-f(x))*g(t)) = (f(y)*g(t)) - (f(x)*g(t)).
+      Then d * f(t) = ((g(x)-g(y))*f(t)) = (g(x)*f(t)) - (g(y)*f(t)).
+      Then h(t) = ((f(y)*g(t))-(f(x)*g(t))) + ((g(x)*f(t))-(g(y)*f(t))).
+    End.
     Let us show that h(x) = (f(y)*g(x))-(g(y)*f(x)).
-      h(x) = ((f(y)-f(x))*g(x))-((g(y)-g(x))*f(x)).
-      ((f(y)-f(x))*g(x)) = (f(y)*g(x))-(f(x)*g(x)).
-      ((g(y)-g(x))*f(x)) = (g(y)*f(x))-(g(x)*f(x)).
-      (g(y)*f(x))-(g(x)*f(x)) = -(g(x)*f(x))+(g(y)*f(x)).
-      Then -(-(g(x)*f(x))+(g(y)*f(x))) = (g(x)*f(x))-(g(y)*f(x)).
-      Then ((f(y)-f(x))*g(x))-((g(y)-g(x))*f(x)) = ((f(y)*g(x))-(f(x)*g(x)))+((g(x)*f(x))-(g(y)*f(x))).
-      ((f(y)*g(x))-(f(x)*g(x)))+((g(x)*f(x))-(g(y)*f(x))) = ((f(y)*g(x))+(-(f(x)*g(x))+(g(x)*f(x))))-(g(y)*f(x)).
-      ((f(y)*g(x))+(-(f(x)*g(x))+(g(x)*f(x))))-(g(y)*f(x)) = (f(y)*g(x))-(g(y)*f(x)).
+      h(x) = ((f(y)*g(x))-(f(x)*g(x))) + ((g(x)*f(x))-(g(y)*f(x))).
+      ((f(y)*g(x))-(f(x)*g(x))) + ((g(x)*f(x))-(g(y)*f(x))) = (((f(y)*g(x))-(f(x)*g(x))) + (g(x)*f(x))) - (g(y)*f(x)).
+      (((f(y)*g(x))-(f(x)*g(x))) + (g(x)*f(x))) - (g(y)*f(x)) = ((f(y)*g(x)) + (-(f(x)*g(x))+(g(x)*f(x)))) - (g(y)*f(x)).
+      ((f(y)*g(x)) + (-(f(x)*g(x))+(g(x)*f(x)))) - (g(y)*f(x)) = ((f(y)*g(x)) + (-(g(x)*f(x))+(g(x)*f(x)))) - (g(y)*f(x)).
+      ((f(y)*g(x)) + (-(g(x)*f(x))+(g(x)*f(x)))) - (g(y)*f(x)) = (f(y)*g(x)) - (g(y)*f(x)).
     End.  
-
     Let us show that h(y) = -(f(x)*g(y))+(g(x)*f(y)).
-      h(y) = ((f(y)-f(x))*g(y))-((g(y)-g(x))*f(y)).
-      ((f(y)-f(x))*g(y)) = (f(y)*g(y))-(f(x)*g(y)).
-      ((g(y)-g(x))*f(y)) = (g(y)*f(y))-(g(x)*f(y)).
-      (f(y)*g(y))-(f(x)*g(y)) = -(f(x)*g(y))+(f(y)*g(y)).
-      Then -((g(y)*f(y))-(g(x)*f(y))) = -(g(y)*f(y))+(g(x)*f(y)).
-      Then ((f(y)-f(x))*g(y))-((g(y)-g(x))*f(y)) = (-(f(x)*g(y))+(f(y)*g(y)))+(-(g(y)*f(y))+(g(x)*f(y))).
-      (-(f(x)*g(y))+(f(y)*g(y)))+(-(g(y)*f(y))+(g(x)*f(y))) = (-(f(x)*g(y))+((f(y)*g(y))-(g(y)*f(y))))+(g(x)*f(y)).
-      (-(f(x)*g(y))+((f(y)*g(y))-(g(y)*f(y))))+(g(x)*f(y)) = -(f(x)*g(y))+(g(x)*f(y)).
+      h(y) = ((f(y)*g(y))-(f(x)*g(y))) + ((g(x)*f(y))-(g(y)*f(y))).
+      ((f(y)*g(y))-(f(x)*g(y))) + ((g(x)*f(y))-(g(y)*f(y))) = (-(f(x)*g(y))+(f(y)*g(y))) + ((g(x)*f(y))-(g(y)*f(y))).
+      (-(f(x)*g(y))+(f(y)*g(y))) + ((g(x)*f(y))-(g(y)*f(y))) = (-(f(x)*g(y))+(f(y)*g(y))) + (-(g(y)*f(y))+(g(x)*f(y))).
+      (-(f(x)*g(y))+(f(y)*g(y))) + (-(g(y)*f(y))+(g(x)*f(y))) = ((-(f(x)*g(y))+(f(y)*g(y))) - (g(y)*f(y))) + (g(x)*f(y)).
+      ((-(f(x)*g(y))+(f(y)*g(y))) - (g(y)*f(y))) + (g(x)*f(y)) = (-(f(x)*g(y)) + ((f(y)*g(y)) - (g(y)*f(y)))) + (g(x)*f(y)).
+      (-(f(x)*g(y)) + ((f(y)*g(y)) - (g(y)*f(y)))) + (g(x)*f(y)) = (-(f(x)*g(y)) + ((g(y)*f(y)) - (g(y)*f(y)))) + (g(x)*f(y)).
+      (-(f(x)*g(y)) + ((g(y)*f(y)) - (g(y)*f(y)))) + (g(x)*f(y)) = -(f(x)*g(y)) + (g(x)*f(y)).
     End.
     Then h(y) = -(f(x)*g(y))+(g(x)*f(y)).
     -(f(x)*g(y))+(g(x)*f(y)) = (g(x)*f(y))-(f(x)*g(y)).
-    (g(x)*f(y))-(f(x)*g(y)) = (f(y)*g(x))-(g(y)*f(x)).
+    (g(x)*f(y))-(f(x)*g(y)) = (f(y)*g(x))-(f(x)*g(y)).
+    (f(y)*g(x))-(f(x)*g(y)) = (f(y)*g(x))-(g(y)*f(x)).
   End.
+
   # 3 cases
-  
+  (For any t \in (x|y) h(t) = h(x)) or (there exists t \in (x|y) such that h(t) > h(x))
+    or (there exists t \in (x|y) such that h(t) < h(x)).
+    
+  # Case 1: h is constant
+  Case for any t \in (x|y) h(t) = h(x).
+    Then for any t \in [x|y] h(t) = h(x). Indeed h(y) = h(x).
+    Take p \in (x|y).
+    DQ(h,p) is a real map that is defined on [x|y]\\{p} (by DifferenceQuotient).
+    Let us show that for any t \in [x|y]\\{p} DQ(h,p)(t) = 0.
+      Assume that t \in [x|y]\\{p}.
+      Then h(t)-h(p) = 0. Indeed h(t) = h(x) = h(p).
+      (t-p) != 0.
+      Then (h(t)-h(p)) * (1/(t-p)) = 0.
+      Let us show that DQ(h,p)(t) = 0.
+        h is a real map that is defined on [x|y].
+        p is an element of (x|y).
+        t is an element of Dom(DQ(h,p)).
+        Then DQ(h,p)(t) = (h(t)-h(p)) * (1/(t-p)) (by DifferenceQuotient).
+        Therefore the thesis.
+      End.
+    End.
+    Let us show that lim(DQ(h,p),p)=0.
+      Dom(DQ(h,p)) is a subset of Real.
+      Let us show that for any eps there exists del such that for any t \in Dom(DQ(h,p)) if 0<d(t,p)<del then d(DQ(h,p)(t),0)<eps.
+        Assume that eps is a positive real number.
+        Let us show that for any t \in Dom(DQ(h,p)) if 0<d(t,p)<1 then d(DQ(h,p)(t),0)<eps.
+          Assume t \in Dom(DQ(h,p)) and 0<d(t,p)<1.
+          Then d(DQ(h,p)(t),0)=0. Indeed DQ(h,p)(t) = 0.
+          Then d(DQ(h,p)(t),0)<eps.
+        End.
+      End.
+      Therefore the thesis (by 4_1).
+    End.
+    Then D(h,p)=0 (by Derivative).
+    Therefore the thesis. Indeed there exists t \in (x|y) such that D(h,t)=0.
+  End.
 
+  # Case 2: h has a maxima in (x|y).
+  Case there exists t \in (x|y) such that h(t) > h(x).
+    Let us show that there exists p \in (x|y) such that h has local maxima at p.
+      h is continuous.
+      Dom(h) is nonempty.
+      Dom(h) is compact (by Compactness). Indeed Dom(h) = [x|y].
+      Take p \in Dom(h) such that for any t \in Dom(h) h(t) <= h(p).
+      Take q \in (x|y) such that h(q) > h(x).
+      Let us show that p \in (x|y).
+        p \in [x|y].
+        h(q) <= h(p). Indeed p,q \in Dom(h).
+        Then h(x) < h(p). Indeed h(x) < h(q) <= h(p).
+        Then h(p) != h(x).
+        Then p != x.
+        h(p) != h(x). Indeed h(p) != h(x) = h(y).
+        Then p != y.
+      End.
+      Let us show that h has local maxima at p.
+        1 is a positive real number.
+        Let us show that for any t \in Dom(h) if d(t,p)<1 then h(t)<=h(p).
+          Assume t \in Dom(h).
+          Then h(t)<=h(p).
+        End.
+        Therefore the thesis (by 5_7b).
+      End.
+    End.
+    Take p \in (x|y) such that h has local maxima at p.
+    p is a limit point of Dom(h).
+    Let us show that D(h,p)=0.
+      h is a real map that is defined on [x|y].
+      p is an element of (x|y).
+      h is differentiable at p and h has local maxima at p. Indeed h is differentiable on (x|y).
+      Therefore the thesis (by 5_8b).
+    End.
+    Therefore the thesis. Indeed there exists t \in (x|y) such that D(h,t)=0.
+  End.
 
-
+  # Case 3: h has a minima in (x|y).
+  Case there exists t \in (x|y) such that h(t) < h(x).
+    Let us show that there exists p \in (x|y) such that h has local minima at p.
+      h is continuous.
+      Dom(h) is nonempty.
+      Dom(h) is compact (by Compactness). Indeed Dom(h) = [x|y].
+      Take p \in Dom(h) such that for any t \in Dom(h) h(t) >= h(p).
+      Take q \in (x|y) such that h(q) < h(x).
+      Let us show that p \in (x|y).
+        p \in [x|y].
+        h(q) >= h(p). Indeed p,q \in Dom(h).
+        Then h(x) > h(p). Indeed h(x) > h(q) >= h(p).
+        Then h(p) != h(x).
+        Then p != x.
+        h(p) != h(x). Indeed h(p) != h(x) = h(y).
+        Then p != y.
+      End.
+      Let us show that h has local minima at p.
+        1 is a positive real number.
+        Let us show that for any t \in Dom(h) if d(t,p)<1 then h(t)>=h(p).
+          Assume t \in Dom(h).
+          Then h(t)>=h(p).
+        End.
+        Therefore the thesis (by 5_7a).
+      End.
+    End.
+    Take p \in (x|y) such that h has local minima at p.
+    p is a limit point of Dom(h).
+    Let us show that D(h,p)=0.
+      h is a real map that is defined on [x|y].
+      p is an element of (x|y).
+      h is differentiable at p and h has local minima at p. Indeed h is differentiable on (x|y).
+      Therefore the thesis (by 5_8a).
+    End.
+    Therefore the thesis. Indeed there exists t \in (x|y) such that D(h,t)=0.
+  End.
+  (For any t \in (x|y) h(t) = h(x)) or (there exists t \in (x|y) such that h(t) > h(x))
+    or (there exists t \in (x|y) such that h(t) < h(x)).
 QED.
