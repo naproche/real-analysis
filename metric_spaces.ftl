@@ -3,18 +3,13 @@
 
 Signature. Let p,q be elements. d(p,q) is a real number.
 
-Signature. A metric space is a set.
-
-Axiom 2_15. Let X be a metric space. Then for all element  p, q, r of X
-  ((if p != q then d(p,q) > 0)  and
+Definition 2_15. A metric space is a set X such that for every element p, q, r of X
+  ((if p != q then d(p,q) > 0) and
   d(p,p) = 0 and
   d(p,q) = d(q,p) and
   d(p,q) <= d(p,r) + d(r,q)).
 
-Axiom 2_16. Let X be a metric space. Let Y be a subset of X. Y is a metric space.
-
-#This holds as the axioms are still satisfied. I do not know if we can ask Naproche to prove this as 
-#we have not specified what a metric space actually is, just stated what properties should it have.
+Proposition 2_16. Let X be a metric space. Let Y be a subset of X. Then Y is a metric space.
 
 Definition 2_17_a. Let a and b be real numbers such that a < b. Seg(a,b)= {x | (x is a real number) and (x>a) 
 and (x< b)}.
