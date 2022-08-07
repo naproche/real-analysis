@@ -2,9 +2,13 @@
 [read real-analysis/numbers.ftl]
 
 # Map operations
+Let f denote a map.
 
-Definition Codomain. Let f be a map. Let S be a class.
+Definition Codomain.
+  Let S be a class.
   f is into S iff for any x \in Dom(f) we have f(x) \in S.
+
+Definition Image. Suppose M \subseteq Dom(f). f[M] = { f(j) | j \in M }.
 
 Definition Composition. Let f, g be maps. Suppose f is into Dom(g).
   g \circ f is a map h such that Dom(h) = Dom(f) and
@@ -29,12 +33,20 @@ Definition Division. Let f, g be maps into Real.
   f|//|g is a map h such that Dom(h) = Dom(f) and
   for any x \in Dom(h) we have h(x) = f(x)//g(x).
 
+
 ################
 # Preliminaries
 
 Let x, y, p, q denote real numbers.
 Let n, m denote positive integers.
 Let eps, del denote positive real numbers.
+
+
+# Compactness
+# This differs from continuity_pre.ftl but Freddy didn't want to introduce open covers etc.
+Signature.
+  Let S be a subset of Real.
+  S is compact is an atom.
 
 Signature Distance. d(x,y) is a real number.
 
@@ -77,4 +89,17 @@ Theorem 4_6. Suppose p \in Dom(f). Suppose p is a limit point of Dom(f).
 Theorem 4_4. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
   Let A, B be real numbers. Suppose lim(f,p)=A and lim(g,p)=B.
   Then lim(f++g,p)=A+B and lim(f**g,p)=A*B.
+
+Theorem 4_9. Suppose Dom(f) = Dom(g). Suppose p \in Dom(f).
+  Suppose f is continuous at p and g is continuous at p.
+  Then f ++ g is continuous at p and f ** g is continuous at p.
+
+
+# Freddy changed this theorem because he was not able to copy the defintions of upper bounds, supremum, etc.
+Theorem 4_16.
+  Suppose f is continuous and Dom(f) is nonempty and compact.
+  Then (there exists p \in Dom(f) such that
+    for any t \in Dom(f) f(t) <= f(p)) and
+  there exists q \in Dom(f) such that
+    for any t \in Dom(f) f(t) >= f(q).
 [prove on]
