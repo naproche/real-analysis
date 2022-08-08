@@ -1,6 +1,6 @@
 [synonym number/-s] [synonym sequence/-s] [synonym converge/-s] [synonym function/-s]
 [synonym map/-s]
-[prove off ][read numbers.ftl] [prove on] #el prove off prove on hace que leas el
+[prove off ][read real-analysis/numbers.ftl] [prove on] #el prove off prove on hace que leas el
 #archivo pero no lo pruebes
 
 Definition.A natural number is an integer k such that k=0 or 0<k .
@@ -46,7 +46,7 @@ Axiom. Let f be a function. Dom(f) is a set. #this is auxiliary for the moment, 
 #I can't write "a map", weird.
 
 Definition ImOfSubset.  Let f be function. Let E be a subset of Dom(f). 
-Im(E,f) is a subset of Ran(f) such that Im(E,f) = { f(x)  | x is an element of E}.
+Im(E,f) is a set such that Im(E,f) = { f(x)  | x is an element of E}.
  #with this def, the image is not a set I added, Im(E,f) is a set but it doesn't seem to fix the 
 #problem with the next definition. If instead of the image we write Ran(f) it does work
 
@@ -109,7 +109,7 @@ Definition AtMostCount. Let A be a set. A is at most countable iff (A is finite 
 #Now we introduce sequences, which might be redundant with chapter 3. 
 
 Definition Sequence. A sequence is a function a such that Dom(a) = NAT.
-Definition. Let f be a sequence.(f<<n) is a subset of Ran(f) such that
+Definition. Let f be a sequence.(f<<n) is a subset of Im(Dom(f),f) such that
  (f<<n)= {f(m) | m is an element of NAT and m < n}. #the order relation for naturals does not 
 #seem to work Im going to copy in this document what I had in the natural numbers one. That didnt
 #work either... Okay, specifying that m is an elemen of NAT the def works.
@@ -141,12 +141,19 @@ Fin(n) is bigger than (f<<n). #this is the definition of finitedness as in line 
 End.
 #These are definitions I wish I could type directly into the proofs, but i don\<acute>t know how.
 Definition ExtByElm. Let f be a function. Let A be a set such that Dom(f) is 
-a subset of A. Let b be an element of Ran(f). Ext(f,A,b) is a function such that
+a subset of A. Let b be an element of Im(Dom(f),f). Ext(f,A,b) is a function such that
 Dom(Ext(f,A,b)) = A and (for every element x of Dom(f) Ext(f,A,b)(x) = f(x)) and
 (for every element y of Dif(A, Dom(f)) Ext(f,A,b)(y) =b).
 
+#For Rudin's proof we need the following two definition
+
+Definition Smallf. Let M be a set. Let N be a subset of M. Let f be a function such that
+Dom(f) = NAT and f is surjective onto M. Let x be an element of N. x is smallest with 
+respect to f and M in N iff there exists a natural number n such that f(n) =x and for every
+natural number m such that m<n f(n) is not an element of N.
+
 Definition SubOfCountAux. Let f be a function such that Dom(f) = NAT.
- Let E be an infinite subset of Ran(f). Aux(f,E) is a function such
+ Let E be an infinite subset of Im(Dom(f),f). Aux(f,E) is a function such
 that Dom(Aux(f,E)) = NAT and (Aux(f,E)(0) = f(x) where x is smallest element
  of ImInv(E,f)) and (for every element m of NAT such that 0<m Aux(f,E)(m) = f(y) where
 y is the smallest element of ImInv(Dif(E, (Aux(f,E)<<m)),f)).
@@ -160,7 +167,21 @@ E is countable. #Indeed, after purging the computer does not know how to prove t
 Proof.
 Take a function f such that Dom(f)=NAT and f is surjective onto A.
 Take g = Aux(f,E).
-g is surjective onto E.
+Let us show that g is surjective onto E.
+  Let us show that every element of Im(Dom(g),g) is an element of E.
+  g(0) is an element of E.
+  For every element m of NAT such that 0<m g(m) is an element of Dif(E, (Aux(f,E)<<m)).
+  For every element m of NAT Dif(E, (Aux(f,E)<<m)) is a subset of E.
+  For every element m of NAT such that 0<m g(m) is an element of E.
+  End.
+
+  Let us show that every element of E is an element of Im(Dom(g),g).
+  For every element x of E there is an element m of NAT such that f(m)=x.
+  Take an element x such that x is an element of E.
+  Take an element k such that k is an element of NAT and f(k) = x.
+  
+  End.
+End.
 End.
 #Indeed, after purging the computer does not know how to prove this..
 #first idea: try to define subsequences and work from that. Difficulty: define restrictions of 
