@@ -535,13 +535,12 @@ Proof.
     Define sum(k) = (-x) + a(k) for k in NN.
     sum is a sequence.
     Let us show that sum converges to 0.
-    Proof.
         We have sum = (-x) +' a.
         Hence sum converges to (-x) + x.
         (-x) + x = 0.
     qed.
     Let us show that for every n b(n) = y * sum(n).
-    Proof. Let n be a natural number.
+        Let n be a natural number.
         b(n) = y * (a(n) + (-x)) = y * ((-x) + a(n)) = y * sum(n).
     qed.
     Hence b = y *' sum.
@@ -556,14 +555,12 @@ Theorem ProdConv.
 Proof.
     (1) Define s1(k) = (a(k) - x) * (b(k) - y) for k in NN.
     Let us show that s1 converges to 0.
-    Proof.
         Let eps be a positive real number.
         Take a positive real number rooteps such that rooteps = sqrt(eps).
         Take N1 such that for every n such that N1 < n dist(a(n),x) < rooteps.
         Take N2 such that for every n such that N2 < n dist(b(n),y) < rooteps.
         Take N such that N = max(N1,N2).
         Let us show that for every n such that N < n dist(s1(n),0) < eps.
-        Proof.
             Let n be a natural number such that N < n.
             dist(a(n),x) < rooteps and dist(b(n),y) < rooteps.
             dist(a(n),x), dist(b(n),y) and rooteps are not negative.
@@ -575,7 +572,6 @@ Proof.
     qed.
     (2) Define s2(k) = (x * (b(k) + (-y))) + (y * (a(k) + (-x))) for k in NN.
     Let us show that s2 converges to 0.
-    Proof.
         (3) Define s2a(k) = y * (a(k) + (-x)) for k in NN.
         (4) Define s2b(k) = x * (b(k) + (-y)) for k in NN.
         s2a, s2b are sequences.
@@ -630,11 +626,9 @@ Proof.
                                                        
     Let m be a natural number such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
     Let us show that for every n such that m < n 1/2 * |x| < |a(n)|.
-    Proof. 
         Let n be a natural number such that m < n.
         a(n), |a(n)|, -|a(n)|, |x| - |a(n)|, x - a(n), |x - a(n)|, a(n) - x, |a(n) - x|, |x| + (-|a(n)|), (|x| + (-|a(n)|)) + (-|x|) are real numbers.
         Let us show that |x| - |a(n)| < 1/2 * |x|.
-        Proof.
             |x| - |a(n)| <= |x - a(n)|.
             |x - a(n)| = |-(x - a(n))| = |a(n) - x|.
             |a(n) - x| < 1/2 * |x|.
@@ -655,11 +649,9 @@ Proof.
     Take N1 such that for every n such that N1 < n dist(a(n),x) < (1/2 * eps) * (|x| * |x|). 
     Take N2 such that N2 = max(N1,m).
     Let us show that for every n such that N2 < n dist(1/a(n),1/x) < eps.
-    Proof.
         Let n be a natural number such that N2 < n.
         Then we have N1 < n and m < n.
         Let us show that dist(1/a(n),1/x) < ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)).
-        Proof.
             dist(1/a(n),1/x) .= |1/a(n) - 1/x|
                               .= |(1*1/a(n)) - (1*1/x)| (by 1_12_M4)
                               .= |((x*1/x) * 1/a(n)) - ((a(n)*1/a(n)) * 1/x)| (by 1_12_M5)
@@ -674,7 +666,8 @@ Proof.
 
         (eps * (|x| * |x|)) * (1/2 * |1/x|), 1 * (1/|a(n)|), 2 * (1/|x|), dist(1/a(n),1/x),
         ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (1 * (1/|a(n)|)), ((eps * (|x| * |x|)) * (1/2 * |1/x|)) * (2 * (1/|x|)) are real numbers.
-
+    end.
+end.
 
 
 
@@ -709,15 +702,15 @@ Axiom IndPlusOne.
 Lemma SubSeqLeq.
   Let a be a sequence. Let i be an index sequence. Then for every n n<=i(n).
 Proof.
-    We can show by induction that n <= i(n) for every n.
-    proof.
+    Let us show by induction that n <= i(n) for every n.
         Let n be a natural number.
         Case n=0.
             Let us show that 0<= i(0).
-            i(0) is a natural number.
-            Therefore i(0)>= 0. 
+              i(0) is a natural number.
+              Therefore i(0)>= 0. 
+            end.
         end.
-        Case n !=0.
+        Case n != 0.
             Take m such that n=m+1.
             Hence m<n.
             Therefore  m<=i(m).
@@ -725,9 +718,9 @@ Proof.
             Then i(m)<i(m+1). 
             Hence i(m)+1<= i(m+1).
             Then m+1 <= i(m+1).
-            Hence n <= i(n). qed.
+            Hence n <= i(n).
         end.
-    qed.
+    end.
 qed.
 
 
@@ -736,16 +729,14 @@ qed.
 
 
 Lemma LimitSubSeq.
-  Let a be a sequence. Let x be a real number. 
+  Let a be a sequence. Let x be a real number.
   a converges to x if and only if for every index sequence i Subseq(a,i) converges to x.
 Proof. 
-     Let us show that if a converges to x then for every index sequence i
-     Subseq(a, i) converges to x.
-     Proof.
-          Assume a  converges to x. Let i be an index sequence. Let eps be a 
+     Let us show that if a converges to x then for every index sequence i Subseq(a, i) converges to x.
+          Assume a  converges to x.
+          Let i be an index sequence. Let eps be a 
           positive real number. Take N such that for every n such that N<n dist(a(n),x)<eps.
           Let us show that for every n such that N<n dist(Subseq(a,i)(n),x)<eps.
-          Proof.
               Let n be a natural number such that N<n.
               Then n<=i(n).
               Hence N< i(n).
@@ -755,7 +746,6 @@ Proof.
 
       Let us show that if for every index sequence i Subseq(a, i) converges to x
       then a converges to x.
-      Proof. 
             Assume for every index sequence i Subseq(a, i) converges to x.
             Define i(n) = n for n in NN.
             i is an index sequence.
@@ -765,6 +755,7 @@ Proof.
             Hence a converges to x.
       qed.
 qed.
+
 
 
 Axiom BolzanoWeierstrass.
