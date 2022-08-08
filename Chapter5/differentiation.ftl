@@ -809,8 +809,7 @@ Lemma DerivativeOfScaledFunction.
   Let p be a limit point of Dom(f).
   Let f be differentiable at p.
   Then D(c~f,p) = c * D(f,p).
-[prove on]
-[check on]
+
 
 Theorem 5_9.
   Let x < y.
@@ -846,12 +845,14 @@ Proof.
       f is differentiable at t. Indeed f is differentiable on (x|y).
       Then the thesis (by DerivativeOfScaledFunction).
     End.
+[prove on]
+[check on]
     Let us show that D(h,t) = D(c~g,t) + D(d~f,t).
       c~g is a real map that is defined on [x|y].
       d~f is a real map that is defined on [x|y].
       t is an element of (x|y).
-      c~g is differentiable at t (by DerivativeOfScaledFunction).
-      d~f is differentiable at t (by DerivativeOfScaledFunction).
+      c~g is differentiable at t. Indeed D(c~g,t) = c*D(g,t) (by DerivativeOfScaledFunction).
+      d~f is differentiable at t. Indeed D(d~f,t) = d*D(f,t) (by DerivativeOfScaledFunction).
       Then the thesis (by 5_3a).
     End.
   End.
