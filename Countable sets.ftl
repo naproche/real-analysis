@@ -115,7 +115,8 @@ Definition. Let f be a sequence.(f<<n) is a subset of Im(Dom(f),f) such that
 #work either... Okay, specifying that m is an elemen of NAT the def works.
 #Further note one must specify all this things are sets if not, the notions we have defined for sets 
 #i.e. (bigger than, equipotent, etc) yield "unrecognized" type errors.
-
+Axiom. Let f be a sequence. (f<<0) is empty set.#Added this axiom to simplify the def of smallest
+#wrt f in N.
 #First idea to go through with the problem of defining g in the lemma:
 # define restriction of a function.
 
@@ -145,22 +146,28 @@ a subset of A. Let b be an element of Im(Dom(f),f). Ext(f,A,b) is a function suc
 Dom(Ext(f,A,b)) = A and (for every element x of Dom(f) Ext(f,A,b)(x) = f(x)) and
 (for every element y of Dif(A, Dom(f)) Ext(f,A,b)(y) =b).
 
-#For Rudin's proof we need the following two definition
+#For Rudin's proof we need the following two definitions
 
-Definition Smallf. Let M be a set. Let N be a subset of M. Let f be a function such that
-Dom(f) = NAT and f is surjective onto M. Let x be an element of N. x is smallest with 
+Definition Smallf. Let M be a set. Let N be a subset of M. Let f be a sequence
+ such that f is surjective onto M. Let x be an element of N. x is smallest  with 
 respect to f and M in N iff there exists a natural number n such that f(n) =x and for every
 natural number m such that m<n f(n) is not an element of N.
 
+Axiom.Let M be a set. Let N be a nonempty subset of M. Let f be a sequence
+ such that f is surjective onto M. There exists an element x of N such that x is smallest with
+respect to f and M in N.
+
 Definition SubOfCountAux. Let f be a function such that Dom(f) = NAT.
- Let E be an infinite subset of Im(Dom(f),f). Aux(f,E) is a function such
-that Dom(Aux(f,E)) = NAT and (Aux(f,E)(0) = f(x) where x is smallest element
- of ImInv(E,f)) and (for every element m of NAT such that 0<m Aux(f,E)(m) = f(y) where
-y is the smallest element of ImInv(Dif(E, (Aux(f,E)<<m)),f)).
+ Let E be an infinite subset of Im(Dom(f),f). Aux(f,E) is a sequence
+such that  (for every element m of NAT  Aux(f,E)(m) = y where
+y is an element of  Dif(E, (f<<m))  such that y is smallest with respect to f and Im(Dom(f),f)
+ in Dif(E, (f<<m))).
 #We need to make the machine understand that ImInv(E,f) is not empty, which is 
 #apparently not direct from the definition.(Now that I have modified the definition, it is)
 #Note: to make this work I had to change the =< in the defs of Fin(n) and (f<<n) since we 
 #do not have a symbol for the previous element.
+
+Lemma. Let E be a set. Let F be an empty set. Dif(E,F) = E.
 
 Theorem SubOfCount. Let A be a countable set. Let E be an infinite subset of A.
 E is countable. #Indeed, after purging the computer does not know how to prove this.
@@ -170,8 +177,8 @@ Take g = Aux(f,E).
 Let us show that g is surjective onto E.
   Let us show that every element of Im(Dom(g),g) is an element of E.
   g(0) is an element of E.
-  For every element m of NAT such that 0<m g(m) is an element of Dif(E, (Aux(f,E)<<m)).
-  For every element m of NAT Dif(E, (Aux(f,E)<<m)) is a subset of E.
+  For every element m of NAT such that 0<m  g(m) is an element of Dif(E, (f<<m)).
+  For every element m of NAT Dif(E, (f<<m)) is a subset of E.
   For every element m of NAT such that 0<m g(m) is an element of E.
   End.
 
