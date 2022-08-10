@@ -1,5 +1,5 @@
 [synonym field/-s]
-[prove off] [read real-analysis/numbers.ftl][prove on]
+[prove off] [read numbers.ftl][prove on]
 
 Signature. Let p,q be elements. d(p,q) is a real number.
 
@@ -56,16 +56,19 @@ for every element p of X we have (p is  limit point of Y in X) or (p is an eleme
 Theorem 2_19. Let X be a metric space. Let r be a positive real number. Let p be an element of X. Neigh(p,r,X)
 is open in X. 
 
-Proof. Let q be an element of Neigh(p,r,X). Let us prove that q is interior point of Neigh(p,r,X) in X.
+Proof. Let us prove that every element of Neigh(p,r,X) is interior point of Neigh(p,r,X) in X. Proof.
+Let q be an element of Neigh(p,r,X). Let us prove that q is interior point of Neigh(p,r,X) in X.
 Proof. 
-Then d(p,q) < r. r-d(p,q) is a positive real number. Let s be
-an element of X such that s is an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
+Then d(p,q) < r. r-d(p,q) is a positive real number.
+Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
+Proof.
+Let s be an element of X such that s is an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
 We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). Then d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
 Thus d(p,s) < r.
-Thus s is an element of Neigh(p,r,X). Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
-Hence q is interior point of Neigh(p,r,X) in X. End.
-Then Neigh(p,r,X) is open in X.
-qed.
+Thus s is an element of Neigh(p,r,X). End.
+Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
+Hence q is interior point of Neigh(p,r,X) in X. End. End.
+Thus Neigh(p,r,X) is open in X. qed.
 
 #This is a theorem we should later prove.
 
@@ -73,7 +76,7 @@ qed.
 
 #So does 2_22.
 
-Theorem 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
+Axiom 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
 
 #This is a theorem we should later prove.
 
