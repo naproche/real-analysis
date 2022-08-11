@@ -109,18 +109,25 @@ or (p is an element of lim(Y,X))}.
 
 Lemma. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is a subset of X.
 
+Lemma Add1. Let X be a metric space. Let Y and Z be subsets of X. Suppose Y is a subset of Z.
+Then Compl(Z,X) is a subset of Compl(Y,X).
+
+Lemma Add2. Let X be a metric space. Let Y, Z and W be subsets of X. Suppose Y is a subset of Z.
+Suppose Z is a subset of W. Then Y is a subset of W.
+
 Theorem 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
-Proof. Let us prove that Compl(cl(Y,X),X) is open in X. Proof. Let p be an element of X such that
+Proof. Let us prove that Compl(cl(Y,X),X) is open in X. Let p be an element of X such that
 p is an element of Compl(cl(Y,X),X). Thus p is not an element of cl(Y,X). Thus p is not an element of Y
 and p is not an element of lim(Y,X). Take a positive real number r such that (for every element q 
-of Neigh(p,r,X) q is not an element of Y).
-Hence p is interior point of Compl(cl(Y,X),X) in X. 
+of Neigh(p,r,X) q is not an element of Y). Hence Neigh(p,r,X) is a subset of Compl(Y,X). 
+(By Add1) Compl(Y,X) is a subset of Compl(cl(Y,X),X). 
+(By Add1 and Add2) Thus Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). Hence p is interior point of Compl(cl(Y,X),X) in X.
 End. (By 2_23_b) cl(Y,X) is closed in X.
 qed.
 
 Theorem 2_27_b. Let X be a metric space. Let Y be a subset of X. Y = cl(Y,X) iff Y is closed in X.
 Proof. Let us prove that if (Y=cl(Y,X)) then Y is closed in X. Proof. Suppose Y = cl(Y,X).
-(By 2_23_a) cl(Y,X) is closed in X. Thus Y is is closed in X
+(By 2_23_a) cl(Y,X) is closed in X. Thus Y is closed in X.
 End.
 Let us prove that if Y is closed in X then Y = cl(Y,X). Proof. Suppose Y is closed in X. Then lim(Y,X) 
 is a subset of Y. Thus Y = cl(Y,X).
@@ -130,9 +137,6 @@ qed.
 Theorem 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subset of X such that 
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
 Proof. F is closed in X. Thus lim(F,X) is a subset of F. Y is a subset of F. Hence lim(Y,X) is a subset
-of F. Thus cl(Y,X) is a subset of F.
-
-qed.
+of F. Thus cl(Y,X) is a subset of F. qed.
 
 #This should be theorems.
-
