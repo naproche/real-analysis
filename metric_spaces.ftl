@@ -90,7 +90,9 @@ a positive real number r such that (for every element q of Neigh(p,r,X) q is not
 Thus Neigh(p,r,X) is a subset of Y. Hence p is interior point of Y in X. End. Thus Y is open in X.
 End.
 qed.
-#This is a theorem we should later prove.
+
+Corollary. Let X be a metric space. Let Y be a subset of X. X is closed in X iff Compl(Y,X) is open in X.
+Proof. 
 
 #2_24 requires MyChap2.
 
@@ -102,7 +104,11 @@ or (p is an element of lim(Y,X))}.
 
 Lemma. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is a subset of X.
 
-Axiom 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
+Theorem 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
+Proof. 
+
+qed.
+
 Axiom 2_27_b. Let X be a metric space. Let Y be a subset of X. Y = cl(Y,X) iff Y is closed in X.
 Axiom 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subset of X such that 
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
