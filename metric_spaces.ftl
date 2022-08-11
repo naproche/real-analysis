@@ -70,14 +70,26 @@ Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X).
 Hence q is interior point of Neigh(p,r,X) in X. End. End.
 Thus Neigh(p,r,X) is open in X. qed.
 
-#This is a theorem we should later prove.
-
 #2_20 requires MyChap2 (infinite) which I still haven't been able to read here.
 
 #So does 2_22.
 
-Axiom 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
+Theorem 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
 
+Proof. Let us prove that if (Y is open in X) then (Compl(Y,X) is closed in X). Proof. 
+Suppose Y is open in X. Let p be an element of X such that p is limit point of Compl(Y,X) in X. 
+For every positive real number r there exists an element q of Neigh(p,r,X) such that 
+q is an element of Compl(Y,X). Thus p is not interior point of Y in X. Y is open in X. 
+Hence p is not an element of Y. Thus p is an element of Compl(Y,X).
+End.
+Let us prove that if (Compl(Y,X) is closed in X) then (Y is open in X). Proof.
+Suppose Compl(Y,X) is closed in X. Let us show that every element of Y is interior point of Y in X.
+Proof. Let p be an element of Y. Thus p is not an element of Compl(Y,X).
+Compl(Y,X) is closed in X. Hence p is not limit point of Compl(Y,X) in X. Take
+a positive real number r such that (for every element q of Neigh(p,r,X) q is not an element of Compl(Y,X)).
+Thus Neigh(p,r,X) is a subset of Y. Hence p is interior point of Y in X. End. Thus Y is open in X.
+End.
+qed.
 #This is a theorem we should later prove.
 
 #2_24 requires MyChap2.
