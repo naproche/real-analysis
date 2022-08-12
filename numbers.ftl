@@ -45,8 +45,8 @@ Axiom 1_5_ii. If x < y and y < z then x < z.
 
 Proposition. x <= y iff not x > y.
 
-Proposition. If x <= y < z then x < z.
-Proposition. If x < y <= z then x < z.
+Proposition Trans1. If x <= y < z then x < z.
+Proposition Trans2. If x < y <= z then x < z.
 
 Axiom 1_12_A2. x+y=y+x.
 Axiom 1_12_A3. (x+y)+z=x+(y+z).

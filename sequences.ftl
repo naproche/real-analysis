@@ -47,7 +47,7 @@ qed.
 
 Signature. dist(x,y) is a real number.
 Axiom. dist(x,y) = |x - y|.
-Proposition. Let x,y be real numbers. |x+y| <= |x| + |y|.
+Proposition TriIneqAbs. Let x,y be real numbers. |x+y| <= |x| + |y|.
 Proof.
 Case x+y is positive. Then |x+y| = x+y <= |x| + |y|. end.
 Case x+y is negative. 
@@ -624,7 +624,7 @@ Proof.
     
     #could jus write take m such that. Then no yellow error.
                                                        
-    Let m be a natural number such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
+    Take m such that for every n such that m < n dist(a(n),x) < 1/2 * |x|.
     Let us show that for every n such that m < n 1/2 * |x| < |a(n)|.
         Let n be a natural number such that m < n.
         a(n), |a(n)|, -|a(n)|, |x| - |a(n)|, x - a(n), |x - a(n)|, a(n) - x, |a(n) - x|, |x| + (-|a(n)|), (|x| + (-|a(n)|)) + (-|x|) are real numbers.
@@ -768,8 +768,47 @@ Definition Cauchy.
   A cauchy sequence is a sequence a such that for every positive real number eps there exists N such
   that for every n,m such that (N<n and N<m) dist(a(n),a(m))<eps.
 
-Axiom CauchyBounded.
+Lemma CauchyBounded.
   Let a be a cauchy sequence. Then a is bounded.
+Proof.
+    Take N such that for every n,m such that (N < n and N < m) dist(a(n),a(m)) < 1.
+    Hence for every n such that N < n dist(a(n),a(N + 1)) < 1.
+
+    Define b(k) = |a(k)| for k in NN.
+
+    Take a real number K such that K = max(1 + |a(N + 1)|, maxN(b,N)).
+
+    Let us show that a is bounded by K.
+        Let us show that for every n |a(n)| <= K.
+            Let n be a natural number.
+            Case n <= N.
+                We have |a(n)| = b(n) <= maxN(b,N) (by MaxN).
+                We have maxN(b,N) <= K.
+                Therefore |a(n)| <= K.
+            end.
+            Case n > N.
+                We have dist(a(n),a(N + 1)) < 1.
+                We have 1 + |a(N + 1)| <= K.
+
+                |a(n)| .= |a(n) + 0|
+                          .= |a(n) + (a(N + 1) - a(N + 1))| (by 1_12_A5)
+                          .= |a(n) + ((-a(N + 1)) + a(N + 1))| (by 1_12_A2)
+                          .= |(a(n) - a(N + 1)) + a(N + 1)| (by 1_12_A3).
+                          
+                a(n) - a(N + 1) and a(N + 1) are real numbers.
+                We have |(a(n) - a(N + 1)) + a(N + 1)| <= |a(n) - a(N + 1)| + |a(N + 1)| (by TriIneqAbs).
+                Hence |a(n)| <= |a(n) - a(N + 1)| + |a(N + 1)|.
+                Hence |a(n)| <= dist(a(n),a(N + 1)) + |a(N + 1)|.
+
+                We have dist(a(n),a(N + 1)) + |a(N + 1)| < 1 + |a(N + 1)|.
+                Hence |a(n)| <= 1 + |a(N + 1)| (by Trans1).
+                Therefore |a(n)| <= K.
+            end.
+        end.
+        Hence a is bounded by K (by BoundedBy).
+    end.
+qed.
+
 
 Axiom CauchyConvSubSeq.
   Let a be a cauchy sequence such that a has some convergent subsequence.
