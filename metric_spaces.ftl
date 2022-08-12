@@ -1,5 +1,5 @@
 [synonym field/-s]
-[prove off] [read numbers.ftl][prove on]
+[prove off][read real-analysis/numbers.ftl][prove on]
 
 Signature. Let p,q be elements. d(p,q) is a real number.
 
@@ -62,7 +62,7 @@ Proof.
 Then d(p,q) < r. r-d(p,q) is a positive real number.
 Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
 Proof.
-Let s be an element of X such that s is an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
+Let s be an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
 We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). Then d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
 Thus d(p,s) < r.
 Thus s is an element of Neigh(p,r,X). End.
@@ -109,19 +109,16 @@ or (p is an element of lim(Y,X))}.
 
 Lemma. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is a subset of X.
 
-Lemma Add1. Let X be a metric space. Let Y and Z be subsets of X. Suppose Y is a subset of Z.
-Then Compl(Z,X) is a subset of Compl(Y,X).
-
-Lemma Add2. Let X be a metric space. Let Y, Z and W be subsets of X. Suppose Y is a subset of Z.
-Suppose Z is a subset of W. Then Y is a subset of W.
-
 Theorem 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
-Proof. Let us prove that Compl(cl(Y,X),X) is open in X. Let p be an element of X such that
-p is an element of Compl(cl(Y,X),X). Thus p is not an element of cl(Y,X). Thus p is not an element of Y
+Proof. Let us prove that Compl(cl(Y,X),X) is open in X. Let p be an element of Compl(cl(Y,X),X). 
+Thus p is not an element of cl(Y,X). Thus p is not an element of Y
 and p is not an element of lim(Y,X). Take a positive real number r such that (for every element q 
-of Neigh(p,r,X) q is not an element of Y). Hence Neigh(p,r,X) is a subset of Compl(Y,X). 
-(By Add1) Compl(Y,X) is a subset of Compl(cl(Y,X),X). 
-(By Add1 and Add2) Thus Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). Hence p is interior point of Compl(cl(Y,X),X) in X.
+of Neigh(p,r,X) q is not an element of Y). Hence Neigh(p,r,X) is a subset of Compl(Y,X).
+Let us prove that Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). 
+Let s be an element of Neigh(p,r,X). Assume s is an element of lim(Y,X). Take a positive real number
+t such that Neigh(s,t,X) is a subset of Neigh(p,r,X). Then there exists an element c of X such that c is an element of
+lim(Y,X) and c is an element of Neigh(p,r,X). Contradiction. Hence Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). End.
+Hence p is interior point of Compl(cl(Y,X),X) in X.
 End. (By 2_23_b) cl(Y,X) is closed in X.
 qed.
 
@@ -138,5 +135,3 @@ Theorem 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subs
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
 Proof. F is closed in X. Thus lim(F,X) is a subset of F. Y is a subset of F. Hence lim(Y,X) is a subset
 of F. Thus cl(Y,X) is a subset of F. qed.
-
-#This should be theorems.
