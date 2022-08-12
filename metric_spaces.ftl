@@ -101,13 +101,11 @@ Thus Y is closed in X iff Compl(Y,X) is open in X.  qed.
 
 #2_24 requires MyChap2.
 
-Definition 2_26_a. Let X be a metric space. Let Y be a subset of X. lim(Y,X)={p | (p is an element of X 
+Definition 2_26_a. Let X be a metric space. Let Y be a subset of X. lim(Y,X) = {p | (p is an element of X 
 such that p is limit point of Y in X)}.
 
 Definition 2_26_b. Let X be a metric space. Let Y be a subset of X. cl(Y,X) = {p | (p is an element of Y) 
 or (p is an element of lim(Y,X))}.
-
-Lemma. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is a subset of X.
 
 Theorem 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
 Proof. Let us prove that Compl(cl(Y,X),X) is open in X. Let p be an element of Compl(cl(Y,X),X). 
