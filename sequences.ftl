@@ -1,6 +1,3 @@
-[prove off]
-[check off]
-
 [read real-analysis/vocabulary.ftl]
 [read real-analysis/numbers.ftl]
 
@@ -46,7 +43,7 @@ qed.
 
 
 Signature. dist(x,y) is a real number.
-Axiom. dist(x,y) = |x - y|.
+Axiom DistanceDef. dist(x,y) = |x - y|.
 Proposition TriIneqAbs. Let x,y be real numbers. |x+y| <= |x| + |y|.
 Proof.
 Case x+y is positive. Then |x+y| = x+y <= |x| + |y|. end.
@@ -724,8 +721,6 @@ Proof.
 qed.
 
 
-[prove on]
-[check on]
 
 
 Lemma LimitSubSeq.
@@ -810,12 +805,82 @@ Proof.
 qed.
 
 
-Axiom CauchyConvSubSeq.
+Lemma CauchyConvSubSeq.
   Let a be a cauchy sequence such that a has some convergent subsequence.
   Then a converges.
+Proof.
+    Take a index sequence i such that Subseq(a,i) converges.
+    Take a real number x such that Subseq(a,i) converges to x.
 
-Axiom RComplete.
+    Let us show that a converges to x.
+        Let eps be a positive real number.
+        Take a positive real number halfeps such that halfeps = 1/2 * eps.
+
+        Take N1 such that for every n,m such that (N1 < n and N1 < m) dist(a(n),a(m)) < halfeps.
+        Take N2 such that for every n such that N2 < n dist(Subseq(a,i)(n),x) < halfeps (by Convergence).
+        Take N such that N = max(N1,N2).
+        Then N1 <= N and N2 <= N.
+
+        Let us show that for every n such that N < n dist(a(n),x) < eps.
+            Let n be a natural number such that N < n. Hence N1 < n and N2 < n.
+            We have n <= i(n) (by SubSeqLeq). Hence N1 < i(n).
+            a(n), a(i(n)), dist(a(n),a(i(n))), dist(a(n),x), a(n) - a(i(n)), a(i(n)) - x, dist(a(n),a(i(n))) + dist(a(i(n)),x) are real numbers.
+
+            We have Subseq(a,i)(n) = a(i(n)).
+            We have dist(a(n),a(i(n))) < halfeps.
+            We have dist(a(i(n)),x) < halfeps.
+
+            dist(a(n),x) .= |a(n) - x|
+                         .= |(a(n) + 0) - x|
+                         .= |(a(n) + (a(i(n)) - a(i(n)))) - x| (by 1_12_A5)
+                         .= |(a(n) + ((-a(i(n))) + a(i(n)))) - x| (by 1_12_A2)
+                         .= |((a(n) - a(i(n))) + a(i(n))) - x| (by 1_12_A3)
+                         .= |(a(n) - a(i(n))) + (a(i(n)) - x)| (by 1_12_A3).
+
+            We have |(a(n) - a(i(n))) + (a(i(n)) - x)| <= |a(n) - a(i(n))| + |a(i(n)) - x| (by  TriIneqAbs).
+            Hence dist(a(n),x) <= |a(n) - a(i(n))| + |a(i(n)) - x|.
+            Hence dist(a(n),x) <= dist(a(n),a(i(n))) + dist(a(i(n)),x) (by DistanceDef).
+
+            We have dist(a(n),a(i(n))) + dist(a(i(n)),x) < halfeps + halfeps (by  AddInvariance).
+            Hence dist(a(n),x) < halfeps + halfeps (by Trans1).
+            Hence dist(a(n),x) < eps.
+        end.
+    end.
+qed.
+
+
+Theorem RComplete.
   Let a be a sequence. a is cauchy sequence iff a converges.
+Proof.
+    Let us show that if a is a cauchy sequence then a converges.
+        Assume a is a cauchy sequence.
+        Then a is bounded (by CauchyBounded).
+        Therefore a has some convergent subsequence (by BolzanoWeierstrass).
+        Hence a converges (by CauchyConvSubSeq).
+    end.
+
+    Assume a converges.
+    Take a real number x such that a converges to x.
+    Let us show that a is a cauchy sequence.
+        Let eps be a positive real number.
+        
+        Take a positive real number halfeps such that halfeps = 1/2 * eps.
+        Take N such that for every n such that N < n dist(a(n),x) < halfeps.
+
+        Let us show that for every n,m such that (N < n and N < m) dist(a(n),a(m)) < eps.
+            Let n,m be natural numbers such that N < n and N < m.
+            We have dist(a(n),x) < halfeps.
+            We have dist(a(m),x) < halfeps.
+
+            We have dist(a(n),a(m)) <= dist(a(n),x) + dist(x,a(m)).
+            Hence dist(a(n),a(m)) <= dist(a(n),x) + dist(a(m),x).
+            We have dist(a(n),x) + dist(a(m),x) < halfeps + halfeps (by AddInvariance).
+            Hence dist(a(n),a(m)) < halfeps + halfeps (by Trans1).
+            Hence dist(a(n),a(m)) < eps.
+       end.
+    end.
+qed.
+
 
 ### Monotonic sequences
 
@@ -847,11 +912,122 @@ Definition GreatestLowerBoundSeq.
   Let a be a bounded sequence. GreatestLower(a) is a real number K such that (K is a lower bound of a)
   and (for every real number L such that L is a lower bound of a K>=L).
 
-Axiom MonIncCon. 
-  Let a be a monotonically increasing bounded sequence. Then a converges.
 
-Axiom MonCon.
+Lemma MonIncCon. 
+  Let a be a monotonically increasing bounded sequence. Then a converges.
+Proof.
+    For every n a(n) <= LeastUpper(a) (by UpperBoundSeq, LeastUpperBoundSeq).
+    Let us show that for every positive real number eps there exists N such that (LeastUpper(a) - eps) < a(N).
+        Assume the contrary.
+        Take a positive real number eps such that for every N not((LeastUpper(a) - eps) < a(N)).
+
+        Let us show that for every n a(n) <= (LeastUpper(a) - eps).
+            Let n be a natural number.
+            We have not((LeastUpper(a) - eps) < a(n)).
+            Therefore (LeastUpper(a) - eps) >= a(n).
+            Hence a(n) <= (LeastUpper(a) - eps).
+        end.
+        Hence (LeastUpper(a) - eps) is upper bound of a.
+
+        LeastUpper(a) - (LeastUpper(a) - eps) .= LeastUpper(a) + (-LeastUpper(a) + eps)
+                                              .= (LeastUpper(a) - LeastUpper(a)) + eps (by 1_12_A3)
+                                              .= 0 + eps (by 1_12_A5)
+                                              .= eps + 0 (by 1_12_A2)
+                                              .= eps.
+
+        Hence (LeastUpper(a) - eps) < LeastUpper(a).
+        Hence not((LeastUpper(a) - eps) >= LeastUpper(a)).
+        Contradiction.
+    end.
+
+    Let us show that a converges to LeastUpper(a).
+        Let eps be a positive real number.
+        Take N such that (LeastUpper(a) - eps) < a(N).
+
+        Let us show that for every n such that N < n dist(a(n),LeastUpper(a)) < eps.
+            Let n be a natural number such that N < n.
+            Hence a(N) <= a(n) (by MonInc).
+            We have a(n) <= LeastUpper(a).
+            Hence dist(a(n),LeastUpper(a)) = |LeastUpper(a) - a(n)| = LeastUpper(a) - a(n).
+
+            We have (LeastUpper(a) - eps) + eps < a(N) + eps.
+            We have ((LeastUpper(a) - eps) + eps) - a(N) < (a(N) + eps) - a(N).
+
+            ((LeastUpper(a) - eps) + eps) - a(N) .= (LeastUpper(a) + (-eps + eps)) - a(N) (by 1_12_A3)
+                                                 .= (LeastUpper(a) + (eps - eps)) - a(N) (by 1_12_A2)
+                                                 .= (LeastUpper(a) + 0) - a(N) (by 1_12_A5)
+                                                 .= LeastUpper(a) - a(N).
+
+            (a(N) + eps) - a(N) .= (eps + a(N)) - a(N) (by 1_12_A2)
+                                .= eps + (a(N) - a(N)) (by 1_12_A3)
+                                .= eps + 0 (by 1_12_A5)
+                                .= eps.
+
+            Hence LeastUpper(a) - a(N) < eps.
+            
+            We have LeastUpper(a) - a(n) <= LeastUpper(a) - a(N).
+            Hence dist(a(n),LeastUpper(a)) < eps.
+        end.
+    end.
+qed.
+
+
+Theorem MonCon.
   Let a be a monotonic sequence. a converges iff a is bounded.
+Proof.
+    We have (If a converges then a is bounded) (by ConvergentImpBounded).
+
+    Assume a is bounded.
+    Case a is monotonically increasing.
+        Then a converges (by MonIncCon). 
+    end.
+    Case a is monotonically decreasing.
+        Let us show that (-1) *' a is monotonically increasing.
+            Let n,m be natural numbers such that n <= m.
+            Then a(n) >= a(m) (by MonDec).
+            Then -a(n) <= -a(m).
+            
+            ((-1) *' a)(n) .= (-1) * a(n)
+                            .= -a(n).
+            ((-1) *' a)(m) .= (-1) * a(m)
+                            .= -a(m).
+
+            Hence ((-1) *' a)(n) <= ((-1) *' a)(m).
+        end.
+
+        Let us show that (-1) *' a is bounded.
+            Take a real number K such that for every n |a(n)| <= K (by BoundedSequence).
+
+            Let us show that for every n |((-1) *' a)(n)| <= K.
+                Let n be a natural number.
+                |((-1) *' a)(n)| .= |(-1) * a(n)| (by SequenceConstProd)
+                                     .= |-a(n)|
+                                     .= |a(n)|.
+                Hence |((-1) *' a)(n)| <= K.
+            end.
+
+            Hence (-1) *' a is bounded by K (by BoundedBy).
+        end.
+
+        Hence (-1) *' a converges (by MonIncCon).
+        Take a real number x such that (-1) *' a converges to x.
+
+        Let us show that (-1) *' ((-1) *' a) = a.
+            Let us show that for every natural number n ((-1) *' ((-1) *' a))(n) = a(n).
+                Let n be a natural number.
+                ((-1) *' ((-1) *' a))(n) .= (-1) * ((-1) *' a)(n) (by SequenceConstProd)
+                                           .= (-1) * ((-1) * a(n)) (by SequenceConstProd)
+                                           .= -(-a(n))
+                                           .= a(n).
+            end.
+            Hence (-1) *' ((-1) *' a) = a (by SequenceEq).
+        end.
+
+        Then (-1) *' ((-1) *' a) converges to (-1) * x (by ProdConstConv).
+        Hence a converges (by Conv).
+    end.
+qed.
+
 
 
 Definition BoundedAboveBy.

@@ -111,6 +111,9 @@ Axiom 1_17_ii. If x>0 and y>0 then x*y>0.
 Definition. x is positive iff x>0.
 Definition. x is negative iff x<0.
 
+Lemma AddInvariance. If x<y and z<w then x+z<y+w.
+Proof. Let x<y and z<w. x+z < y+z < y+w. qed.
+
 Proposition 1_18_a. x>0 iff -x<0.
 Proposition 1_18_b. If x>0 and y<z then x*y< x*z.
 Proof. Let x>0 and y<z.
