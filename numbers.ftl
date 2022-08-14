@@ -45,8 +45,8 @@ Axiom 1_5_ii. If x < y and y < z then x < z.
 
 Proposition. x <= y iff not x > y.
 
-Proposition. If x <= y < z then x < z.
-Proposition. If x < y <= z then x < z.
+Proposition Trans1. If x <= y < z then x < z.
+Proposition Trans2. If x < y <= z then x < z.
 
 Axiom 1_12_A2. x+y=y+x.
 Axiom 1_12_A3. (x+y)+z=x+(y+z).
@@ -110,6 +110,9 @@ Axiom 1_17_i. If y<z then x+y<x+z and y+x < z+x.
 Axiom 1_17_ii. If x>0 and y>0 then x*y>0.
 Definition. x is positive iff x>0.
 Definition. x is negative iff x<0.
+
+Lemma AddInvariance. If x<y and z<w then x+z<y+w.
+Proof. Let x<y and z<w. x+z < y+z < y+w. qed.
 
 Proposition 1_18_a. x>0 iff -x<0.
 Proposition 1_18_b. If x>0 and y<z then x*y< x*z.
