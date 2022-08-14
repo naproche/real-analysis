@@ -12,7 +12,7 @@ Let j \notin S denote j is not an element of S.
 Definition. A subclass of S is a class T such that every element of T belongs to S.
 Let T \subseteq S denote T is a subclass of S.
 
-Definition. S \cup T is a class U such that for any j (j \in U) iff (j \in S or j \in T).
+Definition. S \cup T = { j | j \in S or j \in T }.
 Definition. S \cap T = { j in S | j \in T }.
 Definition. S \setminus T = { j in S | j \notin T }.
 Definition. S is nonempty iff S has an element.
@@ -25,17 +25,17 @@ Definition Codomain. f is into S iff for any j \in Dom(f) we have f(j) \in S.
 
 Definition Image. Suppose M \subseteq Dom(f). f[M] = { f(j) | j \in M }.
 
+Definition Preimage. f^-1(S) = { j in Dom(f) | f(j) \in S }.
+
 Definition Composition. Suppose f is into Dom(g). g \circ f is a map h
   such that Dom(h) = Dom(f) and for any j \in Dom(f) we have g(f(j)) = h(j).
-
-Definition Preimage. f^-1(S) = { j in Dom(f) | f(j) \in S }.
 
 Definition Injective. f is injective iff for any i, j \in Dom(f) if f(i) = f(j) then i = j.
 
 Definition Inverse. Suppose f is injective. inv(f) is a map g such that
   f is into Dom(g) and Dom(g) = f[Dom(f)] and for all j \in Dom(f) g(f(j)) = j.
 
-# Real numbers
+# Real Numbers
 
 Signature. A real number is a mathematical object.
 
@@ -84,7 +84,7 @@ Axiom 1_20. If y > 0 then there exists x such that x > 0 and x + x = y.
 Let x is positive denote x > 0.
 Let x is negative denote x < 0.
 
-# Upper and lower bounds
+# Upper and Lower Bounds
 
 Let E denote a subclass of Real.
 
@@ -99,7 +99,7 @@ Definition 1_8a. A supremum of E is a real number p such that
 Definition 1_8b. An infimum of E is a real number p such that
   p is a lower bound of E and for all x if x > p then x is not a lower bound of E.
 
-# Natural numbers.
+# Natural Numbers.
 
 Signature. A natural number is a real number.
 
@@ -112,7 +112,7 @@ Axiom. m + 1 is a natural number.
 Axiom. If n > 1 then there exists m such that m + 1 = n.
 Axiom. n >= 1.
 
-# Real maps
+# Real Maps
 
 Definition RealMap. A real map is a map f such that Dom(f) \subseteq Real and f is into Real.
 
@@ -154,7 +154,7 @@ Definition Convergence. a converges to x iff for any eps
 Definition UneqConv. a unequally converges to x iff for any eps
   there exists N such that for any n if n > N then 0 < d(a(n),x) < eps.
 
-Axiom 3_1. There exists a sequence a such that a converges to 0 and for all n a(n) > 0.
+Axiom 1_n. There exists a sequence a such that a converges to 0 and for all n a(n) > 0.
 
 Axiom 3_2. Suppose a converges to x and a converges to y. Then x = y.
 
@@ -165,15 +165,6 @@ Axiom 3_3c. Suppose for any n a(n) != 0.
 
 # Basic Topology
 
-Definition Open. Let U \subseteq E. U is open in E iff
-  for any x \in U there exists eps such that for any y \in E if d(x,y) < eps then y \in U.
-
-Definition Closed. Let V \subseteq E. V is closed in E iff E \setminus V is open in E.
-
-Axiom 2_29a. Let F, V \subseteq E. Suppose V is open in E. Then V \cap F is open in F.
-
-Axiom 2_29b. Let F, V \subseteq E. Suppose V is closed in E. Then V \cap F is closed in F.
-
 Definition LimitPoint. A limit point of E is a real number p such that
   there exists a sequence a such that a is into E and a unequally converges to p.
 
@@ -183,21 +174,30 @@ Definition ClosurePoint. A closure point of E is a real number p such that
 Axiom 2_18. Suppose y is not a limit point of E.
   Then there exists eps such that for all x if 0 < d(x,y) < eps then x \notin E.
 
+Definition Open. Let U \subseteq E. U is open in E iff
+  for any x \in U there exists eps such that for any y \in E if d(x,y) < eps then y \in U.
+
+Definition Closed. Let V \subseteq E. V is closed in E iff E \setminus V is open in E.
+
+Axiom 2_29a. Let F, V \subseteq E. Suppose V is open in E. Then V \cap F is open in F.
+
+Axiom 2_29b. Let F, V \subseteq E. Suppose V is closed in E. Then V \cap F is closed in F.
+
 Definition Neighborhood. nbhd(y,eps) = { x in Real | d(x,y) < eps }.
 
 Axiom 2_19. nbhd(y,eps) is open in Real.
 
 # Compactness
 
-Definition OpenCover. An open cover of E is a map C such that Dom(C) = E
-  and for any x \in E C(x) \subseteq E and C(x) is open in E and x \in C(x).
+Definition OpenCover. A neighborhood cover of E is a map G such that Dom(G) = E
+  and for any x \in E G(x) \subseteq E and G(x) is open in E and x \in G(x).
 
-Definition FiniteSubcover. Let C be an open cover of E.
-  A finite subcover of C on E is a sequence a such that a is into E and there exists N
-  such that N > 1 and for any x \in E there exists n such that n < N and x \in C(a(n)).
+Definition FiniteSubcover. Let G be a neighborhood cover of E.
+  A finite subcover of G on E is a sequence a such that a is into E and there exists N
+  such that N > 1 and for any x \in E there exists n such that n < N and x \in G(a(n)).
 
 Definition Compact. E is compact iff
-  for any open cover C of E there exists a finite subcover of C on E.
+  for any neighborhood cover G of E there exists a finite subcover of G on E.
 
 Axiom 2_28. Suppose E is nonempty and compact.
   There exist p, q \in E such that p is the supremum of E and q is the infimum of E.
@@ -217,4 +217,4 @@ Definition Connected. E is connected iff
 Axiom 2_47. E is connected iff for any x, y \in E for any z if x < z < y then z \in E.
 
 # Consistency check
-# [timelimit 20] Lemma. Contradiction.
+# [prove on][timelimit 20] Lemma. Contradiction.

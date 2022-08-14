@@ -1,6 +1,4 @@
-[check off]
 [read real-analysis/continuity_pre.ftl]
-[check on]
 
 ################
 # Notations
@@ -12,7 +10,7 @@ Let f, g denote real maps.
 Let E denote a subclass of Real.
 
 ################
-# Limits of maps
+# Limits of Maps
 
 Definition 4_1. Suppose p is a limit point of Dom(f).
   lim(f,p) = q iff for any eps there exists del such that
@@ -21,8 +19,9 @@ Definition 4_1. Suppose p is a limit point of Dom(f).
 Theorem 4_2. Suppose p is a limit point of Dom(f). lim(f,p) = q iff
   for any sequence a into Dom(f) if a unequally converges to p then f \circ a converges to q.
 Proof.
-  Let us show that if lim(f,p) = q then for any sequence a into Dom(f)
+  If lim(f,p) = q then for any sequence a into Dom(f)
   if a unequally converges to p then f \circ a converges to q.
+  Proof.
     Suppose lim(f,p) = q.
     Suppose a is a sequence such that a is into Dom(f) and a unequally converges to p.
     Let us show that f \circ a converges to q.
@@ -32,18 +31,19 @@ Proof.
       For any n if N < n then d(f(a(n)),q) < eps.
     End.
   End.
-  Let us show that if (for any sequence a if a is into Dom(f) and
+  If (for any sequence a if a is into Dom(f) and
   a unequally converges to p then f \circ a converges to q) then lim(f,p) = q.
+  Proof.
     Suppose for any sequence a if a is into Dom(f) and
     a unequally converges to p then f \circ a converges to q.
     Let us show that lim(f,p) = q.
       Suppose the contrary.
       Take eps such that for any del there exists x \in Dom(f)
       such that 0 < d(x,p) < del and not d(f(x),q) < eps (by 4_1).
-      Take a sequence b such that b converges to 0 and for all n b(n) > 0 (by 3_1).
+      Take a sequence b such that b converges to 0 and for all n b(n) > 0 (by 1_n).
       For all n d(b(n),0) = b(n) (by d5).
-      Define a(n) = Choose x \in Dom(f) such that 0 < d(x,p) < d(b(n),0)
-      and not d(f(x),q) < eps in x for n in Natural.
+      Define a(n) = Choose x \in Dom(f) such that
+      0 < d(x,p) < d(b(n),0) and not d(f(x),q) < eps in x for n in Natural.
       Let us show that a unequally converges to p.
         Suppose r is a positive real number.
         Take a natural number N such that for any n if N < n then d(b(n),0) < r.
@@ -72,8 +72,9 @@ Theorem 4_4a. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
   Suppose lim(f,p) = x and lim(g,p) = y. Then lim(f++g,p) = x + y.
 Proof.
   Dom(f) = Dom(f ++ g).
-  Let us show that for any sequence a into Dom(f)
+  For any sequence a into Dom(f)
   if a unequally converges to p then (f ++ g) \circ a converges to x + y.
+  Proof.
     Suppose a is a sequence such that a is into Dom(f) and a unequally converges to p.
     (f \circ a) and (g \circ a) are sequences.
     f \circ a converges to x (by 4_2).
@@ -88,8 +89,9 @@ Theorem 4_4b. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(f).
   Suppose lim(f,p) = x and lim(g,p) = y. Then lim(f**g,p) = x * y.
 Proof.
   Dom(f) = Dom(f ** g).
-  Let us show that for any sequence a into Dom(f)
+  For any sequence a into Dom(f)
   if a unequally converges to p then (f ** g) \circ a converges to x * y.
+  Proof.
     Suppose a is a sequence such that a is into Dom(f) and a unequally converges to p.
     (f \circ a) and (g \circ a) are sequences.
     f \circ a converges to x (by 4_2).
@@ -104,8 +106,9 @@ Theorem 4_4c. Suppose Dom(f) = Dom(g). Suppose p is a limit point of Dom(g).
   Suppose for all z \in Dom(g) g(z) != 0. Suppose lim(f,p) = x. Suppose lim(g,p) = y and y != 0.
   Then lim(f|//|g,p) = x // y.
 Proof.
-  Let us show that for any sequence a into Dom(g)
+  For any sequence a into Dom(g)
   if a unequally converges to p then 1|/|g \circ a converges to 1/y.
+  Proof.
     Suppose a is a sequence such that a is into Dom(g) and a unequally converges to p.
     1|/|g \circ a is a sequence.
     g \circ a converges to y (by 4_2).
@@ -118,7 +121,7 @@ Proof.
 QED.
 
 ################
-# Continuous maps
+# Continuous Maps
 
 Definition 4_5. Suppose p \in Dom(f).
   f is continuous at p iff for any eps there exists del
@@ -148,8 +151,9 @@ Definition. f is continuous iff for all p \in Dom(f) f is continuous at p.
 Theorem 4_8. Suppose f is into E.
   f is continuous iff for any subclass U of E if U is open in E then f^-1(U) is open in Dom(f).
 Proof.
-  Let us show that if f is continuous then
-  for any subclass U of E if U is open in E then f^-1(U) is open in Dom(f).
+  If f is continuous then for any subclass U of E
+  if U is open in E then f^-1(U) is open in Dom(f).
+  Proof.
     Suppose f is continuous.
     Suppose U is a subclass of E such that U is open in E.
     Let us show that f^-1(U) is open in Dom(f).
@@ -159,8 +163,9 @@ Proof.
       For any x \in Dom(f) if d(x,p) < del then x \in f^-1(U).
     End.
   End.
-  Let us show that if (for any subclass U of E
-  if U is open in E then f^-1(U) is open in Dom(f)) then f is continuous.
+  If for any subclass U of E if U is open in E then f^-1(U) is open in Dom(f)
+  then f is continuous.
+  Proof.
     Suppose for any subclass U of E if U is open in E then f^-1(U) is open in Dom(f).
     Suppose p \in Dom(f).
     Let us show that f is continuous at p.
@@ -193,19 +198,19 @@ Theorem 4_14. Suppose f is continuous. Suppose Dom(f) is compact. Then f[Dom(f)]
 Proof.
   Take T \subseteq Real such that T = f[Dom(f)].
   Let us show that T is compact.
-    Suppose D is an open cover of T.
+    Suppose D is a neighborhood cover of T.
     For any x \in Dom(f) f^-1(D(f(x))) is a set.
-    Define C(x) = f^-1(D(f(x))) for x in Dom(f).
-    For all x \in Dom(f) C(x) is open in Dom(f) (by 4_8).
-    C is an open cover of Dom(f).
-    Take a finite subcover a of C on Dom(f).
-    Take a natural number N such that N > 1 and for any x \in Dom(f)
-    there exists n such that n < N and x \in C(a(n)).
+    Define G(x) = f^-1(D(f(x))) for x in Dom(f).
+    For all x \in Dom(f) G(x) is open in Dom(f) (by 4_8).
+    G is a neighborhood cover of Dom(f). Indeed for all x \in Dom(f) G(x) is open in Dom(f) (by 4_8).
+    Take a finite subcover a of G on Dom(f).
+    Take a natural number N such that N > 1 and
+    for any x \in Dom(f) there exists n such that n < N and x \in G(a(n)).
     Let us show that f \circ a is a finite subcover of D on T.
       Let us show that for any y \in T there exists n such that n < N and y \in D(f(a(n))).
         Suppose y \in T.
         Take x \in Dom(f) such that f(x) = y.
-        Take n such that n < N and x \in C(a(n)).
+        Take n such that n < N and x \in G(a(n)).
         y \in D(f(a(n))).
       End.
     End.
@@ -242,18 +247,18 @@ Proof.
   Take a map g such that g = inv(f).
   Dom(g) = f[Dom(f)].
   g is into Dom(f).
-  Let us show that for any U \subseteq Dom(f)
-  if U is open in Dom(f) then g^-1(U) is open in Dom(g).
+  For any U \subseteq Dom(f) if U is open in Dom(f) then g^-1(U) is open in Dom(g).
+  Proof.
     Suppose U is a subclass of Dom(f) such that U is open in Dom(f).
-    g^-1(U) = f[U].
     Take a class V such that V = (Dom(f)) \setminus U.
-    V is closed in Dom(f).
-    f[V] is compact (by 2_35, 4_14a).
-    f[V] is closed in Real (by 2_41).
-    f[V] \cap Dom(g) is closed in Dom(g) (by 2_29b).
-    f[V] = f[V] \cap Dom(g).
-    f[U] = (Dom(g)) \setminus f[V].
-    g^-1(U) is open in Dom(g).
+    f[V] is compact (by 2_35, 4_14a). Indeed V is closed in Dom(f).
+    Let us show that f[V] is closed in Dom(g).
+      f[V] is closed in Real (by 2_41).
+      f[V] \cap Dom(g) is closed in Dom(g) (by 2_29b).
+      f[V] = f[V] \cap Dom(g).
+    End.
+    f[U] is open in Dom(g). Indeed f[U] = (Dom(g)) \setminus f[V].
+    g^-1(U) = f[U].
   End.
   g is continuous (by 4_8).
 QED.
@@ -263,7 +268,8 @@ Definition 4_18. f is uniformly continuous iff for any eps there exists del
 
 Corollary. If f is uniformly continuous then f is continuous.
 
-Theorem 4_19. Suppose f is continuous. Suppose Dom(f) is compact. Then f is uniformly continuous.
+Theorem 4_19. Suppose f is continuous. Suppose Dom(f) is compact.
+  Then f is uniformly continuous.
 Proof.
   Take E = Dom(f).
   Suppose eps is a positive real number.
@@ -272,18 +278,18 @@ Proof.
   for all x \in E if d(x,y) < del then d(f(x),f(y)) < ep2 in del for y in E.
   Define ph2(y) = Choose del such that del + del = phi(y) in del for y in E.
   For any y \in E nbhd(y,ph2(y)) \cap E is a set.
-  Define C(y) = nbhd(y,ph2(y)) \cap E for y in E.
-  Let us show that C is an open cover of E.
-    Let us show that for all y \in E C(y) \subseteq E and C(y) is open in E and y \in C(y).
+  Define G(y) = nbhd(y,ph2(y)) \cap E for y in E.
+  Let us show that G is a neighborhood cover of E.
+    Let us show that for all y \in E G(y) \subseteq E and G(y) is open in E and y \in G(y).
       Suppose y \in E.
       nbhd(y,ph2(y)) \cap E is open in E (by 2_19, 2_29a).
       y \in nbhd(y,ph2(y)) \cap E.
-      nbhd(y,ph2(y)) \cap E = C(y).
+      nbhd(y,ph2(y)) \cap E = G(y).
     End.
   End.
-  Take a finite subcover a of C on E.
+  Take a finite subcover a of G on E.
   Take a natural number N such that N > 1 and
-  for any x \in E there exists n such that n < N and x \in C(a(n)).
+  for any x \in E there exists n such that n < N and x \in G(a(n)).
   Let us show that there exists del such that for all m if m < N then del <= ph2(a(m)).
     ph2 \circ a is a sequence.
     Take n such that n < N and for all m if m < N
@@ -294,29 +300,25 @@ Proof.
   Take del such that for all m if m < N then del <= ph2(a(m)).
   Let us show that for all x, y \in E if d(x,y) < del then d(f(x),f(y)) < eps.
     Suppose x, y \in E and d(x,y) < del.
-    Take m such that m < N and x \in C(a(m)).
+    Take m such that m < N and x \in G(a(m)).
     Take am = a(m).
-    Let us show that d(x,am) < ph2(am).
-      x \in nbhd(am,ph2(am)).
-    End.
-    Let us show that (1) for all real numbers x1,x2,y1,y2
-    if x1 < x2 and y1 < y2 then x1 + y1 < x2 + y2.
+    d(x,am) < ph2(am). Indeed x \in nbhd(am,ph2(am)).
+    (1) For all real numbers x1, x2, y1, y2 if x1 < x2 and y1 < y2 then x1 + y1 < x2 + y2.
+    Proof.
       Suppose x1, x2, y1, y2 are real numbers such that x1 < x2 and y1 < y2.
       x1 + y1 < x2 + y1 = y1 + x2 < y2 + x2 = x2 + y2.
     End.
     Let us show that (2) d(y,am) < phi(am).
-      ph2(am) + ph2(am) = phi(am).
-      d(y,x) < ph2(am).
-      d(y,x) + d(x,am) < ph2(am) + ph2(am) (by 1).
       d(y,am) <= d(y,x) + d(x,am) (by d3).
+      d(y,x) + d(x,am) < ph2(am) + ph2(am) (by 1). Indeed d(y,x) < ph2(am).
+      ph2(am) + ph2(am) = phi(am).
     End.
     (3) For all z \in E if d(z,am) < phi(am) then d(f(z),f(am)) < ep2.
-    ph2(am) < phi(am).
-    (4) d(x,am) < phi(am).
+    (4) d(x,am) < phi(am). Indeed ph2(am) < phi(am).
     (5) d(f(y),f(am)) < ep2 (by 2,3).
     (6) d(f(x),f(am)) < ep2 (by 3,4).
-    d(f(x),f(am)) + d(f(y),f(am)) < ep2 + ep2 (by 1, 5, 6).
     d(f(x),f(y)) <= d(f(x),f(am)) + d(f(y),f(am)) (by d2, d3).
+    d(f(x),f(am)) + d(f(y),f(am)) < ep2 + ep2 (by 1, 5, 6).
     d(f(x),f(y)) < ep2 + ep2.
   End.
 QED.
@@ -326,8 +328,8 @@ QED.
 
 Lemma 4_22a. p is a closure point of E iff p \in E or p is a limit point of E.
 Proof.
-  Let us show that if p is a closure point of E
-  then p \in E or p is a limit point of E.
+  If p is a closure point of E then p \in E or p is a limit point of E.
+  Proof.
     Suppose p is a closure point of E and p \notin E.
     Take a sequence a such that a is into E and a converges to p.
     a unequally converges to p.
@@ -349,9 +351,7 @@ Proof.
   Let us show that for any closure point x of G x is not in H.
     Suppose the contrary.
     Take a closure point x of G such that x \in H.
-    f(x) \in B.
-    x \notin G (by 4_22a).
-    x is a limit point of G (by 4_22a).
+    x is a limit point of G (by 4_22a). Indeed x \notin G.
     Take a sequence a such that a is into G and a unequally converges to x.
     lim(f,x) = f(x) (by 4_6).
     f \circ a converges to f(x) (by 4_2).
@@ -362,9 +362,7 @@ Proof.
   Let us show that for any closure point x of H x is not in G.
     Suppose the contrary.
     Take a closure point x of H such that x \in G.
-    f(x) \in A.
-    x \notin H (by 4_22a).
-    x is a limit point of H (by 4_22a).
+    x is a limit point of H (by 4_22a). Indeed x \notin H.
     Take a sequence a such that a is into H and a unequally converges to x.
     lim(f,x) = f(x) (by 4_6).
     f \circ a converges to f(x) (by 4_2).
@@ -383,8 +381,8 @@ Theorem 4_23. Suppose p < q. Suppose Dom(f) = { s in Real | p <= s <= q }.
   Suppose f is continuous. Suppose f(p) < y < f(q).
   Then there exists x such that p < x < q and f(x) = y.
 Proof.
-  For any a, b \in Dom(f) for any c \in Real if a < c < b then c \in Dom(f).
   Dom(f) is connected (by 2_47).
+  Indeed for any a, b \in Dom(f) for any c \in Real if a < c < b then c \in Dom(f).
   f[Dom(f)] is connected (by 4_22).
   y \in f[Dom(f)] (by 2_47).
   Take x \in Dom(f) such that f(x) = y.
