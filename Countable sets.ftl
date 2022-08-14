@@ -3,7 +3,7 @@
 [prove off ][read real-analysis/numbers.ftl] [prove on] #el prove off prove on hace que leas el
 #archivo pero no lo pruebes
 Axiom. Let X be a class. X is a set. #we are going to work only with sets, and I can't define
-#sets inside definitions, only classes
+#sets inside theorems, only classes
 
 
 Definition.A natural number is an integer k such that k=0 or 0<k .
@@ -391,13 +391,17 @@ End.
 #I can't find anything in the examples about how to work with tuples, maybe it is
 #easier I just do it with pairs, the theorem is easily generalized by induction
 
-Theorem. Let A and B be a countable sets. Let C be a set such that
- C = {(a,b)| a is contained in A and b is contained in B}.
- C is countable. #This is a theorem, and must be proven as such. 
+Signature. A pair x is an object such that x = (u,v) for some objects u,v.
+#writing this as Signature. A pair x is an object such that x = (u,v) where u and v are objects. yields a contradiction. I'm oblivious to why.
+
+Theorem. Let A and B be a countable sets.
+A \times B is countable. #This is a theorem, and must be proven as such. 
 Proof.
-Define D(a) ={(a,b)| b is contained in B} for a in A.
+Define D(a)  = {(a,b)| b is contained in B} for a in A.
 
 End.
+
+# Writing  C = {(a,b)| a is contained in A and b is contained in B}. has the problem that Naproche cannot prove C is not empty.
 
 #We had to add a definition for the rational numbers similar to the one we added 
 #for the naturals for the following Corollary, which for now we announce as axiom.
