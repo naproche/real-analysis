@@ -2,8 +2,9 @@
 [synonym map/-s]
 [prove off ][read real-analysis/numbers.ftl] [prove on] #el prove off prove on hace que leas el
 #archivo pero no lo pruebes
-Axiom. Let X be a class. X is a set. #we are going to work only with sets, and I can't define
-#sets inside theorems, only classes
+#Axiom. Let X be a class. X is a set. #we are going to work only with sets, and I can't define
+#sets inside theorems, only classes. This is false, but we only need to redefine CC in the
+#looong proof the rest works fine.
 
 
 Definition.A natural number is an integer k such that k=0 or 0<k .
@@ -13,6 +14,8 @@ Definition. NAT is a set such that every element of NAT is a natural number and 
 natural number is an element of NAT.
 Definition. Q is a set such that every element of Q is a rational number and every
 rational number is an element of Q.
+Axiom. Let k be a natural number. For every natural number n such that n=<k k-n is a 
+natural number.
 
 Definition SmallestElement. Let E be a nonempty subset of NAT. The smallest 
 element of E is  an element x of E such that for every element y of E x=<y. 
@@ -101,14 +104,92 @@ g is surjective onto Fin(n).
 End.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
-Axiom. NAT is infinite. #I will revisit this, but it is obvious although hard to prove with this definitions.
-#This is something we will need later on. I put it as an axiom bc it is somewhat obvious but, proving 
-#it formally is a pain with these definitions.
-Axiom. Let A be an infinite set. Let B be a finite set. Dif(A,B) is infinite.
 
-Axiom. Let A be a set. If there exists a subset B of A such that B is infinite then A is infinite.
+Axiom. Let E be a nonempty finite subset of NAT. There exists an element m of E such that for 
+every element k of  E k=<m.
+#I needed to add this axiom in order to prove the below theorem. 
+
+
+Lemma. NAT is infinite.
+Proof.
+Assume the contrary.
+Take a natural number n such that there exists a map f such that Dom(f) = Fin(n) and 
+f is surjective onto NAT.
+Take a map f such that Dom(f) = Fin(n) and f is surjective onto NAT.
+Take a natural number m such that m is an element of Im(Fin(n),f) and for every element
+k of  Im(Fin(n),f) k=<m.
+End.
+ #I will revisit this, but it is obvious although hard to prove with this definitions.
+#This is something we will need later on. I put it as an axiom bc it is somewhat obvious but, proving 
+#it formally is a pain with these definitions.  Adding the above axiom it is proven 
+# quite fast. We don\<acute>t even need to write a full proof. However we do need to write some
+#steps of the proof.
+
+Lemma. Let E be a set. Let F be an empty set. Dif(E,F) = E.
+
+Lemma. Let A be an infinite set. Let B be a finite set. Dif(A,B) is infinite.
+Proof.
+Case B is empty set. Dif(A,B) = A. End.
+Case B is nonempty.
+Assume the contrary.
+  Case Dif(A,B) is empty set. 
+  A is a subset of B.
+  Let us show that A is finite.
+   Take a natural number n such that there exists a map f such that Dom(f) = Fin(n) and 
+   f is surjective onto B.
+   Take a map f such that Dom(f) = Fin(n) and f is surjective onto B.
+   Take an element a of A.
+   Define g(m) = Case f(m) is an element of A -> f(m),
+                 Case f(m) is not an element of A -> a
+                 for m in Fin(n).
+   g is surjective onto A.
+   End.
+  Contradiction.
+  End.
+Case Dif(A,B) is nonempty.
+  Take a natural number n such that there exists a map f such that Dom(f) = Fin(n) and 
+  f is surjective onto B.
+  Take a map f such that Dom(f) = Fin(n) and f is surjective onto B.
+  Take a natural number m such that there exists a map g such that Dom(g) = Fin(m) and 
+  g is surjective onto Dif(A,B).
+  Take a map g such that Dom(g) = Fin(m) and g is surjective onto Dif(A,B).
+  n+m is a natural number.
+  Take l = n+m.
+  For every element k of Fin(l) such that  n=<k (k-n) is an element of Fin(m).
+  Define h(k) = Case  k<n -> f(k),
+                Case n=<k -> g(k-n) #we need to say that k-n is an element of Fin(m) explcitely
+                for k in Fin(l).
+  Let us show that for every element x of A there exists an element  k of Fin(l)
+  such that h(k) = x.
+  Let x be an element of A.
+    Case x is an element of B.
+      Take an element k of Fin(n) such that f(k) = x.
+      h(k) = x.
+    End.
+    Case x is an element of Dif(A,B).
+      Take an element k of Fin(m) such that g(k) = x.
+      k+n is an element of Fin(l).
+      (k+n)-n = k + (n-n) = k.
+      h(k+n) = g(k) = x.
+    End.
+  End.
+  Take an element a of A.
+  Define hh(k) = Case h(k) is an element of A-> h(k),
+                 Case h(k) is not an element of A -> a
+                 for k in Fin(l).
+  hh is surjective onto A. #h does not go into A we need to restrict it. 
+  A is finite.
+  Contradiction.
+End.
+End.
+End.
+
+Lemma. Let A be a set. If there exists a subset B of A such that B is infinite
+then A is infinite.
+
 #These two are written as axioms bc proving this things with our definition of can be tricky, 
 #I'll come back to them.
+#I came back, the first lemma took some work, but this second works on its own.
 
 Definition Countable2. Let A be a set. A is countable iff A is infinite and 
 NAT is bigger than A.#this def of countability through surjections is (probably)
@@ -181,7 +262,6 @@ y is an element of  Dif(E, (f<<m))  such that y is smallest with respect to f an
 #Note: to make this work I had to change the =< in the defs of Fin(n) and (f<<n) since we 
 #do not have a symbol for the previous element.
 
-Lemma. Let E be a set. Let F be an empty set. Dif(E,F) = E.
 
 Axiom SubOfCount. Let A be a countable set. Let E be an infinite subset of A.
 E is countable. #Indeed, after purging the computer does not know how to prove this.
@@ -344,7 +424,7 @@ Proof.
   End.
 End.
 End.
-Define CC = {D(A)| A is an element of C}.#With the definition we have given of D(A) CC might be finite even if C is not. Think if all of the elements of C were finite.
+Take CC = Im(C,D).#With the definition we have given of D(A) CC might be finite even if C is not. Think if all of the elements of C were finite.
 Let us show that CC is at most countable. #We have here the problem that C is at most countable, not necesarilly countable, I'll change the statement of the theorem for the moment
  Case C is finite. 
   Take a natural number n such that there exists a map g such that Dom(g) = Fin(n) and
