@@ -1,5 +1,5 @@
 [synonym field/-s]
-[prove off][read real-analysis/numbers.ftl][prove on]
+[prove off][read numbers.ftl][read Chapter1.ftl][prove on]
 
 Signature. Let p,q be elements. d(p,q) is a real number.
 

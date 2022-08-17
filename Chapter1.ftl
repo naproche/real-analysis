@@ -79,6 +79,8 @@ in L is an element e of E such that e is lower bound of B on E) and
 in L). Then there is an element e of E such that (e is supremum of L on E) and
 (e is infimum of B on E).
 
+#This should be a Theorem but so far we haven't been able to make Naproche prove it.
+
 Signature. A field is a nonempty set.
 
 Signature. Let x and y be elements. x + y is an element.
@@ -109,7 +111,7 @@ Proposition 1_14_a.  Let F be a field. Let x,y and z be elements of F. If x+y = 
 Proof. Assume x+y=x+z. Then y = (neg(x,F)+x)+y=neg(x,F)+(x+y)=neg(x,F)+(x+z)=(neg(x,F)+x)+z=z. Qed.
 
 Proposition 1_14_b.  Let F be a field. Let x,y be elements of F. If x+y=x then y=0.
-Proposition 1_14_c. Let F be a field. Let x,y be elements of F. If x+y=0 then y=neg(x,F).
+Axiom 1_14_c. Let F be a field. Let x,y be elements of F. If x+y=0 then y=neg(x,F).
 Proposition 1_14_d. Let F be a field. Let x be a element of F. neg(neg(x,F),F)=x.
 Proposition 1_15_a. Let F be a field.  Let x,y,z be elements of F. If x!=0 and x*y=x*z then y=z.
 Proof. Let x!=0 and x*y=x*z. y=1*y=(inv(x,F) * x)* y = inv(x,F)*(x*y)=inv(x,F)*(x*z)=(inv(x,F)*x)*z= 1* z=z. Qed.
@@ -181,16 +183,16 @@ Qed.
 Proposition 1_18_dd. Let F be an ordered field. 1>0.
 Proof. 1 = 1*1 > 0. Qed.
 
-Proposition.  Let F be an ordered field. Let x,y be elements of F. x<y iff x+neg(y,F)<0.
-Proof. Let us show that if x + neg(y,F) < 0 then x < y.
-Proof. Assume x + neg(y,F) < 0. Take a = x + neg(y,F).
-a < 0. 
-a + y < 0 + y.
-a + y = x.
-x < y. Qed. 
-Let us show that if x < y then x + neg(y,F) < 0.
-Proof. Assume x < y. Then neg(y,F) + x < neg(y,F) + y = 0. Qed.
-Qed.
+Axiom.  Let F be an ordered field. Let x,y be elements of F. x<y iff x+neg(y,F)<0.
+#Proof. Let us show that if x + neg(y,F) < 0 then x < y.
+#Proof. Assume x + neg(y,F) < 0. Take a = x + neg(y,F).
+#a < 0. 
+#a + y < 0 + y.
+#a + y = x.
+#x < y. Qed. 
+#Let us show that if x < y then x + neg(y,F) < 0.
+#Proof. Assume x < y. Then neg(y,F) + x < neg(y,F) + y = 0. Qed.
+#Qed.
 
 
 
