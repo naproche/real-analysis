@@ -1,5 +1,5 @@
 [synonym field/-s]
-[prove off][read numbers.ftl][read Chapter1.ftl][prove on]
+[prove off][read real-analysis/numbers.ftl][read real-analysis/Countable_sets.ftl][prove on]
 
 Signature. Let p,q be elements. d(p,q) is a real number.
 
@@ -69,6 +69,12 @@ Thus s is an element of Neigh(p,r,X). End.
 Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
 Hence q is interior point of Neigh(p,r,X) in X. End. End.
 Thus Neigh(p,r,X) is open in X. qed.
+
+Theorem 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
+Let r be a positive real number. Neigh(p,r,X) is infinite.
+
+Proof. Suppose Neigh(p,r,X) is finite. 
+Contradiction. qed.
 
 #2_20 requires MyChap2 (infinite) which I still haven't been able to read here.
 
