@@ -2,7 +2,7 @@
 [prove off][read real-analysis/numbers.ftl][prove on]
 Definition.A natural number is an integer k such that k=0 or 0<k .
 Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
-Let m, n, l, r, N denote natural numbers.
+Let n denote a natural number.
 Definition. NAT is a set such that every element of NAT is a natural number and every
 natural number is an element of NAT.
 Definition. Q is a set such that every element of Q is a rational number and every
@@ -76,6 +76,9 @@ every element k of  E k=<m.
 
 #This was copied from the file Countable Sets, which we needed for 2_22.
 
+Definition. Let E be a finite collection of positive real numbers. min(E) is an element of E
+such that for every element x of E min(E) < x.
+
 Signature. Let p,q be elements. d(p,q) is a real number.
 
 Definition 2_15. A metric space is a set X such that for every element p, q, r of X
@@ -145,14 +148,27 @@ Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X).
 Hence q is interior point of Neigh(p,r,X) in X. End. End.
 Thus Neigh(p,r,X) is open in X. qed.
 
+Lemma. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
+Let r be a positive real number. Neigh(p,r,X) is nonempty.
+
+Lemma. Let X be a metric space. Let p be an element of X. Let r,s be positive real numbers
+such that r <= s. Neigh(p,r,X) is a subset of Neigh(p,s,X). 
 
 Theorem 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is infinite.
 
-Proof. Suppose Neigh(p,r,X) is finite. 
+Proof. Suppose Neigh(p,r,X) is finite. Take a natural number m such that Fin(m) is bigger than Neigh(p,r,X).
+Take a map f such that Dom(f) = Fin(m) and f is surjective onto Neigh(p,r,X). Let E =
+{d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. For every element y of E y is a positive
+real number. Thus E is a collection of positive real numbers. min(E) is a positive real number.
+Let us prove that for every element z of Neigh(p,min(E),X) z = p. 
+Proof. Let z be an element of Neigh(p,min(E),X). Suppose z != p. min(E) <= r. Thus z is an element
+of Neigh(p,r,X). Take a natural number k such that (k < m) and (f(k)=z). d(p,z) is an element of E.
+d(p,z) < min(E). Contradiction. 
+End. Thus p is not limit point of X in X.
 Contradiction. qed.
 
-#2_20 requires MyChap2 (infinite) which I still haven't been able to read here.
+#This proof needs revision. The essence is there.
 
 #So does 2_22.
 
