@@ -26,6 +26,25 @@ Definition RealMap.
   A real map is a map f such that
     Dom(f) \subseteq Real and f is into Real.
 
+Definition IdentityMapOf.
+  Let S be a set.
+  The identity map of S is a map f such that
+  Dom(f) = S and for any x \in S f(x) = x.
+
+Definition IdentityMap.
+  An identity map is a real map f such that
+  f is the identity map of Dom(f).
+
+Definition ConstantMapWithValue.
+  Let c be a real number.
+  A constant map with value c is a real map f such that
+  for any t \in Dom(f) f(t) = c.
+
+Definition ConstantMap.
+  A constant map is a real map f such that
+  there exists a real number c such that
+  for any t \in Dom(f) f(t) = c.
+
 Lemma RealMapsEvaluateToRealNumbers.
   Let f be a real map.
   Let t be an element of Dom(f).
@@ -64,6 +83,11 @@ Lemma AdditionOfRealMaps.
   Let f,g be real map.
   Suppose Dom(f) = Dom(g).
   Then f++g is a real map that is defined on Dom(f).
+
+Lemma MultiplicationOfRealMaps.
+  Let f,g be real map.
+  Suppose Dom(f) = Dom(g).
+  Then f**g is a real map that is defined on Dom(f).
 
 Lemma ScalingOfRealMap.
   Let f be a real map.
@@ -190,27 +214,17 @@ Definition LimitExists.
   lim(f,p) exists iff lim(f,p) is a real number.
 
 Lemma LimitOfConstantFunction.
-  Let q be a real number.
-  Let f be a real map such that
-    for any t \in Dom(f) f(t) = q.
+  Let c be a real number.
+  Let f be a constant map with value c.
   Let p be a limit point of Dom(f).
-  Then lim(f,p) = q.
-Proof.
-  Let us show that for any positive real number eps
-  there exists a positive real number del such that
-  for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
-    Assume that eps is a positive real number.
-    Let us show that for any t \in Dom(f) if 0<d(t,p)<1 then d(f(t),q)<eps.
-      Assume t \in Dom(f) and 0<d(t,p)<1.
-      Then d(f(t),q)=0. Indeed f(t) = q.
-      Then d(f(t),q)<eps.
-    End.
-  End.
-  If for any positive real number eps
-    there exists a positive real number del such that
-    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps
-  then lim(f,p) = q (by Limit).
-QED.
+  Then lim(f,p) = c.
+#! Proof
+
+Lemma LimitOfIdentityMap.
+  Let f be an identity map.
+  Let p be a limit point of Dom(f).
+  Then lim(f,p) = p.
+#! Proof
 
 Lemma LimitOfRestrictedFunction.
   Let f be a real map.
@@ -241,6 +255,16 @@ Lemma LimitOfRestrictedFunction.
 #  Therefore the thesis (by Limit).
 #QED.
 
+Theorem 4_4a.
+  Let f, g be real map such that Dom(f) = Dom(g).
+  Let p be a limit point of Dom(f).
+  If lim(f,p) exists and lim(g,p) exists then lim(f++g,p) = lim(f,p) + lim(g,p).
+
+Theorem 4_4b.
+  Let f, g be real map such that Dom(f) = Dom(g).
+  Let p be a limit point of Dom(f).
+  If lim(f,p) exists and lim(g,p) exists then lim(f**g,p) = lim(f,p) * lim(g,p).
+
 
 # CONTINUITY
 Let f denote a real map.
@@ -254,6 +278,11 @@ Definition ContinuousAt.
 Definition Continuous.
   f is continuous iff for any p \in Dom(f) f is continuous at p.
 
+Theorem 4_6.
+  Let f be a real map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  f is continuous at p iff lim(f,p) = f(p).
+
 Theorem 4_9a. 
   Let f,g be real map such that Dom(f) = Dom(g).
   Let p \in Dom(f).
@@ -266,6 +295,11 @@ Theorem 4_9b.
   Suppose f is continuous at p and g is continuous at p.
   Then f**g is continuous at p.
 
+Lemma ContinuityOfIdentityMap.
+  Let f be a real map that is identity map.
+  Then f is continuous.
+#! Proof
+
 Lemma ContinuityOfScaledFunction.
   Let f be a real map.
   Let c be a real number.
@@ -273,6 +307,13 @@ Lemma ContinuityOfScaledFunction.
   Suppose that f is continuous at p.
   Then c~f is continuous at p.
 #! Proof!
+
+Lemma ContinuityOfRestriction.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Let p be an element of Dom(g).
+  If f is continuous at p then g is continuous at p.
+#! Proof
 
 Theorem 4_16a.
   Suppose f is continuous and Dom(f) is nonempty and compact.
@@ -357,6 +398,20 @@ Lemma DerivativeOfScaledFunction.
   Suppose that f is differentiable at p.
   Then c~f is differentiable at p and D(c~f,p) = c * D(f,p).
 #! Proof!
+
+Lemma DerivativeOfIdentityMap.
+  Let f be a real map that is identity map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  Then f is differentiable at p and D(f,p) = 1.
+#! Proof
+
+Lemma DerivativeOfRestriction.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Let p be an element of Dom(g) that is a limit point of Dom(g).
+  If f is differentiable at p
+  then g is differentiable at p and D(g,p) = D(f,p).
+#! Proof
 
 
 # USEFUL FUNCTIONS

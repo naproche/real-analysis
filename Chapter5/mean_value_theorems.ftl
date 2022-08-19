@@ -4,7 +4,7 @@
 [check off]
 [read preliminaries.ftl]
 [read real-analysis/numbers.ftl]
-[read real-analysis/Chapter5/backup/mean_value_theorems_pre.ftl]
+[read real-analysis/Chapter5/mean_value_theorems_pre.ftl]
 [timelimit 30]
 
 [prove on]
@@ -651,6 +651,112 @@ Proof.
     or (there exists t \in (x|y) such that h(t) < hx).
 QED.
 
+Theorem 5_2.
+  Let f be a real map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  If f is differentiable at p
+  then f is continuous at p.
+Proof.
+  # notation to reducd brackets and ontological checks
+  Take S = (Dom(f))\\{p}. S is a subset of Real and a subset of Dom(f).
+  Take fp = f(p). fp is a real number.
+  Take g = DQ(f,p). g is a real map that is defined on S.
+  # help functions
+  Define const1(t) = -p for t in S.
+  Then const1 is a constant map with value -p.
+  Define const2(t) = fp for t in S.
+  Then const2 is a constant map with value fp.
+  Define resf(t) = f(t) for t in S.
+  Then resf is a restriction of f.
+  Define id(t) = t for t in S.
+  Then id is the identity map of S and id is a real map.
+  Take h1 = id++const1.
+  Then h1 is a real map that is defined on S.
+  Take h2 = g**(h1).
+  Then h2 is a real map that is defined on S.
+  Take h3 = h2++const2.
+  Then h3 is a real map that is defined on S.
+  # f(t) = DQ(f,p)*(t-p) + f(tp)
+  Let us show that resf = h3.#! takes long!
+    Dom(resf) = S = Dom(h3).
+    Let us show that for any t \in S resf(t) = h3(t).
+      Assume t \in S.
+      Take ft = resf(t). ft is a real number.
+      Take h2t = h2(t). h2t is a real number.
+      Take h3t = h3(t). h3t is a real number.
+      Then h3t = h2(t) + const2(t) (by Addition).
+      const2(t) = fp.
+      Let us show that h2t = ft - fp.
+        h2t = g(t) * h1(t) (by Multiplication). 
+        Take inv = 1/(t-p). Indeed t-p != 0.
+        g(t) = (ft-fp) * inv (by DifferenceQuotient).
+        h1(t) = id(t) + const1(t) (by Addition).
+        id(t) = t.
+        const1(t) = -p.
+        Then h2t = ((ft-fp)*inv)*(t-p).
+        ((ft-fp)*inv)*(t-p) = (ft-fp)*(inv*(t-p)).
+        inv * (t-p) = (t-p) * inv.
+        (t-p) * inv = 1.
+        Then h2t = (ft-fp) * 1.
+      End.
+      Then h3t = (ft-fp) + fp.
+      (ft-fp) + fp = ft + (-fp+fp).
+      -fp + fp = fp - fp.
+      fp - fp = 0.
+      Then h3t = ft + 0.
+    End.
+  End.
+  # lim(resf,p) = f(p) by using that f is differentiable at p.
+  Assume that f is differentiable at p.
+    Let us show that lim(resf,p) = fp.
+    lim(id,p) = p (by LimitOfIdentityMap).
+    Indeed id is an identity map and p is a limit point of Dom(id).
+    lim(const1,p) = -p (by LimitOfConstantFunction).
+    Indeed p is a limit point of Dom(const1).
+    lim(h1,p) = p - p (by 4_4a).
+    Indeed p is a limit point of Dom(id).
+    Then lim(h1,p) = 0. Indeed p - p = 0.
+    lim(g,p) exists. Indeed f is differentiable at p.
+    lim(h2,p) = lim(g,p) * 0 (by 4_4b).
+    Indeed p is a limit point of Dom(g).
+    Then lim(h2,p) = 0.
+    lim(const2,p) = fp (by LimitOfConstantFunction).
+    Indeed p is a limit point of Dom(const2).
+    lim(h3,p) = 0 + fp (by 4_4a).
+    Indeed p is a limit point of Dom(h3).
+    Then lim(h3,p) = fp.
+    Then lim(resf,p) = fp. Indeed resf = h3.
+  End.
+  # lim(f,p) = f(p).
+  Let us show that lim(f,p) = fp.
+    Let us show that for any eps fp is limit of f at p wrt eps.
+      Assume that eps is a positive real number.
+      Then fp is limit of resf at p wrt eps (by LimitAxiom).
+      Indeed p is a limit point of Dom(resf) and lim(resf,p) = fp.
+      Let us show that there exists del such that fp is limit of f at p wrt eps and del.
+        Take del such that fp is limit of resf at p wrt eps and del (by LimitWrt).
+        Indeed p is a limit point of Dom(resf) and fp is limit of resf at p wrt eps.
+        Let us show that fp is limit of f at p wrt eps and del.
+          For any t \in Dom(resf) if 0<d(t,p)<del then d(f(t),fp)<eps (by LimitWrtAnd).
+          Indeed p is a limit point of Dom(resf) and fp is limit of resf at p wrt eps and del.
+          Assume t \in Dom(f).
+          Take ft = f(t). ft is a real number.
+          Let us show that if 0<d(t,p)<del then d(ft,fp)<eps.
+            Assume that 0<d(t,p)<del.
+            Then t \in S (by SetMinus). #! takes long!
+            Indeed t is an element of Dom(f) and t != p.
+            Then t \in Dom(resf). Indeed Dom(resf) = S.
+            Then d(ft,fp)<eps.
+          End.
+        End.
+      End.
+    End.
+  End.
+  # apply Theorem 4_6.
+  Therefore the thesis (by 4_6).
+  Indeed p is an element of Dom(f) that is a limit point of Dom(f).
+QED.
+
 Theorem 5_10.
   Let x < y.
   Let f be real map that is defined on [x|y].
@@ -658,31 +764,27 @@ Theorem 5_10.
   Then there exists p \in (x|y) such that
     f(y)-f(x) = (y-x) * D(f,p).
 Proof.
+  # define g to be the identity on [x|y]
   Define g(t) = t for t in [x|y].
-  Then g is a real map that is defined on [x|y].
-
-  [prove off]
-  Let us show that g is continuous.
-    #! Proof
-  End.
-  
+  Then g is a real map that is identity map.
+  Then g is continuous (by ContinuityOfIdentityMap).
   Let us show that for any t \in (x|y) D(g,t) = 1.
-    #! Proof
+    Assume t \in (x|y).
+    t is an element of Dom(g) that is a limit point of Dom(g).
+    Then D(g,t) = 1 (by DerivativeOfIdentityMap).
   End.
-  [prove on]
-
   Let us show that g is differentiable on (x|y).
     Assume t \in (x|y).
     Then D(g,t) is a real number. Indeed D(g,t) = 1.
     Then g is differentiable at t (by Differentiable).
     Indeed t is an element of Dom(g) that is a limit point of Dom(g).
   End.
-
+  # notation to reduce brackets and ontological checks
   Take fx = f(x). fx is a real number.
   Take fy = f(y). fy is a real number.
   Take gy = g(y). gy is a real number.
   Take gx = g(x). gx is a real number.
-
+  # apply 5_9 to f and g
   Let us show that there exists p \in (x|y) such that (fy-fx)*D(g,p) = (gy-gx)*D(f,p).
     x < y.
     f,g are real map such that f,g are defined on [x|y]
@@ -696,8 +798,7 @@ Proof.
   Indeed p is an element of Dom(f) that is a limit point of Dom(f) and f is differentiable at p.
   Then (fy-fx)*1 = (y-x)*A. Indeed gy = y and gx = x.
   Then (fy-fx) = (y-x)*A.
-  
-QED.
+  QED.
 
 Theorem 5_11a.
   Let x < y.
@@ -716,49 +817,51 @@ Proof.
 
     # Case 2: s < t.
     Case s < t.
-      #[s|t] is a subset of Dom(f).
       Let us show that [s|t] is a subset of Dom(f).
         Assume that u is an element of [s|t].
         Then s <= u <= t.
       End.
       # restriction of f to [s|t].
       Define resf(u) = f(u) for u in [s|t].
-      resf is a real map that is defined on [s|t].
-      Indeed [s|t] is a subset of Real and for any u \in [s|t] f(u) is a real number.
-      Indeed f is a real map.
+      Then resf is a restriction of f.
+      Then resf is a real map.
       Take resfs = resf(s). resfs is a real number.
       Take resft = resf(t). resft is a real number.      
-
-      [prove off]
-      #resf is continuous.
       Let us show that resf is continuous.
-        #! Proof
+        Assume u \in Dom(resf).
+        Then u is an element of (x|y).
+        Then f is differentiable at u.
+        Then f is continuous at u (by 5_2).
+        Indeed u is an element of Dom(f) that is a limit point of Dom(f).
+        f is continuous at u.
+        Then resf is continuous at u (by ContinuityOfRestriction).
       End.
-      #resf is differentiable on (s|y).
       Let us show that resf is differentiable on (s|t).
-        #! Proof
+        Assume u \in (s|t).
+        u is an element of Dom(resf) that is a limit point of Dom(resf).
+        f is differentiable at u. Indeed u is an element of (x|y).
+        Then resf is differentiable at u (by DerivativeOfRestriction).
       End.
-      [prove on]
-  
+      # apply Theorem 5_10 to restriction of f
       Let us show that there exists p \in (s|t) such that resft - resfs = (t-s) * D(resf,p).
         s < t.
         resf is a real map that is defined on [s|t].
         resf is continuous and differentiable on (s|t).
         Therefore the thesis (by 5_10).
       End.
-      
+      # calculating the thesis
       Take p \in (s|t) such that resft - resfs = (t-s) * D(resf,p).
       Take a real number A such that D(resf,p) = A (by Differentiable).
       Indeed p is an element of Dom(resf) that is a limit point of Dom(resf)
         and resf is differentiable at p.
       Then resft - resfs = (t-s) * A.
-      
-      [prove off]
       Let us show that A >= 0.
-        #! Proof
+        p is an element of Dom(resf) that is a limit point of Dom(resf).
+        f is differentiable at p. Indeed p is an element of (x|y).
+        Then D(f,p) = D(resf,p) (by DerivativeOfRestriction).
+        D(f,p) >= 0. Indeed p is an element of (x|y).
+        Therefore the thesis.
       End.
-      [prove on]
-      
       t - s > 0. Indeed t > s.
       Then (t-s) * A >= 0.
       Then resft - resfs >= 0.
