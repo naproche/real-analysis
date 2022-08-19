@@ -5,7 +5,7 @@
 [read preliminaries.ftl]
 [read real-analysis/numbers.ftl]
 [read real-analysis/Chapter5/mean_value_theorems_pre.ftl]
-[timelimit 30]
+[timelimit 20]
 
 [prove on]
 [check on]
@@ -35,7 +35,8 @@ Lemma 5_8_2a.
 Proof.
   Suppose the contrary.
   Then q is a positive real number.
-  Let us show that there exists del such that for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<q.
+  Let us show that there exists del such that
+  for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<q.
     lim(f,p) = q iff for any eps there exists del such that
       for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps (by Limit).
     Indeed f is a real map
@@ -388,10 +389,9 @@ QED.
 
 Theorem 5_9.
   Let x < y.
-  Let f,g be real map that are defined on [x|y].
-  Let f be continuous and differentiable on (x|y).
-  Let g be continuous and differentiable on (x|y).
-  Let A,B be real numbers.
+  Let f,g be real map such that f,g are defined on [x|y]
+  and f is continuous and differentiable on (x|y)
+  and g is continuous and differentiable on (x|y).
   Then there exists p \in (x|y) such that
   if D(f,p) = A and D(g,p) = B
   then (f(y)-f(x))*B = (g(y)-g(x))*A.
@@ -417,7 +417,8 @@ Proof.
   Take hy = h(y). Then hy is a real number.
   
   # derivative of h
-  Let us show that for any t \in (x|y) and any real numbers a,b if D(f,t) = a and D(g,t) = b then D(h,t) = (c*b) + (d*a).
+  Let us show that for any t \in (x|y) and any real numbers a,b
+  if D(f,t) = a and D(g,t) = b then D(h,t) = (c*b) + (d*a).
     Suppose t \in (x|y) and a,b are real numbers such that D(f,t) = a and D(g,t) = b.
     Let us show that D(c~g,t) = c*b.
       t is a limit point of Dom(g).
@@ -533,7 +534,8 @@ Proof.
       (fy*gy) - (fx*gy) = -(fx*gy) + (fy*gy).
       (gx*fy) - (gy*fy) = -(gy*fy) + (gx*fy).
       Then (-(fx*gy)+(fy*gy)) + (-(gy*fy)+(gx*fy)) = (-(fx*gy) + (fy*gy)) + (-(gy*fy) + (gx*fy)).
-      (-(fx*gy)+(fy*gy)) + (-(gy*fy)+(gx*fy)) = -(fx*gy) + ((fy*gy)+(-(gy*fy)+(gx*fy))) (by 1_12_A3).
+      (-(fx*gy)+(fy*gy)) + (-(gy*fy)+(gx*fy))
+        = -(fx*gy) + ((fy*gy)+(-(gy*fy)+(gx*fy))) (by 1_12_A3).
       (fy*gy)+(-(gy*fy)+(gx*fy)) = ((fy*gy)-(gy*fy)) + (gx*fy) (by 1_12_A3). 
     End.
     Then hy = -(fx*gy)+(gx*fy).
@@ -651,4 +653,45 @@ Proof.
   # 3 cases
   (For any t \in (x|y) h(t) = hx) or (there exists t \in (x|y) such that h(t) > hx)
     or (there exists t \in (x|y) such that h(t) < hx).
+QED.
+
+
+Theorem 5_10.
+  Let x < y.
+  Let f be real map that is defined on [x|y].
+  Let f be continuous and differentiable on (x|y).
+  Then there exists p \in (x|y) such that
+  if D(f,p) = A then
+    f(y)-f(x) = (y-x) * A.
+Proof.
+  Define g(t) = t for t in [x|y].
+  Then g is a real map that is defined on [x|y].
+
+  [prove off]
+  Let us show that g is continuous.
+    
+  End.
+
+  Let us show that g is differentiable on (x|y).
+
+  End.
+  [prove on]
+
+  Take fx = f(x). fx is a real number.
+  Take fy = f(y). fy is a real number.
+  Take gy = g(y). gy is a real number.
+  Take gx = g(x). gx is a real number.
+  Take B = 1. B is a real number.
+
+  Let us show that there exists p \in (x|y) such that
+  if D(f,p) = A and D(g,p) = B
+  then (fy-fx)*B = (gy-gx)*A.
+    x < y.
+    f,g are real map such that f,g are defined on [x|y]
+    and f is continuous and differentiable on (x|y)
+    and g is continuous and differentiable on (x|y).
+    Therefore the thesis (by 5_9).
+  End.
+  
+  
 QED.
