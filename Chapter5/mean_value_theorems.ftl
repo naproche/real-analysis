@@ -4,8 +4,8 @@
 [check off]
 [read preliminaries.ftl]
 [read real-analysis/numbers.ftl]
-[read real-analysis/Chapter5/mean_value_theorems_pre.ftl]
-[timelimit 20]
+[read real-analysis/Chapter5/backup/mean_value_theorems_pre.ftl]
+[timelimit 30]
 
 [prove on]
 [check on]
@@ -30,27 +30,26 @@ Definition 5_7b.
 Lemma 5_8_2a.
   Let f be a real map.
   Let p be a limit point of Dom(f).
-  Let q be a real number such that lim(f,p)=q.
-  Suppose for every t \in Dom(f) f(t)<=0. Then q<=0.
+  Suppose for every t \in Dom(f) f(t) <= 0.
+  If lim(f,p) exists then lim(f,p) <= 0.
 Proof.
+  Assume that lim(f,p) exists.
+  Take real number A such that lim(f,p) = A (by LimitExists).
+  Indeed f is a real map and p is a limit point of Dom(f).
   Suppose the contrary.
-  Then q is a positive real number.
-  Let us show that there exists del such that
-  for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<q.
-    lim(f,p) = q iff for any eps there exists del such that
-      for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps (by Limit).
-    Indeed f is a real map
-      and p is a limit point of Dom(f)
-      and q is a real number.
-    Therefore the thesis. Indeed lim(f,p) = q and q is a positive real number.
-  End.
-  Take del such that for any t \in Dom(f)
-    if 0<d(t,p)<del then d(f(t),q)<q.
+  Then A > 0.
+
+  # Take del such that...
+  Then for any positive real number eps A is limit of f at p wrt eps.
+  Then A is limit of f at p wrt A. Indeed A is a positive real number.
+  Take positive del such that A is limit of f at p wrt A and del (by LimitWrt).
+  Then for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),A)<A (by LimitWrtAnd).
+
   Take t \in Dom(f) such that 0<d(t,p)<del (by LimitPoint).
   Indeed p is a limit point of Dom(f) and del is a positive real number.
-  Take ft = f(t). Then f(t) is a real number.
-  Then d(ft,q)<q.
-  Then q-q < ft (by d4).
+  Take ft = f(t). ft is a real number.
+  Then d(ft,A)<A.
+  Then A-A < ft (by d4).
   Then 0 < ft.
   Contradiction.
 QED.
@@ -58,27 +57,27 @@ QED.
 Lemma 5_8_2b.
   Let f be a real map.
   Let p be a limit point of Dom(f).
-  Let q be a real number such that lim(f,p)=q.
-  If for any t \in Dom(f) f(t)>=0 then q>=0.
+  Suppose for every t \in Dom(f) f(t) >= 0.
+  If lim(f,p) exists then lim(f,p) >= 0.
 Proof.
-  Assume for any t \in Dom(f) f(t)>=0.
+  Assume that lim(f,p) exists.
+  Take real number A such that lim(f,p) = A (by LimitExists).
   Suppose the contrary.
-  Then -q is a positive real number.
-  Let us show that there exists del such that for any t \in Dom(f)
-  if 0<d(t,p)<del then d(f(t),q)<-q.
-    lim(f,p) = q iff for any eps there exists del such that
-    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps (by Limit).
-    Therefore the thesis. Indeed lim(f,p) = q and -q is a positive real number.
-  End.
-  Take del such that for any t \in Dom(f)
-    if 0<d(t,p)<del then d(f(t),q)<-q.
+  Then -A is a positive real number.
+
+  # Take del such that...
+  For any positive real number eps A is limit of f at p wrt eps.
+  Then A is limit of f at p wrt -A. Indeed -A is a positive real number.
+  Take positive del such that A is limit of f at p wrt -A and del (by LimitWrt).
+  Then for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),A)<-A (by LimitWrtAnd).
+
   Take t \in Dom(f) such that 0<d(t,p)<del (by LimitPoint).
   Indeed Dom(f) is a subset of Real
     and p is a limit point of Dom(f)
     and del is a positive real number.
-  Take ft = f(t). Then ft is a real number.
-  Then d(ft,q)<-q.
-  Then ft < q+(-q) (by d4).
+  Take ft = f(t). ft is a real number.
+  Then d(ft,A)<-A.
+  Then ft < A+(-A) (by d4).
   Then ft < 0.
   Contradiction.
 QED.
@@ -143,7 +142,7 @@ Proof.
   End.
   Take del such that x<p-del and p+del<y and for any t \in [x|y] if d(t,p)<del then f(t)>=fp.
   
-  Take real number d such that D(f,p)=d.
+  Take real number d such that D(f,p) = d.
   DQ(f,p) is a real map that is defined on [x|y]\\{p}.
 
   # calculating D(f,p) from below:
@@ -156,14 +155,12 @@ Proof.
     End.
     # res1: restriction of DQ(f,p) to numbers <p.
     Define res1(t) = DQ(f,p)(t) for t in (p-del|p).
-    Then res1 is a real map that is defined on (p-del|p).
-    Indeed for any t \in (p-del|p) DQ(f,p)(t) is a real number.
-    Indeed DQ(f,p) is a real map.
+    Then res1 is a restriction of DQ(f,p).
     Then p is a limit point of Dom(res1). Indeed Dom(res1) = (p-del|p) and p \in [p-del|p].
-    Let us show that if for any t \in Dom(res1) res1(t) = DQ(f,p)(t) then lim(res1,p)=d.
-      DQ(f,p), res1 are real map such that Dom(res1) is a subset of Dom(DQ(f,p)).
+    Let us show that if lim(DQ(f,p),p) exists then lim(res1,p) = lim(DQ(f,p),p).
+      DQ(f,p) is a real map.
+      res1 is a restriction of DQ(f,p).
       p is a limit point of Dom(res1).
-      d is a real number such that lim(DQ(f,p),p)=d.
       Then the thesis (by LimitOfRestrictedFunction).
     End.
     Therefore lim(res1,p)=d. Indeed for any t \in Dom(res1) res1(t) = DQ(f,p)(t).
@@ -191,10 +188,10 @@ Proof.
       res1(t) = (ft-fp) * inv (by DifferenceQuotient). Indeed res1(t) = DQ(f,p)(t).
       Then res1(t) <= 0.
     End.
-    Let us show that if for every t \in Dom(res1) res1(t)<=0 then d<=0.
+    Let us show that if lim(res1,p) exists then d <= 0.
       res1 is a real map.
-      p is a real number such that p is a limit point of Dom(res1).
-      d is a real number such that lim(res1,p)=d.
+      p is a limit point of Dom(res1).
+      For every t \in Dom(res1) res1(t) <= 0.
       Therefore the thesis (by 5_8_2a).
     End.
   End.
@@ -209,17 +206,15 @@ Proof.
     End.
     # res2: restriction of DQ(f,p) to numbers >p.
     Define res2(t) = DQ(f,p)(t) for t in (p|p+del).
-    Then res2 is a real map that is defined on (p|p+del).
-    Indeed for any t \in (p|p+del) DQ(f,p)(t) is a real number.
-    Indeed DQ(f,p) is a real map.
+    Then res2 is a restriction of DQ(f,p).
     Then p is a limit point of Dom(res2). Indeed Dom(res2) = (p|p+del) and p \in [p|p+del].
-    Let us show that if for any t \in Dom(res2) res2(t) = DQ(f,p)(t) then lim(res2,p)=d.
-      DQ(f,p), res2 are real map such that Dom(res2) is a subset of Dom(DQ(f,p)).
-      p is a limit point of Dom(res2).  
-      lim(DQ(f,p),p)=d.
+    Let us show that if lim(DQ(f,p),p) exists then lim(res2,p) = lim(DQ(f,p),p).
+      DQ(f,p) is a real map.
+      res2 is a restriction of DQ(f,p).
+      p is a limit point of Dom(res2).
       Then the thesis (by LimitOfRestrictedFunction).
     End.
-    Therefore lim(res2,p)=d. Indeed for any t \in Dom(res2) res2(t) = DQ(f,p)(t).
+    Therefore lim(res2,p) = d.
     Let us show that for any t \in (p|p+del) res2(t)>=0.
       Assume t \in (p|p+del).
       Take ft = f(t). Then ft is a real number. Indeed t \in Dom(f).
@@ -245,10 +240,10 @@ Proof.
       res2(t) = (ft-fp) * inv (by DifferenceQuotient). Indeed res2(t) = DQ(f,p)(t).
       Then res2(t) >= 0.
     End.
-    Let us show that if for any t \in Dom(res2) res2(t)>=0 then d>=0.
+    Let us show that if lim(res2,p) exists then d >= 0.
       res2 is a real map.
       p is a limit point of Dom(res2).
-      d is a real number such that lim(res2,p)=d. 
+      For every t \in Dom(res2) res2(t) >= 0.
       Therefore the thesis (by 5_8_2b).
     End.
   End.
@@ -259,7 +254,7 @@ Theorem 5_8b.
   Let f be a real map that is defined on [x|y].
   Let p be an element of (x|y).
   If f is differentiable at p and p is a local maxima of f
-  then D(f,p)=0.
+  then D(f,p) = 0.
 Proof.
   Assume f is differentiable at p and p is a local maxima of f.
   Take fp = f(p). Then fp is a real number.
@@ -281,7 +276,7 @@ Proof.
   End.
   Take del such that x<p-del and p+del<y and for any t \in [x|y] if d(t,p)<del then f(t)<=fp.
   
-  Take real number d such that D(f,p)=d.
+  Take real number d such that D(f,p) = d.
   DQ(f,p) is a real map that is defined on [x|y]\\{p}.
 
   # calculating D(f,p) from below:
@@ -294,16 +289,15 @@ Proof.
     End.
     # res1: restriction of DQ(f,p) to numbers <p.
     Define res1(t) = DQ(f,p)(t) for t in (p-del|p).
-    Then res1 is a real map.
-    Indeed for any t \in (p-del|p) DQ(f,p)(t) is a real number.
-    Indeed DQ(f,p) is a real map.
+    Then res1 is a restriction of DQ(f,p).
     Then p is a limit point of Dom(res1). Indeed Dom(res1) = (p-del|p) and p \in [p-del|p].
-    Let us show that if for any t \in Dom(res1) res1(t) = DQ(f,p)(t) then lim(res1,p)=d.
-      DQ(f,p), res1 are real map such that Dom(res1) is a subset of Dom(DQ(f,p)).
+    Let us show that if lim(DQ(f,p),p) exists then lim(res1,p) = lim(DQ(f,p),p).
+      DQ(f,p) is a real map.
+      res1 is a restriction of DQ(f,p).
       p is a limit point of Dom(res1).
-      d is a real number such that lim(DQ(f,p),p)=d.
       Then the thesis (by LimitOfRestrictedFunction).
     End.
+    Therefore lim(res1,p) = d.
     Let us show that for any t \in (p-del|p) res1(t)>=0.
       Assume t \in (p-del|p).
       Take ft = f(t). Then ft is a real number. Indeed t \in Dom(f).
@@ -328,10 +322,10 @@ Proof.
       res1(t) = (ft-fp) * inv (by DifferenceQuotient). Indeed res1(t) = DQ(f,p)(t).
       Then res1(t) >= 0.
     End.
-    Let us show that if for every t \in Dom(res1) res1(t)>=0 then d>=0.
+    Let us show that if lim(res1,p) exists then lim(res1,p) >= 0.
       res1 is a real map.
-      p is a real number such that p is a limit point of Dom(res1).
-      d is a real number such that lim(res1,p)=d.
+      p is a limit point of Dom(res1).
+      For every t \in Dom(res1) res1(t) >= 0.
       Therefore the thesis (by 5_8_2b).
     End.
   End.
@@ -345,15 +339,15 @@ Proof.
     End.
     # res2: restriction of DQ(f,p) to numbers >p.
     Define res2(t) = DQ(f,p)(t) for t in (p|p+del).
-    Then res2 is a real map that is defined on (p|p+del).
-    Indeed for any t \in (p|p+del) DQ(f,p)(t) is a real number.
+    Then res2 is a restriction of DQ(f,p).
     Then p is a limit point of Dom(res2). Indeed Dom(res2) = (p|p+del) and p \in [p|p+del].
-    Let us show that if for any t \in Dom(res2) res2(t) = DQ(f,p)(t) then  lim(res2,p)=d.
-      DQ(f,p), res2 are real map such that Dom(res2) is a subset of Dom(DQ(f,p)).
+    Let us show that if lim(DQ(f,p),p) exists then lim(res2,p) = lim(DQ(f,p),p).
+      DQ(f,p) is a real map.
+      res2 is a restriction of DQ(f,p).
       p is a limit point of Dom(res2).
-      d is a real number such that lim(DQ(f,p),p)=d.
       Then the thesis (by LimitOfRestrictedFunction).
     End.
+    Therefore lim(res2,p) = d.
     Let us show that for any t \in (p|p+del) res2(t)<=0.
       Assume t \in (p|p+del).
       Take ft = f(t). Then ft is a real number. Indeed t \in Dom(f).
@@ -378,10 +372,10 @@ Proof.
       res2(t) = (ft-fp) * inv (by DifferenceQuotient). Indeed res2(t) = DQ(f,p)(t).
       Then res2(t) <= 0.
     End.
-    Let us show that if for any t \in Dom(res2) res2(t)<=0 then d<=0.
+    Let us show that if lim(res2,p) exists then d <= 0.
       res2 is a real map.
       p is a limit point of Dom(res2).
-      d is a real number such that lim(res2,p)=d.
+      For every t \in Dom(res2) res2(t) <= 0.
       Therefore the thesis (by 5_8_2a).
     End.
   End.
@@ -393,8 +387,7 @@ Theorem 5_9.
   and f is continuous and differentiable on (x|y)
   and g is continuous and differentiable on (x|y).
   Then there exists p \in (x|y) such that
-  if D(f,p) = A and D(g,p) = B
-  then (f(y)-f(x))*B = (g(y)-g(x))*A.
+    (f(y)-f(x)) * D(g,p) = (g(y)-g(x)) * D(f,p).
 Proof.
   
   # notation to reduce brackets
@@ -417,10 +410,13 @@ Proof.
   Take hy = h(y). Then hy is a real number.
   
   # derivative of h
-  Let us show that for any t \in (x|y) and any real numbers a,b
-  if D(f,t) = a and D(g,t) = b then D(h,t) = (c*b) + (d*a).
-    Suppose t \in (x|y) and a,b are real numbers such that D(f,t) = a and D(g,t) = b.
-    Let us show that D(c~g,t) = c*b.
+  Let us show that for any t \in (x|y) D(h,t) = (c*D(g,t)) + (d*D(f,t)).
+    Suppose t \in (x|y).
+    Take a real number A such that D(f,t) = A (by Differentiable).
+    Indeed t is an element of Dom(f) that is a limit point of Dom(f) and f is differentiable at t.
+    Take a real number B such that D(g,t) = B (by Differentiable).
+    Indeed t is an element of Dom(g) that is a limit point of Dom(g) and g is differentiable at t.
+    Let us show that D(c~g,t) = c*B.
       t is a limit point of Dom(g).
       g is a real map that is defined on [x|y].
       c is a real number.
@@ -428,7 +424,7 @@ Proof.
       g is differentiable at t. Indeed g is differentiable on (x|y).
       Then the thesis (by DerivativeOfScaledFunction).
     End.
-    Let us show that D(d~f,t) = d*a.
+    Let us show that D(d~f,t) = d*A.
       t is a limit point of Dom(f).
       f is a real map that is defined on [x|y].
       d is a real number.
@@ -436,12 +432,14 @@ Proof.
       f is differentiable at t. Indeed f is differentiable on (x|y).
       Then the thesis (by DerivativeOfScaledFunction).
     End.
-    Let us show that D(h,t) = (c*b) + (d*a).
+    Let us show that D(h,t) = (c*B) + (d*A).
       c~g is a real map that is defined on Dom(g) (by ScalingOfRealMap).
       d~f is a real map that is defined on Dom(f) (by ScalingOfRealMap).
       t is an element of (x|y).
-      c~g is differentiable at t. Indeed D(c~g,t) = c*b (by DerivativeOfScaledFunction).
-      d~f is differentiable at t. Indeed D(d~f,t) = d*a (by DerivativeOfScaledFunction).
+      c~g is differentiable at t (by DerivativeOfScaledFunction).
+      Indeed t is an element of Dom(g) that is a limit point of Dom(g) and g is differentiable at t.
+      d~f is differentiable at t (by DerivativeOfScaledFunction).
+      Indeed t is an element of Dom(f) that is a limit point of Dom(f) and f is differentiable at t.
       Then the thesis (by 5_3a).
     End.
   End.
@@ -461,30 +459,28 @@ Proof.
   # h is differentiable.
   Let us show that h is differentiable on (x|y).
     Suppose t \in (x|y).
-    Take a real number a such that D(f,t) = a (by Differentiable).
-    Indeed t is a limit point of Dom(f) and f is differentiable at t.
-    Take a real number b such that D(g,t) = b (by Differentiable).
-    Indeed t is a limit point of Dom(g) and g is differentiable at t.
-    Then D(h,t) = (c*b) + (d*a).
-    Then there exists a real number e such that D(h,t) = e.
-    Indeed (c*b) + (d*a) is a real number and D(h,t) = (c*b) + (d*a).
-    Then h is differentiable at t. Indeed t is a limit point of Dom(h).
+    Take a real number A such that D(f,t) = A (by Differentiable).
+    Indeed t is an element of Dom(f) that is a limit point of Dom(f) and f is differentiable at t.
+    Take a real number B such that D(g,t) = B (by Differentiable).
+    Indeed t is an element of Dom(g) that is a limit point of Dom(g) and g is differentiable at t.
+    Then D(h,t) is a real number.
+    Indeed (c*B) + (d*A) is a real number and D(h,t) = (c*B) + (d*A).
+    Then h is differentiable at t (by Differentiable).
+    Indeed t is an element of Dom(h) that is a limit point of Dom(h).
   End.
 
   # it's enough to show D(h,p) = 0.
   Let us show that if there exists p \in (x|y) such that D(h,p) = 0 then the thesis.
     Assume that there exists p \in (x|y) such that D(h,p) = 0.
     Take p \in (x|y) such that D(h,p) = 0.
-    Let us show that if D(f,p) = A and D(g,p) = B then (fy-fx)*B = (gy-gx)*A.
-      Assume D(f,p) = A and D(g,p) = B.
-      Then D(h,p) = (c*B) + (d*A).
-      Let us show that (c*B) + (d*A) = 0.
-        h is a real map.
-        p is an element of Dom(h) that is a limit point of Dom(h).
-        (c*B) + (d*A), 0 are real numbers.
-        D(h,p) = (c*B) + (d*A) and D(h,p) = 0.
-        Therefore the thesis (by UniquenessOfDerivative).
-      End.
+    Take a real number A such that D(f,p) = A (by Differentiable).
+    Indeed p is an element of Dom(f) that is a limit point of Dom(f) and f is differentiable at p.
+    Take a real number B such that D(g,p) = B (by Differentiable).
+    Indeed p is an element of Dom(g) that is a limit point of Dom(g) and g is differentiable at p.
+    Let us show that (fy-fx)*B = (gy-gx)*A.
+      D(h,p) = (c*B) + (d*A).
+      D(h,p) = 0.
+      Then (c*B) + (d*A) = 0.
       Let us show that c*B = -(d*A).
         ((c*B) + (d*A)) - (d*A) = 0 - (d*A).
         0 - (d*A) = -(d*A) + 0 (by 1_12_A2).
@@ -655,43 +651,137 @@ Proof.
     or (there exists t \in (x|y) such that h(t) < hx).
 QED.
 
-
 Theorem 5_10.
   Let x < y.
   Let f be real map that is defined on [x|y].
   Let f be continuous and differentiable on (x|y).
   Then there exists p \in (x|y) such that
-  if D(f,p) = A then
-    f(y)-f(x) = (y-x) * A.
+    f(y)-f(x) = (y-x) * D(f,p).
 Proof.
   Define g(t) = t for t in [x|y].
   Then g is a real map that is defined on [x|y].
 
   [prove off]
   Let us show that g is continuous.
-    
+    #! Proof
   End.
-
-  Let us show that g is differentiable on (x|y).
-
+  
+  Let us show that for any t \in (x|y) D(g,t) = 1.
+    #! Proof
   End.
   [prove on]
+
+  Let us show that g is differentiable on (x|y).
+    Assume t \in (x|y).
+    Then D(g,t) is a real number. Indeed D(g,t) = 1.
+    Then g is differentiable at t (by Differentiable).
+    Indeed t is an element of Dom(g) that is a limit point of Dom(g).
+  End.
 
   Take fx = f(x). fx is a real number.
   Take fy = f(y). fy is a real number.
   Take gy = g(y). gy is a real number.
   Take gx = g(x). gx is a real number.
-  Take B = 1. B is a real number.
 
-  Let us show that there exists p \in (x|y) such that
-  if D(f,p) = A and D(g,p) = B
-  then (fy-fx)*B = (gy-gx)*A.
+  Let us show that there exists p \in (x|y) such that (fy-fx)*D(g,p) = (gy-gx)*D(f,p).
     x < y.
     f,g are real map such that f,g are defined on [x|y]
     and f is continuous and differentiable on (x|y)
     and g is continuous and differentiable on (x|y).
     Therefore the thesis (by 5_9).
   End.
-  
+  Take p \in (x|y) such that (fy-fx)*D(g,p) = (gy-gx)*D(f,p).
+  Then D(g,p) = 1.
+  Take a real number A such that D(f,p) = A (by Differentiable).
+  Indeed p is an element of Dom(f) that is a limit point of Dom(f) and f is differentiable at p.
+  Then (fy-fx)*1 = (y-x)*A. Indeed gy = y and gx = x.
+  Then (fy-fx) = (y-x)*A.
   
 QED.
+
+Theorem 5_11a.
+  Let x < y.
+  Let f be a real map such that f is defined on (x|y)
+  and f is differentiable on (x|y).
+  If for any t \in (x|y) D(f,t) >= 0
+  then for any s,t \in (x|y) if s <= t then f(s) <= f(t). #! replace by "then f is monotonically increasing."
+Proof.
+  Assume for any t \in (x|y) D(f,t) >= 0.
+  Let us show that for any s,t \in (x|y) if s <= t then f(s) <= f(t).
+    Assume that s,t are elements of (x|y) such that s <= t.
+    
+    # Case 1: s = t.
+    Case s = t. Then f(s) = f(t).
+    End.
+
+    # Case 2: s < t.
+    Case s < t.
+      #[s|t] is a subset of Dom(f).
+      Let us show that [s|t] is a subset of Dom(f).
+        Assume that u is an element of [s|t].
+        Then s <= u <= t.
+      End.
+      # restriction of f to [s|t].
+      Define resf(u) = f(u) for u in [s|t].
+      resf is a real map that is defined on [s|t].
+      Indeed [s|t] is a subset of Real and for any u \in [s|t] f(u) is a real number.
+      Indeed f is a real map.
+      Take resfs = resf(s). resfs is a real number.
+      Take resft = resf(t). resft is a real number.      
+
+      [prove off]
+      #resf is continuous.
+      Let us show that resf is continuous.
+        #! Proof
+      End.
+      #resf is differentiable on (s|y).
+      Let us show that resf is differentiable on (s|t).
+        #! Proof
+      End.
+      [prove on]
+  
+      Let us show that there exists p \in (s|t) such that resft - resfs = (t-s) * D(resf,p).
+        s < t.
+        resf is a real map that is defined on [s|t].
+        resf is continuous and differentiable on (s|t).
+        Therefore the thesis (by 5_10).
+      End.
+      
+      Take p \in (s|t) such that resft - resfs = (t-s) * D(resf,p).
+      Take a real number A such that D(resf,p) = A (by Differentiable).
+      Indeed p is an element of Dom(resf) that is a limit point of Dom(resf)
+        and resf is differentiable at p.
+      Then resft - resfs = (t-s) * A.
+      
+      [prove off]
+      Let us show that A >= 0.
+        #! Proof
+      End.
+      [prove on]
+      
+      t - s > 0. Indeed t > s.
+      Then (t-s) * A >= 0.
+      Then resft - resfs >= 0.
+      Then resfs <= resft.
+    End.
+  End.
+QED.
+
+[prove off]
+Theorem 5_11b.
+  Let x < y.
+  Let f be a real map such that f is defined on (x|y)
+  and f is differentiable on (x|y).
+  If for any t \in (x|y) D(f,t) = 0
+  then there exists a real number c such that
+    for any t \in (x|y) f(t) = c. #! replace by "then f is constanst."
+#! Proof
+
+Theorem 5_11c.
+  Let x < y.
+  Let f be a real map such that f is defined on (x|y)
+  and f is differentiable on (x|y).
+  If for any t \in (x|y) D(f,t) <= 0
+  then for any s,t \in (x|y) if s <= t then f(s) >= f(t). #! replace by "then f is monotonically decreasing."
+#! Proof
+[prove on]
