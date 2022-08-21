@@ -133,12 +133,10 @@ for every element p of X we have (p is  limit point of Y in X) or (p is an eleme
 Theorem 2_19. Let X be a metric space. Let r be a positive real number. Let p be an element of X. Neigh(p,r,X)
 is open in X. 
 
-Proof. Let us prove that every element of Neigh(p,r,X) is interior point of Neigh(p,r,X) in X. Proof.
+Proof. Let us prove that every element of Neigh(p,r,X) is interior point of Neigh(p,r,X) in X.
 Let q be an element of Neigh(p,r,X). Let us prove that q is interior point of Neigh(p,r,X) in X.
-Proof. 
 Then d(p,q) < r. r-d(p,q) is a positive real number.
 Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
-Proof.
 Let s be an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
 We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
 d(p,q) + (r - d(p,q)) = r. Thus d(p,s) < r. 
