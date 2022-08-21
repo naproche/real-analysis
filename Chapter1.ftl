@@ -10,7 +10,7 @@ Definition. A subset of B is a set A such that every element of A
 is an element of B.
 
 Definition. A proper subset of B is a subset A of B such that there is
-an element of B that  is not in A.
+an element of B that is not in A.
 
 Lemma. Let A be a set. A is a subset of A.
 
