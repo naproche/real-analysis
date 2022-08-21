@@ -1,5 +1,82 @@
-[synonym field/-s]
-[prove off][read real-analysis/numbers.ftl][read real-analysis/Chapter1.ftl][prove on]
+[prove off][read real-analysis/numbers.ftl][prove on]
+Definition.A natural number is an integer k such that k=0 or 0<k .
+Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
+Let n denote a natural number.
+Definition. NAT is a set such that every element of NAT is a natural number and every
+natural number is an element of NAT.
+Definition. Q is a set such that every element of Q is a rational number and every
+rational number is an element of Q.
+Axiom. Let k be a natural number. For every natural number n such that n=<k k-n is a 
+natural number.
+
+Definition SmallestElement. Let E be a nonempty subset of NAT. The smallest 
+element of E is  an element x of E such that for every element y of E x=<y. 
+Axiom. Let E be a nonempty subset of NAT. There exists an element x of E such
+that x is the smallest element of E.
+
+Definition DifOfSets. Let A and B be sets.
+Dif(A,B) is a subset of A such that Dif(A,B) = {x| x is an element of A and x is
+ not an element of B}.
+
+Signature.Let x be a real number. abs(x) is a real number.
+Axiom. Let x be a positive real number. abs(x) = x.
+Axiom. abs(0)=0.
+Axiom. Let x be a negative real number. abs(x)=-x.
+Lemma. For every real number x 0=<abs(x).
+
+Axiom. Let x,y be real numbers.abs(x+y)=< abs(x)+abs(y).
+
+Definition Dist. Let x and y be real numbers. dist(x,y)=abs(x-y).
+
+
+Axiom. Let f be a map. Dom(f) is a set. 
+
+
+Definition ImOfSubset.  Let f be a map. Let E be a subset of Dom(f). 
+Im(E,f) is a set such that Im(E,f) = { f(x)  | x is an element of E}.
+
+
+Definition SurjectiveToB.Let B be a set. Let f be a map.
+f is surjective onto B iff  Im(Dom(f),f) = B.
+
+Definition Preimage. Let f be a map. Let E be a nonempty subset of Im(Dom(f),f). 
+ImInv(E,f) is a nonempty subset  of Dom(f) such that #we need this detail to ensure this is a set and that it is nonempty.
+ImInv(E,f) = {x | x is an element of Dom(f) and f(x) is an element of E}.
+
+Definition Injective. Let f be a map. f is injective iff for every element x 
+of Dom(f) and every element y of Dom(f) (if f(x) = f(y) then x = y).
+
+Definition BijectionToB. Let B be a set. Let f be a map.
+f is bijective onto B iff (f is injective and f is surjective onto B).
+
+Definition Equipotency. Let A and B be sets. A and B are equipotent iff there exists a map
+f such that (Dom(f)=A and f is bijective onto B).
+
+Definition BiggerSet. Let A and B be sets. A is bigger than B iff there exists a map f such that
+(Dom(f)=A and f is surjective onto B).
+
+
+Definition FinNAT.Fin(n) is a set such that Fin(n) = {x | x is a natural number and x<n}.
+
+Definition Finite. Let A be a set. A is finite iff (there exists n such that Fin(n)
+is bigger than A) or (A is an empty set).
+
+Lemma. Let n be a natural number. Fin(n) is finite.
+Proof.
+Define g(m) = m for m in Fin(n).
+g is a map.
+g is surjective onto Fin(n).
+End.
+
+Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
+
+Axiom. Let E be a nonempty finite subset of NAT. There exists an element m of E such that for 
+every element k of  E k=<m.
+
+#This was copied from the file Countable Sets, which we needed for 2_22.
+
+Definition. Let E be a finite collection of positive real numbers. min(E) is an element of E
+such that for every element x of E min(E) < x.
 
 Signature. Let p,q be elements. d(p,q) is a real number.
 
@@ -63,14 +140,34 @@ Then d(p,q) < r. r-d(p,q) is a positive real number.
 Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
 Proof.
 Let s be an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
-We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). Then d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
-Thus d(p,s) < r.
+We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
+d(p,q) + (r - d(p,q)) = r. Thus d(p,s) < r. 
 Thus s is an element of Neigh(p,r,X). End.
 Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
 Hence q is interior point of Neigh(p,r,X) in X. End. End.
 Thus Neigh(p,r,X) is open in X. qed.
 
-#2_20 requires MyChap2 (infinite) which I still haven't been able to read here.
+Lemma. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
+Let r be a positive real number. Neigh(p,r,X) is nonempty.
+
+Lemma. Let X be a metric space. Let p be an element of X. Let r,s be positive real numbers
+such that r <= s. Neigh(p,r,X) is a subset of Neigh(p,s,X). 
+
+Theorem 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
+Let r be a positive real number. Neigh(p,r,X) is infinite.
+
+Proof. Suppose Neigh(p,r,X) is finite. Take a natural number m such that Fin(m) is bigger than Neigh(p,r,X).
+Take a map f such that Dom(f) = Fin(m) and f is surjective onto Neigh(p,r,X). Let E =
+{d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. For every element y of E y is a positive
+real number. Thus E is a collection of positive real numbers. min(E) is a positive real number.
+Let us prove that for every element z of Neigh(p,min(E),X) z = p. 
+Proof. Let z be an element of Neigh(p,min(E),X). Suppose z != p. min(E) <= r. Thus z is an element
+of Neigh(p,r,X). Take a natural number k such that (k < m) and (f(k)=z). d(p,z) is an element of E.
+d(p,z) < min(E). Contradiction. 
+End. Thus p is not limit point of X in X.
+Contradiction. qed.
+
+#This proof needs revision. The essence is there.
 
 #So does 2_22.
 

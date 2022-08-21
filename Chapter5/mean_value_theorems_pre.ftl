@@ -4,9 +4,6 @@
 [read real-analysis/numbers.ftl]
 [timelimit 20]
 
-[prove on]
-[check on]
-
 #SETS
 Definition SetMinus.
   Let S be a set.
@@ -28,6 +25,30 @@ Definition Image.
 Definition RealMap.
   A real map is a map f such that
     Dom(f) \subseteq Real and f is into Real.
+
+Definition IdentityMapOf.
+  Let S be a set.
+  The identity map of S is a map f such that
+  Dom(f) = S and for any x \in S f(x) = x.
+
+Definition IdentityMap.
+  An identity map is a real map f such that
+  f is the identity map of Dom(f).
+
+Definition ConstantMapWithValue.
+  Let c be a real number.
+  A constant map with value c is a real map f such that
+  for any t \in Dom(f) f(t) = c.
+
+Definition ConstantMap.
+  A constant map is a real map f such that
+  there exists a real number c such that
+  for any t \in Dom(f) f(t) = c.
+
+Lemma RealMapsEvaluateToRealNumbers.
+  Let f be a real map.
+  Let t be an element of Dom(f).
+  Then f(t) is a real number.
 
 
 # MAP OPERATIONS
@@ -52,10 +73,31 @@ Definition Scaling.
   c~f is a map h such that Dom(h) = Dom(f) and
   for any t \in Dom(h) h(t) = c*f(t).
 
-Lemma.
+Definition Restriction.
+  Let f be a map.
+  A restriction of f is a map g such that
+    Dom(g) is a subset of Dom(f)
+    and for any x \in Dom(g) g(x) = f(x).
+
+Lemma AdditionOfRealMaps.
+  Let f,g be real map.
+  Suppose Dom(f) = Dom(g).
+  Then f++g is a real map that is defined on Dom(f).
+
+Lemma MultiplicationOfRealMaps.
+  Let f,g be real map.
+  Suppose Dom(f) = Dom(g).
+  Then f**g is a real map that is defined on Dom(f).
+
+Lemma ScalingOfRealMap.
   Let f be a real map.
   Let c be a real number.
-  Then c~f is a real map.
+  Then c~f is a real map that is defined on Dom(f).
+
+Lemma RestrictionOfRealMap.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Then g is a real map.
 
 
 # INTERVALS
@@ -94,12 +136,15 @@ Axiom d4. Let c be a positive real number. d(x,y) < c iff y-c < x < y+c.
 # LIMIT POINTS
 Let E denote a subclass of Real.
 
-Definition.
+Definition LimitPoint.
   A limit point of E is a real number p such that
     for any positive real number eps
-    there exists e \in E such that d(e,p) < eps.
+    there exists e \in E such that 0 < d(e,p) < eps.
 
-[prove off]
+Definition SubsetOfLimitPoints.
+  A subset of limit points of E is a subset P of E such that
+    for any p \in P p is a limit point of E.
+
 Lemma LimitPointAxiom1.
   Let z be an element of [x|y].
   Let t be an element of [x|y].
@@ -107,105 +152,118 @@ Lemma LimitPointAxiom1.
        t is a limit point of [x|y]\\{z} and
        t is a limit point of (x|y) and
        t is a limit point of (x|y)\\{z}.
-# Proof!
+#! Proof!
 
 Lemma LimitPointAxiom2.
   Let p be a limit point of E.
   Let e be an element of E.
   Then p is a limit point of E\\{e}.
-# Proof!
+#! Proof!
 
 Lemma LimitPointOfSupset.
   Let F be a subclass of Real.
   Let E be a subclass of F.
   Assume p is a limit point of E.
   Then p is a limit point of F.
-# Proof!
-[prove on]
+#! Proof!
+
+Lemma.
+  Let x,y be real numbers.
+  (x|y) is a subset of limit points of [x|y].
+#! Proof!
+
+Lemma.
+  Let x,y be real numbers.
+  (x|y) is a subset of limit points of (x|y).
+#! Proof
 
 
 # LIMIT
-Signature.
+Definition LimitWrtAnd.
   Let f be a real map.
-  lim(f,p) is an object.
+  Let p be a limit point of Dom(f).
+  Let q be a real number.
+  Let eps, del be positive real numbers.
+  q is limit of f at p wrt eps and del iff
+    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
 
+Definition LimitWrt.
+  Let f be a real map.
+  Let p be a limit point of Dom(f).
+  Let q be a real number.
+  Let eps be a positive real number.
+  q is limit of f at p wrt eps iff there exists a positive real number del such that
+    q is limit of f at p wrt eps and del.
+
+Signature Limit.
+  Let f be a real map.
+  Let p be a limit point of Dom(f).
+  lim(f,p) is an object.
 Axiom LimitAxiom.
   Let f be a real map.
   Let p be a limit point of Dom(f).
   Let q be a real number.
   lim(f,p) = q iff for any positive real number eps
-    there exists a positive real number del such that
-    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
+    q is limit of f at p wrt eps.
 
-[prove off]
-Lemma ExistenceOfDel.
+Let the limit of f at p stand for lim(f,p).
+
+Definition LimitExists.
   Let f be a real map.
   Let p be a limit point of Dom(f).
-  Let q be a real number such that lim(f,p) = q.
-  Assume that eps is a positive real number.
-  Then there exists a positive real number del such that
-    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
-# Proof!
-[prove on]
+  lim(f,p) exists iff lim(f,p) is a real number.
 
 Lemma LimitOfConstantFunction.
   Let c be a real number.
-  Let const be a real map such that
-    for any t \in Dom(const) const(t) = c.
-  Let p be a limit point of Dom(const).
-  Then lim(const,p) = c.
-Proof.
-  Let us show that for any positive real number eps
-  there exists a positive real number del such that
-  for any t \in Dom(const) if 0<d(t,p)<del then d(const(t),c)<eps.
-    Assume that eps is a positive real number.
-    Let us show that for any t \in Dom(const) if 0<d(t,p)<1 then d(const(t),c)<eps.
-      Assume t \in Dom(const) and 0<d(t,p)<1.
-      Then d(const(t),c)=0. Indeed const(t) = c.
-      Then d(const(t),c)<eps.
-    End.
-  End.
-  lim(const,p) = c iff for any positive real number eps
-    there exists a positive real number del such that
-    for any t \in Dom(const) if 0<d(t,p)<del then d(const(t),c)<eps (by LimitAxiom).
-  Indeed const is a real map and p is a limit point of Dom(const) and c is a real number.
-  Therefore the thesis.
-End.
+  Let f be a constant map with value c.
+  Let p be a limit point of Dom(f).
+  Then lim(f,p) = c.
+#! Proof
 
-[prove off]
+Lemma LimitOfIdentityMap.
+  Let f be an identity map.
+  Let p be a limit point of Dom(f).
+  Then lim(f,p) = p.
+#! Proof
+
 Lemma LimitOfRestrictedFunction.
-  Let f,g be real map such that Dom(g) is a subset of Dom(f).
+  Let f be a real map.
+  Let g be a restriction of f.
   Let p be a limit point of Dom(g).
-  Let q be a real number such that lim(f,p) = q.
-  Assume that for any t \in Dom(g) g(t) = f(t).
-  Then lim(g,p) = q.
-Proof.
-  Then p is a limit point of Dom(f) (by LimitPointOfSupset).
-  Let us show that for any positive real number eps there exists
-  a positive real number del such that
-  for any  t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
-    Assume that eps is a positive real number.
-    There exists a positive real number del such that 
-      for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
-    Indeed q is a real number such that lim(f,p) = q.
-    Take a positive real number del such that for any
-      t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
-    Let us show that for any t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
-      Take t \in Dom(g).  
-      Then t \in Dom(f). Indeed Dom(g) is a subset of Dom(f).
-      Let us show that if 0<d(t,p)<del then d(g(t),q)<eps.
-        Assume 0<d(t,p)<del.
-        Then d(f(t),q)<eps.
-        Then d(g(t),q)<eps. Indeed g(t) = f(t).
-      End.
-    End.
-  End.
-  Then lim(g,p) = q iff for any positive real number eps
-    there exists a positive real number del such that
-    for any t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps (by LimitAxiom).
-  Therefore the thesis.
-QED.
-[prove on]
+  If lim(f,p) exists then lim(g,p) = lim(f,p).
+#! Proof.
+#  Then p is a limit point of Dom(f) (by LimitPointOfSupset).
+#  Let us show that for any positive real number eps there exists
+#  a positive real number del such that
+#  for any  t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
+#    Assume that eps is a positive real number.
+#    There exists a positive real number del such that 
+#      for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
+#    Indeed q is a real number such that lim(f,p) = q.
+#    Take a positive real number del such that for any
+#      t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
+#    Let us show that for any t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
+#      Take t \in Dom(g).  
+#      Then t \in Dom(f). Indeed Dom(g) is a subset of Dom(f).
+#      Let us show that if 0<d(t,p)<del then d(g(t),q)<eps.
+#        Assume 0<d(t,p)<del.
+#        Then d(f(t),q)<eps.
+#        Then d(g(t),q)<eps. Indeed g(t) = f(t).
+#      End.
+#    End.
+#  End.
+#  Therefore the thesis (by Limit).
+#QED.
+
+Theorem 4_4a.
+  Let f, g be real map such that Dom(f) = Dom(g).
+  Let p be a limit point of Dom(f).
+  If lim(f,p) exists and lim(g,p) exists then lim(f++g,p) = lim(f,p) + lim(g,p).
+
+Theorem 4_4b.
+  Let f, g be real map such that Dom(f) = Dom(g).
+  Let p be a limit point of Dom(f).
+  If lim(f,p) exists and lim(g,p) exists then lim(f**g,p) = lim(f,p) * lim(g,p).
 
 
 # CONTINUITY
@@ -220,7 +278,11 @@ Definition ContinuousAt.
 Definition Continuous.
   f is continuous iff for any p \in Dom(f) f is continuous at p.
 
-[prove off]
+Theorem 4_6.
+  Let f be a real map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  f is continuous at p iff lim(f,p) = f(p).
+
 Theorem 4_9a. 
   Let f,g be real map such that Dom(f) = Dom(g).
   Let p \in Dom(f).
@@ -233,13 +295,25 @@ Theorem 4_9b.
   Suppose f is continuous at p and g is continuous at p.
   Then f**g is continuous at p.
 
+Lemma ContinuityOfIdentityMap.
+  Let f be a real map that is identity map.
+  Then f is continuous.
+#! Proof
+
 Lemma ContinuityOfScaledFunction.
   Let f be a real map.
   Let c be a real number.
   Let p be an element of Dom(f).
   Suppose that f is continuous at p.
   Then c~f is continuous at p.
-# Proof!
+#! Proof!
+
+Lemma ContinuityOfRestriction.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Let p be an element of Dom(g).
+  If f is continuous at p then g is continuous at p.
+#! Proof
 
 Theorem 4_16a.
   Suppose f is continuous and Dom(f) is nonempty and compact.
@@ -250,7 +324,6 @@ Theorem 4_16b.
   Suppose f is continuous and Dom(f) is nonempty and compact.
   Then there exists p \in Dom(f) such that
     for any t \in Dom(f) f(t) >= f(p).
-[prove on]
 
 
 # DIFFERENCE QUOTIENT
@@ -271,16 +344,22 @@ Lemma.
 # DERIVATIVE
 Let f denote a real map.
 
-Definition Derivative.
-  Let p be an element of Dom(f).
-  D(f,p) = lim(DQ(f,p),p).
+Signature Derivative.
+  Let f be a real map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  D(f,p) is an object.
+Axiom DerivativeAxiom.
+  Let f be a real map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  Let q be a real number.
+  D(f,p) = q iff lim(DQ(f,p),p) = q.
 
-Definition.
+Definition Differentiable.
   Let p be an element of Dom(f) that is a limit point of Dom(f).
   f is differentiable at p iff D(f,p) is a real number.
 
 Definition.
-  Let P be a subset of Dom(f).
+  Let P be a subset of limit points of Dom(f).
   f is differentiable on P iff
     for any p \in P f is differentiable at p.
 
@@ -299,12 +378,10 @@ Proof.
     Then (f(t)-f(p)) * (1/(t-p)) = 0.
     Therefore DQ(f,p)(t) = 0 (by DifferenceQuotient).
   End.
-  Then lim(DQ(f,p),p)=0 (by LimitOfConstantFunction).
-  D(f,p) = lim(DQ(f,p),p) (by Derivative).
-  Therefore D(f,p)=0.
+  Then lim(DQ(f,p),p) = 0 (by LimitOfConstantFunction).
+  Therefore D(f,p) = 0 (by DerivativeAxiom).
 QED.
 
-[prove off]
 Theorem 5_3a.
   Let f be a real map such that f is defined on [x|y].
   Let g be a real map such that g is defined on [x|y].
@@ -312,17 +389,29 @@ Theorem 5_3a.
   Assume that f is differentiable at p.
   Assume that g is differentiable at p.
   Then f++g is differentiable at p and
-    D(f++g,p) = D(f,p) + D(g,p).
+  D(f++g,p) = D(f,p) + D(g,p).
 
 Lemma DerivativeOfScaledFunction.
   Let f be a real map.
   Let c be a real number.
-  Let p be an element of Dom(f).
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
   Suppose that f is differentiable at p.
-  Then D(c~f,p) = c * D(f,p).
-# Proof!
-[prove on]
+  Then c~f is differentiable at p and D(c~f,p) = c * D(f,p).
+#! Proof!
 
+Lemma DerivativeOfIdentityMap.
+  Let f be a real map that is identity map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  Then f is differentiable at p and D(f,p) = 1.
+#! Proof
+
+Lemma DerivativeOfRestriction.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Let p be an element of Dom(g) that is a limit point of Dom(g).
+  If f is differentiable at p
+  then g is differentiable at p and D(g,p) = D(f,p).
+#! Proof
 
 
 # USEFUL FUNCTIONS

@@ -252,38 +252,56 @@ Axiom.Let M be a set. Let N be a nonempty subset of M. Let f be a sequence
  such that f is surjective onto M. There exists an element x of N such that x is smallest with
 respect to f and M in N.
 
-Definition SubOfCountAux. Let f be a map such that Dom(f) = NAT.
- Let E be an infinite subset of Im(Dom(f),f). Aux(f,E) is a sequence
-such that  (for every element m of NAT  Aux(f,E)(m) = y where
-y is an element of  Dif(E, (f<<m))  such that y is smallest with respect to f and Im(Dom(f),f)
- in Dif(E, (f<<m))).
+#The following def turned out to be unnecessary (and probs flawed) in the end.
+#Definition SubOfCountAux. Let f be a map such that Dom(f) = NAT.
+ #Let E be an infinite subset of Im(Dom(f),f). Aux(f,E) is a sequence
+#such that  (for every element m of NAT  Aux(f,E)(m) = y where
+#y is an element of  Dif(E, (Aux(f,E)<<m))  such that y is smallest with respect to f and Im(Dom(f),f)
+# in Dif(E, (Aux(f,E)<<m))).
 #We need to make the machine understand that ImInv(E,f) is not empty, which is 
 #apparently not direct from the definition.(Now that I have modified the definition, it is)
 #Note: to make this work I had to change the =< in the defs of Fin(n) and (f<<n) since we 
 #do not have a symbol for the previous element.
 
+Definition. Let A be a countable set. Let E be an infinite subset of NAT. Let f be
+a map such that Dom(f) = NAT and f is surjective onto A. N(A,E,f) is a subset of NAT
+such that N(A,E,f) = {x| x is a natural number such that f(x) is an element of E}.
 
-Axiom SubOfCount. Let A be a countable set. Let E be an infinite subset of A.
+Theorem SubOfCount. Let A be a countable set. Let E be an infinite subset of A.
 E is countable. #Indeed, after purging the computer does not know how to prove this.
+Proof.
+Take a map f such that Dom(f)=NAT and f is surjective onto A.
+Define g(n) =  Choose an element a  of Dif(A,(f<<n))
+that is smallest with respect to f and A in Dif(A, (f<<n)) in a
+for n in NAT.
+g is surjective onto E.
+End.
+#This proof jhad a problem with the fact that the def of th Aux function is flawed. However it
+#is not needed and, as shown, a much shorter proof can be given.
 #Proof.
 #Take a map f such that Dom(f)=NAT and f is surjective onto A.
 #Take g = Aux(f,E).
 #Let us show that g is surjective onto E.
- # Let us show that every element of Im(Dom(g),g) is an element of E.
- # g(0) is an element of E.
- # For every element m of NAT such that 0<m  g(m) is an element of Dif(E, (f<<m)).
- # For every element m of NAT Dif(E, (f<<m)) is a subset of E.
- # For every element m of NAT such that 0<m g(m) is an element of E.
- # End.
+#  Let us show that every element of Im(Dom(g),g) is an element of E.
+#  g(0) is an element of E.
+#  Let us show that for every element m of NAT such that 0<m  g(m) is an element of Dif(E, (Aux(f,E)<<m)).
+#    Let m be a natural number such that 0<m.
+#    g(m) is not an element of (Aux(f,E)<<m).
+#    g(m) is an element of E.
+#    End.
+#  For every element m of NAT Dif(E, ((Aux(f,E)<<m))) is a subset of E.
+#  For every element m of NAT such that 0<m g(m) is an element of E.
+#  End.
 
- # Let us show that every element of E is an element of Im(Dom(g),g).
- # For every element x of E there is an element m of NAT such that f(m)=x.
- # Take an element x such that x is an element of E.
-  #Take an element k such that k is an element of NAT and f(k) = x.
+#  Let us show that every element of E is an element of Im(Dom(g),g).
+#  For every element x of E there is an element m of NAT such that f(m)=x.
+#  Take an element x such that x is an element of E.
+#  Take an element k such that k is an element of NAT and f(k) = x.
   
-  #End.
+#  End.
 #End.
-#End. For the moment I'll leave it as an axiom and go back to it later. The def of Aux(f,E) is n
+#End.
+# For the moment I'll leave it as an axiom and go back to it later. The def of Aux(f,E) is n
 #not working and I have no clue why.
 
 #Indeed, after purging the computer does not know how to prove this..
