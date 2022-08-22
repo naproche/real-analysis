@@ -73,21 +73,6 @@ Thus Neigh(p,r,X) is open in X. qed.
 Definition.A natural number is an integer k such that k=0 or 0<k .
 Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let n denote a natural number.
-Definition. NAT is a set such that every element of NAT is a natural number and every
-natural number is an element of NAT.
-Definition. Q is a set such that every element of Q is a rational number and every
-rational number is an element of Q.
-Axiom. Let k be a natural number. For every natural number n such that n=<k k-n is a 
-natural number.
-
-Definition SmallestElement. Let E be a nonempty subset of NAT. The smallest 
-element of E is  an element x of E such that for every element y of E x=<y. 
-Axiom. Let E be a nonempty subset of NAT. There exists an element x of E such
-that x is the smallest element of E.
-
-Definition DifOfSets. Let A and B be sets.
-Dif(A,B) is a subset of A such that Dif(A,B) = {x| x is an element of A and x is
- not an element of B}.
 
 Signature.Let x be a real number. abs(x) is a real number.
 Axiom. Let x be a positive real number. abs(x) = x.
@@ -99,13 +84,10 @@ Axiom. Let x,y be real numbers.abs(x+y)=< abs(x)+abs(y).
 
 Definition Dist. Let x and y be real numbers. dist(x,y)=abs(x-y).
 
-
 Axiom. Let f be a map. Dom(f) is a set. 
-
 
 Definition ImOfSubset.  Let f be a map. Let E be a subset of Dom(f). 
 Im(E,f) is a set such that Im(E,f) = { f(x)  | x is an element of E}.
-
 
 Definition SurjectiveToB.Let B be a set. Let f be a map.
 f is surjective onto B iff  Im(Dom(f),f) = B.
@@ -126,7 +108,6 @@ f such that (Dom(f)=A and f is bijective onto B).
 Definition BiggerSet. Let A and B be sets. A is bigger than B iff there exists a map f such that
 (Dom(f)=A and f is surjective onto B).
 
-
 Definition FinNAT.Fin(n) is a set such that Fin(n) = {x | x is a natural number and x<n}.
 
 Definition Finite. Let A be a set. A is finite iff (there exists n such that Fin(n)
@@ -136,13 +117,13 @@ Axiom. Let n be a natural number. Fin(n) is finite.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
 
-Axiom. Let E be a nonempty finite subset of NAT. There exists an element m of E such that for 
-every element k of  E k=<m.
-
 #This was copied from the file Countable Sets, which we needed for 2_22.
 
 Definition. Let E be a set such that for every element x of E x is a real number.
 min(E) is an element of E such that for every element x of E min(E) < x.
+
+Axiom fin. Let E be a finite set such that for every element x of E x is a real number.
+There exists an element x of E such that x = min(E).
 
 Lemma. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is nonempty.
