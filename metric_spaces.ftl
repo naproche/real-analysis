@@ -1,4 +1,75 @@
+[read real-analysis/vocabulary.ftl]
+[read vocabulary.ftl]
+[read macros.ftl]
 [prove off][read real-analysis/numbers.ftl][prove on]
+
+Signature. Let p,q be elements. d(p,q) is a real number.
+
+Definition 2_15. A metric space is a set X such that for every element p, q, r of X
+  ((if p != q then d(p,q) > 0) and
+  d(p,p) = 0 and
+  d(p,q) = d(q,p) and
+  d(p,q) <= d(p,r) + d(r,q)).
+
+Proposition 2_16. Let X be a metric space. Let Y be a subset of X. Then Y is a metric space.
+
+Definition 2_17_a. Let a and b be real numbers such that a < b. Seg(a,b)= {x | (x is a real number) and (x>a) 
+and (x< b)}.
+
+Definition 2_17_b. Let a and b be real numbers such that a < b. Int(a,b)= {x | (x is a real number) and (x>=a) 
+and (x<=b)}.
+
+Definition 2_18_a. Let X be a metric space. Let p be an element of X. Let r be a positive real number.
+Neigh(p,r,X)={q| (q is an element of X) and (d(p,q)< r)}.
+
+Definition 2_18_b. Let X be a metric space. Let Y be a subset of X. Let p be an element of X.
+p is limit point of Y in X iff (for every positive real number r there exists an element q of Neigh(p,r,X)
+such that (q!=p) and ( q is an element of Y)).
+
+Definition 2_18_c.  Let X be a metric space. Let Y be a subset of X. Let p be an element of X.
+p is isolated in Y inside X iff ((p is an element of Y) and (p is not limit point of Y in X)).
+
+Definition 2_18_d.  Let X be a metric space. Let Y be a subset of X.
+Y is closed in X iff (for every element p of X such that (p is limit point of Y in X) 
+p is an element of Y).
+
+Definition 2_18_e.  Let X be a metric space. Let Y be a subset of X. Let p be an element of X.
+p is interior point of Y in X iff (there exists a positive real number r such that Neigh(p,r,X) 
+is a subset of Y).
+
+Definition 2_18_f. Let X be a metric space. Let Y be a subset of X. Y is open in X iff (for every
+element p of Y p is interior point of Y in X). 
+
+Definition 2_18_g. Let X be a metric space. Let Y be a subset of X. Compl(Y,X)={x| (x is an element of X)
+and (x is not an element of Y)}.
+
+Definition 2_18_h. Let X be a metric space. Let Y be a subset of X. Y is perfect in X iff (Y is
+closed in X) and (for every element p of Y p is limit point of Y in X).
+
+Definition 2_18_i1. Let X be a metric space. Let Y be a subset of X. Let M be a positive real number.
+Y is bounded in X by M iff for every elements p, q of Y d(p,q)<=M.
+
+Definition 2_18_i2. Let X be a metric space. Let Y be a subset of X. Y is bounded in X iff there exists
+a positive real number M such that Y is bounded in X by M.
+
+Definition 2_18_j. Let X be a metric space. Let Y be a subset of X. Y is dense in X iff 
+for every element p of X we have (p is  limit point of Y in X) or (p is an element of Y).
+
+Theorem 2_19. Let X be a metric space. Let r be a positive real number. Let p be an element of X. Neigh(p,r,X)
+is open in X. 
+
+Proof. Let us prove that every element of Neigh(p,r,X) is interior point of Neigh(p,r,X) in X.
+Let q be an element of Neigh(p,r,X). Let us prove that q is interior point of Neigh(p,r,X) in X.
+Then d(p,q) < r. r-d(p,q) is a positive real number.
+Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
+Let s be an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
+We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
+d(p,q) + (r - d(p,q)) = r. Thus d(p,s) < r. 
+Thus s is an element of Neigh(p,r,X). End.
+Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
+Hence q is interior point of Neigh(p,r,X) in X. End. End.
+Thus Neigh(p,r,X) is open in X. qed.
+
 Definition.A natural number is an integer k such that k=0 or 0<k .
 Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let n denote a natural number.
@@ -61,12 +132,7 @@ Definition FinNAT.Fin(n) is a set such that Fin(n) = {x | x is a natural number 
 Definition Finite. Let A be a set. A is finite iff (there exists n such that Fin(n)
 is bigger than A) or (A is an empty set).
 
-Lemma. Let n be a natural number. Fin(n) is finite.
-Proof.
-Define g(m) = m for m in Fin(n).
-g is a map.
-g is surjective onto Fin(n).
-End.
+Axiom. Let n be a natural number. Fin(n) is finite.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
 
@@ -75,75 +141,8 @@ every element k of  E k=<m.
 
 #This was copied from the file Countable Sets, which we needed for 2_22.
 
-Definition. Let E be a finite collection of positive real numbers. min(E) is an element of E
-such that for every element x of E min(E) < x.
-
-Signature. Let p,q be elements. d(p,q) is a real number.
-
-Definition 2_15. A metric space is a set X such that for every element p, q, r of X
-  ((if p != q then d(p,q) > 0) and
-  d(p,p) = 0 and
-  d(p,q) = d(q,p) and
-  d(p,q) <= d(p,r) + d(r,q)).
-
-Proposition 2_16. Let X be a metric space. Let Y be a subset of X. Then Y is a metric space.
-
-Definition 2_17_a. Let a and b be real numbers such that a < b. Seg(a,b)= {x | (x is a real number) and (x>a) 
-and (x< b)}.
-
-Definition 2_17_b. Let a and b be real numbers such that a < b. Int(a,b)= {x | (x is a real number) and (x>=a) 
-and (x<=b)}.
-
-Definition 2_18_a. Let X be a metric space. Let p be an element of X. Let r be a positive real number.
-Neigh(p,r,X)={q| (q is an element of X) and (d(p,q)< r)}.
-
-Definition 2_18_b. Let X be a metric space. Let Y be a subset of X. Let p be an element of X.
-p is limit point of Y in X iff (for every positive real number r there exists an element q of Neigh(p,r,X)
-such that q is an element of Y).
-
-Definition 2_18_c.  Let X be a metric space. Let Y be a subset of X. Let p be an element of X.
-p is isolated in Y inside X iff ((p is an element of Y) and (p is not limit point of Y in X)).
-
-Definition 2_18_d.  Let X be a metric space. Let Y be a subset of X.
-Y is closed in X iff (for every element p of X such that (p is limit point of Y in X) 
-p is an element of Y).
-
-Definition 2_18_e.  Let X be a metric space. Let Y be a subset of X. Let p be an element of X.
-p is interior point of Y in X iff (there exists a positive real number r such that Neigh(p,r,X) 
-is a subset of Y).
-
-Definition 2_18_f. Let X be a metric space. Let Y be a subset of X. Y is open in X iff (for every
-element p of Y p is interior point of Y in X). 
-
-Definition 2_18_g. Let X be a metric space. Let Y be a subset of X. Compl(Y,X)={x| (x is an element of X)
-and (x is not an element of Y)}.
-
-Definition 2_18_h. Let X be a metric space. Let Y be a subset of X. Y is perfect in X iff (Y is
-closed in X) and (for every element p of Y p is limit point of Y in X).
-
-Definition 2_18_i1. Let X be a metric space. Let Y be a subset of X. Let M be a positive real number.
-Y is bounded in X by M iff for every elements p, q of Y d(p,q)<=M.
-
-Definition 2_18_i2. Let X be a metric space. Let Y be a subset of X. Y is bounded in X iff there exists
-a positive real number M such that Y is bounded in X by M.
-
-Definition 2_18_j. Let X be a metric space. Let Y be a subset of X. Y is dense in X iff 
-for every element p of X we have (p is  limit point of Y in X) or (p is an element of Y).
-
-Theorem 2_19. Let X be a metric space. Let r be a positive real number. Let p be an element of X. Neigh(p,r,X)
-is open in X. 
-
-Proof. Let us prove that every element of Neigh(p,r,X) is interior point of Neigh(p,r,X) in X.
-Let q be an element of Neigh(p,r,X). Let us prove that q is interior point of Neigh(p,r,X) in X.
-Then d(p,q) < r. r-d(p,q) is a positive real number.
-Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
-Let s be an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
-We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
-d(p,q) + (r - d(p,q)) = r. Thus d(p,s) < r. 
-Thus s is an element of Neigh(p,r,X). End.
-Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
-Hence q is interior point of Neigh(p,r,X) in X. End. End.
-Thus Neigh(p,r,X) is open in X. qed.
+Definition. Let E be a set such that for every element x of E x is a real number.
+min(E) is an element of E such that for every element x of E min(E) < x.
 
 Lemma. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is nonempty.
@@ -156,13 +155,18 @@ Let r be a positive real number. Neigh(p,r,X) is infinite.
 
 Proof. Suppose Neigh(p,r,X) is finite. Take a natural number m such that Fin(m) is bigger than Neigh(p,r,X).
 Take a map f such that Dom(f) = Fin(m) and f is surjective onto Neigh(p,r,X). Let E =
-{d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. For every element y of E y is a positive
-real number. Thus E is a collection of positive real numbers. min(E) is a positive real number.
+{d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. 
+Let us prove that every element x of E is a positive real number. Proof.
+Let x be an element of E. Take a natural number k such that x = d(p,f(k)). f(k) != p. Thus
+d(p,f(k)) > 0. Hence x > 0. End. Then min(E) is a positive real number.
 Let us prove that for every element z of Neigh(p,min(E),X) z = p. 
-Proof. Let z be an element of Neigh(p,min(E),X). Suppose z != p. min(E) <= r. Thus z is an element
-of Neigh(p,r,X). Take a natural number k such that (k < m) and (f(k)=z). d(p,z) is an element of E.
-d(p,z) < min(E). Contradiction. 
-End. Thus p is not limit point of X in X.
+Proof. Let z be an element of Neigh(p,min(E),X). d(p,z) < min(E). Suppose z != p. min(E) <= r. 
+Thus z is an element of Neigh(p,r,X). Take a natural number k such that (k < m) and (f(k)=z).
+d(p,z)=d(p,f(k)) and f(k) != p. Thus d(p,z) is an element of E.
+d(p,z) < min(E). Contradiction. End.
+Let us prove that p is not limit point of X in X. Proof.
+Suppose p is limit point of X in X. min(E) is a positive real number. For every element z
+of Neigh(p,min(E),X) z = p. Contradiction. End.
 Contradiction. qed.
 
 #This proof needs revision. The essence is there.
