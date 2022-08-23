@@ -2,7 +2,7 @@
 
 #we are going to try and begin with the definitnion of an open cover and with the general 
 #definition of compactness.
-
+Lemma. Contradiction.
 Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
 of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
 

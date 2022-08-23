@@ -123,12 +123,13 @@ Definition Infinite. Let A be a set. A is infinite iff A is not finite.
 
 #This was copied from the file Countable Sets, which we needed for 2_22.
 
-Definition. Let E be a set such that for every element x of E x is a real number.
-min(E) is an element of E such that for every element x of E min(E) < x.
+Definition. Let E be a nonempty  set such that for every element x of E x is a real number.
+min(E) is an element of E such that for every element x of E min(E) =< x.
 
-Axiom fin. Let E be a finite set such that for every element x of E x is a real number.
+Axiom fin. Let E be a nonempty finite set such that for every element x of E x is a real number.
 There exists an element x of E such that x = min(E).
-
+#In the previous def and axiom we had to change the < for a =< and specify that E has to be nonempty.
+#otherwise it yields a contradiction.
 Lemma. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is nonempty.
 
@@ -217,3 +218,4 @@ Theorem 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subs
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
 Proof. F is closed in X. Thus lim(F,X) is a subset of F. Y is a subset of F. Hence lim(Y,X) is a subset
 of F. Thus cl(Y,X) is a subset of F. qed.
+
