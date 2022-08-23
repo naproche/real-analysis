@@ -1,7 +1,7 @@
 [synonym number/-s] [synonym sequence/-s] [synonym converge/-s] [synonym map/-s]
 [synonym map/-s]
-[prove off ][read real-analysis/numbers.ftl] [prove on] #el prove off prove on hace que leas el
-#archivo pero no lo pruebes
+[prove off ][read real-analysis/numbers.ftl] [prove on]
+ #el prove off prove on hace que leas el archivo pero no lo pruebes.
 #Axiom. Let X be a class. X is a set. #we are going to work only with sets, and I can't define
 #sets inside theorems, only classes. This is false, but we only need to redefine CC in the
 #looong proof the rest works fine.
