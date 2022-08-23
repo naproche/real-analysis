@@ -276,7 +276,7 @@ that is smallest with respect to f and A in Dif(A, (f<<n)) in a
 for n in NAT.
 g is surjective onto E.
 End.
-#This proof jhad a problem with the fact that the def of th Aux function is flawed. However it
+#This proof had a problem with the fact that the def of th Aux function is flawed. However it
 #is not needed and, as shown, a much shorter proof can be given.
 #Proof.
 #Take a map f such that Dom(f)=NAT and f is surjective onto A.

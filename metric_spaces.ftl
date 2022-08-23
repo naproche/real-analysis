@@ -1,6 +1,10 @@
+<<<<<<< Updated upstream
 [read real-analysis/vocabulary.ftl]
 [read vocabulary.ftl]
 [read macros.ftl]
+=======
+[synonym field/-s]
+>>>>>>> Stashed changes
 [prove off][read real-analysis/numbers.ftl][prove on]
 
 Signature. Let p,q be elements. d(p,q) is a real number.
