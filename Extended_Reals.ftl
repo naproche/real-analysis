@@ -58,20 +58,20 @@ Signature. Let x,y be extended real numbers. x**y is an extended real number.
 Signature. Let x,y be extended real numbers. x over y is an extended real number.
 Signature. Let x be an extended real number. neg(x) is an extended real number.
 
-Definition. Let x be an extended real number. x is finite iff x is a real number.
+Definition. Let x be an extended real number. x is finite real iff x is a real number.
 
-Axiom. Let x be a finite extended real number. neg(x) = -x.
-Axiom. Let x,y be finite extended real numbers. x++y = x+y.
-Axiom. Let x,y be finite extended real numbers. Let y != 0.  x over y = x//y.
+Axiom. Let x be a finite real extended real number. neg(x) = -x.
+Axiom. Let x,y be finite real extended real numbers. x++y = x+y.
+Axiom. Let x,y be finite real extended real numbers. Let y != 0.  x over y = x//y.
 Axiom. neg(\inf) = \neginf.
 Axiom. neg(\neginf) = \inf.
 
 Let x minus y stand for x ++ neg(y).
 
-Axiom 1_23_a_1. Let x be a finite extended real number. x ++ \inf = \inf.
-Axiom 1_23_a_2. Let x be a finite extended real number. x minus \inf = \neginf.
-Axiom 1_23_a_3. Let x be a finite extended real number. x over \inf = x over \neginf = 0.
-Axiom 1_23_b_1. Let x be a positive finite extended real number. x ** \inf = \inf.
-Axiom 1_23_b_2. Let x be a positive finite extended real number. x ** \neginf = \neginf.
-Axiom 1_23_c_1. Let x be a negative finite extended real number. x ** \inf = \neginf.
-Axiom 1_23_c_2. Let x be a negative finite extended real number. x ** \neginf = \inf.
+Axiom 1_23_a_1. Let x be a finite real extended real number. x ++ \inf = \inf.
+Axiom 1_23_a_2. Let x be a finite real extended real number. x minus \inf = \neginf.
+Axiom 1_23_a_3. Let x be a finite real extended real number. x over \inf = x over \neginf = 0.
+Axiom 1_23_b_1. Let x be a positive finite real extended real number. x ** \inf = \inf.
+Axiom 1_23_b_2. Let x be a positive finite real extended real number. x ** \neginf = \neginf.
+Axiom 1_23_c_1. Let x be a negative finite real extended real number. x ** \inf = \neginf.
+Axiom 1_23_c_2. Let x be a negative finite real extended real number. x ** \neginf = \inf.
