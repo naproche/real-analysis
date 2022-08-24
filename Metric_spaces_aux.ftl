@@ -1,4 +1,3 @@
-
 [read real-analysis/vocabulary.ftl]
 [read vocabulary.ftl]
 [read macros.ftl]
@@ -73,7 +72,6 @@ Thus s is an element of Neigh(p,r,X). End.
 Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
 Hence q is interior point of Neigh(p,r,X) in X. End. End.
 Thus Neigh(p,r,X) is open in X. qed.
-
 Definition.A natural number is an integer k such that k=0 or 0<k .
 Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let n denote a natural number.
@@ -121,55 +119,8 @@ Axiom. Let n be a natural number. Fin(n) is finite.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
 
-#This was copied from the file Countable Sets, which we needed for 2_22.
-
-Definition. Let E be a nonempty  set such that for every element x of E x is a real number.
-min(E) is an element of E such that for every element x of E min(E) =< x.
-
-Axiom fin. Let E be a nonempty finite set such that for every element x of E x is a real number.
-There exists an element x of E such that x = min(E).
-#In the previous def and axiom we had to change the < for a =< and specify that E has to be nonempty.
-#otherwise it yields a contradiction.
-Lemma. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
-Let r be a positive real number. Neigh(p,r,X) is nonempty.
-
-Lemma. Let X be a metric space. Let p be an element of X. Let r,s be positive real numbers
-such that r <= s. Neigh(p,r,X) is a subset of Neigh(p,s,X).
-
-Axiom subfin. Let X be a finite set. Let Y be a subset of X. Y is finite. 
-
-#The way we defined finiteness it would be really hard to prove this. It is simple enough to leave as an axiom.
-
-Theorem 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
+Axiom 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is infinite.
-
-Proof. Suppose Neigh(p,r,X) is finite. Take a natural number m such that Fin(m) is bigger than Neigh(p,r,X).
-Take a map f such that Dom(f) = Fin(m) and f is surjective onto Neigh(p,r,X). Define E =
-{d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. 
-Let us prove that every element x of E is a positive real number. Proof.
-Let x be an element of E. Take an element k of Fin(m) such that x = d(p,f(k)) and f(k) != p.
-p != f(k). f(k) is an element of X.
-(By 2_15)  d(p,f(k)) > 0. Hence x > 0. End. 
-Let F={d(p,f(k)) | k is an element of Fin(m)}.
-Define g(k) = d(p,f(k)) for k in Fin(m). g is a map. g is surjective onto F. 
-Thus F is finite. E is a subset of F.  (By subfin) E is finite.
-E is nonempty.
-For every element x of E x is a real number. There exists an element d of E such that
-d = min(E). 
-Then min(E) is a positive real number.
-Let us prove that for every element z of Neigh(p,min(E),X) z = p. 
-Proof. Let z be an element of Neigh(p,min(E),X). d(p,z) < min(E). Suppose z != p. min(E) <= r. 
-Thus z is an element of Neigh(p,r,X). Take a natural number k such that (k < m) and (f(k)=z).
-d(p,z)=d(p,f(k)) and f(k) != p. Thus d(p,z) is an element of E.
-d(p,z) < min(E). Contradiction. End.
-Let us prove that p is not limit point of X in X. Proof.
-Suppose p is limit point of X in X. min(E) is a positive real number. For every element z
-of Neigh(p,min(E),X) z = p. Contradiction. End.
-Contradiction. qed.
-
-#This proof needs revision. The essence is there.
-
-#So does 2_22.
 
 Theorem 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
 
@@ -230,4 +181,3 @@ Theorem 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subs
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
 Proof. F is closed in X. Thus lim(F,X) is a subset of F. Y is a subset of F. Hence lim(Y,X) is a subset
 of F. Thus cl(Y,X) is a subset of F. qed.
-
