@@ -143,29 +143,43 @@ Axiom subfin. Let X be a finite set. Let Y be a subset of X. Y is finite.
 Theorem 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is infinite.
 
-Proof. Suppose Neigh(p,r,X) is finite. Take a natural number m such that Fin(m) is bigger than Neigh(p,r,X).
-Take a map f such that Dom(f) = Fin(m) and f is surjective onto Neigh(p,r,X). Define E =
-{d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. 
-Let us prove that every element x of E is a positive real number. Proof.
-Let x be an element of E. Take an element k of Fin(m) such that x = d(p,f(k)) and f(k) != p.
-p != f(k). f(k) is an element of X.
-(By 2_15)  d(p,f(k)) > 0. Hence x > 0. End. 
-Let F={d(p,f(k)) | k is an element of Fin(m)}.
-Define g(k) = d(p,f(k)) for k in Fin(m). g is a map. g is surjective onto F. 
-Thus F is finite. E is a subset of F.  (By subfin) E is finite.
+Proof. 
+Assume the contrary. 
+Take a natural number m such that Fin(m) is bigger than Neigh(p,r,X).
+Take a map f such that Dom(f) = Fin(m) and f is surjective onto Neigh(p,r,X). 
+Define E ={d(p,f(k)) | (k is an element of Fin(m)) and (f(k) != p)}. 
+  Let us prove that every element x of E is a positive real number.
+  Let x be an element of E. 
+  Take an element k of Fin(m) such that x = d(p,f(k)) and f(k) != p.
+  p != f(k). 
+  f(k) is an element of X. 
+  (By 2_15)  d(p,f(k)) > 0. Hence x > 0.
+  End. 
+Define F={d(p,f(k)) | k is an element of Fin(m)}.
+Define g(k) = d(p,f(k)) for k in Fin(m).
+ g is a map. 
+g is surjective onto F. 
+Thus F is finite. 
+E is a subset of F.  
+(By subfin) E is finite.
 E is nonempty.
 For every element x of E x is a real number. There exists an element d of E such that
 d = min(E). 
 Then min(E) is a positive real number.
 Let us prove that for every element z of Neigh(p,min(E),X) z = p. 
-Proof. Let z be an element of Neigh(p,min(E),X). d(p,z) < min(E). Suppose z != p. min(E) <= r. 
-Thus z is an element of Neigh(p,r,X). Take a natural number k such that (k < m) and (f(k)=z).
-d(p,z)=d(p,f(k)) and f(k) != p. Thus d(p,z) is an element of E.
-d(p,z) < min(E). Contradiction. End.
-Let us prove that p is not limit point of X in X. Proof.
-Suppose p is limit point of X in X. min(E) is a positive real number. For every element z
-of Neigh(p,min(E),X) z = p. Contradiction. End.
-Contradiction. qed.
+   Let z be an element of Neigh(p,min(E),X). d(p,z) < min(E). 
+   Suppose z != p. min(E) <= r. 
+   Thus z is an element of Neigh(p,r,X). 
+   Take a natural number l such that (l < m) and (f(l)=z).
+   d(p,z)=d(p,f(l)) and f(l) != p. Thus d(p,z) is an element of E.
+   d(p,z) < min(E). Contradiction. 
+   End.
+Let us prove that p is not limit point of X in X.
+  Assume p is limit point of X in X. min(E) is a positive real number. For every element z
+  of Neigh(p,min(E),X) z = p. Contradiction.
+   End.
+Contradiction.
+ qed.
 
 #This proof needs revision. The essence is there.
 
