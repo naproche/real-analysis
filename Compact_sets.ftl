@@ -1,12 +1,10 @@
-[prove off] [read real-analysis/metric_spaces.ftl][prove on]
+[prove off] [read real-analysis/metric_spaces_aux.ftl][prove on]
 
+#We created metric_spaces_aux so that the machine does not redo the proofs.
 
 #Adding the definitions of finitedness bc for some reason it doesn't read the countable sets file
 #we are going to try and begin with the definitnion of an open cover and with the general 
 #definition of compactness.
-Lemma. Contradiction.
-Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
-of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
 
 #This was added since I deleted, momentarily, reading Countable sets as I was getting an error
 #with an invalid naming for the natural numbers????
@@ -46,7 +44,11 @@ Proof. Let us prove that Compl(K,X) is open in X. Proof. Let us prove that for e
 Compl(K,X) p is interior point of Compl(K,X) in X. Proof. 
 Let p be an element of Compl(K,X). For every element q of K Half(d(p,q)) is a positive real number.
 Let E be a set such that for every element x of E there is an element q of K such that
-x = Neigh(q,Half(d(p,q)),X). E is open cover of K in X. #From here i don't know how
+x = Neigh(q,Half(d(p,q)),X). E is open cover of K in X. Take a finite subcover F of K in X with respect to E.
+For every element y of F there is an element q of K such that y = Neigh(q,Half(d(p,q)),X).
+Define V(F) = {z | z is an element of Neigh(p,Half(d(p,r)),X) for every element r of K such that
+Neigh(r,Half(d(p,q)),X) is an element of F}.
+ #From here i don't know how
 #to write a subcover.
 End. End.
 K is closed in X. qed. 

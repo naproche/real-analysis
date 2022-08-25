@@ -14,7 +14,7 @@ Definition 2_15. A metric space is a set X such that for every element p, q, r o
   d(p,q) = d(q,p) and
   d(p,q) <= d(p,r) + d(r,q)).
 
-Proposition 2_16. Let X be a metric space. Let Y be a subset of X. Then Y is a metric space.
+Axiom 2_16. Let X be a metric space. Let Y be a subset of X. Then Y is a metric space.
 
 Definition 2_17_a. Let a and b be real numbers such that a < b. Seg(a,b)= {x | (x is a real number) and (x>a) 
 and (x< b)}.
@@ -58,20 +58,9 @@ a positive real number M such that Y is bounded in X by M.
 Definition 2_18_j. Let X be a metric space. Let Y be a subset of X. Y is dense in X iff 
 for every element p of X we have (p is  limit point of Y in X) or (p is an element of Y).
 
-Theorem 2_19. Let X be a metric space. Let r be a positive real number. Let p be an element of X. Neigh(p,r,X)
+Axiom 2_19. Let X be a metric space. Let r be a positive real number. Let p be an element of X. Neigh(p,r,X)
 is open in X. 
 
-Proof. Let us prove that every element of Neigh(p,r,X) is interior point of Neigh(p,r,X) in X.
-Let q be an element of Neigh(p,r,X). Let us prove that q is interior point of Neigh(p,r,X) in X.
-Then d(p,q) < r. r-d(p,q) is a positive real number.
-Let us prove that every element of Neigh(q,r-d(p,q),X) is an element of Neigh(p,r,X).
-Let s be an element of Neigh(q,r-d(p,q),X). Then d(q,s) < r-d(p,q).
-We have d(p,s) <= d(p,q) + d(q,s). d(q,s) < r-d(p,q). d(p,q)+d(q,s) < d(p,q) + (r-d(p,q)).
-d(p,q) + (r - d(p,q)) = r. Thus d(p,s) < r. 
-Thus s is an element of Neigh(p,r,X). End.
-Thus Neigh(q,r-d(p,q),X) is a subset of Neigh(p,r,X). 
-Hence q is interior point of Neigh(p,r,X) in X. End. End.
-Thus Neigh(p,r,X) is open in X. qed.
 Definition.A natural number is an integer k such that k=0 or 0<k .
 Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let n denote a natural number.
@@ -80,7 +69,7 @@ Signature.Let x be a real number. abs(x) is a real number.
 Axiom. Let x be a positive real number. abs(x) = x.
 Axiom. abs(0)=0.
 Axiom. Let x be a negative real number. abs(x)=-x.
-Lemma. For every real number x 0=<abs(x).
+Axiom. For every real number x 0=<abs(x).
 
 Axiom. Let x,y be real numbers.abs(x+y)=< abs(x)+abs(y).
 
@@ -119,33 +108,38 @@ Axiom. Let n be a natural number. Fin(n) is finite.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
 
+Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
+of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
+
+#This was copied from the file Countable Sets, which we needed for 2_22.
+
+Definition. Let E be a nonempty  set such that for every element x of E x is a real number.
+min(E) is an element of E such that for every element x of E min(E) =< x.
+
+Axiom fin. Let E be a nonempty finite set such that for every element x of E x is a real number.
+There exists an element x of E such that x = min(E).
+#In the previous def and axiom we had to change the < for a =< and specify that E has to be nonempty.
+#otherwise it yields a contradiction.
+Axiom. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
+Let r be a positive real number. Neigh(p,r,X) is nonempty.
+
+Axiom. Let X be a metric space. Let p be an element of X. Let r,s be positive real numbers
+such that r <= s. Neigh(p,r,X) is a subset of Neigh(p,s,X).
+
+Axiom subfin. Let X be a finite set. Let Y be a subset of X. Y is finite. 
+
+#The way we defined finiteness it would be really hard to prove this. It is simple enough to leave as an axiom.
+
 Axiom 2_20. Let X be a metric space. Let p be an element of X such that p is limit point of X in X.
 Let r be a positive real number. Neigh(p,r,X) is infinite.
 
-Theorem 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
+Axiom 2_23. Let X be a metric space. Let Y be a subset of X. Y is open in X iff Compl(Y,X) is closed in X.
 
-Proof. Let us prove that if (Y is open in X) then (Compl(Y,X) is closed in X). Proof. 
-Suppose Y is open in X. Let p be an element of X such that p is limit point of Compl(Y,X) in X. 
-For every positive real number r there exists an element q of Neigh(p,r,X) such that 
-q is an element of Compl(Y,X). Thus p is not interior point of Y in X. Y is open in X. 
-Hence p is not an element of Y. Thus p is an element of Compl(Y,X).
-End.
-Let us prove that if (Compl(Y,X) is closed in X) then (Y is open in X). Proof.
-Suppose Compl(Y,X) is closed in X. Let us show that every element of Y is interior point of Y in X.
-Proof. Let p be an element of Y. Thus p is not an element of Compl(Y,X).
-Compl(Y,X) is closed in X. Hence p is not limit point of Compl(Y,X) in X. Take
-a positive real number r such that (for every element q of Neigh(p,r,X) q is not an element of Compl(Y,X)).
-Thus Neigh(p,r,X) is a subset of Y. Hence p is interior point of Y in X. End. Thus Y is open in X.
-End.
-qed.
+Axiom. Let X be a metric space. Let Y be a subset of X. Compl(Y,X) is a subset of X.
 
-Lemma. Let X be a metric space. Let Y be a subset of X. Compl(Y,X) is a subset of X.
+Axiom. Let X be a metric space. Let Y be a subset of X. Compl(Compl(Y,X),X) = Y.
 
-Lemma. Let X be a metric space. Let Y be a subset of X. Compl(Compl(Y,X),X) = Y.
-
-Corollary 2_23_b. Let X be a metric space. Let Y be a subset of X. Y is closed in X iff Compl(Y,X) is open in X.
-Proof. (By 2_23) Compl(Y,X) is open in X iff Compl(Compl(Y,X),X) is closed in X. Compl(Compl(Y,X),X)=Y.
-Thus Y is closed in X iff Compl(Y,X) is open in X.  qed.
+Axiom 2_23_b. Let X be a metric space. Let Y be a subset of X. Y is closed in X iff Compl(Y,X) is open in X.
 
 #2_24 requires MyChap2.
 
@@ -155,29 +149,13 @@ such that p is limit point of Y in X)}.
 Definition 2_26_b. Let X be a metric space. Let Y be a subset of X. cl(Y,X) = {p | (p is an element of Y) 
 or (p is an element of lim(Y,X))}.
 
-Theorem 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
-Proof. Let us prove that Compl(cl(Y,X),X) is open in X. Let p be an element of Compl(cl(Y,X),X). 
-Thus p is not an element of cl(Y,X). Thus p is not an element of Y
-and p is not an element of lim(Y,X). Take a positive real number r such that (for every element q 
-of Neigh(p,r,X) q is not an element of Y). Hence Neigh(p,r,X) is a subset of Compl(Y,X).
-Let us prove that Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). 
-Let s be an element of Neigh(p,r,X). Assume s is an element of lim(Y,X). Take a positive real number
-t such that Neigh(s,t,X) is a subset of Neigh(p,r,X). Then there exists an element c of X such that c is an element of
-lim(Y,X) and c is an element of Neigh(p,r,X). Contradiction. Hence Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). End.
-Hence p is interior point of Compl(cl(Y,X),X) in X.
-End. (By 2_23_b) cl(Y,X) is closed in X.
-qed.
+Axiom 2_27_a. Let X be a metric space. Let Y be a subset of X. cl(Y,X) is closed in X.
 
-Theorem 2_27_b. Let X be a metric space. Let Y be a subset of X. Y = cl(Y,X) iff Y is closed in X.
-Proof. Let us prove that if (Y=cl(Y,X)) then Y is closed in X. Proof. Suppose Y = cl(Y,X).
-(By 2_23_a) cl(Y,X) is closed in X. Thus Y is closed in X.
-End.
-Let us prove that if Y is closed in X then Y = cl(Y,X). Proof. Suppose Y is closed in X. Then lim(Y,X) 
-is a subset of Y. Thus Y = cl(Y,X).
-End.
-qed.
 
-Theorem 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subset of X such that 
+Axiom 2_27_b. Let X be a metric space. Let Y be a subset of X. Y = cl(Y,X) iff Y is closed in X.
+
+
+Axiom 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subset of X such that 
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
-Proof. F is closed in X. Thus lim(F,X) is a subset of F. Y is a subset of F. Hence lim(Y,X) is a subset
-of F. Thus cl(Y,X) is a subset of F. qed.
+
+
