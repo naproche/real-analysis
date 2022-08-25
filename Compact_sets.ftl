@@ -1,5 +1,7 @@
 [prove off] [read real-analysis/metric_spaces.ftl][prove on]
 
+
+#Adding the definitions of finitedness bc for some reason it doesn't read the countable sets file
 #we are going to try and begin with the definitnion of an open cover and with the general 
 #definition of compactness.
 Lemma. Contradiction.

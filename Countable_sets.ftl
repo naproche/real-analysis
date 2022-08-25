@@ -343,8 +343,8 @@ element of A that is an element of B.
 Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
 of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
 
-#Definition IntWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
-#of X. Int(C,X) is a subset of X such that Int(C,X) = {x| x is contained in all element of C}.
+Definition IntWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
+of X. Inter(C,X) is  a subset of X such that Inter(C,X) = {x| x is contained in all element of C}.
 #the above definition is commented out because it yields a contradiction.
 
 Axiom UnionOfCount. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
@@ -492,12 +492,12 @@ End.
 Signature. A pair x is an object such that x = (u,v) for some objects u,v.
 #writing this as Signature. A pair x is an object such that x = (u,v) where u and v are objects. yields a contradiction. I'm oblivious to why.
 
-Theorem. Let A and B be a countable sets.
-A \times B is countable. #This is a theorem, and must be proven as such. 
-Proof.
-Define D(a)  = {(a,b)| b is contained in B} for a in A.
+#Theorem. Let A and B be a countable sets.
+#A \times B is countable. #This is a theorem, and must be proven as such. 
+#Proof.
+#Define D(a)  = {(a,b)| b is contained in B} for a in A.
 
-End.
+#End.
 
 # Writing  C = {(a,b)| a is contained in A and b is contained in B}. has the problem that Naproche cannot prove C is not empty.
 

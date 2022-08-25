@@ -1,4 +1,3 @@
-
 [read real-analysis/vocabulary.ftl]
 [read vocabulary.ftl]
 [read macros.ftl]
@@ -120,6 +119,9 @@ is bigger than A) or (A is an empty set).
 Axiom. Let n be a natural number. Fin(n) is finite.
 
 Definition Infinite. Let A be a set. A is infinite iff A is not finite. 
+
+Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
+of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
 
 #This was copied from the file Countable Sets, which we needed for 2_22.
 
