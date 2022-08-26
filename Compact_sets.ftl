@@ -1,11 +1,9 @@
-[prove off] [read real-analysis/metric_spaces_aux.ftl][prove on]
+[prove off] [read real-analysis/metric_spaces.ftl][prove on]
 
-#We created metric_spaces_aux so that the machine does not redo the proofs.
 
 #Adding the definitions of finitedness bc for some reason it doesn't read the countable sets file
 #we are going to try and begin with the definitnion of an open cover and with the general 
 #definition of compactness.
-
 #This was added since I deleted, momentarily, reading Countable sets as I was getting an error
 #with an invalid naming for the natural numbers????
 
@@ -29,29 +27,51 @@ every open cover C of K in X there exists a finite subcover of K in X with respe
 #for every open cover of K in X  
 
 Lemma. Let X be a metric space. Let K be a finite subset of X. K is compact in X.
+Proof.
+Let us show that for every open cover  C of K in X there exists a finite subcover of
+ K in X with respect to C .
+ Let C be an open cover of K in X.
+ Define D(a) = Choose an element A of C such that a is an element of A in A for a in K.
+ Define DD = {D(a)| a is an element of K}.
+ Let us show that DD is finite.
+  Take a natural number n such that Fin(n) is bigger than K.
+  Take a map f such that Dom(f)= Fin(n) and f is surjective onto K.
+  Define g(m) = D(f(m)) for m in Fin(n).
+  g is surjective onto DD.
+ End.
+ Let us show that DD is an open cover of K in X. #It proves this on its own without further specification.
+ End.
+End.
+End.
 
-#The proof of this is obvious but I am unsure how one could write it for a computer.
+#The proof of this is obvious but I am unsure how one could write it for a computer.(see above)
 
 # Momentarily I skip 2_33 as I do not think compact relative to... is an important thing.
 
-Signature. Let r be a real number. Half(r) is a real number such that Half(r)+Half(r) < r.
+Signature. Let r be a real number. Half(r) is a real number such that Half(r)+Half(r) = r.
+#This was written with a < instead of a = which didn't make much sense since then 0 is an 
+#admisible option, which messes the next proof.
 
+Definition IntWithBound. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
+of X. Inter(C,X) is  a subset of X such that Inter(C,X) = {x| x is contained in all element of C}.
+#We needed to add that C is nonempty to avoid the contradiction.
 
 Theorem 2_34. Let X be a nonempty metric space. Let K be a nonempty subset of X. Suppose 
 K is compact in X. K is closed in X.
 
-Proof. Let us prove that Compl(K,X) is open in X. Proof. Let us prove that for every element p of
-Compl(K,X) p is interior point of Compl(K,X) in X. Proof. 
-Let p be an element of Compl(K,X). For every element q of K Half(d(p,q)) is a positive real number.
-Let E be a set such that for every element x of E there is an element q of K such that
-x = Neigh(q,Half(d(p,q)),X). E is open cover of K in X. Take a finite subcover F of K in X with respect to E.
-For every element y of F there is an element q of K such that y = Neigh(q,Half(d(p,q)),X).
-Define V(F) = {z | z is an element of Neigh(p,Half(d(p,r)),X) for every element r of K such that
-Neigh(r,Half(d(p,q)),X) is an element of F}.
- #From here i don't know how
-#to write a subcover.
-End. End.
-K is closed in X. qed. 
+Proof. 
+Let us prove that Compl(K,X) is open in X.
+  Let us prove that for every element p of
+   Compl(K,X) p is interior point of Compl(K,X) in X. 
+      Let p be an element of Compl(K,X). 
+       For every element q of K Half(d(p,q)) is a positive real number.
+       Define B(q) = Neigh(q,Half(d(p,q)),X) for q in K. #This doesn't work, why???
+       Define E = {B(q)| q is an element of K}.
+       E is open cover of K in X. #From here i don't know how to write a subcover.
+    End.
+  End.
+K is closed in X. 
+qed. 
 
 #This proof is hard. Naproche is claiming everything to be true.
 
