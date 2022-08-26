@@ -1,6 +1,6 @@
-[prove off] [read real-analysis/metric_spaces.ftl][prove on]
+[prove off] [read real-analysis/metric_spaces_aux.ftl][prove on]
 
-
+#We read metric_spaces_aux which is the same file as metric_spaces but without proofs.
 #Adding the definitions of finitedness bc for some reason it doesn't read the countable sets file
 #we are going to try and begin with the definitnion of an open cover and with the general 
 #definition of compactness.
@@ -12,7 +12,7 @@ is a set C such that every element of C is a subset of X and every element of C 
 and E is a subset of U(C,X).
 #The "in X" is necesary as if we don't write it Naproche identifies X as a "free undeclared" variable.
 
-Definition Subcover. Let X be a metric space. Let E be a subset of X. Let C be an open cover of
+Definition Subcover. Let X be a metric space. Let E be a subset of X. Let C be a open cover of
 E in X. A subcover of E in X with respect to C is a subset D of C such that D is an open cover
 of E in X.
 #Note: In the def of open cover we started with the following format: "Let C be a set such that 
@@ -21,7 +21,8 @@ of E in X.
 #Open cover was defined as a property rather than an object. 
 
 Definition Compact. Let X be a metric space. Let K be a subset of X. K is compact in X iff for
-every open cover C of K in X there exists a finite subcover of K in X with respect to C . 
+every nonempty open cover C of K in X there exists a finite subcover F of K in X with respect to C
+such that F is nonempty. #Added this last bit to avoid contradictions. 
 
 #Definition Compactness. Let X be a metric space. Let K be a subset of X. K is compact in X  iff
 #for every open cover of K in X  
@@ -61,25 +62,35 @@ K is compact in X. K is closed in X.
 
 Proof. 
 Let us prove that Compl(K,X) is open in X.
-  Let us prove that for every element p of
-   Compl(K,X) p is interior point of Compl(K,X) in X. 
+  Let us prove that for every element p of Compl(K,X) p is interior point of Compl(K,X) in X. 
       Let p be an element of Compl(K,X). 
-       For every element q of K Half(d(p,q)) is a positive real number.
-       Define B(q) = Neigh(q,Half(d(p,q)),X) for q in K. #This doesn't work, why???
-       Define E = {B(q)| q is an element of K}.
-       E is open cover of K in X. #From here i don't know how to write a subcover.
+      For every element q of K Half(d(p,q)) is a positive real number.
+      Let E be a set such that (for every element x of E there is an element q of K such that
+      x = Neigh(q,Half(d(p,q)),X)) and (for every element q of K Neigh(q,Half(d(p,q)),X) is an 
+      element of E). #The usual set notation does not work for some reason
+      Let us prove that E is open cover of K in X. Proof.
+          For every element x of E there is an element q of K such that x = Neigh(q,Half(d(p,q)),X).
+          Thus for every element x of E x is open in X. Thus for every element x of E x is a subset of X.
+          For every element q of K (q is an element of Neigh(q,Half(d(p,q)),X)) and 
+          Neigh(q,Half(d(p,q)),X) is an element of E. Thus for every element q of K q is an element of U(E,X).
+          Thus K is a subset of U(E,X). End.
+      Take a finite subcover F of K in X with respect to E such that F is nonempty.
+      #Let I be a set such that (for every element x of I) and (for every element y of F) x is an element
+      #of y. #Neither this definition or the one with Inter is working :(.
+      #We write it as a comment to be able to write more things in the file.
     End.
   End.
 K is closed in X. 
 qed. 
 
-#This proof is hard. Naproche is claiming everything to be true.
-
-Theorem 2_35. Let X be a metric space. Let K be a subset of X. Suppose K is compact in X.
+Axiom 2_35. Let X be a metric space. Let K be a subset of X. Suppose K is compact in X.
 Let L be a subset of K such that L is closed in K. L is compact in X.
 
-#Theorem 2_37. Let X be a metric space. Let K be a subset of X. Suppose K is compact in X.
-#Let E be a subset of K. 
+Axiom 2_37. Let X be a metric space. Let K be a subset of X. Suppose K is compact in X.
+Let E be a subset of K. Suppose E is infinite. There exists an element x of X such that x is limit
+point of E in X.
+
+# Axiom 2_41. Let E be a subset of Real. For this with the notion of compactness in the reals.
+#Here it is defined for arbitrary metric spaces. 
  
-#So far I cannot write infinite, as I need the definition of Natural number which for some reason
-#Naproche claims to be illegal.
+#This problem happens again in the following results.
