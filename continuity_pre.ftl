@@ -141,7 +141,7 @@ Axiom d5. If x > 0 then d(x,0) = x.
 
 Definition Sequence. A sequence is a map a such that Dom(a) = Natural and a is into Real.
 
-Let a, b denote a sequences.
+Let a, b denote sequences.
 Let eps, del denote positive real numbers.
 Let N denote a natural number.
 
