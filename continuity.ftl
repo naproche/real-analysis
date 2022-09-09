@@ -47,7 +47,7 @@ Proof.
       Let us show that a unequally converges to p.
         Suppose r is a positive real number.
         Take a natural number N such that for any n if N < n then d(b(n),0) < r.
-        For any n if N < n then 0 < d(a(n),p) < r.
+        For any n if N < n then d(a(n),p) < r.
       End.
       f \circ a is a sequence.
       f \circ a converges to q.
@@ -202,7 +202,8 @@ Proof.
     For any x \in Dom(f) f^-1(D(f(x))) is a set.
     Define G(x) = f^-1(D(f(x))) for x in Dom(f).
     For all x \in Dom(f) G(x) is open in Dom(f) (by 4_8).
-    G is a neighborhood cover of Dom(f). Indeed for all x \in Dom(f) G(x) is open in Dom(f) (by 4_8).
+    G is a neighborhood cover of Dom(f).
+    Indeed for all x \in Dom(f) G(x) is open in Dom(f) (by 4_8).
     Take a finite subcover a of G on Dom(f).
     Take a natural number N such that N > 1 and
     for any x \in Dom(f) there exists n such that n < N and x \in G(a(n)).
@@ -213,6 +214,7 @@ Proof.
         Take n such that n < N and x \in G(a(n)).
         y \in D(f(a(n))).
       End.
+      f \circ a is into T.
     End.
   End.
 QED.

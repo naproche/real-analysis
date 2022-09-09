@@ -12,8 +12,6 @@ Definition. Let x and y be real numbers. x =< y iff x=y or x<y.
 Let m, n, l, r, N denote natural numbers.
 Definition. NAT is a set such that every element of NAT is a natural number and every
 natural number is an element of NAT.
-Definition. Q is a set such that every element of Q is a rational number and every
-rational number is an element of Q.
 Axiom. Let k be a natural number. For every natural number n such that n=<k k-n is a 
 natural number.
 
@@ -47,11 +45,11 @@ Definition Dist. Let x and y be real numbers. dist(x,y)=abs(x-y).
 #on defining it again. So is the notion of domain.
 
 #Axiom. Let f be a map. Ran(f) is a set. #Range of f is also defined.
-Axiom. Let f be a map. Dom(f) is a set. #this is auxiliary for the moment, but it does not
+#Axiom. Let f be a map. Dom(f) is a set. #this is auxiliary for the moment, but it does not
 #yield a contradiction.
 #I can't write "a map", weird. Had to change all functions to maps.
 
-Definition ImOfSubset.  Let f be a map. Let E be a subset of Dom(f). 
+Definition ImOfSubset.  Let f be a map. Let E be a subclass of Dom(f). 
 Im(E,f) is a set such that Im(E,f) = { f(x)  | x is an element of E}.
  #with this def, the image is not a set I added, Im(E,f) is a set but it doesn't seem to fix the 
 #problem with the next definition. If instead of the image we write Ran(f) it does work
@@ -343,9 +341,7 @@ element of A that is an element of B.
 Definition UnionWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
 of X. U(C,X) is a subset of X such that U(C,X) =  {x| x is contained in some element of C}.
 
-Definition IntWithBound. Let X be a set. Let C be a set such that all elements of C are subsets
-of X. Inter(C,X) is  a subset of X such that Inter(C,X) = {x| x is contained in all element of C}.
-#the above definition is commented out because it yields a contradiction.
+
 
 Axiom UnionOfCount. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
 of X and C is at most  countable. If every element of C is countable then U(C,X) is countable. 
@@ -504,10 +500,13 @@ Signature. A pair x is an object such that x = (u,v) for some objects u,v.
 #We had to add a definition for the rational numbers similar to the one we added 
 #for the naturals for the following Corollary, which for now we announce as axiom.
 
-Axiom. Q is countable. #is a corollary of the above theorem.
+Axiom. Rational is countable. #is a corollary of the above theorem.
 
 #The following theorem is about the countability of a certain type of sequences
 
-Axiom. Let A = {f| f is a sequence and for every element x of NAT f(x)=0 or f(x)=1}.
+Axiom. Let A be a set such that A = {f| f is a sequence and for every element x of NAT f(x)=0 or f(x)=1}.
 A is uncountable.
 
+Definition IntWithBound. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
+of X. Inter(C,X) is  a subset of X such that Inter(C,X) = {x| x is contained in all element of C}.
+#the above definition is commented out because it yields a contradiction. We needed C nonempty

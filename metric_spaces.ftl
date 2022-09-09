@@ -230,12 +230,12 @@ Let s be an element of Neigh(p,r,X). Assume s is an element of lim(Y,X). Take a 
 t such that Neigh(s,t,X) is a subset of Neigh(p,r,X). Then there exists an element c of X such that c is an element of
 lim(Y,X) and c is an element of Neigh(p,r,X). Contradiction. Hence Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). End.
 Hence p is interior point of Compl(cl(Y,X),X) in X.
-End. (By 2_23_b) cl(Y,X) is closed in X.
+End. cl(Y,X) is closed in X.
 qed.
 
 Theorem 2_27_b. Let X be a metric space. Let Y be a subset of X. Y = cl(Y,X) iff Y is closed in X.
 Proof. Let us prove that if (Y=cl(Y,X)) then Y is closed in X. Proof. Suppose Y = cl(Y,X).
-(By 2_23_a) cl(Y,X) is closed in X. Thus Y is closed in X.
+cl(Y,X) is closed in X. Thus Y is closed in X.
 End.
 Let us prove that if Y is closed in X then Y = cl(Y,X). Proof. Suppose Y is closed in X. Then lim(Y,X) 
 is a subset of Y. Thus Y = cl(Y,X).
