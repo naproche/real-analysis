@@ -1,4 +1,4 @@
-[prove off ][read numbers.ftl] [prove on ]
+[prove off ][read real-analysis/numbers.ftl] [prove on ]
 
 Signature. A complex number is a mathematical object.
 
@@ -33,6 +33,18 @@ If x == (a,b) and x == (c,d) then a=c and b=d.
 
 Axiom 1_24_1c. Let a,b be real numbers. Let x,y be complex numbers. 
 If x == (a,b) and y == (a,b) then x = y.
+
+Axiom 1_24_1d. Let a,b,c be real numbers. Let x,y be complex numbers. 
+If x == (a,b) and y == (a,c) then Re(x) = Re(y).
+
+Axiom 1_24_1e. Let a,b,c be real numbers. Let x,y be complex numbers. 
+If x == (a,b) and y == (c,b) then Im(x) = Im(y).
+
+Axiom 1_24_1f. Let a,b be real numbers. Let x be a complex number. 
+If x == (a,b) then Re(x) = a.
+
+Axiom 1_24_1g. Let a,b be real numbers. Let x be a complex number. 
+If x == (a,b) then Im(x) = b.
 
 #Axiom 1_26. Let x be a real number. x is a complex number such that x == (x,0).
 
@@ -77,20 +89,29 @@ Theorem 1_29. Let a,b be real numbers. Let x,y be complex numbers such that x ==
 
 Signature. Let x be a complex number. conj(x) is a complex number.
 
-Definition 1_30. Let x be a complex number. conj(x) == (Re(x),-Im(x)).
+Axiom 1_30. Let x be a complex number. conj(x) == (Re(x),-Im(x)).
+Theorem 1_30_1.  Let x be a complex number. Re(conj(x)) = Re(x).
 
-Signature. Let x be a complex number. neg(x) is a complex number.
+Theorem. Let x be a complex number. Re(_x) = -Re(x).
+Proof. _x ++ x = Zero.
+      Re(_x) + Re(x) = Re(Zero).
+      Re(_x) + Re(x) = 0. Qed.
 
-Definition. Let x be a complex number. neg(x) == (-Re(x),-Im(x)).
+Theorem. Let x be a complex number. Im(_x) = -Im(x).
+Proof. _x ++ x = Zero. Qed.
+
+Theorem. Let x be a complex number. _x == (-Re(x),-Im(x)).
 
 Definition. Let x be a complex number. x is complexreal iff Im(x) = 0.
 
 Theorem 1_31_a. Let z,w be complex numbers. conj(z++w) = conj(z) ++ conj(w).
 Theorem 1_31_b. Let z,w be complex numbers. conj(z**w) = conj(z) ** conj(w).
 Theorem 1_31_c1. Let z be a complex number. z ++ (conj(z)) == (Re(z)+Re(z),0).
-Theorem 1_31_c2. Let z be a complex number. z ++ (neg(conj(z))) == (0,Im(z)+Im(z)).
+Proof. z ++ (conj(z)) == (Re(z)+Re(conj(z)), Im(z) + Im(conj(z))).
+       z ++ (conj(z)) == (Re(z)+Re(z), Im(z)-Im(z)).
+       z ++ (conj(z)) == (Re(z)+Re(z),0). Qed.
+Theorem 1_31_c2. Let z be a complex number. z ++ (_conj(z)) == (0,Im(z)+Im(z)).
+Proof. _conj(z) == (-Re(z), Im(z)). Qed.
 Theorem 1_31_d1. Let z be a complex number. z ** (conj(z)) is complexreal.
 Theorem 1_31_d2. Let z be a complex number such that Re(z) is not 0. Re(z ** (conj(z))) 
 is positive.
-
- 
