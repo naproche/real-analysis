@@ -7,7 +7,7 @@
 #This was added since I deleted, momentarily, reading Countable sets as I was getting an error
 #with an invalid naming for the natural numbers????
 
-Definition OpenCover. Let X be a metric space. Let E be a subset of X.An open cover of E in X 
+Definition OpenCover. Let X be a metric space. Let E be a subset of X. An open cover of E in X 
 is a set C such that every element of C is a subset of X and every element of C is open in X
 and E is a subset of U(C,X).
 #The "in X" is necesary as if we don't write it Naproche identifies X as a "free undeclared" variable.
@@ -24,28 +24,25 @@ Definition Compact. Let X be a metric space. Let K be a subset of X. K is compac
 every nonempty open cover C of K in X there exists a finite subcover F of K in X with respect to C
 such that F is nonempty. #Added this last bit to avoid contradictions. 
 
-#Definition Compactness. Let X be a metric space. Let K be a subset of X. K is compact in X  iff
-#for every open cover of K in X  
-
-Lemma. Let X be a metric space. Let K be a finite subset of X. K is compact in X.
+Lemma. Let X be a metric space. Let K be a nonempty finite subset of X. K is compact in X.
 Proof.
-Let us show that for every open cover  C of K in X there exists a finite subcover of
+Let us show that for every open cover C of K in X there exists a finite subcover of
  K in X with respect to C .
  Let C be an open cover of K in X.
- Define D(a) = Choose an element A of C such that a is an element of A in A for a in K.
- Define DD = {D(a)| a is an element of K}.
- Let us show that DD is finite.
+ Case K is nonempty.
+  Define D(a) = Choose an element A of C such that a is an element of A in A for a in K.
+  Define DD = {D(a)| a is an element of K}.
+  Let us show that DD is finite.
   Take a natural number n such that Fin(n) is bigger than K.
   Take a map f such that Dom(f)= Fin(n) and f is surjective onto K.
   Define g(m) = D(f(m)) for m in Fin(n).
   g is surjective onto DD.
  End.
- Let us show that DD is an open cover of K in X. #It proves this on its own without further specification.
- End.
+ Let us show that DD is an open cover of K in X. End.
+ Case K is the empty set. Choose a finite subset A of C. Then A is a finite subcover of K in X with respect to C. End.
 End.
 End.
-
-#The proof of this is obvious but I am unsure how one could write it for a computer.(see above)
+End.
 
 # Momentarily I skip 2_33 as I do not think compact relative to... is an important thing.
 
