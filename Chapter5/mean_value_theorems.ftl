@@ -16,6 +16,382 @@ Let eps, del denote positive real numbers.
 Let a,b, A,B denote real numbers.
 
 
+# Lemma
+
+Lemma LimitOfConstantFunction.
+  Let c be a real number.
+  Let f be a constant map with value c.
+  Let p be a limit point of Dom(f).
+  Then lim(f,p) = c.
+Proof.
+  Let us show that for any eps c is limit of f at p wrt eps.
+    Assume that eps is a positive real number.
+    Take del = 1. del is a positive real number.  
+    Let us show that c is limit of f at p wrt eps and del.
+      Assume t \in Dom(f) and 0<d(t,p)<del.
+      Then d(f(t),c) = 0. Indeed f(t) = c.
+      Then d(f(t),c) < eps.
+    End.
+  End.
+QED.
+
+Lemma LimitOfIdentityMap.
+  Let f be an identity map.
+  Let p be a limit point of Dom(f).
+  Then lim(f,p) = p.
+Proof.
+  p is a real number.
+  Let us show that for any eps p is limit of f at p wrt eps.
+    Assume that eps is a positive real number.
+    Let us show that p is limit of f at p wrt eps and eps.
+      Assume t \in Dom(f) and 0<d(t,p)<eps.
+      Then d(f(t),p) = d(t,p). Indeed f(t) = t.
+      Then d(f(t),p) < eps.
+    End.
+  End.
+QED.
+
+Lemma LimitOfRestrictedFunction.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Let p be a limit point of Dom(g).
+  If lim(f,p) exists then lim(g,p) = lim(f,p).
+Proof.
+  Then p is a limit point of Dom(f) (by LimitPointOfSupset).
+  Assume that lim(f,p) exists.
+  Take q = lim(f,p). q is a real number.
+  Let us show that for any positive real number eps q is limit of g at p wrt eps.
+    Assume that eps is a positive real number.
+    Take positive real number del such that q is limit of f at p wrt eps and del.
+    Indeed q is a real number such that lim(f,p) = q.
+    Let us show that q is limit of g at p wrt eps and del.
+      Assume t \in Dom(g).
+      Then t \in Dom(f). Indeed Dom(g) is a subset of Dom(f).
+      Let us show that if 0<d(t,p)<del then d(g(t),q)<eps.
+        Assume 0<d(t,p)<del.
+        If 0<d(t,p)<del then d(f(t),q)<eps (by LimitWrtAnd).
+        Then d(f(t),q)<eps.
+        Then d(g(t),q)<eps. Indeed g(t) = f(t).
+      End.
+    End.
+  End.
+  Therefore the thesis (by LimitAxiom).
+QED.
+
+Lemma LimitOfScaledFunction.
+  Let f be a real map.
+  Let c be a real number.
+  Let p be a limit point of Dom(f).
+  If lim(f,p) exists then lim(c~f,p) = c*lim(f,p).
+Proof.
+  Take S = Dom(f).
+  Define g(t) = c for t in S.
+  g is a constant map with value c.
+  Take h1 = g**f. h1 is a real map that is defined on S.
+  Take h2 = c~f. h2 is a real map that is defined on S.
+  Let us show that h1 = h2.
+    Let us show that Dom(h1) = Dom(h2).
+      Dom(h1) = S.
+      Dom(h2) = S.
+    End.
+    Let us show that for any t \in S h1(t) = h2(t).
+      Assume t \in S.
+      h1(t) = g(t) * f(t).
+      g(t) = c.
+      Then h1(t) = c*f(t).
+      h2(t) = c*f(t).
+    End.
+  End.
+  Assume that lim(f,p) exists.
+  Let us show that lim(h1,p) = c*lim(f,p).
+    g,f are real map such that Dom(g) = Dom(f).
+    p is a limit point of Dom(g).
+    If lim(g,p) exists and lim(f,p) exists then lim(h1,p) = lim(g,p)*lim(f,p) (by 4_4b).
+    lim(f,p) exists.
+    lim(g,p) = c (by LimitOfConstantFunction).
+  End.
+QED.
+
+# Continuity
+
+Lemma ContinuityOfIdentityMap.
+  Let f be a real map that is identity map.
+  Then f is continuous.
+Proof.
+  Assume p \in Dom(f).
+  Take fp = f(p). fp is a real number.
+  Let us show that f is continuous at p.
+    Assume that eps is a positive real number.
+    Let us show that f is continuous at p wrt eps.
+      Let us show that f is continuous at p wrt eps and eps.
+        Assume t \in Dom(f) and 0<d(t,p)<eps.
+        Then f(t) = t and fp = p.
+        Then d(f(t),f(p)) = d(t,p).
+        Then d(f(t),f(p)) < eps.
+      End.
+    End.
+  End.
+QED.
+
+Lemma ContinuityOfScaledFunction.
+  Let f be a real map.
+  Let c be a real number.
+  Let p be an element of Dom(f).
+  Suppose that f is continuous at p.
+  Then c~f is continuous at p.
+Proof.
+  Take g = c~f. g is a real map.
+  p is an element of Dom(g).
+  Take fp = f(p). fp is a real number.
+  Take gp = g(p). gp is a real number.
+  Let us show that g is continuous at p.
+    Case c = 0.
+      Let us show that for any eps g is continuous at p wrt eps.
+        Assume that eps is a positive real number.
+        Take del = 1. del is positive real number.
+        Let us show that g is continuous at p wrt eps and del.
+          Assume t \in Dom(g) and 0<d(t,p)<del.
+          Then g(t) = c * f(t) = 0.
+          Then gp = c * fp = 0.
+          Then d(g(t),gp) = d(0,0) = 0.
+          Then d(g(t),gp) < eps.
+        End.
+      End.
+      Then g is continuous at p (by ContinuousAt).
+    End.
+    Case c > 0.
+      Let us show that for any eps g is continuous at p wrt eps.
+        Assume that eps is a positive real number.
+        Take inv = 1//c. inv is a positive real number.
+        inv*eps is a positive real number.
+        Then f is continuous at p wrt inv*eps (by ContinuousAt).
+        Take del such that f is continuous at p wrt inv*eps and del (by ContinuousAtWrt).
+        Indeed f is continuous at p and eps is a positive real number.
+        Then for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),fp)<inv*eps (by ContinuousAtWrtAnd).
+        Let us show that g is continuous at p wrt eps and del.
+          Assume t \in Dom(g) and 0<d(t,p)<del.
+          Then t \in Dom(f).
+          Take ft = f(t). ft is a real number.
+          Take gt = g(t). gt is a real number.
+          Then d(ft,fp)<inv*eps.
+          Then fp-(inv*eps) < ft < fp+(inv*eps) (by d4).
+          Let us show that d(gt,gp)<eps.
+            c*(fp-(inv*eps)) < c*ft < c*(fp+(inv*eps)).
+            c*(fp-(inv*eps)) = (c*fp) - (c*(inv*eps)).
+            c*fp = gp.
+            (c*(inv*eps)) = (c*inv)*eps.
+            c*inv = 1.
+            Then (c*inv)*eps = 1*eps = eps.
+            Then c*(fp-(inv*eps)) = gp-eps.
+            c*(fp+(inv*eps)) = (c*fp) + (c*(inv*eps)).
+            Then (c*fp) + (c*(inv*eps)) = gp+eps.
+            Then gp-eps < gt < gp+eps. Indeed gt = c*ft.
+          End.
+        End.
+      End.
+      Then g is continuous at p (by ContinuousAt).
+    End.
+    Case c < 0.
+      Take c' = -c. c' is a positive real number.
+      Take inv = 1//c'. inv is a positive real number.
+      Let us show that for any eps g is continuous at p wrt eps.
+        Assume that eps is a positive real number.
+        inv*eps is a positive real number.
+        Take del such that f is continuous at p wrt inv*eps and del (by ContinuousAtWrtAnd).
+        Indeed f is continuous at p.
+        Then for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),fp)<inv*eps (by ContinuousAtWrtAnd).
+        Let us show that g is continuous at p wrt eps and del.
+          Assume t \in Dom(g) and 0<d(t,p)<del.
+          Then t \in Dom(f).
+          Take ft = f(t). ft is a real number.
+          Take gt = g(t). gt is a real number.
+          gt = c*ft.
+          -gt = -(c*ft).
+          -(c*ft) = (-c)*ft.
+          Then -gt = c'*ft.
+          Then d(ft,fp)<inv*eps.
+          Then fp-(inv*eps) < ft < fp+(inv*eps) (by d4).
+          Let us show that d(gt,gp)<eps.
+              c'*(fp-(inv*eps)) < c'*ft < c'*(fp+(inv*eps)).
+              c'*(fp-(inv*eps)) = (c'*fp) - (c'*(inv*eps)).
+              c'*fp = (-c)*fp.
+              (-c)*fp = -(c*fp).
+              c*fp = gp.
+              Then c'*fp = -gp.
+              (c'*(inv*eps)) = (c'*inv)*eps.
+              c'*inv = 1.
+              Then (c'*inv)*eps = 1*eps = eps.
+              Then c'*(fp-(inv*eps)) = (-gp)-eps.
+              c'*(fp+(inv*eps)) = (c'*fp) + (c'*(inv*eps)).
+              Then (c'*fp) + (c'*(inv*eps)) = (-gp)+eps.
+              Then (-gp)-eps < -gt < (-gp)+eps. Indeed -gt = c'*ft.
+              Then gt < gp+eps.
+              Then gt > gp-eps.
+          End.
+        End.
+      End.
+    End.
+  End.
+QED.
+
+# Derivative
+
+Lemma DerivativeOfIdentityMap.
+  Let f be a real map that is identity map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  Then f is differentiable at p and D(f,p) = 1.
+Proof.
+  Take g = DQ(f,p). g is a real map.
+  Let us show that D(f,p) = 1.
+    Let us show that lim(g,p) = 1.
+      Let us show that for any eps 1 is limit of g at p wrt eps.
+        Assume that eps is a positive real number.
+        Take del = 1. del is a positive real number.
+        Let us show that 1 is limit of g at p wrt eps and del.
+          Assume t \in Dom(g) and 0<d(t,p)<del.
+          t \in Dom(f).
+          Take ft = f(t). ft is a real number.
+          Take fp = f(p). fp is a real number.
+          Take inv = 1//(t-p). inv is a real number.
+          Then g(t) = (ft-fp) // (t-p) (by DifferenceQuotient).
+          Indeed p is an element of Dom(f) and g = DQ(f,p).
+          (ft-fp) * inv = (t-p) * inv. Indeed ft = t and fp = p.
+          (t-p) * inv = 1.
+          Then g(t) = 1.
+          Then d(g(t),1) = 0.
+          Then d(g(t),1)<eps.
+        End.
+      End.
+    End.
+  End.
+QED.
+
+Lemma DerivativeOfScaledFunction.
+  Let f be a real map.
+  Let c be a real number.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  Suppose that f is differentiable at p.
+  Then c~f is differentiable at p and D(c~f,p) = c * D(f,p).
+Proof.
+  Take S = Dom(f).
+  Take g = c~f. g is a real map that is defined on S.
+  p is an element of Dom(g) that is a limit point of Dom(g).
+  Take S' = S \\ {p}.
+  Take DQg = DQ(g,p). DQg is a real map that is defined on S'.
+  Take DQf = DQ(f,p). DQf is a real map that is defined on S'.
+  Take h = c~DQf. h is a real map that is defined on S'.
+  Take d = D(f,p). d is a real number.
+  Then lim(DQf,p) = d (by DerivativeAxiom).
+  Let us show that DQg = h.
+    Let us show that Dom(DQg) = Dom(h).
+      Dom(DQg) = S'.
+      Dom(h) = S'.
+    End.
+    Let us show that for any t \in S' DQg(t) = h(t).
+      Assume t \in S'.
+      Take gt = g(t). gt is a real number.
+      Take gp = g(p). gp is a real number.
+      Take ft = f(t). ft is a real number.
+      Take fp = f(p). fp is a real number.
+      Take inv = 1/(t-p). inv is a real number.
+      DQg(t) = (gt-gp) // (t-p) (by DifferenceQuotient).
+      Indeed p is an element of Dom(g).
+      gt = c*ft.
+      gp = c*fp.
+      Then gt-gp = (c*ft)-(c*fp).
+      (c*ft)-(c*fp) = c*(ft-fp).
+      Then DQg(t) = (c*(ft-fp)) // (t-p).
+      Then DQg(t) = (c*(ft-fp))*inv.
+      (c*(ft-fp))*inv = c*((ft-fp)*inv).
+      Then DQg(t) = c*((ft-fp)*inv).
+      DQf(t) = (ft-fp) // (t-p) (by DifferenceQuotient).
+      Then DQg(t) = c*DQf(t).
+      h(t) = c*DQf(t).
+    End.
+  End.
+  Let us show that lim(h,p) = c*d.
+    DQf is a real map.
+    c is a real number.
+    p is a limit point of Dom(DQf).
+    If lim(DQf,p) exists then lim(h,p) = c*lim(DQf,p) (by LimitOfScaledFunction).
+    lim(DQf,p) = d.
+  End.
+  Therefore lim(DQg,p) = c*d. Indeed DQg = h.
+  Then D(g,p) = c*d (by DerivativeAxiom).
+  Therefore the thesis. Indeed d = D(f,p).
+QED.
+
+Lemma DerivativeOfConstantFunction.
+  Let c be a real number.
+  Let f be a constant map with value c.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  Then f is differentiable at p and D(f,p) = 0.
+Proof.
+  Take g = DQ(f,p). g is a real map.
+  Let us show that g is a constant map with value 0.
+    Assume t \in Dom(g).
+    f(t) = c.
+    f(p) = c.
+    Then g(t) = (c-c) // (t-p).
+    c-c = 0.
+    Then g(t) = 0 // (t-p).
+    0 // (t-p) = 0.
+  End.
+  Let us show that lim(g,p) = 0.
+    0 is a real number.
+    g is a constant map with value 0.
+    p is a limit point of Dom(g).
+    Therefore the thesis (by LimitOfConstantFunction).
+  End.
+  Then D(f,p) = 0 (by DerivativeAxiom).
+QED.
+
+Lemma DerivativeOfRestriction.
+  Let f be a real map.
+  Let g be a restriction of f.
+  Let p be an element of Dom(g) that is a limit point of Dom(g).
+  If f is differentiable at p
+  then g is differentiable at p and D(g,p) = D(f,p).
+Proof.
+  p is an element of Dom(f) that is a limit point of Dom(f).
+  Assume that f is differentiable at p.
+  Take d = D(f,p). d is a real number (by Differentiable).
+  Let us show that D(g,p) = d.
+    Take hf = DQ(f,p). hf is a real map.
+    Take hg = DQ(g,p). hg is a real map.
+    Let us show that hg is a restriction of hf.
+      Let us show that  Dom(hg) is subset of Dom(hf).
+        Dom(hf) = (Dom(f)) \\ {p}.
+        Dom(hg) = (Dom(g)) \\ {p}.
+        Assume t \in Dom(hg).
+        Then t \in Dom(g) and t != p.
+        Then t \in Dom(f) and t != p.
+        Then t \in Dom(hf).
+      End.
+      Let us show that for any t \in Dom(hg) hg(t) = hf(t).
+        Assume t \in Dom(hg).
+        Then t \in Dom(hf) and t \in Dom(g) and t \in Dom(f).
+        Take gt = g(t). gt is a real number.
+        Take ft = f(t). ft is a real number.
+        Take gp = g(p). gp is a real number.
+        Take fp = f(p). fp is a real number.
+        hg(t) = (gt-gp) // (t-p) (by DifferenceQuotient).
+        Indeed hg = DQ(g,p) and p is an element of Dom(g) and g is a real map.
+        hf(t) = (ft-fp) // (t-p) (by DifferenceQuotient).
+        Then (gt-gp) // (t-p) = (ft-fp) // (t-p). Indeed gt = ft and gp = fp.
+        Then hg(t) = hf(t).
+      End.
+    End.
+    Let us show that lim(hg,p) = d.
+      hf is a real map.
+      hg is a restriction of hf.
+      p is a limit point of Dom(hg).
+      If lim(hf,p) exists then lim(hg,p) = lim(hf,p) (by LimitOfRestrictedFunction).
+      Therefore the thesis. Indeed lim(hf,p) = d.
+    End.
+  End.
+QED.
+
 # LOCAL MINIMA AND MAXIMA
 Definition 5_7a.
   Let f be a real map.
@@ -38,13 +414,12 @@ Proof.
   Indeed f is a real map and p is a limit point of Dom(f).
   Suppose the contrary.
   Then A > 0.
-
   # Take del such that...
   Then for any positive real number eps A is limit of f at p wrt eps.
   Then A is limit of f at p wrt A. Indeed A is a positive real number.
   Take positive del such that A is limit of f at p wrt A and del (by LimitWrt).
   Then for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),A)<A (by LimitWrtAnd).
-
+  # Take del near p.
   Take t \in Dom(f) such that 0<d(t,p)<del (by LimitPoint).
   Indeed p is a limit point of Dom(f) and del is a positive real number.
   Take ft = f(t). ft is a real number.
@@ -64,13 +439,12 @@ Proof.
   Take real number A such that lim(f,p) = A (by LimitExists).
   Suppose the contrary.
   Then -A is a positive real number.
-
   # Take del such that...
   For any positive real number eps A is limit of f at p wrt eps.
   Then A is limit of f at p wrt -A. Indeed -A is a positive real number.
   Take positive del such that A is limit of f at p wrt -A and del (by LimitWrt).
   Then for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),A)<-A (by LimitWrtAnd).
-
+  # Take t near p.
   Take t \in Dom(f) such that 0<d(t,p)<del (by LimitPoint).
   Indeed Dom(f) is a subset of Real
     and p is a limit point of Dom(f)
@@ -144,7 +518,6 @@ Proof.
   
   Take real number d such that D(f,p) = d.
   DQ(f,p) is a real map that is defined on [x|y]\\{p}.
-
   # calculating D(f,p) from below:
   Let us show that d<=0.
     Let us show that (p-del|p) is a subset of Dom(DQ(f,p)).
@@ -195,7 +568,6 @@ Proof.
       Therefore the thesis (by 5_8_2a).
     End.
   End.
-
   # calculating D(f,p) from above:
   Let us show that d>=0.
     Let us show that (p|p+del) is a subset of Dom(DQ(f,p)).
@@ -278,7 +650,6 @@ Proof.
   
   Take real number d such that D(f,p) = d.
   DQ(f,p) is a real map that is defined on [x|y]\\{p}.
-
   # calculating D(f,p) from below:
   Let us show that d>=0.
     Let us show that (p-del|p) is a subset of Dom(DQ(f,p)).
@@ -329,7 +700,7 @@ Proof.
       Therefore the thesis (by 5_8_2b).
     End.
   End.
-
+  # calculating D(f,p) from above:
   Let us show that d<=0.
     Let us show that (p|p+del) is a subset of Dom(DQ(f,p)).
       Assume t \in (p|p+del).
@@ -389,14 +760,11 @@ Theorem 5_9.
   Then there exists p \in (x|y) such that
     (f(y)-f(x)) * D(g,p) = (g(y)-g(x)) * D(f,p).
 Proof.
-  
-  # notation to reduce brackets
+  # notation to reduce brackets and ontological checks
   Take fx = f(x). Then fx is a real number.
   Take fy = f(y). Then fy is a real number.
   Take gx = g(x). Then gx is a real number.
   Take gy = g(y). Then gy is a real number.
-  
-  # function h
   Take c = (fy-fx).
   Take d = (gx-gy).
   Then c~g is a real map that is defined on Dom(g) (by ScalingOfRealMap).
@@ -404,11 +772,8 @@ Proof.
   Take h = (c~g)++(d~f).
   Then h is a real map that is defined on Dom(c~g) (by AdditionOfRealMaps).
   Indeed Dom(f) = [x|y] = Dom(g).
-
-  # notation to reduce brackets (and ontological checking??)
   Take hx = h(x). Then hx is a real number.
   Take hy = h(y). Then hy is a real number.
-  
   # derivative of h
   Let us show that for any t \in (x|y) D(h,t) = (c*D(g,t)) + (d*D(f,t)).
     Suppose t \in (x|y).
@@ -443,7 +808,6 @@ Proof.
       Then the thesis (by 5_3a).
     End.
   End.
-
   # h is continuous.
   Let us show that h is continuous.
     Suppose t \in Dom(h).
@@ -455,7 +819,6 @@ Proof.
     Indeed f is continuous at t and t is a limit point of Dom(f).
     h is continuous at t (by 4_9a). Indeed h = (c~g)++(d~f).
   End.
-
   # h is differentiable.
   Let us show that h is differentiable on (x|y).
     Suppose t \in (x|y).
@@ -468,7 +831,6 @@ Proof.
     Then h is differentiable at t (by Differentiable).
     Indeed t is an element of Dom(h) that is a limit point of Dom(h).
   End.
-
   # it's enough to show D(h,p) = 0.
   Let us show that if there exists p \in (x|y) such that D(h,p) = 0 then the thesis.
     Assume that there exists p \in (x|y) such that D(h,p) = 0.
@@ -499,7 +861,6 @@ Proof.
       Therefore c*B = (gy-gx)*A.
     End.
   End.
-
   # h(x) = h(y).
   x \in [x|y] and y \in [x|y].
   Let us show that hx = hy.
@@ -539,14 +900,12 @@ Proof.
     (gx*fy)-(fx*gy) = (fy*gx)-(fx*gy).
     (fy*gx)-(fx*gy) = (fy*gx)-(gy*fx).
   End.
-
-  # ontology check
+  # ontological check
   h is a real map and (x|y) is a subset of Dom(h). Indeed Dom(h) = [x|y].
   Let us show that for any t \in (x|y) h(t) is a real number.
     Assume t \in (x|y).
     Then h(t) is a real number (by RealMapsEvaluateToRealNumbers).
   End.
-    
   # Case 1: h is constant
   Case for any t \in (x|y) h(t) = hx.
     Let us show that for any t \in [x|y] h(t) = hx.
@@ -556,14 +915,13 @@ Proof.
     End.
     Take p \in (x|y).
     Let us show that D(h,p) = 0.
-      h is a real map that is defined on [x|y].
-      hx is a real number such that for any t \in [x|y] h(t) = hx.
-      p is an element of (x|y).
+      hx is a real number.
+      h is a constant map with value hx.
+      p is an element of Dom(h) that is a limit point of Dom(h).
       Then h is differentiable at p and D(h,p) = 0 (by DerivativeOfConstantFunction).
     End.
     Therefore the thesis. Indeed there exists t \in (x|y) such that D(h,t)=0.
   End.
-
   # Case 2: h has a maxima in (x|y).
   Case there exists t \in (x|y) such that h(t) > hx.
     Let us show that there exists p \in (x|y) such that p is a local maxima of h.
@@ -604,7 +962,6 @@ Proof.
     End.
     Therefore the thesis. Indeed there exists t \in (x|y) such that D(h,t)=0.
   End.
-
   # Case 3: h has a minima in (x|y).
   Case there exists t \in (x|y) such that h(t) < h(x).
     Let us show that there exists p \in (x|y) such that p is a local minima of h.
@@ -645,116 +1002,9 @@ Proof.
     End.
     Therefore the thesis. Indeed there exists t \in (x|y) such that D(h,t)=0.
   End.
-
   # 3 cases
   (For any t \in (x|y) h(t) = hx) or (there exists t \in (x|y) such that h(t) > hx)
     or (there exists t \in (x|y) such that h(t) < hx).
-QED.
-
-Theorem 5_2.
-  Let f be a real map.
-  Let p be an element of Dom(f) that is a limit point of Dom(f).
-  If f is differentiable at p
-  then f is continuous at p.
-Proof.
-  # notation to reducd brackets and ontological checks
-  Take S = (Dom(f))\\{p}. S is a subset of Real and a subset of Dom(f).
-  Take fp = f(p). fp is a real number.
-  Take g = DQ(f,p). g is a real map that is defined on S.
-  # help functions
-  Define const1(t) = -p for t in S.
-  Then const1 is a constant map with value -p.
-  Define const2(t) = fp for t in S.
-  Then const2 is a constant map with value fp.
-  Define resf(t) = f(t) for t in S.
-  Then resf is a restriction of f.
-  Define id(t) = t for t in S.
-  Then id is the identity map of S and id is a real map.
-  Take h1 = id++const1.
-  Then h1 is a real map that is defined on S.
-  Take h2 = g**(h1).
-  Then h2 is a real map that is defined on S.
-  Take h3 = h2++const2.
-  Then h3 is a real map that is defined on S.
-  # f(t) = DQ(f,p)*(t-p) + f(tp)
-  Let us show that resf = h3.#! takes long!
-    Dom(resf) = S = Dom(h3).
-    Let us show that for any t \in S resf(t) = h3(t).
-      Assume t \in S.
-      Take ft = resf(t). ft is a real number.
-      Take h2t = h2(t). h2t is a real number.
-      Take h3t = h3(t). h3t is a real number.
-      Then h3t = h2(t) + const2(t) (by Addition).
-      const2(t) = fp.
-      Let us show that h2t = ft - fp.
-        h2t = g(t) * h1(t) (by Multiplication). 
-        Take inv = 1/(t-p). Indeed t-p != 0.
-        g(t) = (ft-fp) * inv (by DifferenceQuotient).
-        h1(t) = id(t) + const1(t) (by Addition).
-        id(t) = t.
-        const1(t) = -p.
-        Then h2t = ((ft-fp)*inv)*(t-p).
-        ((ft-fp)*inv)*(t-p) = (ft-fp)*(inv*(t-p)).
-        inv * (t-p) = (t-p) * inv.
-        (t-p) * inv = 1.
-        Then h2t = (ft-fp) * 1.
-      End.
-      Then h3t = (ft-fp) + fp.
-      (ft-fp) + fp = ft + (-fp+fp).
-      -fp + fp = fp - fp.
-      fp - fp = 0.
-      Then h3t = ft + 0.
-    End.
-  End.
-  # lim(resf,p) = f(p) by using that f is differentiable at p.
-  Assume that f is differentiable at p.
-    Let us show that lim(resf,p) = fp.
-    lim(id,p) = p (by LimitOfIdentityMap).
-    Indeed id is an identity map and p is a limit point of Dom(id).
-    lim(const1,p) = -p (by LimitOfConstantFunction).
-    Indeed p is a limit point of Dom(const1).
-    lim(h1,p) = p - p (by 4_4a).
-    Indeed p is a limit point of Dom(id).
-    Then lim(h1,p) = 0. Indeed p - p = 0.
-    lim(g,p) exists. Indeed f is differentiable at p.
-    lim(h2,p) = lim(g,p) * 0 (by 4_4b).
-    Indeed p is a limit point of Dom(g).
-    Then lim(h2,p) = 0.
-    lim(const2,p) = fp (by LimitOfConstantFunction).
-    Indeed p is a limit point of Dom(const2).
-    lim(h3,p) = 0 + fp (by 4_4a).
-    Indeed p is a limit point of Dom(h3).
-    Then lim(h3,p) = fp.
-    Then lim(resf,p) = fp. Indeed resf = h3.
-  End.
-  # lim(f,p) = f(p).
-  Let us show that lim(f,p) = fp.
-    Let us show that for any eps fp is limit of f at p wrt eps.
-      Assume that eps is a positive real number.
-      Then fp is limit of resf at p wrt eps (by LimitAxiom).
-      Indeed p is a limit point of Dom(resf) and lim(resf,p) = fp.
-      Let us show that there exists del such that fp is limit of f at p wrt eps and del.
-        Take del such that fp is limit of resf at p wrt eps and del (by LimitWrt).
-        Indeed p is a limit point of Dom(resf) and fp is limit of resf at p wrt eps.
-        Let us show that fp is limit of f at p wrt eps and del.
-          For any t \in Dom(resf) if 0<d(t,p)<del then d(f(t),fp)<eps (by LimitWrtAnd).
-          Indeed p is a limit point of Dom(resf) and fp is limit of resf at p wrt eps and del.
-          Assume t \in Dom(f).
-          Take ft = f(t). ft is a real number.
-          Let us show that if 0<d(t,p)<del then d(ft,fp)<eps.
-            Assume that 0<d(t,p)<del.
-            Then t \in S (by SetMinus). #! takes long!
-            Indeed t is an element of Dom(f) and t != p.
-            Then t \in Dom(resf). Indeed Dom(resf) = S.
-            Then d(ft,fp)<eps.
-          End.
-        End.
-      End.
-    End.
-  End.
-  # apply Theorem 4_6.
-  Therefore the thesis (by 4_6).
-  Indeed p is an element of Dom(f) that is a limit point of Dom(f).
 QED.
 
 Theorem 5_10.
@@ -810,11 +1060,8 @@ Proof.
   Assume for any t \in (x|y) D(f,t) >= 0.
   Let us show that for any s,t \in (x|y) if s <= t then f(s) <= f(t).
     Assume that s,t are elements of (x|y) such that s <= t.
-    
     # Case 1: s = t.
-    Case s = t. Then f(s) = f(t).
-    End.
-
+    Case s = t. Then f(s) = f(t). End.
     # Case 2: s < t.
     Case s < t.
       Let us show that [s|t] is a subset of Dom(f).
