@@ -213,48 +213,6 @@ Definition LimitExists.
   Let p be a limit point of Dom(f).
   lim(f,p) exists iff lim(f,p) is a real number.
 
-Lemma LimitOfConstantFunction.
-  Let c be a real number.
-  Let f be a constant map with value c.
-  Let p be a limit point of Dom(f).
-  Then lim(f,p) = c.
-#! Proof
-
-Lemma LimitOfIdentityMap.
-  Let f be an identity map.
-  Let p be a limit point of Dom(f).
-  Then lim(f,p) = p.
-#! Proof
-
-Lemma LimitOfRestrictedFunction.
-  Let f be a real map.
-  Let g be a restriction of f.
-  Let p be a limit point of Dom(g).
-  If lim(f,p) exists then lim(g,p) = lim(f,p).
-#! Proof.
-#  Then p is a limit point of Dom(f) (by LimitPointOfSupset).
-#  Let us show that for any positive real number eps there exists
-#  a positive real number del such that
-#  for any  t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
-#    Assume that eps is a positive real number.
-#    There exists a positive real number del such that 
-#      for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
-#    Indeed q is a real number such that lim(f,p) = q.
-#    Take a positive real number del such that for any
-#      t \in Dom(f) if 0<d(t,p)<del then d(f(t),q)<eps.
-#    Let us show that for any t \in Dom(g) if 0<d(t,p)<del then d(g(t),q)<eps.
-#      Take t \in Dom(g).  
-#      Then t \in Dom(f). Indeed Dom(g) is a subset of Dom(f).
-#      Let us show that if 0<d(t,p)<del then d(g(t),q)<eps.
-#        Assume 0<d(t,p)<del.
-#        Then d(f(t),q)<eps.
-#        Then d(g(t),q)<eps. Indeed g(t) = f(t).
-#      End.
-#    End.
-#  End.
-#  Therefore the thesis (by Limit).
-#QED.
-
 Theorem 4_4a.
   Let f, g be real map such that Dom(f) = Dom(g).
   Let p be a limit point of Dom(f).
@@ -269,11 +227,21 @@ Theorem 4_4b.
 # CONTINUITY
 Let f denote a real map.
 
+Definition ContinuousAtWrtAnd.
+  Let p be an element of Dom(f).
+  Let eps be a positive real number.
+  Let del be a positive real number.
+  f is continuous at p wrt eps and del iff
+    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),f(p))<eps.
+Definition ContinuousAtWrt.
+  Let p be an element of Dom(f).
+  Let eps be a positive real number.
+  f is continuous at p wrt eps iff
+    there exists positive real number del such that f is continuous at p wrt eps and del.
 Definition ContinuousAt.
   Let p be an element of Dom(f).
   f is continuous at p iff for any positive real number eps
-    there exists positive real number del such that
-    for any t \in Dom(f) if 0<d(t,p)<del then d(f(t),f(p))<eps.
+    f is continuous at p wrt eps.
 
 Definition Continuous.
   f is continuous iff for any p \in Dom(f) f is continuous at p.
@@ -294,19 +262,6 @@ Theorem 4_9b.
   Let p \in Dom(f).
   Suppose f is continuous at p and g is continuous at p.
   Then f**g is continuous at p.
-
-Lemma ContinuityOfIdentityMap.
-  Let f be a real map that is identity map.
-  Then f is continuous.
-#! Proof
-
-Lemma ContinuityOfScaledFunction.
-  Let f be a real map.
-  Let c be a real number.
-  Let p be an element of Dom(f).
-  Suppose that f is continuous at p.
-  Then c~f is continuous at p.
-#! Proof!
 
 Lemma ContinuityOfRestriction.
   Let f be a real map.
@@ -336,7 +291,7 @@ Definition DifferenceQuotient.
     Dom(g) = (Dom(f))\\{p} and
     for any t \in Dom(g) g(t) = (f(t)-f(p)) // (t-p).
 
-Lemma.
+Lemma DifferenceQuotientIsARealMap.
   Let p be an element of Dom(f).
   Then DQ(f,p) is a real map.
 
@@ -363,24 +318,10 @@ Definition.
   f is differentiable on P iff
     for any p \in P f is differentiable at p.
 
-Lemma DerivativeOfConstantFunction.
-  Let f be a real map that is defined on [x|y].
-  Let c be a real number such that for any t \in [x|y] f(t) = c.
-  Let p be an element of (x|y).
-  Then f is differentiable at p
-    and D(f,p) = 0.
-Proof.
-  DQ(f,p) is a real map that is defined on [x|y]\\{p} (by DifferenceQuotient).
-  Let us show that for any t \in [x|y]\\{p} DQ(f,p)(t) = 0.
-    Suppose t \in [x|y]\\{p}.
-    Then f(t) = c = f(p).
-    Then f(t)-f(p) = 0.
-    Then (f(t)-f(p)) * (1/(t-p)) = 0.
-    Therefore DQ(f,p)(t) = 0 (by DifferenceQuotient).
-  End.
-  Then lim(DQ(f,p),p) = 0 (by LimitOfConstantFunction).
-  Therefore D(f,p) = 0 (by DerivativeAxiom).
-QED.
+Theorem 5_2.
+  Let f be a real map.
+  Let p be an element of Dom(f) that is a limit point of Dom(f).
+  If f is differentiable at p then f is continuous at p.
 
 Theorem 5_3a.
   Let f be a real map such that f is defined on [x|y].
@@ -390,37 +331,3 @@ Theorem 5_3a.
   Assume that g is differentiable at p.
   Then f++g is differentiable at p and
   D(f++g,p) = D(f,p) + D(g,p).
-
-Lemma DerivativeOfScaledFunction.
-  Let f be a real map.
-  Let c be a real number.
-  Let p be an element of Dom(f) that is a limit point of Dom(f).
-  Suppose that f is differentiable at p.
-  Then c~f is differentiable at p and D(c~f,p) = c * D(f,p).
-#! Proof!
-
-Lemma DerivativeOfIdentityMap.
-  Let f be a real map that is identity map.
-  Let p be an element of Dom(f) that is a limit point of Dom(f).
-  Then f is differentiable at p and D(f,p) = 1.
-#! Proof
-
-Lemma DerivativeOfRestriction.
-  Let f be a real map.
-  Let g be a restriction of f.
-  Let p be an element of Dom(g) that is a limit point of Dom(g).
-  If f is differentiable at p
-  then g is differentiable at p and D(g,p) = D(f,p).
-#! Proof
-
-
-# USEFUL FUNCTIONS
-#Lemma ContinuityOfConstantFunction.
-
-#Lemma DerivativeOfConstantFunction.
-
-#Lemma ContinuityOfIdentity.
-
-#Lemma LimitOfIdentity.
-
-#Lemma DerivativeOfIdentity.
