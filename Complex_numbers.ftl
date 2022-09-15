@@ -105,6 +105,10 @@ Theorem. Let x be a complex number. _x == (-Re(x),-Im(x)).
 Definition. Let x be a complex number. x is complexreal iff Im(x) = 0.
 
 Theorem 1_31_a. Let z,w be complex numbers. conj(z++w) = conj(z) ++ conj(w).
+Proof. conj(z++w) == (Re(z++w),-Im(z++w)).
+conj(z)++conj(w) == (Re(conj(z))+Re(conj(w)),Im(conj(z))+Im(conj(w))).
+conj(z)++conj(w) == (Re(z)+Re(w),-Im(z)-Im(w)).
+conj(z)++conj(w) == (Re(z++w),-(Im(z)+Im(w))). Qed.
 Theorem 1_31_b. Let z,w be complex numbers. conj(z**w) = conj(z) ** conj(w).
 Theorem 1_31_c1. Let z be a complex number. z ++ (conj(z)) == (Re(z)+Re(z),0).
 Proof. z ++ (conj(z)) == (Re(z)+Re(conj(z)), Im(z) + Im(conj(z))).
