@@ -119,3 +119,20 @@ Proof. _conj(z) == (-Re(z), Im(z)). Qed.
 Theorem 1_31_d1. Let z be a complex number. z ** (conj(z)) is complexreal.
 Theorem 1_31_d2. Let z be a complex number such that Re(z) is not 0. Re(z ** (conj(z))) 
 is positive.
+
+Signature. Let z be a complex number. abs(z) is a complex number.
+Signature. Let x be a real number. ab(x) is a real number.
+
+Axiom 1_32_1. Let z be a complex number. abs(z) is complexreal.
+Axiom 1_32_2. Let z be a complex number. abs(z)**abs(z) = z**conj(z).
+
+Theorem 1_33_a_1. abs(Zero) = Zero.
+Theorem 1_33_a_2. Let z be complex number. If z != Zero then Re(abs(z)) > 0.
+Theorem 1_33_b. Let z be complex number. abs(z) = abs(conj(z)).
+Theorem 1_33_c. Let z and w be complex numbers. abs(z**w) = abs(z)**abs(w).
+Theorem 1_33_d. Let z be complex number. ab(Re(z)) <= Re(abs(z)).
+Theorem 1_33_e. Let z and w be complex numbers. abs(z++w) = abs(z)++abs(w).
+
+#Theorem 1_35. Let z, w, u and v be complex numbers. 
+#Re(abs(z**w**u**v))*Re(abs(z**w**u**v)) <= 
+#(Re(abs(z))*Re(abs(z))+Re(abs(w))*Re(abs(w)))*(Re(abs(u))*Re(abs(u))+Re(abs(v))*Re(abs(v))).
