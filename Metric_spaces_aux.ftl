@@ -158,4 +158,16 @@ Axiom 2_27_b. Let X be a metric space. Let Y be a subset of X. Y = cl(Y,X) iff Y
 Axiom 2_27_c. Let X be a metric space. Let Y be a subset of X. Let F be a subset of X such that 
 (F is closed in X) and (Y is a subset of F). cl(Y,X) is a subset of F.
 
+Definition. Let A and B be sets. A and B are disjoint iff (for every element x of A x is not an element
+of A) and (for every element y of B y is not an element of A).
+
+Definition. Let A and B be sets. U(A,B) = {x | x is an element of A or x is an element of B}.
+
+Definition. Let X be a metric space. Let A and B be subsets of X. A and B are separated in X iff
+(cl(A,X) and B are disjoint) and (A and cl(B,X) are disjoint).
+
+Definition. Let X be a metric space. Let E be a subset of X. E is connected in X iff for every subsets
+A, B of E such that (A is nonempty) and (B is nonempty) and (A and B are separated in X) there exists
+an element x of E such that (x is not an element of A) and (x is not an element of B).
+
 
