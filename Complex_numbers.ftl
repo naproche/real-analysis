@@ -126,6 +126,9 @@ Signature. Let x be a real number. ab(x) is a real number.
 Axiom 1_32_1. Let z be a complex number. abs(z) is complexreal.
 Axiom 1_32_2. Let z be a complex number. abs(z)**abs(z) = z**conj(z).
 
+Axiom 1_32_3. Let x be a real number. ab(x)*ab(x) = x*x.
+Axiom 1_32_4. Let x be a real number. ab(x) > 0.
+
 Theorem 1_33_a_1. abs(Zero) = Zero.
 Theorem 1_33_a_2. Let z be complex number. If z != Zero then Re(abs(z)) > 0.
 Theorem 1_33_b. Let z be complex number. abs(z) = abs(conj(z)).
