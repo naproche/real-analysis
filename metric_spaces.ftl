@@ -250,10 +250,10 @@ of F. Thus cl(Y,X) is a subset of F. qed.
 Definition. Let A and B be sets. A and B are disjoint iff (for every element x of A x is not an element
 of A) and (for every element y of B y is not an element of A).
 
-Definition. Let X be a metric space. Let A and B be subsets of X. A and B are separated in X iff
+Definition 2_45_a. Let X be a metric space. Let A and B be subsets of X. A and B are separated in X iff
 (cl(A,X) and B are disjoint) and (A and cl(B,X) are disjoint).
 
-Definition. Let X be a metric space. Let E be a subset of X. E is connected in X iff for every subsets
+Definition 2_45_b. Let X be a metric space. Let E be a subset of X. E is connected in X iff for every subsets
 A, B of E such that (A is nonempty) and (B is nonempty) and (A and B are separated in X) there exists
 an element x of E such that (x is not an element of A) and (x is not an element of B).
 
