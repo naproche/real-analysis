@@ -475,3 +475,6 @@ Let us show that for every element h of Bin h!=g.
   Take a natural number n such that f(n) = h.
 End.
 End.
+
+Definition IntWithBound. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
+of X. Inter(C,X) is  a subset of X such that Inter(C,X) = {x| x is contained in all element of C}.
