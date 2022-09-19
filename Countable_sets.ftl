@@ -478,3 +478,22 @@ End.
 
 Definition IntWithBound. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
 of X. Inter(C,X) is  a subset of X such that Inter(C,X) = {x| x is contained in all element of C}.
+
+#Commented out here we find our attempt to prove the theorem labelled as UnionOfCount.
+
+#Axiom. NAT \times NAT is countable.
+
+#Definition. Let C be a countable set such that every element of C is a set. 
+#U(C) is a set such that U(C) = {x| x is contained in some element of C}.
+
+#Theorem UnionOfCount. Let X be a set. Let C be a nonempty set such that all elements of C are subsets
+#of X and C is  countable. If every element of C is countable then U(C,X) is countable.
+#Proof.
+#Take a sequence f such that f is surjective onto C. 
+#Let us show that for every natural number n f(n) is an element of C.
+#  Let n be a natural number.
+#  f(n) is an element of Im(Dom(f), f).
+#  Im(Dom(f),f) = C.
+#End.
+#Define g(n) = Choose a sequence h that is surjective onto f(n) in h for n in NAT.
+#End.
