@@ -228,7 +228,7 @@ of Neigh(p,r,X) q is not an element of Y). Hence Neigh(p,r,X) is a subset of Com
 Let us prove that Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). 
 Let s be an element of Neigh(p,r,X). Assume s is an element of lim(Y,X). Take a positive real number
 t such that Neigh(s,t,X) is a subset of Neigh(p,r,X). Then there exists an element c of X such that c is an element of
-lim(Y,X) and c is an element of Neigh(p,r,X). Contradiction. Hence Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). End.
+Y and c is an element of Neigh(p,r,X). Contradiction. Hence Neigh(p,r,X) is a subset of Compl(cl(Y,X),X). End.
 Hence p is interior point of Compl(cl(Y,X),X) in X.
 End. cl(Y,X) is closed in X.
 qed.
